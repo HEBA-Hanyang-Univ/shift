@@ -63,10 +63,12 @@ class UserData_G:
         if user:
             self.id = user['sub']
             self.name = user['name']
+            self.email = user['email']
             self.platform_type = "google"
         else:
             self.id = None
             self.name = None
+            self.email = None
             self.platform_type = None
 
     def __str__(self):
@@ -77,6 +79,7 @@ class UserData_G:
         return {
             "id": self.id,
             "name": self.name,
+            "email" : self.email,
             "platform_type" : self.platform_type
         }
 
@@ -85,6 +88,7 @@ class UserData_G:
         user = UserData_N()
         user.id = user_data['id']
         user.name = user_data['name']
+        user.email = user_data['email']
         user.platform_type = user_data['platform_type']
         return user
 

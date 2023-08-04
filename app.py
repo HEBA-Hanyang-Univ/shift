@@ -35,7 +35,8 @@ def naver_login():
 
 @app.route("/google_login")
 def google_login():
-    return redirect(f"https://accounts.google.com/o/oauth2/auth/authorize?client_id={GOOGLE_CLIENT_ID}&redirect_uri={GOOGLE_REDIRECT_URI}&scope=profile&response_type=code")
+    # return redirect(f"https://accounts.google.com/o/oauth2/auth/authorize?client_id={GOOGLE_CLIENT_ID}&redirect_uri={GOOGLE_REDIRECT_URI}&scope=profile+email+https://www.googleapis.com/auth/user.gender.read+https://www.googleapis.com/auth/user.birthday.read&response_type=code")
+    return redirect(f"https://accounts.google.com/o/oauth2/auth/authorize?client_id={GOOGLE_CLIENT_ID}&redirect_uri={GOOGLE_REDIRECT_URI}&scope=profile+email&response_type=code")
 
 @app.route("/kakao_callback")
 def kakao_callback():
@@ -85,8 +86,8 @@ def google_callback():
             "code": code,
             "state": "state_string",  
             "redirect_uri": GOOGLE_REDIRECT_URI,
-            "scope" : ['profile', 'email']
         })
+
         token_json = token_req.json()
         if "access_token" in token_json:
             session["google_token"] = token_json["access_token"]
