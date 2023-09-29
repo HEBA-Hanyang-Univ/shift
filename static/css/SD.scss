@@ -1,0 +1,139 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+@import url('https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 640px;
+}
+
+/* SD-header */
+.header {
+  width: 100%;
+  height: 3.75rem;
+  background-color: #A570C4;
+  position: fixed;
+  top: 0;
+
+  .header-contents {
+    margin: 0 auto;
+    width: 75rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+    .header-logo {
+      margin: 1.19rem 1.44rem;
+      margin-right: auto !important;
+    }
+
+    .username {
+      margin: 1rem 1.44rem;
+
+      color: #FFF;
+      font-family: 'Palanquin', sans-serif;
+      font-size: 1.5625rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.5rem; /* 96% */
+      letter-spacing: 0.01444rem;
+    }
+}
+// //SD-header
+
+.SD-container {
+  margin: 0 auto;
+  width: 1200px;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 10.25rem auto 97.5rem;
+}
+
+.SD-header {
+  margin: 0 auto;
+  height: 100%;
+}
+
+.SD-main-title {
+  margin-top: 1.94rem;
+  margin-bottom: 0.25rem;
+
+  p {
+    color: #000;
+    text-align: center;
+    font-family: 'Pretendard', sans-serif;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.01444rem;
+  }
+}
+
+.SD-subtitle {
+  margin: 0 auto;
+  padding-top: 0.3rem;
+  justify-content: center;
+  display: flex;
+  
+  img {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  p {
+    color: #000;
+    text-align: center;
+    font-family: 'Pretendard', sans-serif;
+    font-size: 0.6875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding: 0.19rem 0.88rem;
+  }
+}
+
+.SD-content { 
+  margin: 0 auto;
+  margin-top: 8.12rem !important;
+}
+
+.mbti-box {
+  width: 44.6875rem;
+  height: 32.75rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 5.06rem 6.56rem;
+
+  button {
+    width: 100%;
+    height: 100%;
+    background-color: #ccafd9;
+    border: none;
+    border-radius: 0.3125rem;
+
+    p {
+      color: #000;
+      text-align: center;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 1.875rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+
+    &:hover {
+      border: 3px solid #B66EDA;
+    }
+  }
+
+  .button-active {
+    background: #B66EDA;
+  }
+}
+
+                      
