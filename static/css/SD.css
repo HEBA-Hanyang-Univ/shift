@@ -9,6 +9,10 @@ body {
   min-width: 640px;
 }
 
+input[type=radio] {
+  display: none;
+}
+
 /* SD-header */
 .header {
   width: 100%;
@@ -121,4 +125,53 @@ body {
 }
 .mbti-box .button-active {
   background: #B66EDA;
+}
+
+.SQ-question p {
+  color: #000;
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.SQ-question .SQ-radios {
+  width: 27.9375rem;
+  height: 6.06rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.SQ-question .SQ-radios label {
+  display: block;
+}
+.SQ-question .SQ-radios label span {
+  width: 54px;
+  height: 54px;
+}
+.SQ-question .SQ-radios label span i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  opacity: 0;
+  border-radius: 50%;
+  background-color: #ccafd9;
+}
+.SQ-question .SQ-radios label span:hover {
+  background-color: #ccafd9;
+  transition: all 0.5s;
+}
+.SQ-question .SQ-radios label span {
+  margin-left: 0;
+  display: block;
+  border: 1px solid #ccafd9;
+  border-radius: 50%;
+}
+.SQ-question .SQ-radios label .radio-checked {
+  background-color: #ccafd9;
+  border-radius: 50%;
 }/*# sourceMappingURL=SD.css.map */
