@@ -27,11 +27,11 @@ def index():
 
 @app.route("/kakao_login")
 def kakao_login():
-    return redirect(f"https://kauth.kakao.com/oauth/authorize?client_id={KAKAO_CLIENT_ID}&redirect_uri={KAKAO_REDIRECT_URI}&response_type=code")
+    return redirect(f"https://kauth.kakao.com/oauth/authorize?client_id={KAKAO_CLIENT_ID}&redirect_uri={KAKAO_REDIRECT_URI}&prompt=login&response_type=code")
 
 @app.route("/naver_login")
 def naver_login():
-    return redirect(f"https://nid.naver.com/oauth2.0/authorize?client_id={NAVER_CLIENT_ID}&redirect_uri={NAVER_REDIRECT_URI}&response_type=code")
+    return redirect(f"https://nid.naver.com/oauth2.0/authorize?client_id={NAVER_CLIENT_ID}&redirect_uri={NAVER_REDIRECT_URI}&auth_type=reauthenticate&response_type=code")
 
 @app.route("/google_login")
 def google_login():
@@ -77,7 +77,6 @@ def naver_callback():
 @app.route("/google_callback")
 def google_callback():
     code = request.args.get("code")
-    print('ddddd')
     if code:
         token_req = requests.post("https://oauth2.googleapis.com/token", data={
             "grant_type": "authorization_code",
@@ -192,4 +191,4 @@ def logout():
     return "logout failed"
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
