@@ -72,7 +72,7 @@ def naver_callback():
             session["naver_token"] = token_json["access_token"]
             return redirect(url_for("naver_profile"))
 
-    return render_template('index.html')
+    return "Failed to get Naver access token."
 
 @app.route("/google_callback")
 def google_callback():
@@ -92,7 +92,7 @@ def google_callback():
             session["google_token"] = token_json["access_token"]
             return redirect(url_for("google_profile"))
 
-    return render_template('index.html')
+    return "Failed to get Google access token."
 
 @app.route("/kakao_profile")
 def kakao_profile():
@@ -139,24 +139,18 @@ def google_profile():
 @app.route("/logout")
 def logout():
     if "naver_token" in session:
-        requests.get("https://nid.naver.com/oauth2.0/token", params={
-            "client_id": NAVER_CLIENT_ID,
-            "client_secret": NAVER_SECRET,
-            "grant_type": "delete",
-            "access_token": session["naver_token"],
-            "service_provider" : "service_provider"
-        })
+        #requests.get("https://nid.naver.com/oauth2.0/token", params={
+        #    "client_id": NAVER_CLIENT_ID,
+        #    "client_secret": NAVER_SECRET,
+        #    "grant_type": "delete",
+        #    "access_token": session["naver_token"],
+        #    "service_provider" : "service_provider"
+        #})
 
         session.pop("naver_token", None)
 
         response = make_response(redirect(url_for("index")))
         response.delete_cookie('naver_token')
-
-        ## check
-        # naver_token_cookie = request.cookies.get('naver_token')
-        # print('session :',session)
-        # print('cookie :', naver_token_cookie)
-        print('session :', session)
 
         return response
 
@@ -169,7 +163,6 @@ def logout():
 
         response = make_response(redirect(url_for("index")))
         response.delete_cookie('logined')
-        print('session :', session)
 
         return response
 
@@ -183,7 +176,6 @@ def logout():
 
         response = make_response(redirect(url_for("index")))
         response.delete_cookie('google_token')
-        print('session :', session)
 
         return response
 
