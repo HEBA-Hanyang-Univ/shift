@@ -2,19 +2,22 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../static/navbar.css">
+  <meta name="viewport" content="width=device-width, initial-   scale=1.0">
+  <link rel="stylesheet" href="../../static/css/footer.css">
+  <!-- <link rel="stylesheet" href="{{url_for('static',filename='css/footer.css')}}"/> -->
 </head>
 <body>
-  <footer class="footer">
+  <footer id="footer">
     <div class="footer-container">
       <div class="footer-left">
         <div class="footer-logo">
           <div class="footer-logo-img">
-            <img src="../static/img/footer_logo.svg">
+            <img src="../../static/images/footer_logo.svg">
+            <!-- <img src="{{ url_for('static'), filename="footer_logo.svg") }}" -->
           </div>
           <div class="footer-logo-typo">
-            <img src="../static/img/footer_typo.svg">
+            <img src="../../static/images/footer_typo.svg">
+            <!-- <img src="{{ url_for('static'), filename="images/footer_typo.svg") }}" -->
           </div>
         </div>
         <div class="footer-left-text">
