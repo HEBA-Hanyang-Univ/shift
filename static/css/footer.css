@@ -11,6 +11,9 @@ li {
   height: 330px;
   background-color: #e4e4e4;
   min-width: 480px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
 } 
 .footer-container {
   display: flex;
