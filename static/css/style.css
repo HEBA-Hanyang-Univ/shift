@@ -31,6 +31,9 @@
     margin: 10px;
   }
   
+  .social-login {
+    max-width: 1200px;
+  }
   /* Set a fixed width and height for both buttons */
   .kakao-button, .naver-button {
     width: 200px;
