@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/static/css/sidebar.css">
-  <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
-  <title>SHIFT</title>
-</head>
-<body>
+{% macro sidebar_header() %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+{% endmacro %}
+
+{% macro sidebar_content()  %}
   <section class="sidebar">
     <section class="sidebar-container">
       <div class="sidebar-header">
@@ -31,10 +25,7 @@
           </ul>
         </div>
       </div>
-      
-
     </section>
   </section>
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-</body>
-</html>
+{% endmacro %}

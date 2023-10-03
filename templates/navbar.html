@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHIFT</title>
-  <link rel="stylesheet" href="/static/css/style.css">
-  <link rel="stylesheet" href="/static/css/navbar.css">
-</head> 
-<body>  
+{% macro navbar_header() %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+{% endmacro %}
+
+{% macro navbar_content() %}
   <div class="header">
       <div class="header-container">
         <div class="logo">
-          <a href="#">
+          <a href="./">
             <img src="/static/images/Logo.svg">
           </a>
         </div>
@@ -27,5 +22,4 @@
         </div>
       </div>
   </div>
-</body>
-</html> 
+{% endmacro %}
