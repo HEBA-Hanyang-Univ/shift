@@ -28,13 +28,13 @@ ul {
 }
 /* header */
 .header {
-  background-color: #fff;
+  background-color: #9970B1;
   width: 100%;
   height: 3.75rem;
   display: flex;
 }
 .header-container {
-  background-color: #fff;
+  background-color: #9970B1;
   width: 71.25rem;
   position: relative;
   margin: 0 auto;
@@ -49,7 +49,7 @@ ul {
   margin-bottom: 1.06rem;
 }
 .navbar {
-  background-color: #fff;
+  background-color: #9970B1;
   display: flex;
   float: right;
   height: 100%;
@@ -80,7 +80,7 @@ ul {
 .signin {
   display: flex;
   margin: 1.2rem 1.12rem 1.06rem 1.31rem;
-  color: #000;
+  color: #fff;
   text-align: center;
   font-family: 'Pretendard', sans-serif;
   font-style: normal;
@@ -95,18 +95,12 @@ ul {
   margin-top: 1rem !important;
   margin-bottom: 0.94rem !important;
   padding: 0.4rem 0.75rem;
-  display: block;
   flex-direction: column;
-  border-radius: 61.25rem;
-  border: none;
-  outline: none;
-  background-image: linear-gradient(0deg, #9c76ac 6.00%, #7d6faa 100%);
 
-  color: #fff;
+  color: #000;
   font-family: 'Pretendard', sans-serif;
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 400;
   text-decoration-line: none;
-  line-height: 1rem;
   flex-shrink: 0;
 }
