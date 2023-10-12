@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% from "navbar.html" import navbar_header, navbar_content with context %}
+{% from 'sidebar.html' import sidebar_header, sidebar_content with context %}
+{% from 'footer.html' import footer_header, footer_content with context %}
+
+{% block head %}
+    {{ super() }}
+    {{ navbar_header() }} {{ sidebar_header() }} {{ footer_header() }}
+    <link rel='stylesheet' type='text/css' media='screen' href='{{ url_for('static', filename='css/style.css') }}'>	    
+{% endblock %}
+
+{% block title %}Self-Questioning{% endblock %}
+
+{% block header %}
+    {{ navbar_content() }}
+{% endblock %}
+
+{% block content %}
+    {{ sidebar_content() }}
+    <div class="self-question">
+	{% for question in question_list %}
+	    <p>Q{{ loop.index}}. {{ question }}</p>
+	    <div class="question-choice" id="Q{{ loop.index }}Choice">
+		<input type="radio" name="q{{loop.index}}" value="-2" />전혀 그렇지 않다.
+		<input type="radio" name="q{{loop.index}}" value="-1" />그렇지 않은 편이다.
+		<input type="radio" name="q{{loop.index}}" value="0" />보통이다.
+		<input type="radio" name="q{{loop.index}}" value="1" />그런 편이다.
+		<input type="radio" name="q{{loop.index}}" value="2" />매우 그렇다.
+	    </div>
+	{% endfor %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {{ footer_content() }}
+{% endblock %}

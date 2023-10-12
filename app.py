@@ -10,6 +10,7 @@ import requests
 import os
 from config import KAKAO_CLIENT_ID, KAKAO_SECRET, KAKAO_REDIRECT_URI, NAVER_CLIENT_ID, NAVER_SECRET, NAVER_REDIRECT_URI, GOOGLE_SECRET, GOOGLE_CLIENT_ID, GOOGLE_REDIRECT_URI
 from model import UserData_N, UserModel, UserData_G, UserData_K
+from question import Question
 
 ### Flask setup
 app = Flask(__name__)
@@ -20,6 +21,9 @@ app.config['JWT_COOKIE_SECURE'] = False
 app.config['JWT_COOKIE_CSRF_PROTECT'] = True
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 30
 app.config['JWT_REFRESH_TOKEN_EXPIRES'] = 100
+
+### temporary server setup
+quest = Question()
 
 @app.route("/")
 def index():
@@ -139,14 +143,6 @@ def google_profile():
 @app.route("/logout")
 def logout():
     if "naver_token" in session:
-        #requests.get("https://nid.naver.com/oauth2.0/token", params={
-        #    "client_id": NAVER_CLIENT_ID,
-        #    "client_secret": NAVER_SECRET,
-        #    "grant_type": "delete",
-        #    "access_token": session["naver_token"],
-        #    "service_provider" : "service_provider"
-        #})
-
         session.pop("naver_token", None)
 
         response = make_response(redirect(url_for("index")))
@@ -181,6 +177,10 @@ def logout():
 
 
     return "logout failed"
+
+@app.route("/question")
+def question():
+    return render_template("question.html", question_list=quest.get_list())
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
