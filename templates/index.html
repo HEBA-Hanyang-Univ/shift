@@ -5,8 +5,7 @@
 
 {% block head %}
     {{ super() }}
-    {# stylesheets have internal error, so blocked temporay #}
-    {#{{ navbar_header() }} {{ sidebar_header() }} {{ footer_header() }} #}
+    {{ navbar_header() }} {{ sidebar_header() }} {{ footer_header() }}
     <link rel='stylesheet' type='text/css' media='screen' href='{{ url_for('static', filename='css/style.css') }}'>
 {% endblock %}
 
