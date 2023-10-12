@@ -25,6 +25,8 @@ li {
   float: left;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 50%;
   height: 100%;
   margin-left: 3.13rem;
@@ -33,17 +35,19 @@ li {
 .footer-logo {
   margin-top: 3.88rem;
   height: 10.7rem;
-  align-items: center;
 }
 .footer-logo-img {
-   justify-content: center;
-   padding-left: 4.44rem;
+/*  padding-left: 2rem;*/
 }
 .footer-logo-typo {
-  padding-left: 2rem;
+/*  padding-left: 2rem;*/
 }
 .footer-left-text {
-  width: 17.3125rem;
+  width: 19rem;
+}
+.footer-left-text ul {
+  display: table;
+  margin : 0 auto;
 }
 .footer-left-text li {
   float: left;
