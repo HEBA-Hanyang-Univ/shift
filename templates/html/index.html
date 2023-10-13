@@ -5,10 +5,15 @@
     <title>Social Login</title>
 </head>
 <body>
-    <h1>Social Login</h1>
-    <p>Please choose a social platform to log in:</p>
-    <a href="/kakao_login"><img src="https://developers.kakao.com/tool/resource/static/img/button/login/simple/ko/kakao_login_medium.png" alt="Kakao login"></a>
-    <a href="/naver_login"><img src="https://static.nid.naver.com/oauth/big_g.PNG" alt="Naver login"></a>
-    <a href="/google_login"><img src="" alt="Google login"></a>
+    {% include 'navbar.html' %}
+    <div class="social-login">
+        <h1>Social Login</h1>
+        <p>Please choose a social platform to log in:</p>
+        <a href="/kakao_login"><img src="https://developers.kakao.com/tool/resource/static/img/button/login/simple/ko/kakao_login_medium.png" alt="Kakao login"></a>
+        <a href="/naver_login"><img src="https://static.nid.naver.com/oauth/big_g.PNG" alt="Naver login"></a>
+        <a href="/google_login"><img src="https://developers.google.com/static/identity/images/btn_google_signin_light_normal_web.png?hl=ko" alt="Google login" width="191" height="46"/></a>
+    </div>
+    {% include 'sidebar.html' %}
+    {% include 'footer.html' %}
 </body>
 </html>

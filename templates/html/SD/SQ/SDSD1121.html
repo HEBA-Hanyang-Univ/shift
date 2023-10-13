@@ -22,49 +22,49 @@
         <!-- <img src="{{ url_for('static'), filename="images/course_complete.svg") }}" -->
         <!-- {% else} -->
         <img id="progressCheck" src="../../../../static/images/course_ing.svg" >
-        <!-- <img src="{{ url_for('static'), filename="images/course_ing.svg") }}" -->
+        <!-- <img src="{{ url_for('static')\ filename="images/course_ing.svg") }}" -->
         <p>Glasser 욕구 강도 프로파일</p>
       </div>
     </div>
     <div class="SD-content">
-      <!-- 질문 받아오기 -->
       <div class="SQ-question">
         <p>{{돈이나 물건을 절약합니까?}}</p>
-        <div class="SQ-radios">
-          <!-- label로 구분 -->
-          <label for="question1_1" class="strongly_disagree" aria-label="strongly disagree">
-            <input id="mbti-question" type="radio" id="question1_1">
+        <div class="SQ-radios" id="radioContainer">
+          <label for="statement1_1" class="strongly_disagree" aria-label="strongly disagree">
+            <input type="radio" id="statement1_1" name="mbti-question">
             <span>
               <i class="fa fa-check"></i>
             </span>
           </label>
-          <label for="question1_2" class="disagree" aria-label="disagree">
-            <input id="mbti-question" type="radio" id="question1_2">
+          <label for="statement1_2" class="disagree" aria-label="disagree">
+            <input type="radio" id="statement1_2" name="mbti-question">
             <span>
               <i class="fa fa-check"></i>
             </span>
           </label>
-          <label for="question1_3" class="strongly_disagree" aria-label="strongly disagree">
-            <input id="mbti-question" type="radio" id="question1_3">
+          <label for="statement1_3" class="natural" aria-label="natural">
+            <input type="radio" id="statement1_3" name="mbti-question">
             <span>
               <i class="fa fa-check"></i>
             </span>
           </label>
-          <label for="question1_4" class="strongly_disagree" aria-label="strongly disagree">
-            <input id="mbti-question" type="radio" id="question1_4">
-            <span>
-              <i class="fa fa-check"></i>
-            </span>
-          </label>
-          <label for="question1_5" class="strongly_disagree" aria-label="strongly disagree">
-            <input id="mbti-question" type="radio" id="question1_5">
+          <label for="statement1_4" class="agree" aria-label="agree">
+            <input type="radio" id="statement1_4" name="mbti-question">
             <span>
               <i class="fa fa-check"></i>
             </span>
           </label>       
+          <label for="statement1_5" class="strongly_agree" aria-label="strongly agree">
+            <input type="radio" id="statement1_5" name="mbti-question">
+            <span>
+              <i class="fa fa-check"></i>
+            </span>
+          </label>
         </div>
       </div>
     </div>
   </div>
+  <script src="../../../../static/js/SD.js"></script>
+  <!-- <script src="{{url_for('static', filename='js/SD.js')}}"</script> -->  1
 </body>
 </html>
