@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-   scale=1.0">
-  <link rel="stylesheet" href="/static/css/footer.css">
-</head>
-<body>
+{% macro footer_header()  %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css')  }}">
+{% endmacro %}
+
+{% macro footer_content() %}
   <footer id="footer">
     <div class="footer-container">
       <div class="footer-left">
@@ -44,5 +41,4 @@
       </div>
     </div>
   </footer>
-</body>
-</html>
+{% endmacro %}
