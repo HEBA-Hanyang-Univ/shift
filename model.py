@@ -30,8 +30,8 @@ class UserData_K:
     
     def __init__(self, user=None):
         if user:
-            self.id = user.get('id')
-            self.name = user.get('kakao_account').get('profile').get('nickname')
+            self.id = user['id']
+            self.name = user['kakao_account']['profile']['nickname']
             self.platform_type = "kakao"
         else:
             self.id = None
@@ -52,18 +52,18 @@ class UserData_K:
     @staticmethod
     def deserialize(user_data):
         user = UserData_N()
-        user.id = user_data.get('id')
-        user.name = user_data.get('name')
-        user.platform_type = user_data.get('platform_type')
+        user.id = user_data['id']
+        user.name = user_data['name']
+        user.platform_type = user_data['platform_type']
         return user
 
 class UserData_G:
     
     def __init__(self, user=None):
         if user:
-            self.id = user.get('sub')
-            self.name = user.get('name')
-            self.email = user.get('email')
+            self.id = user['sub']
+            self.name = user['name']
+            self.email = user['email']
             self.platform_type = "google"
         else:
             self.id = None
@@ -86,9 +86,9 @@ class UserData_G:
     @staticmethod
     def deserialize(user_data):
         user = UserData_N()
-        user.id = user_data.get('id')
-        user.name = user_data.get('name')
-        user.email = user_data.get('email')
+        user.id = user_data['id']
+        user.name = user_data['name']
+        user.email = user_data['email']
         user.platform_type = user_data['platform_type']
         return user
 
@@ -97,14 +97,13 @@ class UserData_N:
     def __init__(self, user=None):
         if user:
             print('user :', user)
-            user_info = user.get('response')
-            self.id = user_info.get('id')
-            self.name = user_info.get('name')
-            if user_info.get('birthyear') : self.age = int(datetime.today().year) - int(user_info['birthyear']) + 1
-            else : self.age = None
-            self.gender = user_info.get('gender')
-            self.email = user_info.get('email')
-            self.phone_number = user_info.get('mobile')
+            user_info = user['response']
+            self.id = user_info['id']
+            self.name = user_info['name']
+            self.age = int(datetime.today().year) - int(user_info['birthyear']) + 1
+            self.gender = user_info['gender']
+            self.email = user_info['email']
+            self.phone_number = user_info['mobile']
             self.platform_type = "naver"
         else:
             self.id = None
@@ -133,11 +132,11 @@ class UserData_N:
     @staticmethod
     def deserialize(user_data):
         user = UserData_N()
-        user.id = user_data.get('id')
-        user.name = user_data.get('name')
-        user.age = user_data.get('age')
-        user.gender = user_data.get('gender')
-        user.email = user_data.get('email')
-        user.phone_number = user_data.get('phone_number')
-        user.platform_type = user_data.get('platform_type')
+        user.id = user_data['id']
+        user.name = user_data['name']
+        user.age = user_data['age']
+        user.gender = user_data['gender']
+        user.email = user_data['email']
+        user.phone_number = user_data['phone_number']
+        user.platform_type = user_data['platform_type']
         return user
