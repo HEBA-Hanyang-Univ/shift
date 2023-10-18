@@ -179,9 +179,14 @@ def logout():
 
     return "logout failed"
 
-@app.route("/question")
-def question():
-    return render_template("question.html", question_list=quest.get_list())
+@app.route("/self-question", methods=['GET', 'POST'])
+def start_self_question():
+    #TODO : move this code to next step(SDSD1121)
+    if request.method == 'POST':
+        params = request.get_json()
+        print(params)
+
+    return render_template("SD/SQ/SDSD1111.html")
 
 if __name__ == "__main__":
     app.run(host = '0.0.0.0')

@@ -1,8 +1,6 @@
 var activeButtons = [];
 var mbtiButtons = document.querySelectorAll('.mbti');
 
-const radioContainer = document.getElementById('radioContainer');
-
 // 2개의 버튼을 누르고, 그 이상으로 클릭되면 경고창이 뜨게 하는 함수
 function clickTwoButtonHandler() {
   if (activeButtons.includes(this)) {
@@ -23,17 +21,25 @@ for(var i = 0; i< mbtiButtons.length; i++) {
   mbtiButtons[i].addEventListener('click', clickTwoButtonHandler);
 }
 
-function handleRadioChange(event) {
-  const label = event.target.closest('label');
-  const labels = radioContainer.querySelectorAll('label');
-  labels.forEach((l) => {
-    l.style.backgroundColor = '';
-  });
-
-  label.style.backgroundColor = '#ccafd9'
-}
-
-const radioButtons = radioContainer.querySelectorAll('input[type="radio"]');
-radioButtons.forEach((radio) => {
-  radio.addEventListener('change', handleRadioChange);
-})
+document.getElementById('next').addEventListener('click', (e) => {
+  e.preventDefault();
+  if (activeButtons.length < 1) {
+    alert('최소 1개의 버튼을 선택해주세요.');
+    return;
+  }
+  let selectedButtons = [];
+  for(var i = 0; i<activeButtons.length; i++) {
+    selectedButtons.push(activeButtons[i].className.split(' ')[1].split('-')[1]);
+  }
+  fetch('./self-question', {
+    method:'POST',
+    headers: { "Content-type": "application/json",},
+    body: JSON.stringify({
+      selected: selectedButtons,
+    }),
+  })
+  .then(href=>{
+    alert(selectedButtons + ' submit');
+    window.location.href="/";
+  })
+});

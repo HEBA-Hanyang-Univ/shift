@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>shift</title>
+{% macro SD_navbar_header() %}
   <link rel="stylesheet" href="../../../static/css/SD.css">
-</head>
-<body>
+{% endmacro %}
+
+{% macro SD_navbar_content() %}
   <div class="header">
     <div class="header-contents">
       <div class="header-logo" id="logo">
-        <a href="#">
+        <a href="/">
           <img src="../../../static/images/shift_white.svg">
         </a>
       </div>
       <div class="username" id="username">username</div>
     </div>
   </div>
-</body>
-</html>
+{% endmacro %}
