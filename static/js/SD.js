@@ -1,7 +1,7 @@
 var activeButtons = [];
 var mbtiButtons = document.querySelectorAll('.mbti');
-var currentMenu;
-var menuLabels = document.querySelectorAll('label[for^="question"]');
+
+const radioContainer = document.getElementById('radioContainer');
 
 // 2개의 버튼을 누르고, 그 이상으로 클릭되면 경고창이 뜨게 하는 함수
 function clickTwoButtonHandler() {
@@ -15,7 +15,7 @@ function clickTwoButtonHandler() {
     this.classList.add('button-active');
     activeButtons.push(this);
   } else {
-    alert('2개의 버튼만 클릭할 수 있습니다');
+    alert('최대 2개의 버튼만 클릭할 수 있습니다');
   }
 }
 
@@ -23,19 +23,17 @@ for(var i = 0; i< mbtiButtons.length; i++) {
   mbtiButtons[i].addEventListener('click', clickTwoButtonHandler);
 }
 
-function clickButtonHandler (event) {
-  var targetInput = event.target.querySelector('input[type="radio"]');
+function handleRadioChange(event) {
+  const label = event.target.closest('label');
+  const labels = radioContainer.querySelectorAll('label');
+  labels.forEach((l) => {
+    l.style.backgroundColor = '';
+  });
 
-  if (targetInput) {
-    if(currentMenu) {
-      currentMenu.classList.remove('radio-checked');
-    }
-
-    this.classList.add('radio-checked');
-    currentMenu = this;
-  }
+  label.style.backgroundColor = '#ccafd9'
 }
 
-for (var i = 0; i< menuLabels.length; i++) {
-  menuLabels[i].addEventListener('click', clickButtonHandler);
-}
+const radioButtons = radioContainer.querySelectorAll('input[type="radio"]');
+radioButtons.forEach((radio) => {
+  radio.addEventListener('change', handleRadioChange);
+})
