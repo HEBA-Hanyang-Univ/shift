@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, session, request, jsonify, render_template, make_response
+from flask import redirect, url_for, session, request, jsonify, render_template, make_response
 from flask_jwt_extended import (
     JWTManager, create_access_token, 
     get_jwt_identity, jwt_required,
@@ -7,27 +7,14 @@ from flask_jwt_extended import (
     jwt_refresh_token_required
 )
 import requests
-import os
 from config import KAKAO_CLIENT_ID, KAKAO_SECRET, KAKAO_REDIRECT_URI, NAVER_CLIENT_ID, NAVER_SECRET, NAVER_REDIRECT_URI, GOOGLE_SECRET, GOOGLE_CLIENT_ID, GOOGLE_REDIRECT_URI
 from model import UserData_N, UserModel, UserData_G, UserData_K
 from question import Question
-
-### Flask setup
-app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
-app.config['JWT_SECRET_KEY'] = "I'M IML."
-app.config['JWT_TOKEN_LOCATION'] = ['cookies']
-app.config['JWT_COOKIE_SECURE'] = False
-app.config['JWT_COOKIE_CSRF_PROTECT'] = True
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 30
-app.config['JWT_REFRESH_TOKEN_EXPIRES'] = 100
+from flask_app import *
+import logs
 
 ### temporary server setup
 quest = Question()
-
-@app.route("/")
-def index():
-    return render_template('index.html')
 
 @app.route("/kakao_login")
 def kakao_login():
@@ -39,7 +26,6 @@ def naver_login():
 
 @app.route("/google_login")
 def google_login():
-    # return redirect(f"https://accounts.google.com/o/oauth2/auth/authorize?client_id={GOOGLE_CLIENT_ID}&redirect_uri={GOOGLE_REDIRECT_URI}&scope=profile+email+https://www.googleapis.com/auth/user.gender.read+https://www.googleapis.com/auth/user.birthday.read&response_type=code")
     return redirect(f"https://accounts.google.com/o/oauth2/auth/authorize?client_id={GOOGLE_CLIENT_ID}&redirect_uri={GOOGLE_REDIRECT_URI}&scope=profile+email&response_type=code")
 
 @app.route("/kakao_callback")
@@ -51,8 +37,10 @@ def kakao_callback():
             "client_id": KAKAO_CLIENT_ID,
             "redirect_uri": KAKAO_REDIRECT_URI,
             "code": code,
+            "client_secret": KAKAO_SECRET,
         })
         token_json = token_req.json()
+
         if "access_token" in token_json:
             session["kakao_token"] = token_json["access_token"]
             return redirect(url_for("kakao_profile"))
@@ -172,21 +160,11 @@ def logout():
 
         response = make_response(redirect(url_for("index")))
         response.delete_cookie('google_token')
-        print('session :', session)
 
         return response
 
 
     return "logout failed"
 
-@app.route("/self-question", methods=['GET', 'POST'])
-def start_self_question():
-    #TODO : move this code to next step(SDSD1121)
-    if request.method == 'POST':
-        params = request.get_json()
-        print(params)
-
-    return render_template("SD/SQ/SDSD1111.html")
-
 if __name__ == "__main__":
-    app.run(host = '0.0.0.0')
+    app.run(debug=True)
