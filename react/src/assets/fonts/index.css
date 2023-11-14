@@ -1,0 +1,32 @@
+/*
+Copyright (c) 2021 Kil Hyung-jin, with Reserved Font Name Pretendard.
+https://github.com/orioncactus/pretendard
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
+*/
+
+@font-face {
+	font-family: 'Pretendard Variable';
+	font-weight: 45 920;
+	font-style: normal;
+	font-display: swap;
+	src: url('./woff2/PretendardVariable.woff2') format('woff2-variations');
+}
+/*
+Copyright (c) 2023 Wanted Lab, Inc., with Reserved Font Name Wanted Sans Variable.
+https://github.com/wanteddev/wanted-sans
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
+*/
+@font-face {
+	font-family: "Wanted Sans Variable";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 400 1000;
+	src: url("./woff2/WantedSansVariable.woff2") format("woff2-variations");
+}
+
