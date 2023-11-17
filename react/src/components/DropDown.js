@@ -1,5 +1,3 @@
-import { option } from "yargs";
-
 const { useState } = require("react")
 
 const DropDown = () => {

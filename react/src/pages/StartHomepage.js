@@ -16,12 +16,12 @@ export const StartHomepage = () => {
             </div>
             <div className="userProfileBox">
               {/* TODO: 추 후 userName 삽입 */}
-              <div className="userName">꺅두기님</div>
+              <div className="userName">Username님</div>
               <button className="userNameModifyBtn">
                 <img src={ModifyBtn} alt="modify button"></img>
               </button>
             </div>
-            <DropDown></DropDown>
+	  <DropDown></DropDown>
           </div>
           <div className="SHProfileRight">
           
