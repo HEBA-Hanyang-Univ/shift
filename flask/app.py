@@ -166,5 +166,22 @@ def logout():
 
     return "logout failed"
 
+# these are example response codes
+@app.route('/page_200', methods=['GET'])
+def test():
+    output = dict()
+    output['message'] = 'success'
+
+    response = make_response(jsonify(output), 200)
+    return response
+
+@app.route('/page_400', methods=['GET'])
+def test():
+    output = dict()
+    output['message'] = 'failed'
+
+    response = make_response(jsonify(output), 400)
+    return response
+
 if __name__ == "__main__":
     app.run(debug=True)
