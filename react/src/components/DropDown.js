@@ -1,4 +1,6 @@
-const { useState } = require("react")
+import "assets/styles/DropDown.scss";
+import Arrow from "assets/images/dropDown.svg";
+import React, {useState} from "react";
 
 const DropDown = () => {
   const [isExpand, setIsExpand] = useState(false);
@@ -32,19 +34,21 @@ const DropDown = () => {
     }}
       onMouseDown={(e) => {handleMouseDown(e);}}
     >
-      <div>
-        <span className={`arrow ${isExpand ? "is-expanded" : ""}`}></span>
+      <div className="dropDownContainer">
         <select name="select" value={selected} onChange={(e) => {
           setSelected(e.target.value);
         }}>
           {optionData.length > 0 && optionData.map(({ optionKey, optionName }) => {
             return (
               <option key={optionKey} value={optionKey}>
-                {optionName}
+                <span className="optionName">{optionName}</span>
               </option>
             );
           })}
         </select>
+        <span className={`arrow ${isExpand ? "is-expanded" : ""}`}>
+          <img src={Arrow} alt="DropDown Arrow"></img>
+        </span>
       </div>
       {isExpand && (
         <ul>

@@ -13,11 +13,16 @@ body {
     box-sizing: border-box;
   }
 
-  font-family: 'Pretendard Variable', sans-serif;
+  font-family: 'Wanted Sans Variable', sans-serif;
   background-color: #fff;
   text-align: center;
+  line-height: normal;
 }
 
 button {
   border: none;
+}
+
+ul, li {
+  list-style: none;
 }
