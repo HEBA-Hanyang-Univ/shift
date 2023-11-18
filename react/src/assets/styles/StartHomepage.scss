@@ -1,117 +1,251 @@
 
-#SHWrap {
-  width: 71.2rem;
-  margin: 0 auto;
-  display: flex;
-
-  #SHContainer {
-    width: 64.25rem;
-    height: 100vh;
+  #SHWrap {
+    width: 71.2rem;
     margin: 0 auto;
-    display: flex;
 
-    .SHProfile {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      height: 8.69rem;
+    #SHContainer {
+      width: 64.25rem;
+      height: 100vh;
       margin: 0 auto;
-      border-bottom: 1px solid #e6e6e6;
+
+      .SHProfile {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 8.69rem;
+        margin: 0 auto;
+        border-bottom: 1px solid #e6e6e6;
+      }
     }
   }
-}
 
-.SHProfileLeft {
-  width: 30%;
-  float: left;
-  display: flex;
-
-  .userProfileImg {
-    margin-top: 1.6rem;
-    width: 5.375rem;
-    height: 5.375rem;
-    border: 2px solid #ccafd9;
-    border-radius: 5rem;
-  }
-
-  .userProfileBox {
-    margin-top: 2.5rem;
-    margin-left: 1.3rem;
+  .SHProfileLeft {
+    width: 30%;
+    float: left;
     display: flex;
 
-    .userName {
+    .userProfileImg {
+      margin-top: 1.6rem;
+      width: 5.375rem;
+      height: 5.375rem;
+      border: 2px solid #ccafd9;
+      border-radius: 5rem;
+      z-index: 1;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 5rem;
+      }
+    }
+
+    .userProfileBox {
+      margin-top: 2.5rem;
+      margin-left: 1.3rem;
+      display: flex;
+
+      .userName {
+        justify-content: center;
+        color: #000;
+        font-size: 1.25rem;
+        font-weight: 400;
+      }
+    
+      .userNameModifyBtn {
+        width: 1.25rem;
+        height: 1.1875rem;
+        justify-content: center;
+        margin-top: 0.2rem;
+        margin-left: 0.5rem;
+        background-color: white;
+      }
+    }
+
+    .dropDownBox {
+      display: flex;
+      margin-top: 0.75rem;
       justify-content: center;
-      color: #000;
+      align-items: center;
+    }
+  }
+
+  .SHProfileRight {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    float: right;
+
+    .SHBtnBox {
+      margin-top: 2.5rem;
+
+      button {
+        width: 6.0625rem;
+        height: 2.5rem;
+        border-radius: 2.125rem;
+        flex-shrink: 0;
+      }
+      
+      .SHBtnPurple {
+        margin-right: 0.37rem;
+        background-color: #c185e1;
+        color: white;
+        font-weight: 600;
+        font-size: 0.75rem;
+        letter-spacing: 0.0375rem;
+      }
+
+      .SHBtnWhite {
+        background-color: #e7e7e8;
+        color: #828282;
+        font-weight: 600;
+        font-size: 0.75rem;
+        line-height: 0.0225rem;
+      }
+    }
+
+    .lastModifiedDate {
+      display: flex;
+      margin-top: 1.37rem;
+      margin-right: 2rem;
+      justify-content: end;
+
+      span {
+        color: #818181;
+        font-weight: 400;
+        font-size: 0.6875rem;
+      }
+    }
+  }
+
+  .SHProgressTextBox {
+    width: 100%;
+    height: 5.045rem;
+    margin-top: 3.19rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    .SHProgressText{
+      width: 100%;
+      height: 100%;
+      display: flex;
+
+      button {
+        background-color: white;
+        width: 5.135rem;
+        height: 100%;
+        color: #e2e2e2;
+        font-size: 4rem;
+        font-weight: 700;
+        line-height: 3rem;
+        margin: 0 auto;
+
+        &:hover {
+          border-bottom: 0.4rem solid #9c76ac;
+          line-height: 3rem;
+          padding-top: 0.4rem;
+          color: #9c76ac;
+        }
+      }
+
+      img {
+        display: flex;
+        padding-top: 1rem;
+        height: 4.25rem;
+      }
+    }
+  }
+
+  .SHProgressContentBox {
+    width: 100%;
+    height: 36.56rem;
+    margin-top: 3rem;
+    overflow-y: scroll;
+    border: 2px solid #eee;
+    border-radius: 1.0625rem;
+
+    &::-webkit-scrollbar {
+      width: 1.125rem;
+      background-color: #f5f5 f5;
+      border-radius: 0.75rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 0.75rem;
+      background-color: #cdb0d9;
+    }
+  }
+
+  .SHProgressContentS {
+    width: 53rem;
+    height: 36.5625rem;
+    margin: 1.56rem auto 1.69rem;
+
+    .SHProgressTitle {
+      width: 100%;
+      height: 4.5rem;
+      display: flex;
+      flex-direction: column;
+      border-bottom: 0.12rem solid #f4f4f4;  
+      
+      .SHProgressTitleMain {
+        color: #a46aad;
+        font-size: 2.25rem;
+        font-weight: 600;
+        letter-spacing: -0.02;
+        display: flex;
+        justify-content: start;
+        margin-left: 0.56rem;
+      }
+
+      .SHProgressTitleLink {
+        display: flex;
+        justify-content: end;
+        color: #a570c4;
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 0.62rem;
+      }
+    }
+
+    .SHProgressSubTitleS {
+      width: 100%;
+      height: 3.62rem;
+      display: flex;
+      justify-content: space-between;
+      padding-left: 1rem;
+      padding-right: 2.37rem;
+      border-bottom: 0.12rem solid #f4f4f4;
+
+      .SHProgressSubTitleSSpan {
+        display: flex;
+        align-items: center;
+        color: #242426;
+        font-size: 0.81rem;
+        font-weight: 600;
+        justify-content: center;
+      }
+    }
+
+    .SHProgressDetailBox {
+
+    }
+  }
+
+  .SHProgressBarBox {
+    display: flex;
+    margin: 2.75rem 9rem 0;
+
+    span {
       font-size: 1.25rem;
       font-weight: 400;
     }
-  
-    .userNameModifyBtn {
-      width: 1.25rem;
-      height: 1.1875rem;
-      justify-content: center;
-      margin-top: 0.2rem;
-      margin-left: 0.5rem;
-      background-color: white;
+
+    .SHProgressBar {
+      width: 40.75rem;
+      height: 1.125rem;
+      margin-top: 0.3rem;
+      margin-left: 1.19rem;
+      background-color: #f5f5f5;
+      border-radius: 0.75rem;
     }
   }
-
-  .dropDownBox {
-    display: flex;
-    margin-top: 0.75rem;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-.SHProfileRight {
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  float: right;
-
-  .SHBtnBox {
-    margin-top: 2.5rem;
-
-    button {
-      width: 6.0625rem;
-      height: 2.5rem;
-      border-radius: 2.125rem;
-      flex-shrink: 0;
-    }
-    
-    .SHBtnPurple {
-      margin-right: 0.37rem;
-      background-color: #c185e1;
-      color: white;
-      font-weight: 600;
-      font-size: 0.75rem;
-      letter-spacing: 0.0375rem;
-    }
-
-    .SHBtnWhite {
-      background-color: #e7e7e8;
-      color: #828282;
-      font-weight: 600;
-      font-size: 0.75rem;
-      line-height: 0.0225rem;
-    }
-  }
-
-  .lastModifiedDate {
-    display: flex;
-    margin-top: 1.37rem;
-    margin-right: 2rem;
-    justify-content: end;
-
-    span {
-      color: #818181;
-      font-weight: 400;
-      font-size: 0.6875rem;
-    }
-  }
-}
-
-.SHProgressText {
-  background-color: antiquewhite;
-}
