@@ -61,7 +61,7 @@ const TestView = () => {
   };
 
   const onPutItem = (item) => {
-    setInputValues({...inputValues, [item.i]:inputs.current[item.i].value});
+    setInputValues({...inputValues, [item.i]:inputs.current[item.i].value ? inputs.current[item.i].value : inputs.current[item.i].placeholder});
     setArchived([...archived, item]);
     setLayout(layout.filter((elem) => elem.i !== item.i));
   };
