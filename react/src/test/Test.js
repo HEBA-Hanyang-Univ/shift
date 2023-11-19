@@ -186,7 +186,6 @@ const TestView = () => {
              {layout.map(item => (
               <div key={item.i} style={{ backgroundColor: 'white', borderRadius: '50%', boxShadow: '0 0 0 3px #CCAFD9 inset', display:'flex', justifyContent:'center', alignItems:'center', }}>
                 {/* Individual rendered components */}
-                <div className="hide-button" style={{ cursor:'pointer', position:'absolute', fontSize:String(5.0 * (item.w * item.h)>3 ? 1.0 : 0.5)+"rem", top:0, right:item.w > 2 ? 5 : 0,}} onClick={() => onPutItem(item)}>&times;</div>
                 <input type="text" maxLength="7" size="7" rows="1" id={item.i} ref={elem => inputs.current[item.i] = elem}
                   style={{border: "none", textAlign:"center", width: "80%", height:"auto", fontSize:String(3.0 * (item.w>3 ? 1.0 : item.w*0.3) * ((item.h > 2) ? 1.0 : item.h*0.3))+"rem",  overflow:'hidden',}}
                   placeholder={inputValues[item.i] || "what's yours?"}/>
