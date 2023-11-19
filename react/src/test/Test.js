@@ -13,13 +13,6 @@ const TestView = () => {
   const [archived, setArchived] = useState([]);
   const inputs = useRef([]);
   const [inputValues, setInputValues] = useState({});
-
-  //useEffect(() => {
-  //  console.log(inputs.current);
-  //  inputs.current = inputs.current.filter((elem) => layout.some((el) => el.i === elem.id));
-  //  console.log(inputs.current);
-  //}, layout);
-
   const val = useRef(0);
   const maxCol = 7;
   const maxRow = 9;
@@ -28,7 +21,14 @@ const TestView = () => {
   const gridMargin = [10, 10];
   const [compactType, setCompactType] = useState(null);
 
+  let archivedList = [];
+
   const onLayoutChange = (newLayout) => {
+    for (let item of archivedList) {
+      newLayout = newLayout.filter((elem) => elem.i !== item.i);
+    }
+    archivedList = [];
+
     if (!isValidLayout(newLayout)) {
       setCompactType("vertical");
       assertLayout(newLayout);
@@ -38,7 +38,7 @@ const TestView = () => {
     }
   };
 
-  const onTakeItem = (item) => {
+  const onTakeItem = (item, value) => {
     let w = item.w;
     let h = item.h;
     let emptySpace = findEmptySpace(layout, w, h);
@@ -51,13 +51,13 @@ const TestView = () => {
       alert('no where to place!');
       return;
     }
-
     item.x = emptySpace.x;
     item.y = emptySpace.y;
     item.w = w;
     item.h = h;
     setArchived(archived.filter((elem) => elem.i !== item.i));
     setLayout([...layout, item]);
+    setInputValues({...inputValues, [item.i]:value});
   };
 
   const onPutItem = (item) => {
@@ -77,7 +77,7 @@ const TestView = () => {
         deleteList = [...deleteList, item];
       }
     });
-
+    console.log(deleteList);
     for (let el of deleteList) {
       onPutItem(el);
     }
@@ -88,23 +88,20 @@ const TestView = () => {
       alert('no more add!');
       return;
     }
-
-    const emptySpace = findEmptySpace(layout, 1, 1);
-    if (emptySpace == null) {
-      alert('no where to add!');
-      return;
-    }
-
+    // for now, there's no need to check empty space here
+    // const emptySpace = findEmptySpace(layout, 1, 1);
+    // if (emptySpace == null) {
+    //   alert('no where to add!');
+    //   return;
+    // }
     const newItem = {
       i: val.current.toString(), // Use a unique identifier for each item
-      x: emptySpace.x,
-      y: emptySpace.y,
+      x: 0, // x: emptySpace.x
+      y: 0, // y: emptySpace.y
       w: 1,
       h: 1,
-      archived: false,
     };
-
-    setLayout([...layout, newItem]);
+    setArchived([...archived, newItem]);
     val.current++;
   };
 
@@ -154,21 +151,17 @@ const TestView = () => {
     return (item.x + item.w <= maxCol && item.y + item.h <= maxRow);
   };
 
-  const fixItem = (oldItem, newItem, placeholder) => {    
-    newItem.w = oldItem.w;
-    newItem.x = oldItem.x;
-    newItem.h = oldItem.h;
-    newItem.y = oldItem.y;
-    if (placeholder != null) {
-      placeholder.w = newItem.w;
-      placeholder.x = newItem.x;
-      placeholder.h = newItem.h;
-      placeholder.y = newItem.y;
+  const onDragStop = (newLayout, oldItem, newItem, placeholder, e) => {
+    const headImg = document.getElementById('SQ_Head');
+    const pointX = e.clientX;
+    const pointY = e.clientY;
+    const imgRect = headImg.getBoundingClientRect();
+    if (pointX < imgRect.left || pointX > imgRect.right || pointY < imgRect.top || pointY > imgRect.bottom) {
+      // this doens't work due to assignment to state works lazy...
+      onPutItem(newItem); // onPutItem(oldItem);
+      archivedList = [...archivedList, newItem];
     }
-    // the code below doesn't work
-    // newItem = {...newItem, w:oldItem.w, x:oldItem.x, h:oldItem.h, y:oldItem.y};
-    // placeholder = {...placeholder, w:oldItem.w, x:oldItem.x, h:oldItem.h, y:oldItem.y};
-  };
+  }
 
   return (
     <div className="view-container" style={{display:"table", margin: "5px auto"}}>
@@ -177,6 +170,7 @@ const TestView = () => {
           <GridLayout
             layout={layout}
             onLayoutChange={onLayoutChange}
+            onDragStop={onDragStop}
             cols={maxCol}
             maxRows={maxRow}
             rowHeight={gridHeight/maxRow}
@@ -200,9 +194,9 @@ const TestView = () => {
             ))}
           </GridLayout>
         </div>
-        <img src={HeadImg} style={{ width:'600px', height:'600px', }} />
+        <img src={HeadImg} style={{ width:'600px', height:'600px', }} id='SQ_Head'/>
       </div>
-      <ToolBox onTakeItem={onTakeItem} items={archived || []}/>
+      <ToolBox onTakeItem={onTakeItem} items={archived || [] } values={inputValues}/>
       <div className="components-container">
         <button onClick={addNewComponent}>Add New</button>
       </div>
