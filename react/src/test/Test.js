@@ -14,11 +14,13 @@ const TestView = () => {
   const inputs = useRef([]);
   const [inputValues, setInputValues] = useState({});
   const val = useRef(0);
-  const maxCol = 7;
-  const maxRow = 9;
+  const maxCol = 28;
+  const maxRow = 35;
   const gridWidth = 280;
-  const gridHeight = 360;
-  const gridMargin = [10, 10];
+  const gridHeight = 350;
+  const minW = 3;
+  const minH = 3;
+  const gridMargin = [3, 3];
   const [compactType, setCompactType] = useState(null);
 
   let archivedList = [];
@@ -36,15 +38,16 @@ const TestView = () => {
       setCompactType(null);
       setLayout(newLayout);
     }
+    console.log(newLayout);
   };
 
   const onTakeItem = (item, value) => {
     let w = item.w;
     let h = item.h;
     let emptySpace = findEmptySpace(layout, w, h);
-    if (emptySpace == null) {
-      w = 1;
-      h = 1;
+    while(emptySpace == null && w >= minW && h >= minH) {
+      if (w > minW) w -= 1;
+      if (h > minH) h -= 1;
       emptySpace = findEmptySpace(layout, w, h);
     }
     if (emptySpace == null) {
@@ -71,9 +74,9 @@ const TestView = () => {
     newLayout.map((item) => {
       if (item.x + item.w > maxCol || item.y + item.h > maxRow) {
         item.x = 0;
-        item.w = item.w > 2 ? 2 : item.w;
+        item.w = minW;
         item.y = 0;
-        item.h = item.h > 2 ? 2 : item.w;
+        item.h = minH;
         deleteList = [...deleteList, item];
       }
     });
@@ -98,8 +101,10 @@ const TestView = () => {
       i: val.current.toString(), // Use a unique identifier for each item
       x: 0, // x: emptySpace.x
       y: 0, // y: emptySpace.y
-      w: 1,
-      h: 1,
+      w: 7,
+      h: 7,
+      minW: minW,
+      minH: minH,
     };
     setArchived([...archived, newItem]);
     val.current++;
@@ -163,6 +168,13 @@ const TestView = () => {
     }
   }
 
+  const calcFontSize = (width, height) => {
+    height = height < 20 ? height : 20;
+    width = width < 20 ? width : 20;
+    const fontSize = width * height * 0.01;
+    return String(fontSize) + 'rem';
+  };
+
   return (
     <div className="view-container" style={{display:"table", margin: "5px auto"}}>
       <div className="head-image-container" style={{display:"table-cell", verticalAlign:'middle', position:'relative', }}>
@@ -187,7 +199,8 @@ const TestView = () => {
               <div key={item.i} style={{ backgroundColor: 'white', borderRadius: '50%', boxShadow: '0 0 0 3px #CCAFD9 inset', display:'flex', justifyContent:'center', alignItems:'center', }}>
                 {/* Individual rendered components */}
                 <input type="text" maxLength="7" size="7" rows="1" id={item.i} ref={elem => inputs.current[item.i] = elem}
-                  style={{border: "none", textAlign:"center", width: "80%", height:"auto", fontSize:String(3.0 * (item.w>3 ? 1.0 : item.w*0.3) * ((item.h > 2) ? 1.0 : item.h*0.3))+"rem",  overflow:'hidden',}}
+                  style={{border: "none", textAlign:"center", width: "80%", height:"auto",
+                          fontSize:calcFontSize(item.w, item.h),  overflow:'hidden',}}
                   placeholder={inputValues[item.i] || "what's yours?"}/>
               </div>
             ))}
