@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+// import interact from "interactjs";
+// to drag in mobile safari, it's better use interactjs than onDrag in HTML5 I guess..
 
 const ToolBoxItem = ({onTakeItem, item, value}) => {
 

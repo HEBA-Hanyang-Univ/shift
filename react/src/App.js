@@ -3,7 +3,7 @@ import { useLocation } from 'react-router';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { StartHomepage } from 'pages/StartHomepage';
-import TestView from './test/Test';
+import SQInterest from 'pages/SQInterest';
 
 function App() {
   const ScrollToTop = () => {
@@ -22,7 +22,7 @@ function App() {
         <ScrollToTop />
           <Routes>
             <Route path="/sh" element={< StartHomepage />} />
-	    <Route path="/brain-map" element={<TestView />} />
+	          <Route path="/sq_interest" element={<SQInterest />} />
           </Routes>
       </Router>
     </div>

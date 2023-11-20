@@ -3,12 +3,14 @@ import GridLayout from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import HeadImg from "assets/images/SQ_Head.svg";
-import ToolBox from "test/ToolBox";
-
+import ToolBox from "components/ToolBox";
+import PageTitle from "components/PageTitle";
+import PageSubTitleIcon from "assets/images/portrait.png"; // TODO : change icon. this is a temporary.
+import { Header } from "components/Header";
 
 // Known Problem : If Drag or Resize over item below, Layout limitation works bad.
 // What I have to do is if empty row is exist, delete them
-const TestView = () => {
+const SQInterest = () => {
   const [layout, setLayout] = useState([
     {w:4, h:35, x:0, y:0, i:'101', static:true},
     {w:6, h:6, x:4, y:0, i:'102', static:true},
@@ -42,6 +44,7 @@ const TestView = () => {
   const [compactType, setCompactType] = useState(null);
 
   let archivedList = [];
+  let totalArea = useRef(0);
 
   const onLayoutChange = (newLayout) => {
     for (let item of archivedList) {
@@ -56,6 +59,12 @@ const TestView = () => {
       setCompactType(null);
       setLayout(newLayout);
     }
+    totalArea.current = 0;
+    newLayout.map((item) => {
+      if (item.static) return;
+      totalArea.current += item.w*item.h
+    });
+
     console.log(newLayout);
   };
 
@@ -190,49 +199,61 @@ const TestView = () => {
   const calcFontSize = (width, height) => {
     height = height < 20 ? height : 20;
     width = width < 20 ? width : 20;
-    const fontSize = width * height * 0.01;
+    const m = height > 10 ? 0.14
+              : height > 4 ? height * 0.014
+              : 0.04;
+
+    const fontSize = width * m;
     return String(fontSize) + 'rem';
   };
 
   return (
-    <div className="view-container" style={{display:"table", margin: "5px auto"}}>
-      <div className="head-image-container" style={{display:"table-cell", verticalAlign:'middle', position:'relative', }}>
-        <div className="grid-layout-container">
-          <GridLayout
-            layout={layout}
-            onLayoutChange={onLayoutChange}
-            onDragStop={onDragStop}
-            cols={maxCol}
-            maxRows={maxRow}
-            rowHeight={gridHeight/maxRow}
-            margin={gridMargin}
-            width={gridWidth + gridMargin[0] * (maxCol - 1)}
-            height={gridHeight + gridMargin[1] * (maxRow - 1)}
-            compactType={compactType}
-            autoSize={true}
-            preventCollision={true}
-            isBounded={false}
-            style={{ position:'absolute', }}
-          >
-             {layout.map(item => (
-              <div key={item.i} style={{ visibility:item.static?'hidden':'visible', backgroundColor: 'white', borderRadius: '50%', boxShadow: '0 0 0 3px #CCAFD9 inset', display:'flex', justifyContent:'center', alignItems:'center', }}>
-                {/* Individual rendered components */}
-                <input type="text" maxLength="7" size="7" rows="1" id={item.i} ref={elem => inputs.current[item.i] = elem}
-                  style={{border: "none", textAlign:"center", width: "80%", height:"auto",
-                          fontSize:calcFontSize(item.w, item.h),  overflow:'hidden',}}
-                  placeholder={inputValues[item.i] || "what's yours?"}/>
-              </div>
-            ))}
-          </GridLayout>
+    <div className="brain-map">
+      <Header/>
+      <PageTitle korean="동기" english="Self-questioning" subIcon={PageSubTitleIcon} subTitle="Glasser 욕구 강도 프로파일"/>   
+      <div className="view-container" style={{display:"table", margin: "5px auto"}}>
+        <div className="head-image-container" style={{display:"table-cell", verticalAlign:'middle', position:'relative', }}>
+          <div className="grid-layout-container">
+            <GridLayout
+              layout={layout}
+              onLayoutChange={onLayoutChange}
+              onDragStop={onDragStop}
+              cols={maxCol}
+              maxRows={maxRow}
+              rowHeight={gridHeight/maxRow}
+              margin={gridMargin}
+              width={gridWidth + gridMargin[0] * (maxCol - 1)}
+              height={gridHeight + gridMargin[1] * (maxRow - 1)}
+              compactType={compactType}
+              autoSize={true}
+              preventCollision={true}
+              isBounded={false}
+              style={{ position:'absolute', }}
+            >
+               {layout.map(item => (
+                <div key={item.i} style={{ visibility:item.static?'hidden':'visible', backgroundColor: 'white',
+                borderRadius: '50%', boxShadow: '0 0 0 3px #CCAFD9 inset', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', }}>
+                  {/* Individual rendered components */}
+                  <input type="text" maxLength="7" size="7" rows="1" id={item.i} ref={elem => inputs.current[item.i] = elem}
+                    style={{border: "none", textAlign:"center", width: "80%", height:"auto",
+                            fontSize:calcFontSize(item.w, item.h), overflow:'hidden', display:'flex'}}
+                    placeholder={inputValues[item.i] || "what's yours?"}/>
+                  <div style={{ display:'flex' }}>
+                    <span style={{fontSize:calcFontSize(item.w*0.5, item.h)}}>{Math.round(item.w*item.h/totalArea.current*100)  }%</span>
+                  </div>
+                </div>
+              ))}
+            </GridLayout>
+          </div>
+          <img src={HeadImg} style={{ width:'600px', height:'600px', }} id='SQ_Head'/>
         </div>
-        <img src={HeadImg} style={{ width:'600px', height:'600px', }} id='SQ_Head'/>
-      </div>
-      <ToolBox onTakeItem={onTakeItem} items={archived || [] } values={inputValues}/>
-      <div className="components-container">
-        <button onClick={addNewComponent}>Add New</button>
+        <ToolBox onTakeItem={onTakeItem} items={archived || [] } values={inputValues}/>
+        <div className="components-container">
+          <button onClick={addNewComponent}>Add New</button>
+        </div>
       </div>
     </div>
   );
 }
 
-export default TestView;
+export default SQInterest;
