@@ -9,15 +9,33 @@ import ToolBox from "test/ToolBox";
 // Known Problem : If Drag or Resize over item below, Layout limitation works bad.
 // What I have to do is if empty row is exist, delete them
 const TestView = () => {
-  const [layout, setLayout] = useState([]);
+  const [layout, setLayout] = useState([
+    {w:4, h:35, x:0, y:0, i:'101', static:true},
+    {w:6, h:6, x:4, y:0, i:'102', static:true},
+    {w:4, h:2, x:4, y:6, i:'103', static:true},
+    {w:3, h:2, x:4, y:8, i:'104', static:true},
+    {w:2, h:2, x:4, y:10, i:'105', static:true},
+    {w:2, h:2, x:4, y:28, i:'106', static:true},
+    {w:3, h:2, x:4, y:30, i:'107', static:true},
+    {w:4, h:3, x:4, y:32, i:'108', static:true},
+    {w:20, h:2, x:10, y:0, i:'109', static:true},
+    {w:3, h:2, x:10, y:2, i:'110', static:true},
+    {w:1, h:1, x:13, y:2, i:'111', static:true},
+    {w:2, h:1, x:28, y:2, i:'112', static:true},
+    {w:5, h:4, x:30, y:0, i:'113', static:true},
+    {w:2, h:2, x:33, y:4, i:'114', static:true},
+    {w:5, h:8, x:35, y:0, i:'115', static:true},
+    {w:2, h:2, x:36, y:8, i:'116', static:true},
+    {w:2, h:27, x:38, y:8, i:'117', static:true},
+  ]);
   const [archived, setArchived] = useState([]);
   const inputs = useRef([]);
   const [inputValues, setInputValues] = useState({});
   const val = useRef(0);
-  const maxCol = 28;
+  const maxCol = 40;
   const maxRow = 35;
-  const gridWidth = 280;
-  const gridHeight = 350;
+  const gridWidth = 400;
+  const gridHeight = 300;
   const minW = 3;
   const minH = 3;
   const gridMargin = [3, 3];
@@ -44,11 +62,11 @@ const TestView = () => {
   const onTakeItem = (item, value) => {
     let w = item.w;
     let h = item.h;
-    let emptySpace = findEmptySpace(layout, w, h);
+    let emptySpace = null;
     while(emptySpace == null && w >= minW && h >= minH) {
-      if (w > minW) w -= 1;
-      if (h > minH) h -= 1;
       emptySpace = findEmptySpace(layout, w, h);
+      if (w > minW) { w -= 1; }
+      if (h > minH) { h -= 1; }
     }
     if (emptySpace == null) {
       alert('no where to place!');
@@ -56,8 +74,8 @@ const TestView = () => {
     }
     item.x = emptySpace.x;
     item.y = emptySpace.y;
-    item.w = w;
-    item.h = h;
+    item.w = w > minW ? w : minW;
+    item.h = h > minH ? h : minH;
     setArchived(archived.filter((elem) => elem.i !== item.i));
     setLayout([...layout, item]);
     setInputValues({...inputValues, [item.i]:value});
@@ -72,7 +90,7 @@ const TestView = () => {
   const assertLayout = (newLayout) => {
     let deleteList = [];
     newLayout.map((item) => {
-      if (item.x + item.w > maxCol || item.y + item.h > maxRow) {
+      if (!isValidItem(item)) {
         item.x = 0;
         item.w = minW;
         item.y = 0;
@@ -105,6 +123,7 @@ const TestView = () => {
       h: 7,
       minW: minW,
       minH: minH,
+      resizeHandles: ['nw', 'sw', 'ne', 'se'],
     };
     setArchived([...archived, newItem]);
     val.current++;
@@ -117,10 +136,10 @@ const TestView = () => {
     let y = 0;
     let isFull = false;
     while (isSpaceOccupied(currentLayout, x, y, w, h)) {
-      x++;
+      x+=minW;
       if (x >= maxCol - (w-1)) {
         x = 0;
-        y++;
+        y+=minH;
       }
       if (y >= maxRow - (h-1)) {
         isFull = true;
@@ -153,7 +172,7 @@ const TestView = () => {
   };
 
   const isValidItem = (item) => {
-    return (item.x + item.w <= maxCol && item.y + item.h <= maxRow);
+    return (item.static || (item.x + item.w <= maxCol && item.y + item.h <= maxRow));
   };
 
   const onDragStop = (newLayout, oldItem, newItem, placeholder, e) => {
@@ -191,12 +210,12 @@ const TestView = () => {
             height={gridHeight + gridMargin[1] * (maxRow - 1)}
             compactType={compactType}
             autoSize={true}
-            preventCollision={false}
+            preventCollision={true}
             isBounded={false}
-            style={{ position:'absolute', top:40, left:120, }}
+            style={{ position:'absolute', }}
           >
              {layout.map(item => (
-              <div key={item.i} style={{ backgroundColor: 'white', borderRadius: '50%', boxShadow: '0 0 0 3px #CCAFD9 inset', display:'flex', justifyContent:'center', alignItems:'center', }}>
+              <div key={item.i} style={{ visibility:item.static?'hidden':'visible', backgroundColor: 'white', borderRadius: '50%', boxShadow: '0 0 0 3px #CCAFD9 inset', display:'flex', justifyContent:'center', alignItems:'center', }}>
                 {/* Individual rendered components */}
                 <input type="text" maxLength="7" size="7" rows="1" id={item.i} ref={elem => inputs.current[item.i] = elem}
                   style={{border: "none", textAlign:"center", width: "80%", height:"auto",
