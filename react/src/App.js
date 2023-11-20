@@ -22,7 +22,7 @@ function App() {
         <ScrollToTop />
           <Routes>
             <Route path="/sh" element={< StartHomepage />} />
-	          <Route path="/sq_interest" element={<SQInterest />} />
+	          <Route path="/sq-interest" element={<SQInterest />} />
           </Routes>
       </Router>
     </div>
