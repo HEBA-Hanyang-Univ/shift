@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { StartHomepage } from 'pages/StartHomepage';
 import SQInterest from 'pages/SQInterest';
+import SQMbti from 'pages/SQMbti';
 
 function App() {
   const ScrollToTop = () => {
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/sh" element={< StartHomepage />} />
 	          <Route path="/sq-interest" element={<SQInterest />} />
+            <Route path="/sq-mbti" element={<SQMbti />} />
           </Routes>
       </Router>
     </div>
