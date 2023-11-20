@@ -15,10 +15,15 @@ const ToolBoxItem = ({onTakeItem, item, value}) => {
     }
   }
 
+  const onDrag = (event) => {
+    // this is for mobile safari
+    event.preventDefault();
+  }
+
   return (
     <div key={item.i} style = {{ backgroundColor: 'white', borderRadius: '50%', boxShadow: '0 0 0 3px #CCAFD9 inset', display:'flex', justifyContent:'center', alignItems:'center', width: '7rem', height: '7rem',}}
       className="toolbox__items__item"
-      draggable="true" onDragEnd={onDragEnd}
+      draggable="true" onDrag={onDrag} onDragEnd={onDragEnd}
     >
       <input className="toolbox_item_input" type="text" maxLength="7" size="7" rows="1" id={item.i} ref={inputRef}
         style={{border: "none", textAlign:"center", width: "90%", height:"auto", fontSize:"1.0rem",  overflow:'hidden',}}
