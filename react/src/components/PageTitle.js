@@ -4,7 +4,7 @@ const PageTitle = ({korean, english, subIcon, subTitle}) => {
 
   return (
     <div className="page-title" style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', padding:'1.5rem 0 1.5rem 0', borderBottom: '1px solid #E6E6E6', marginBottom:'1.0rem'}}>
-      <div className="korean-title" style={{color:'#9C76AC', fontFamily:'Wanted Sans', fontSize:'2.5rem', fontWeight:'700'}}>
+      <div className="korean-title" style={{color:'#9C76AC', fontFamily:'Wanted Sans', fontSize:'2.5rem', fontWeight:'800'}}>
         <span>{korean}</span>
       </div>
       <div className="english-title" style={{color:'#9C76AC', fontFamily:'Wanted Sans', fontSize:'3.0rem', fontWeight:'700'}}>
