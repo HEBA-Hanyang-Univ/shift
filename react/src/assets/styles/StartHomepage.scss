@@ -4,15 +4,14 @@
     margin: 0 auto;
 
     #SHContainer {
-      width: 64.25rem;
-      height: 100vh;
+      width: 62rem;
       margin: 0 auto;
 
       .SHProfile {
         display: flex;
         justify-content: space-between;
         width: 100%;
-        height: 8.69rem;
+        height: 7.514rem;
         margin: 0 auto;
         border-bottom: 1px solid #e6e6e6;
       }
@@ -20,17 +19,17 @@
   }
 
   .SHProfileLeft {
-    width: 30%;
+    width: 35%;
     float: left;
     display: flex;
 
     .userProfileImg {
-      margin-top: 1.6rem;
-      width: 5.375rem;
-      height: 5.375rem;
+      width: 4.7rem;
+      height: 4.7rem;
       border: 2px solid #ccafd9;
       border-radius: 5rem;
       z-index: 1;
+      margin-top: 1.3rem;
       
       img {
         width: 100%;
@@ -40,43 +39,45 @@
     }
 
     .userProfileBox {
-      margin-top: 2.5rem;
+      align-items: center;
       margin-left: 1.3rem;
+      margin-top: 2rem;
       display: flex;
 
       .userName {
         justify-content: center;
         color: #000;
-        font-size: 1.25rem;
+        font-size: 1.1rem;
         font-weight: 400;
       }
     
       .userNameModifyBtn {
+        display: flex;
         width: 1.25rem;
-        height: 1.1875rem;
+        height: 0.784rem;
+        align-items: center;
         justify-content: center;
-        margin-top: 0.2rem;
         margin-left: 0.5rem;
         background-color: white;
       }
     }
 
     .dropDownBox {
-      display: flex;
       margin-top: 0.75rem;
-      justify-content: center;
-      align-items: center;
     }
   }
 
   .SHProfileRight {
     width: 25%;
     display: flex;
+    margin-top: 1.5rem;
     flex-direction: column;
     float: right;
 
     .SHBtnBox {
-      margin-top: 2.5rem;
+      display: flex;
+      margin-left: 1.4rem;
+      margin-top: 0.65rem;
 
       button {
         width: 6.0625rem;
@@ -99,13 +100,13 @@
         color: #828282;
         font-weight: 600;
         font-size: 0.75rem;
-        line-height: 0.0225rem;
+        line-height: 0.0375rem;
       }
     }
 
     .lastModifiedDate {
       display: flex;
-      margin-top: 1.37rem;
+      margin-top: 1rem;
       margin-right: 2rem;
       justify-content: end;
 
@@ -119,13 +120,14 @@
 
   .SHProgressTextBox {
     width: 100%;
-    height: 5.045rem;
-    margin-top: 3.19rem;
+    height: 6rem;
+    margin-top: 2rem;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
 
     .SHProgressText{
-      width: 100%;
+      margin-left: 2rem;
+      width: 7rem;
       height: 100%;
       display: flex;
 
@@ -138,27 +140,25 @@
         font-weight: 700;
         line-height: 3rem;
         margin: 0 auto;
+        cursor: pointer;
 
         &:hover {
-          border-bottom: 0.4rem solid #9c76ac;
-          line-height: 3rem;
-          padding-top: 0.4rem;
-          color: #9c76ac;
+
         }
       }
 
       img {
         display: flex;
         padding-top: 1rem;
-        height: 4.25rem;
+        height: 3.25rem;
       }
     }
   }
 
   .SHProgressContentBox {
-    width: 100%;
-    height: 36.56rem;
-    margin-top: 3rem;
+    width: 96%;
+    height: 36rem;
+    margin-top: 2rem;
     overflow-y: scroll;
     border: 2px solid #eee;
     border-radius: 1.0625rem;
@@ -176,9 +176,9 @@
   }
 
   .SHProgressContentS {
-    width: 53rem;
-    height: 36.5625rem;
-    margin: 1.56rem auto 1.69rem;
+    width: 52rem;
+    height: 30rem;
+    margin: 1.5rem auto 1.69rem;
 
     .SHProgressTitle {
       width: 100%;
@@ -209,11 +209,9 @@
 
     .SHProgressSubTitleS {
       width: 100%;
-      height: 3.62rem;
+      height: 3rem;
       display: flex;
-      justify-content: space-between;
       padding-left: 1rem;
-      padding-right: 2.37rem;
       border-bottom: 0.12rem solid #f4f4f4;
 
       .SHProgressSubTitleSSpan {
@@ -227,13 +225,43 @@
     }
 
     .SHProgressDetailBox {
+      width: 55rem;
+      height: 26.5rem;
 
+      .SHProgressDetailBoxColored {
+        width: 100%;
+        height: 100%;
+        background-color: #ccafd9;
+        background-image: url(../images/Background.svg);
+
+        display: grid;
+        padding-top: 1rem;
+        padding-right: 1.6rem;
+        grid-template-rows: 5rem 2rem 2rem 2rem 2rem;
+        grid-template-columns: repeat(5, 1fr);
+        row-gap: 2.41rem;
+
+        grid-template-areas: 
+        'mainSD mainSD mainSD mainSD mainSD'
+        'subSDB subSDC subSDD subSDE subSDF'
+        'subSDB subSDC subSDD subSDE subSDF'
+        'subSDB subSDC subSDD subSDE subSDF'
+        'subSDB subSDC subSDD subSDE subSDF'
+        ;
+      }     
     }
+  }
+
+  .mainSD {
+    margin-left: 1rem;
+    width: 6rem;
+    height: 6rem;
   }
 
   .SHProgressBarBox {
     display: flex;
-    margin: 2.75rem 9rem 0;
+    width: 60rem;
+    margin: 2.7rem 9rem 0;
 
     span {
       font-size: 1.25rem;
@@ -241,7 +269,7 @@
     }
 
     .SHProgressBar {
-      width: 40.75rem;
+      width: 40rem;
       height: 1.125rem;
       margin-top: 0.3rem;
       margin-left: 1.19rem;
@@ -249,3 +277,78 @@
       border-radius: 0.75rem;
     }
   }
+
+  .subSD {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    span {
+      margin-left: 0.5rem;
+      color: #4b4a4b;
+      font-size: 0.8125rem;
+      font-weight: 500;
+    }
+  }
+
+  .subSDB {
+    margin-left: -2.4rem;
+  }
+
+  .subSDC {
+    margin-left: -1rem;
+  }
+
+  .subSDD {
+    margin-left: 1.6rem;
+
+    span {
+      font-size: 0.78rem;
+    }
+  }
+
+  .subSDE {
+    margin-left: 1.8rem;
+
+    span {
+      font-size: 0.78rem;
+    }
+  }
+
+.subSDF {
+  margin-left: 2rem;
+}
+
+.SHProgressContentH {
+  width: 96%;
+  height: 30rem;
+  background-color: red;
+}
+
+.SHProgressContentI {
+  width: 96%;
+  height: 30rem;
+  background-color: orange;
+}
+
+.SHProgressContentF {
+  width: 96%;
+  height: 30rem;
+  background-color: yellow;
+}
+
+.SHProgressContentT {
+  width: 96%;
+  height: 30rem;
+  background-color: green;
+}
+
+.activeButton {
+  line-height: 3rem;
+  padding-top: 0.4rem;
+  border-bottom: 0.4rem solid #9c76ac;
+  
+  span {
+    color: #9c76ac;
+  }
+}
