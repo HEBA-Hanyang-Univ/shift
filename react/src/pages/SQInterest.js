@@ -208,9 +208,9 @@ const SQInterest = () => {
   };
 
   return (
-    <div className="brain-map">
+    <div className="sq-interest">
       <Header/>
-      <PageTitle korean="동기" english="Self-questioning" subIcon={PageSubTitleIcon} subTitle="Glasser 욕구 강도 프로파일"/>   
+      <PageTitle korean="관심사" english="Self-questioning" subIcon={PageSubTitleIcon} subTitle="Glasser 욕구 강도 프로파일"/>
       <div className="view-container" style={{display:"table", margin: "5px auto"}}>
         <div className="head-image-container" style={{display:"table-cell", verticalAlign:'middle', position:'relative', }}>
           <div className="grid-layout-container">
