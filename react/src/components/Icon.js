@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "assets/styles/Icon.scss";
 import mbtiIcon from "assets/images/SH_icons/MBTI.svg";
 import mbtiCompIcon from "assets/images/SH_icons/MBTI_Comp.svg";
@@ -46,13 +47,15 @@ const icons = [
   { incomplete: resultIcon, complete: resultCompIcon}
 ];
 
-const Icon = ({ index, completed }) => {
+const Icon = ({ index, completed, link }) => {
   const icon= completed ? icons[index].complete : icons[index].incomplete;
 
   return (
-    <button className="iconBtn">
-      <img src={icon} alt={`icon${index}`} />
-    </button>
+    <Link to={link}>
+      <button className="iconBtn">
+        <img src={icon} alt={`icon${index}`} />
+      </button>
+    </Link>
   )
 };
 
