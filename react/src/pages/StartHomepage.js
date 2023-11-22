@@ -1,4 +1,5 @@
 import React, {useRef, useState, useEffect, ReactElement} from "react";
+import { Link } from "react-router-dom";
 import { Header } from "components/Header";
 import "assets/styles/StartHomepage.scss";
 import ModifyBtn from "assets/images/modifyBtn.svg";
@@ -117,7 +118,9 @@ export const StartHomepage = () => {
           <div className="SHProfileRight">
             <div className="SHBtnBox">
               <button className="SHBtnPurple">
-                <span>시작하기</span>
+                <Link to='/sq-mbti'>
+                  <span>시작하기</span>
+                </Link>
               </button>
               <button className="SHBtnWhite">
                 <span>결과지 확인</span>

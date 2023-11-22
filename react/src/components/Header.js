@@ -23,7 +23,9 @@ export const Header = () => {
           </Link>
           <img src={Bar} alt="purple bar"></img>
           <button>로그아웃</button>
-          <button className="myPageBtn">My Page</button>
+          <Link to='/sh'>
+            <button className="myPageBtn">My Page</button>
+          </Link>
         </div>
       </div>            
     </div>
