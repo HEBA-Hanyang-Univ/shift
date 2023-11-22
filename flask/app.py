@@ -12,6 +12,7 @@ from model import UserData_N, UserModel, UserData_G, UserData_K
 from question import Question
 from flask_app import *
 import logs
+from flask_cors import cross_origin
 
 ### temporary server setup
 quest = Question()
@@ -176,12 +177,30 @@ def test():
     return response
 
 @app.route('/page_400', methods=['GET'])
-def test():
+def test22():
     output = dict()
     output['message'] = 'failed'
 
     response = make_response(jsonify(output), 400)
     return response
+
+@app.route('/get-desire', methods=['GET', 'OPTIONS'])
+@cross_origin()
+def get_question():
+    if request.method == 'OPTIONS':
+        print('preflight request')
+        return '', 200, {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+        }
+    output = dict()
+    output['message'] = 'success'
+    output['result'] = quest.get_list()
+
+    response = make_response(jsonify(output), 200)
+    return response
+
 
 if __name__ == "__main__":
     app.run(debug=True)
