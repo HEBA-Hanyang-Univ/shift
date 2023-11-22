@@ -1,0 +1,66 @@
+.footerWrapper {
+  width: 100%;
+  height: fit-content;
+  position: fixed;
+  bottom: 0;
+
+  .footerBtn {
+    width: 7.56rem;
+    height: 2rem;
+    margin: 0 auto;
+    background-color: #FFF;
+    
+    img {
+      margin-bottom: -0.3rem;
+    }
+  }
+
+  .footerContainer {
+    width: 100%;
+    height: 4.19rem; 
+    border-top: 0.1px solid #9C76AC;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 2rem;
+
+    button {
+      width: 6.3rem;
+      height: 2.5rem;
+      background-color: #9C76AC;
+      border-radius: 2.125rem;
+      align-items: center;
+      text-decoration: none;
+      
+    }
+  }
+}
+
+.footerHelpContainer {
+  width: 100%;
+  height: 23rem;
+  background-color: #F7F7F7;
+  display: flex;
+  flex-direction: column;
+  
+  button {
+    margin: 0 auto;
+    width: 7.5625rem;
+    height: 2.375rem;
+  }
+
+  .footerHelpText {
+    margin: 2rem 10rem;
+    text-align: start;
+
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+}
+
+.footerContainerSpan {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.07rem;
+  color: #FFF;
+}
