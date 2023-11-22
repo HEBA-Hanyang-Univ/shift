@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Transition } from "react-transition-group";
 
-export const Footer = ({ link, helpContent }) => {
+export const Footer = ({ link, helpContent, onClickButton }) => {
   const [showHelpSlide, setShowHelpSlide] = useState(false);
   const [showOpenBtn, setShowOpenBtn] = useState(true);
 
@@ -26,7 +26,7 @@ export const Footer = ({ link, helpContent }) => {
 
   const onClick = (e) => { 
     // TODO: 전송할 데이터 설정
-    e.preventDefault();
+    onClickButton ?.();
   }
 
   const handleOpen = () => {
@@ -55,7 +55,7 @@ export const Footer = ({ link, helpContent }) => {
             ...defaultStyle,
             ...transitionStyles[state]
           }}>
-            <FooterHelp helpContent={helpContent} hideHelpSlide={handleClose}></FooterHelp>
+            <FooterHelp content={helpContent} hideHelpSlide={handleClose}></FooterHelp>
           </div>
         )}
       </Transition>
