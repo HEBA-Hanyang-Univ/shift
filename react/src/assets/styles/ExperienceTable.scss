@@ -1,0 +1,110 @@
+.experience-table {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  padding: 1.5rem 0 1.5rem 0;
+  margin-bottom: 1.0rem;
+
+  .experience-table-title {
+    color: #9C76AC;
+    font-size: 2.0rem;
+    font-weight: 700;
+    margin-bottom: 1.0rem;
+  }
+
+  .table {
+    border-collapse: collapse;
+    width: 60rem;
+
+    th {
+      padding: 1rem;
+      border-bottom: 2px solid #EAE7E7;
+      font-size: 1rem;
+    }
+
+    tr td {
+      border: 2px dashed #EAE7E7;
+      padding: 1rem;
+      height: 5rem;
+    }
+
+    tr td:first-child {
+      border-left: 0;
+    }
+
+    tr td:last-child {
+      border-right: 0;
+    }
+
+    tr:last-child {
+      border-bottom: 2px solid #EAE7E7;
+    }
+
+    textarea {
+      width: 100%;
+      resize: none;
+      text-align: center;
+      border: none;
+      font-family: Wanted Sans;
+      font-size: 1rem;
+    }
+
+    .slidebar{
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 2fr;
+      gap: 0.3rem 60%;
+      position: relative;
+
+      input[type='range'] {
+        --sliderBackground: linear-gradient(270deg, #B689C8 19%, #B576CE 80.4%);
+        appearance: none;
+        width: 100%;
+        height: 2rem;
+        border-radius: 1rem;
+        grid-column: 1 / span 2;
+        background: linear-gradient(to right, #FDA746 0%, #FDA746 50%, #B689C8 50%, #B689C8 100%);
+      }
+
+      .slidebar-input::-webkit-slider-thumb {
+        appearance: none;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background: var(--sliderBackground);
+        border: 1px solid #FFF;
+      }
+
+      div {
+        position:absolute;
+        margin-top: 9%;
+        margin-left: 50%;
+        color: #FFF;
+      }
+  
+      .slidebar-left-span{
+        color: #FDA746;
+        text-align: center;
+        font-family: Wanted Sans;
+        font-size: 0.9375rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.06563rem;
+      }
+  
+      .slidebar-right-span{
+        color: #9C76AC;
+        text-align: center;
+        font-family: Wanted Sans;
+        font-size: 0.9375rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.06563rem;
+      }
+    }
+  }
+}

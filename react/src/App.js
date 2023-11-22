@@ -6,6 +6,7 @@ import { StartHomepage } from 'pages/StartHomepage';
 import SQInterest from 'pages/SQInterest';
 import SQMbti from 'pages/SQMbti';
 import SQDesire from 'pages/SQDesire';
+import SQExperience from 'pages/SQExperience';
 
 function App() {
   const ScrollToTop = () => {
@@ -27,6 +28,7 @@ function App() {
 	          <Route path="/sq-interest" element={<SQInterest />} />
             <Route path="/sq-desire" element={<SQDesire />} />
             <Route path="/sq-mbti" element={<SQMbti />} />
+            <Route path="/sq-experience" element={<SQExperience />} />
           </Routes>
       </Router>
     </div>
