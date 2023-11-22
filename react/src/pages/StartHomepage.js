@@ -12,6 +12,7 @@ import SIImg from "assets/images/SH_SI.svg";
 import SWOTImg from "assets/images/SH_Swot.svg";
 import EPAImg from "assets/images/SH_Epa.svg";
 import SPImg from "assets/images/SH_Sp.svg";
+import secureLocalStorage from "react-secure-storage";
 
 // 진행률 막대
 const ProgressBar = ({progress}) => {
@@ -90,6 +91,9 @@ export const StartHomepage = () => {
     };
   }, []);
 
+  let completeStatus = secureLocalStorage.getItem('completed');
+  if (completeStatus == null) completeStatus = {};
+
   return (
     <>
     <Header></Header>
@@ -118,7 +122,7 @@ export const StartHomepage = () => {
           <div className="SHProfileRight">
             <div className="SHBtnBox">
               <button className="SHBtnPurple">
-                <Link to='/sq-mbti'>
+                <Link to='/sq-mbti' onClick={() => secureLocalStorage.clear()}>
                   <span>시작하기</span>
                 </Link>
               </button>
@@ -213,7 +217,7 @@ export const StartHomepage = () => {
                   <img src={SPImg} alt="SP main img" style={{marginLeft:'1rem'}}></img>
                 </div>
                 <div className="subSD subSDB">
-                  <Icon index={0} completed={false}></Icon>
+                  <Icon index={0} completed={completeStatus['sq-mbti']} link={'/sq-mbti'}></Icon>
                   <span>성격</span>
                 </div>
                 <div className="subSD subSDC">
@@ -233,7 +237,7 @@ export const StartHomepage = () => {
                   <span>한줄 정의</span>
                 </div>                
                 <div className="subSD subSDB">
-                  <Icon index={1} completed={false}></Icon>
+                  <Icon index={1} completed={completeStatus['sq-motivation']} link={'/sq-desire'}></Icon>
                   <span>동기</span>
                 </div>
                 <div className="subSD subSDC">

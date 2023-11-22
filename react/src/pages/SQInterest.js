@@ -7,6 +7,7 @@ import ToolBox from "components/ToolBox";
 import PageTitle from "components/PageTitle";
 import PageSubTitleIcon from "assets/images/portrait.png"; // TODO : change icon. this is a temporary.
 import { Header } from "components/Header";
+import { Footer } from "components/Footer";
 
 // Known Problem : If Drag or Resize over item below, Layout limitation works bad.
 // What I have to do is if empty row is exist, delete them
@@ -64,8 +65,6 @@ const SQInterest = () => {
       if (item.static) return;
       totalArea.current += item.w*item.h
     });
-
-    console.log(newLayout);
   };
 
   const onTakeItem = (item, value) => {
@@ -107,7 +106,6 @@ const SQInterest = () => {
         deleteList = [...deleteList, item];
       }
     });
-    console.log(deleteList);
     for (let el of deleteList) {
       onPutItem(el);
     }
@@ -207,11 +205,15 @@ const SQInterest = () => {
     return String(fontSize) + 'rem';
   };
 
+  const onClickNext = () => {
+
+  }
+
   return (
     <div className="sq-interest">
       <Header/>
-      <PageTitle korean="관심사" english="Self-questioning" subIcon={PageSubTitleIcon} subTitle="Glasser 욕구 강도 프로파일"/>
-      <div className="view-container" style={{display:"table", margin: "5px auto"}}>
+      <PageTitle korean="동기" english="Self-questioning" subIcon={PageSubTitleIcon} subTitle="관심사 정리"/>
+      <div className="view-container" style={{display:"table", margin: "5px auto 10rem auto"}}>
         <div className="head-image-container" style={{display:"table-cell", verticalAlign:'middle', position:'relative', }}>
           <div className="grid-layout-container">
             <GridLayout
@@ -252,6 +254,7 @@ const SQInterest = () => {
           <button onClick={addNewComponent}>Add New</button>
         </div>
       </div>
+      <Footer link={'/sq-experience'} helpContent={"자신의 관심사를 브레인 맵으로 정리해보세요."} onClickButton={onClickNext}/>
     </div>
   );
 }

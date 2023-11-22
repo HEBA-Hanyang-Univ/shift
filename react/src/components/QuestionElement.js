@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, forwardRef } from "react";
 import CheckIcon from "assets/images/portrait.png"; // TODO : change icon.
 
-const QuestionElement = ({question, index}) => {
+const QuestionElement = ({question, index, onChecked, val}) => {
 
   const [isMouseOver, setIsMouseOver] = useState(Array.from({length:5}, (i) => false));
-  const [activeButton, setActiveButton] = useState(-1);
+  const [activeButton, setActiveButton] = useState(val);
   
   const onMouseEnter = (event, i) => {
     event.preventDefault();
@@ -27,6 +27,7 @@ const QuestionElement = ({question, index}) => {
     event.stopPropagation();
     if (isMouseOver[i]) {
       setActiveButton(i);
+      onChecked ?.(i);
     }
   };
   
