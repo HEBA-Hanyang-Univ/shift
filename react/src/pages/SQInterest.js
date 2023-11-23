@@ -3,6 +3,7 @@ import GridLayout from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import HeadImg from "assets/images/SQ_Head.svg";
+import AddButtonImg from "assets/images/AddBtnImg.svg"
 import ToolBox from "components/ToolBox";
 import PageTitle from "components/PageTitle";
 import PageSubTitleIcon from "assets/images/portrait.png"; // TODO : change icon. this is a temporary.
@@ -238,7 +239,7 @@ const SQInterest = () => {
                   {/* Individual rendered components */}
                   <input type="text" maxLength="7" size="7" rows="1" id={item.i} ref={elem => inputs.current[item.i] = elem}
                     style={{border: "none", textAlign:"center", width: "80%", height:"auto",
-                            fontSize:calcFontSize(item.w, item.h), overflow:'hidden', display:'flex'}}
+                            fontSize:calcFontSize(item.w, item.h), overflow:'hidden', display:'flex', fontFamily:'Wanted Sans',}}
                     placeholder={inputValues[item.i] || "what's yours?"}/>
                   <div style={{ display:'flex' }}>
                     <span style={{fontSize:calcFontSize(item.w*0.5, item.h)}}>{Math.round(item.w*item.h/totalArea.current*100)  }%</span>
@@ -251,7 +252,9 @@ const SQInterest = () => {
         </div>
         <ToolBox onTakeItem={onTakeItem} items={archived || [] } values={inputValues}/>
         <div className="components-container">
-          <button onClick={addNewComponent}>Add New</button>
+          <button onClick={addNewComponent} style={{width:'3.5rem', height:'3.5rem',}}>
+            <img src={AddButtonImg} style={{width:'100%', height:'100%',}}/>
+          </button>
         </div>
       </div>
       <Footer link={'/sq-experience'} helpContent={"자신의 관심사를 브레인 맵으로 정리해보세요."} onClickButton={onClickNext}/>
