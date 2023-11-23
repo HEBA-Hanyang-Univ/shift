@@ -109,7 +109,7 @@ export const StartHomepage = () => {
             <div className="SHProfileContent">
               <div className="userProfileBox">
                 {/* TODO: 추 후 userName 삽입 */}
-                <div className="userName">깍두기응애응애응님</div>
+                <div className="userName">비로그인 유저</div>
                 <button className="userNameModifyBtn">
                   <img src={ModifyBtn} alt="modify button"></img>
                 </button>
