@@ -59,14 +59,14 @@ export const Footer = ({ link, helpContent, onClickButton }) => {
           </div>
         )}
       </Transition>
-      <div className="footerContainer">
+      <div className="footerContainer" onClick={(event) => onClick(event)}>
+      <Link to={link} style={{textDecoration: 'none'}}>
         <button>
-          <Link to={link} style={{textDecoration: 'none'}} onClick={(event) => onClick(event)}>
             <span className="footerContainerSpan">
               NEXT
             </span>
-          </Link>
         </button>
+      </Link>
       </div>
     </div>
   )
