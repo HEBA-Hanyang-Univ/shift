@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 // import interact from "interactjs";
 // to drag in mobile safari, it's better use interactjs than onDrag in HTML5 I guess..
 
-const ToolBoxItem = ({onTakeItem, item, value}) => {
+const ToolBoxItem = ({onTakeItem, item, value, setVal}) => {
 
   const inputRef = useRef(null);
 
@@ -29,12 +29,12 @@ const ToolBoxItem = ({onTakeItem, item, value}) => {
     >
       <input className="toolbox_item_input" type="text" maxLength="7" size="7" rows="1" id={item.i} ref={inputRef}
         style={{border: "none", textAlign:"center", width: "90%", height:"auto", fontSize:"1.0rem",  overflow:'hidden', fontFamily:'Wanted Sans',}}
-        placeholder={value || "what's yours?"}/>
+        placeholder={value || "what's yours?"} onChange={() => setVal(item.i, inputRef.current.value)}/>
     </div>
   );
 };
 
-const ToolBox = ({onTakeItem, items, values}) => {
+const ToolBox = ({onTakeItem, items, values, setVal}) => {
   return (
     <div className="toolbox">
       <span className="toolbox__title"></span>
@@ -45,6 +45,7 @@ const ToolBox = ({onTakeItem, items, values}) => {
             item={item}
             onTakeItem={onTakeItem}
             value={values[item.i]}
+            setVal={setVal}
           />
         ))}
       </div>
