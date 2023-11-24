@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, forwardRef } from "react";
-import CheckIcon from "assets/images/portrait.png"; // TODO : change icon.
+import CheckIcon from "assets/images/Checked.svg";
 
 const QuestionElement = ({question, index, onChecked, val}) => {
 
@@ -33,8 +33,8 @@ const QuestionElement = ({question, index, onChecked, val}) => {
   
   const buttonStyle = { display:'flex', justifyContent:'center', alignItems:'center',
     width: '3rem', height: '3rem', backgroundColor: '#FFF',
-    border: '1px solid #CCC', borderRadius: '50%', margin:'0 1rem 0 1rem',};
-  const selectedButtonStyle = {...buttonStyle, backgroundColor: '#CCAFD9', };
+    border: '1px solid #A570C4', borderRadius: '50%', margin:'0 1rem 0 1rem',};
+  const selectedButtonStyle = {...buttonStyle, backgroundColor: '#A570C4', };
   //const buttonActiveStyle = { ...hoverButtonStyle,  };
 
   const calcSize = (i, isString) => {
@@ -58,15 +58,15 @@ const QuestionElement = ({question, index, onChecked, val}) => {
             style={activeButton === i || isMouseOver[i] ? {...selectedButtonStyle, width:sizeStr, height:sizeStr}
             : {...buttonStyle, width:sizeStr, height:sizeStr}}
             >
-              {activeButton === i ? <img src={CheckIcon} style={{width:String(size*0.6)+'rem', height:String(size*0.6)+'rem'}}/>:null}
+              {activeButton === i ? <img src={CheckIcon} style={{width:String(size*0.5)+'rem', height:String(size*0.8)+'rem', color:'#FFF'}}/>:null}
             </div>
           );
         })}
       </div>
-      <div style={{display:'flex', flexDirection:'row', marginTop:'1rem', gap:'0 4.5rem', color:'#424245', fontSize:'0.6rem', fontWeight:'700', fontFamily:'Wanted Sans'}}>
-        <span>전혀 아니다</span>
-        <span>때때로 그렇다</span>
-        <span>매우 그렇다</span>
+      <div style={{display:'flex', flexDirection:'row', marginTop:'1rem', gap:'0 4.1rem', color:'#424245', fontSize:'0.6rem', fontWeight:'700', fontFamily:'Wanted Sans'}}>
+        <span style={{width:'4rem',}}>전혀 아니다</span>
+        <span style={{width:'4rem',}}>때때로 그렇다</span>
+        <span style={{width:'4rem',}}>언제나 그렇다</span>
       </div>
     </div>
   );
