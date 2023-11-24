@@ -61,8 +61,9 @@ const SQDesire = () => {
   }
 
   return (
+    <>
+    <Header/>
     <div className="sq-desire">
-      <Header/>
       <PageTitle korean="동기" english="Self-questioning" subIcon={PageSubTitleIcon} subTitle="Glasser 욕구 강도 프로파일"/>
       <div className="SD-content" style={{ marginTop:'0', marginBottom:'5rem', display:'flex', justifyContent:'center',}}>
         <div className="desire-box" style={{width:'100%',}}>
@@ -84,6 +85,7 @@ const SQDesire = () => {
       
       <Footer link={'/sq-interest'} helpContent={"질문을 보고 자신에게 맞는 응답을 체크해주세요."} onClickButton={onClickNext}></Footer>
     </div>
+    </>
   );
 }
 

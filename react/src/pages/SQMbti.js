@@ -91,9 +91,10 @@ const SQMbti = () => {
   const pActiveStyle = { ...pStyle, color:'#FFF', };
   
   return (
+    <>
+    {isActiveButtonModal && <ButtonModal onClose={onCloseModal} title={'3개 이상 선택하시면 안됩니다!'} message={'선택한 내용들은 초기화됩니다.'} buttonMessage={'확 인'}></ButtonModal>}
+    <Header/>
     <div className="sq-mbti">
-      {isActiveButtonModal && <ButtonModal onClose={onCloseModal} title={'3개 이상 선택하시면 안됩니다!'} message={'선택한 내용들은 초기화됩니다.'} buttonMessage={'확 인'}></ButtonModal>}
-      <Header/>
       <PageTitle korean="성향" english="Self-questioning" subIcon={PageSubTitleIcon} subTitle="Myers-Briggs Type Indicator(MBTI)"/>
       <div className="SD-content" style={{ marginTop:'0', marginBottom:'7rem', display:'flex', justifyContent:'center',}}>
         <div className="mbti-box" style={{width: '44.6875rem', height: '25rem', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
@@ -114,6 +115,7 @@ const SQMbti = () => {
       . {/* marginBottom 임시로 넣은 것 때문에 점 하나 있어야 적용됨 */}
       <Footer link={'/sq-desire'} helpContent={"자신에게 맞는 또는 가장 가까운 것 같은 MBTI를 최대 2개까지 선택할 수 있습니다."} onClickButton={onClickNext}/>
     </div>
+    </>
   );
 }
 

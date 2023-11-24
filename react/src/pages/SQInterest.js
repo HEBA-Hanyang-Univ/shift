@@ -9,8 +9,8 @@ import PageTitle from "components/PageTitle";
 import PageSubTitleIcon from "assets/images/portrait.png"; // TODO : change icon. this is a temporary.
 import { Header } from "components/Header";
 import { Footer } from "components/Footer";
-import { LITERAL_TYPES } from "@babel/types";
 import secureLocalStorage from "react-secure-storage";
+import ButtonModal from "components/ButtonModal";
 
 // Known Problem : If Drag or Resize over item below, Layout limitation works bad.
 // What I have to do is if empty row is exist, delete them
@@ -51,6 +51,7 @@ const SQInterest = () => {
   let totalArea = useRef(0);
 
   const defaultVal = "what's yours?";
+  const [isActiveButtonModal, setIsActiveButtonModal] = useState(false);
 
   useEffect(()=> {
     let saved = secureLocalStorage.getItem('sq-interest');
@@ -259,9 +260,15 @@ const SQInterest = () => {
     setInputValues({...inputValues, [i]:val});
   }
 
+  const onCloseModal = () => {
+    setIsActiveButtonModal(false);
+  }
+
   return (
+    <>
+    {isActiveButtonModal && <ButtonModal onClose={onCloseModal} title={'더 이상 놓을 자리가 없습니다!'} message={'최대 8개까지만 놓을 수 있습니다.'} buttonMessage={'확 인'}></ButtonModal>}
+    <Header/>
     <div className="sq-interest">
-      <Header/>
       <PageTitle korean="동기" english="Self-questioning" subIcon={PageSubTitleIcon} subTitle="관심사 정리"/>
       <div className="view-container" style={{display:"table", margin: "5px auto 10rem auto"}}>
         <div className="head-image-container" style={{display:"table-cell", verticalAlign:'middle', position:'relative', }}>
@@ -308,6 +315,7 @@ const SQInterest = () => {
       </div>
       <Footer link={'/sq-experience'} helpContent={"자신의 관심사를 브레인 맵으로 정리해보세요."} onClickButton={onClickNext}/>
     </div>
+    </>
   );
 }
 

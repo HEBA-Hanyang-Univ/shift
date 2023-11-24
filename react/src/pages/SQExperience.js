@@ -20,8 +20,9 @@ const SQExperience = () => {
   }
 
   return (
+    <>
+    <Header/>
     <div className="sq-experience">
-      <Header/>
       <PageTitle korean="동기" english="Self-questioning" subIcon={PageSubTitleIcon} subTitle="성공 실패 경험 (자기 결정성)"/>
       <div className="SD-content" style={{ marginTop:'0', marginBottom:'5rem', display:'flex', justifyContent:'center',}}>
         <div className="experience-box" style={{width:'100%',}}>
@@ -34,6 +35,7 @@ const SQExperience = () => {
       </div>
       <Footer link={'/sh'} helpContent={"자신이 성공 혹은 실패했던 경험, 그리고 가졌었던 장래희망에 대해서 써보세요."} onClickButton={onClickNext}/>
     </div>
+    </>
   );
 }
 
