@@ -52,6 +52,8 @@ const SQInterest = () => {
 
   const defaultVal = "what's yours?";
   const [isActiveButtonModal, setIsActiveButtonModal] = useState(false);
+  const [modalTitle, setModalTitle] = useState('');
+  const [modalContent, setModalContent] = useState('');
 
   useEffect(()=> {
     let saved = secureLocalStorage.getItem('sq-interest');
@@ -100,13 +102,15 @@ const SQInterest = () => {
     let w = item.w;
     let h = item.h;
     let emptySpace = null;
-    while(emptySpace == null && w >= minW && h >= minH) {
+    while(emptySpace == null && w >= minW && h >= minH && !(w == minW && h == minH)) {
       emptySpace = findEmptySpace(layout, w, h);
       if (w > minW) { w -= 1; }
       if (h > minH) { h -= 1; }
     }
     if (emptySpace == null) {
-      alert('no where to place!');
+      setModalTitle('빈 공간이 없습니다!');
+      setModalContent('브레인 맵의 공간을 조절해서 빈 공간을 만든 후에 배치해주세요');
+      setIsActiveButtonModal(true);
       return;
     }
     item.x = emptySpace.x;
@@ -142,7 +146,9 @@ const SQInterest = () => {
 
   const addNewComponent = () => {
     if (val.current >= 8) {
-      alert('no more add!');
+      setModalTitle('추가적인 생성이 불가능합니다!');
+      setModalContent('최대 8개까지만 생성할 수 있어요');
+      setIsActiveButtonModal(true);
       return;
     }
     // for now, there's no need to check empty space here
@@ -266,7 +272,7 @@ const SQInterest = () => {
 
   return (
     <>
-    {isActiveButtonModal && <ButtonModal onClose={onCloseModal} title={'더 이상 놓을 자리가 없습니다!'} message={'최대 8개까지만 놓을 수 있습니다.'} buttonMessage={'확 인'}></ButtonModal>}
+    {isActiveButtonModal && <ButtonModal onClose={onCloseModal} title={modalTitle} message={modalContent} buttonMessage={'확 인'}></ButtonModal>}
     <Header/>
     <div className="sq-interest">
       <PageTitle korean="동기" english="Self-questioning" subIcon={PageSubTitleIcon} subTitle="관심사 정리"/>

@@ -41,9 +41,11 @@ function ButtonModal({ onClose, onClickButton, title, message, buttonMessage }) 
             <span className="title" style={{fontSize:'1.4rem', marginBottom:'0.2rem', fontWeight:'700', }}>
               {title}
             </span>
-            {message.split('\n').map((line,i) => {return (
-              <span key={i} style={{color:'#525252', fontWeight:'500', fontSize:'1.0rem', marginBottom:'2.0rem', letterSpacing: '0.04rem',}}>{line}<br/></span>
-            );})}
+            <div style={{margin: '1.0rem 0 1.0rem 0'}}>
+              {message.split('\n').map((line,i) => {return (
+              <span key={i} style={{color:'#525252', fontWeight:'500', fontSize:'1.0rem', margin: '0 1.5rem 0 1.5rem', letterSpacing: '0.04rem',}}>{line}<br/></span>
+              );})}
+            </div>
             <button type="submit" onClick={handleSubmit}>
               <span>{buttonMessage}</span>
             </button>
