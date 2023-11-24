@@ -61,14 +61,14 @@ const SQInterest = () => {
       newLayout = ([...newLayout, item]);
       inputValues[item.i] = item.val;
     });
-    setLayout([...layout, newLayout]);
+    setLayout([...layout, ...newLayout]);
 
     let newArchived = [];
     saved.archived.map((item) => {
       newArchived = ([...newArchived, item]);
       inputValues[item.i] = item.val;
     });
-    setArchived([...archived, newArchived]);
+    setArchived([...archived, ...newArchived]);
 
     val.current = saved.val;
   }, []);
