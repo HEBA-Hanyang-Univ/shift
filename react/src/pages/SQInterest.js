@@ -58,6 +58,7 @@ const SQInterest = () => {
 
     let newLayout = [];
     saved.layout.map((item) => {
+      item.resizeHandles = ['nw', 'sw', 'ne', 'se'];
       newLayout = ([...newLayout, item]);
       inputValues[item.i] = item.val;
     });
@@ -65,6 +66,7 @@ const SQInterest = () => {
 
     let newArchived = [];
     saved.archived.map((item) => {
+      item.resizeHandles = ['nw', 'sw', 'ne', 'se'];
       newArchived = ([...newArchived, item]);
       inputValues[item.i] = item.val;
     });
@@ -244,8 +246,13 @@ const SQInterest = () => {
       'archived': [...a],
       'val': val.current,
     }
-    console.log(saveItem);
+    console.log('sq-interest saved:', saveItem);
     secureLocalStorage.setItem('sq-interest', saveItem);
+
+    const before = secureLocalStorage.getItem('completed');
+    const after = {...before, 'sq-interest': layout.filter((item) => !item.static).length > 0};
+    secureLocalStorage.setItem('completed', after);
+    console.log('sq-interest marked as', layout.filter((item) => !item.static).length > 0);
   }
 
   const saveInputVal = (i, val) => {

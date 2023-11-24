@@ -9,11 +9,11 @@ import secureLocalStorage from "react-secure-storage";
 
 const SQDesire = () => {
   const [questionList, setQuestionList] = useState({});
-
   const questionRef = useRef({});
 
   let preData = secureLocalStorage.getItem('sq-desire');
   if (preData == null) preData = {};
+
   useEffect(() => {
     FetchData('http://150.230.252.177:5000/get-desire', 'GET')
     .then((response) => {
@@ -27,8 +27,8 @@ const SQDesire = () => {
     .then((response) => {
       for (const p in response.result) {
         for (const q of response.result[p]) {
-          if (preData[q]) {
-            questionRef.current[q] = preData[q];
+          if (preData[p] && preData[p][q]) {
+            questionRef.current[p] = {...questionRef.current[p], [q]: preData[p][q]};
           }
         }
       }
@@ -36,17 +36,28 @@ const SQDesire = () => {
 
   }, []);
 
-  const onCheckElem = (e, i) => {
-    questionRef.current[i] = e;
+  const onCheckElem = (val, c, key) => {
+    questionRef.current[c] = {...questionRef.current[c], [key]:val};
   }
 
   const onClickNext = () => {
+    secureLocalStorage.setItem('sq-desire', questionRef.current);
+    console.log('sq-desire saved:', questionRef.current)
+
     let total = 0;
     Object.entries(questionList).map(([key, value], i) => {
       total += questionList[key].length;
     });
-    //console.log({...questionRef.current, total:total,});
-    secureLocalStorage.setItem('sq-desire', {...questionRef.current, length:total,});
+
+    let len = 0;
+    Object.entries(questionRef.current).map(([key, val], it) => {
+      len += Object.keys(val).length;
+    });
+
+    const before = secureLocalStorage.getItem('completed');
+    const after = {...before, 'sq-desire': len == total};
+    secureLocalStorage.setItem('completed', after);
+    console.log('sq-desire marked as', len == total);
   }
 
   return (
@@ -61,7 +72,7 @@ const SQDesire = () => {
                 {i+1}. {key} - Test
                 { value.map((item, index) => {
                   return (
-                    <QuestionElement question={item} index={i} key={'question-'+index} onChecked={(e) => onCheckElem(e, item)} val={preData[item]}/>
+                    <QuestionElement question={item} index={i} key={'question-'+index} onChecked={(val) => onCheckElem(val, key, item)} val={questionRef.current[key] ? questionRef.current[key][item] ? questionRef.current[key][item] : undefined : undefined}/>
                   );
                 })
                 }

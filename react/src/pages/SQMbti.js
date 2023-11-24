@@ -74,14 +74,12 @@ const SQMbti = () => {
 
     // save value in local
     secureLocalStorage.setItem('mbti', selected);
-
+    console.log('sq-mbti saved:', selected);
     // save status
     const before = secureLocalStorage.getItem('completed');
     const after = {...before, 'sq-mbti': selected.length > 0 ? true : false};
     secureLocalStorage.setItem('completed', after);
-
-    console.log(secureLocalStorage.getItem('mbti'));
-    console.log(secureLocalStorage.getItem('completed'));
+    console.log('sq-mbti marked as', selected.length > 0);
   }
 
   const buttonStyle = { display:'flex', width: '100%', height: '100%', backgroundColor: '#FFF', border: '1px solid #CCC', borderRadius: '0.3125rem', justifyContent:'center', alignItems:'center', };

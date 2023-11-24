@@ -14,7 +14,8 @@ const SQExperience = () => {
   const onClickNext = () => {
     // for demonstration
     const before = secureLocalStorage.getItem('completed');
-    const after = {...before, 'sq-motivation': true ? true : false};
+    console.log(before['sq-interest'], before['sq-desire']);
+    const after = {...before, 'sq-motivation': before['sq-interest'] && before['sq-desire'] ? true : false};
     secureLocalStorage.setItem('completed', after);
   }
 
