@@ -9,6 +9,8 @@ import PageTitle from "components/PageTitle";
 import PageSubTitleIcon from "assets/images/portrait.png"; // TODO : change icon. this is a temporary.
 import { Header } from "components/Header";
 import { Footer } from "components/Footer";
+import { LITERAL_TYPES } from "@babel/types";
+import secureLocalStorage from "react-secure-storage";
 
 // Known Problem : If Drag or Resize over item below, Layout limitation works bad.
 // What I have to do is if empty row is exist, delete them
@@ -47,6 +49,29 @@ const SQInterest = () => {
 
   let archivedList = [];
   let totalArea = useRef(0);
+
+  const defaultVal = "what's yours?";
+
+  useEffect(()=> {
+    let saved = secureLocalStorage.getItem('sq-interest');
+    if (saved == null) saved = {'layout':[], 'archived':[], 'val':0,};
+
+    let newLayout = [];
+    saved.layout.map((item) => {
+      newLayout = ([...newLayout, item]);
+      inputValues[item.i] = item.val;
+    });
+    setLayout([...layout, newLayout]);
+
+    let newArchived = [];
+    saved.archived.map((item) => {
+      newArchived = ([...newArchived, item]);
+      inputValues[item.i] = item.val;
+    });
+    setArchived([...archived, newArchived]);
+
+    val.current = saved.val;
+  }, []);
 
   const onLayoutChange = (newLayout) => {
     for (let item of archivedList) {
@@ -189,7 +214,6 @@ const SQInterest = () => {
     const pointY = e.clientY;
     const imgRect = headImg.getBoundingClientRect();
     if (pointX < imgRect.left || pointX > imgRect.right || pointY < imgRect.top || pointY > imgRect.bottom) {
-      // this doens't work due to assignment to state works lazy...
       onPutItem(newItem); // onPutItem(oldItem);
       archivedList = [...archivedList, newItem];
     }
@@ -207,7 +231,25 @@ const SQInterest = () => {
   };
 
   const onClickNext = () => {
+    let l = [];
+    layout.filter((item) => !item.static).map((item) => {
+      l = [...l, { i:item.i, w:item.w, h:item.h, x:item.x, y:item.y, val:inputValues[item.i],}]
+    })
+    let a = [];
+    archived.map((item) => {
+      a = [...a, { i:item.i, w:item.w, h:item.h, x:item.x, y:item.y, val:inputValues[item.i],}]
+    })
+    const saveItem = {
+      'layout': [...l],
+      'archived': [...a],
+      'val': val.current,
+    }
+    console.log(saveItem);
+    secureLocalStorage.setItem('sq-interest', saveItem);
+  }
 
+  const saveInputVal = (i, val) => {
+    setInputValues({...inputValues, [i]:val});
   }
 
   return (
@@ -240,9 +282,9 @@ const SQInterest = () => {
                   <input type="text" maxLength="7" size="7" rows="1" id={item.i} ref={elem => inputs.current[item.i] = elem}
                     style={{border: "none", textAlign:"center", width: "80%", height:"auto",
                             fontSize:calcFontSize(item.w, item.h), overflow:'hidden', display:'flex', fontFamily:'Wanted Sans',}}
-                    placeholder={inputValues[item.i] || "what's yours?"}/>
+                    placeholder={inputValues[item.i] || defaultVal} onChange={()=>saveInputVal(item.i, inputs.current[item.i].value)}/>
                   <div style={{ display:'flex' }}>
-                    <span style={{fontSize:calcFontSize(item.w*0.5, item.h)}}>{Math.round(item.w*item.h/totalArea.current*100)  }%</span>
+                    <span style={{fontSize:calcFontSize(item.w*0.8, item.h*0.8)}}>{Math.round(item.w*item.h/totalArea.current*100)  }%</span>
                   </div>
                 </div>
               ))}
@@ -250,9 +292,9 @@ const SQInterest = () => {
           </div>
           <img src={HeadImg} style={{ width:'600px', height:'600px', }} id='SQ_Head'/>
         </div>
-        <ToolBox onTakeItem={onTakeItem} items={archived || [] } values={inputValues}/>
+        <ToolBox onTakeItem={onTakeItem} items={archived || [] } values={inputValues} setVal={saveInputVal}/>
         <div className="components-container">
-          <button onClick={addNewComponent} style={{width:'3.5rem', height:'3.5rem',}}>
+          <button onClick={addNewComponent} style={{width:'3rem', height:'3rem',}}>
             <img src={AddButtonImg} style={{width:'100%', height:'100%',}}/>
           </button>
         </div>
