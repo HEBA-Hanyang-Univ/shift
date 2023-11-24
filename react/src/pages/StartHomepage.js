@@ -279,13 +279,13 @@ export const StartHomepage = () => {
             </div>
           </div>
           {/* H */}
-          <div className="SHProgressContentH" id="sectionH" ref={sectionHRef}></div>
+          <div className="SHProgressContentH" id="sectionH" ref={sectionHRef}> 컨텐츠 준비중입니다! </div>
           {/* I */}
-          <div className="SHProgressContentI" id="sectionI" ref={sectionIRef}></div>
+          <div className="SHProgressContentI" id="sectionI" ref={sectionIRef}> 컨텐츠 준비중입니다! </div>
           {/* F */}
-          <div className="SHProgressContentF" id="sectionF" ref={sectionFRef}></div>
+          <div className="SHProgressContentF" id="sectionF" ref={sectionFRef}> 컨텐츠 준비중입니다! </div>
           {/* T */}
-          <div className="SHProgressContentT" id="sectionT" ref={sectionTRef}></div>
+          <div className="SHProgressContentT" id="sectionT" ref={sectionTRef}> 컨텐츠 준비중입니다! </div>
         </div>
         {/* 진행률 */}
         <div className="SHProgressBarBox">
