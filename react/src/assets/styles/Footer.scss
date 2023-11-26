@@ -3,7 +3,7 @@
   height: fit-content;
   position: fixed;
   bottom: 0;
-  background-color: #FFF;
+  background-color: transparent;
 
   .footerBtn {
     width: 7.56rem;
@@ -24,6 +24,7 @@
     align-items: center;
     justify-content: end;
     padding-right: 2rem;
+    background-color: #FFF;
 
     button {
       width: 6.3rem;
