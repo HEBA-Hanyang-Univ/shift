@@ -122,7 +122,7 @@ export const StartHomepage = () => {
           <div className="SHProfileRight">
             <div className="SHBtnBox">
               <button className="SHBtnPurple">
-                <Link to='/sq-mbti' onClick={() => secureLocalStorage.clear()}>
+                <Link to='/sq-mbti' onClick={() => secureLocalStorage.clear()} style={{textDecoration: 'none', color: '#FFF'}}>
                   <span>시작하기</span>
                 </Link>
               </button>
