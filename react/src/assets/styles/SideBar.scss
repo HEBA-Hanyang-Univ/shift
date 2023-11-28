@@ -1,0 +1,76 @@
+.sideBarWrapper {
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .sideBarContainer {
+    margin-top: 3.25rem;
+    width: 22.5rem;
+    height: calc(100vh - 3.25rem);
+    background-color: #F3F3F3;
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+
+    .sideBarBox {
+      width: 19.375rem;
+      height: fit-content;
+      background-color: #FFF;
+    }
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  .sideBarBtn {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+
+    button {
+      display: flex;
+      background-color: transparent;
+
+      img {
+        width: 2.6875rem;
+        height: 3.0625rem;
+      }
+    }
+  }
+}
+
+.sideBarContentBox {
+  background-color: #FFFEFE;
+  border-radius: 0.5rem;
+  border: 1px solid #EEE;
+  height: fit-content;
+  width: 19.375rem;
+
+  .mainTitleBox {
+    border-bottom: 2px solid #EEEEEE;
+    display: flex;
+    height: 4rem;
+    align-items: center;
+    margin-left: 1.19rem;
+
+    img {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    .mainTitle {
+      margin-left: 0.7rem;
+      font-size: 1.0625rem;
+      color: #424242;
+      font-weight: 700;
+    }
+
+    .subTitleBox {
+      .slick-prev {
+        background-color: #A570C4;
+      }
+    }
+  }
+}
