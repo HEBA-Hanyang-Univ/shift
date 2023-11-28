@@ -7,16 +7,46 @@ import { Footer } from "components/Footer";
 import secureLocalStorage from "react-secure-storage";
 
 const SQExperience = () => {
-
-  // TODO : connect to server
-  const [experienceList, setExperienceList] = useState({'성공경험':'목표를 세우고 성공한 경험', '실패경험':'목표를 세우고 실패한 경험', '장래희망':'막연했던 장래희망',});
+  const experienceList = {'성공경험':'목표를 세우고 성공한 경험', '실패경험':'목표를 세우고 실패한 경험', '장래희망':'막연했던 장래희망',};
+  const numsOfRow = 3;
+  const tableData = useRef(getInitialData());
 
   const onClickNext = () => {
-    // for demonstration
+    secureLocalStorage.setItem('sq-experience', tableData.current);
+    console.log('sq-experience saved:', tableData.current);
+
     const before = secureLocalStorage.getItem('completed');
-    console.log(before['sq-interest'], before['sq-desire']);
-    const after = {...before, 'sq-motivation': before['sq-interest'] && before['sq-desire'] ? true : false};
+    console.log('state of sq-interest and sq-desire',before['sq-interest'], before['sq-desire']);
+
+    // TODO : check complete condition of sq-experience
+    const after = {...before,
+      'sq-motivation': before['sq-interest'] && before['sq-desire'] ? true : false};
     secureLocalStorage.setItem('completed', after);
+    console.log('sq-motivation marked as', after['sq-motivation']);
+  }
+
+  const setDataFromTable = (key, value) => {
+    tableData.current[key] = value;
+  }
+
+  // TODO : set initial data as server-side data
+  function getInitialData() {
+    let initialData = secureLocalStorage.getItem('sq-experience');
+    if (initialData == null) {
+      initialData = {};
+      Object.keys(experienceList).map((item) => {
+        initialData[item] = {};
+      });
+      Object.entries(initialData).map(([key, value]) => {
+        let d = {};
+        for (let i = 0; i < numsOfRow; i++) {
+          d[i] = {0: '', 1: '', rate:'50'};
+        }
+        initialData[key] = d;
+      });
+    }
+
+    return initialData;
   }
 
   return (
@@ -28,7 +58,7 @@ const SQExperience = () => {
         <div className="experience-box" style={{width:'100%',}}>
           {Object.entries(experienceList).map(([key, value], i) => {
             return (
-              <ExperienceTable key={i} title={key} columnTitle={value}/>
+              <ExperienceTable key={i} title={key} columnTitle={value} numsOfRow={numsOfRow} initialData={tableData.current[key]} onChange={setDataFromTable}/>
             );
           })}
         </div>
