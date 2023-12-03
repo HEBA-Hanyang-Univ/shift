@@ -8,6 +8,7 @@ import SQMbti from 'pages/SQMbti';
 import SQDesire from 'pages/SQDesire';
 import SQExperience from 'pages/SQExperience';
 import { Error } from "pages/Error";
+import SQValues from 'pages/SQValues';
 
 function App() {
   const ScrollToTop = () => {
@@ -30,6 +31,7 @@ function App() {
             <Route path="/sq-desire" element={<SQDesire />} />
             <Route path="/sq-mbti" element={<SQMbti />} />
             <Route path="/sq-experience" element={<SQExperience />} />
+            <Route path="/sq-values" element={<SQValues/>} />
             <Route path="/*" element={< Error />} />
           </Routes>
       </Router>

@@ -63,7 +63,7 @@ const SQExperience = () => {
           })}
         </div>
       </div>
-      <Footer link={'/sh'} helpContent={"자신이 성공 혹은 실패했던 경험, 그리고 가졌었던 장래희망에 대해서 써보세요."} onClickButton={onClickNext}/>
+      <Footer link={'/sq-values'} helpContent={"자신이 성공 혹은 실패했던 경험, 그리고 가졌었던 장래희망에 대해서 써보세요."} onClickButton={onClickNext}/>
     </div>
     </>
   );
