@@ -6,6 +6,7 @@ import ButtonModal from "components/ButtonModal";
 import { Footer } from "components/Footer";
 import { SideBar } from "components/SideBar/SideBar";
 import secureLocalStorage from "react-secure-storage";
+import XIcon from "assets/images/x_icon.svg";
 
 const SQValues = () => {
 
@@ -70,6 +71,14 @@ const SQValues = () => {
     }
   };
 
+  const onClickRemove = (item) => {
+    const i = values.findIndex((it) => it === item);
+    if (i < 0) return;
+    let newIsActive = [...isActive];
+    newIsActive[i] = !newIsActive[i];
+    setIsActive(newIsActive);
+  }
+
   const onCloseModal = () => {
     setIsActiveButtonModal(false);
   }
@@ -116,6 +125,12 @@ const SQValues = () => {
 
     return style;
   }
+
+  const subTitleStyle = {
+    color:'#9C6DA9', fontWeight:'600', margin: '1rem 0 1rem 0'
+  };
+
+  const selected = values.filter((item, i) => isActive[i]);
   
   return (
     <>
@@ -125,8 +140,15 @@ const SQValues = () => {
       <div className="sq-values">
         <PageTitle korean="가치관" english="Self-questioning" subIcon={PageSubTitleIcon} subTitle="가치관 검사"/>
         <div className="SD-content" style={{ marginTop:'0', marginBottom:'7rem', display:'flex', flexDirection: 'column', alignItems:'center', justifyContent:'center',}}>
-          <span style={{color:'#9C6DA9', fontWeight:'600', margin: '1rem 0 1rem 0'}}>5개의 키워드를 선택해주세요</span>
-          <div className="values-box" style={{width: '44.6875rem', height: '60rem', display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)',
+          <span style={subTitleStyle}>선택된 키워드</span>
+          <div style={{display:'flex', width: '44.6875rem', height: '4rem', marginBottom:'3rem', alignItems:'stretch', }}>
+            {Array.from({length:5}).map((item, i) => <div key={i} style={{ border:'1px solid #BEBEBE', color: '#9350BA', fontWeight:'700', width:'20%', display:'flex',}}>
+                <div style={{position:'relative'}}><img src={XIcon} style={{ position:'absolute', top:'0.5rem', right:'-8.5rem',}} onClick={() => onClickRemove(selected[i])}/></div>
+                <span style={{display:'flex', width:'100%', justifyContent:'center', alignItems:'center',}}>{selected[i]}</span>
+              </div>)}
+          </div>
+          <span style={subTitleStyle}>5개의 키워드를 선택해주세요</span>
+          <div className="valuesBox" style={{width: '44.6875rem', height: '60rem', display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)',
           gridTemplateRows: 'repeat(10, 1fr)', gridGap: '1px', backgroundColor: '#BEBEBE', border: '1px solid #CCC', borderRadius: '1rem', overflow:'hidden', }}>
             {values.map((item, i) => {
               return (
