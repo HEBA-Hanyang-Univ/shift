@@ -2,6 +2,7 @@ import { useEffect, React } from 'react';
 import { useLocation } from 'react-router';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import MH from 'pages/MH';
 import { StartHomepage } from 'pages/StartHomepage';
 import SQInterest from 'pages/SQInterest';
 import SQMbti from 'pages/SQMbti';
@@ -26,6 +27,7 @@ function App() {
       <Router>
         <ScrollToTop />
           <Routes>
+            <Route path='/' element={< MH />} />
             <Route path="/sh" element={< StartHomepage />} />
 	          <Route path="/sq-interest" element={<SQInterest />} />
             <Route path="/sq-desire" element={<SQDesire />} />
