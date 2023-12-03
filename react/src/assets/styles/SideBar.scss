@@ -3,15 +3,16 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  z-index: 10;
 
   .sideBarContainer {
     width: 22.5rem;
-    height: calc(100vh - 3.25rem);
+    // height: calc(100vh - 3.25rem);
+    height: 100%;
     background-color: #F3F3F3;
     display: flex;
     justify-content: center;
     padding-top: 1rem;
-    margin-top: -3.25rem;
 
     .sideBarBox {
       width: 19.375rem;
@@ -28,6 +29,7 @@
     display: flex;
     align-items: center;
     height: 100vh;
+    margin-top: -3.25rem;
     
     button {
       display: flex;

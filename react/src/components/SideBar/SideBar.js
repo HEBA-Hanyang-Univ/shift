@@ -5,9 +5,8 @@ import CloseBtn from "assets/images/SideBarCloseBtn.svg";
 import OpenBtn from "assets/images/SideBarOpenBtn.svg";
 import { Transition } from "react-transition-group";
 
-export const SideBar = () => {
-  const [showSideBar, setShowSideBar] = useState(true);
-  const duration = 500;
+export const SideBar = ({showSideBar, setShowSideBar}) => {
+  const duration = 300;
 
   const handleClose = () => {
     setShowSideBar(!showSideBar);
@@ -15,27 +14,36 @@ export const SideBar = () => {
 
   const defaultStyle = {
     transition: `max-width ${duration}ms ease-in-out`,
-    maxWidth: 0,
+    maxWidth: '22.5rem',
     overflow: 'hidden',
   }
 
   const transitionStyles = {
     entering: {maxWidth: 0},
     entered: {maxWidth: '22.5rem'},
-    exiting: {maxWidth: 0},
+    exiting: {maxWidth: 0}, 
     exited: {maxWidth: 0},
   }
 
   return (
     <div className="sideBarWrapper">
-      <div className={`sideBarContainer ${showSideBar ? '' : 'hidden'}`}>
-        <SideBarContent></SideBarContent>
-      </div>
-      <div className="sideBarBtn">
-        <button onClick={handleClose}>
-          <img src={showSideBar ? CloseBtn : OpenBtn} alt="sidebar toggle btn"></img>
-        </button>
-      </div>
+      <Transition
+        in={showSideBar}
+        timeout={duration}>
+          {state => (
+            <div style={{
+              ...defaultStyle,
+              ...transitionStyles[state]
+            }} className={`sideBarContainer ${showSideBar ? '' : 'hidden'}`}>
+              <SideBarContent></SideBarContent>
+            </div>
+          )}
+        </Transition>
+        <div className="sideBarBtn">
+          <button onClick={handleClose}>
+            <img src={showSideBar ? CloseBtn : OpenBtn} alt="sidebar toggle btn"></img>
+          </button>
+        </div>
     </div>
   )
 }

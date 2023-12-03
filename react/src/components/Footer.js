@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Transition } from "react-transition-group";
 
-export const Footer = ({ link, helpContent, onClickButton }) => {
+export const Footer = ({ showSideBar, link, helpContent, onClickButton }) => {
   const [showHelpSlide, setShowHelpSlide] = useState(false);
   const [showOpenBtn, setShowOpenBtn] = useState(true);
 
@@ -13,7 +13,7 @@ export const Footer = ({ link, helpContent, onClickButton }) => {
 
   const defaultStyle = {
     transition: `max-height ${duration}ms ease-in-out`,
-    maxHeight: 0,
+    maxHeight: 0, 
     overflow: 'hidden',
   };
 
@@ -23,6 +23,11 @@ export const Footer = ({ link, helpContent, onClickButton }) => {
     exiting: {maxHeight: 0},
     exited: {maxHeight: 0},
   };
+
+  const footerStyle = {
+    width: showSideBar ? 'calc(100% - 22.5rem)' : '100%',
+    ...(showSideBar ? {right: 0} : {left: 0})
+  }
 
   const onClick = (e) => { 
     // TODO: 전송할 데이터 설정
@@ -39,7 +44,7 @@ export const Footer = ({ link, helpContent, onClickButton }) => {
   }
 
   return (
-    <div className="footerWrapper">
+    <div className="footerWrapper" style={footerStyle}>
       {showOpenBtn && (
         <button className="footerBtn" onClick={handleOpen}>
           <img src={OpenBtn} alt="open btn"></img>
