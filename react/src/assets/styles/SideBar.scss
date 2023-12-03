@@ -1,17 +1,17 @@
 .sideBarWrapper {
-  height: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
-  float: left;
+  height: 100vh;
 
   .sideBarContainer {
     width: 22.5rem;
-    height: 100vh;
+    height: calc(100vh - 3.25rem);
     background-color: #F3F3F3;
     display: flex;
     justify-content: center;
     padding-top: 1rem;
+    margin-top: -3.25rem;
 
     .sideBarBox {
       width: 19.375rem;
@@ -28,7 +28,7 @@
     display: flex;
     align-items: center;
     height: 100vh;
-
+    
     button {
       display: flex;
       background-color: transparent;
@@ -154,9 +154,18 @@
 .sideBarLinkTree {
   height: 4rem;
   margin-top: 1.69rem;
-  color: #6c6c6c;
-  font-size: 0.5625rem;
+  padding-left: 0.38rem;
+  padding-right: 0.35rem;
   font-weight: 500;
+  font-size: 0.56rem;
+
+  .sideBarLink {
+    color: #6C6C6C;
+    
+    &:hover {
+      color: #343CF8;
+    }
+  }
 }
 
 .sideBarBottom {
@@ -186,4 +195,12 @@
 
 .swiper-button-next {
   margin-right: 0.8rem;
+}
+
+.contentwithSidebar {
+  display: flex;
+}
+
+.sideBarWrappe {
+  height: 100%;
 }

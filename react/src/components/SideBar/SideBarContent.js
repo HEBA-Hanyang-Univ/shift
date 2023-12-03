@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-import SQ from "assets/images/SH_sq.svg";
+import React from "react";
 import ToDoImg from "assets/images/SideBarToDo.svg";
 import DoneImg from "assets/images/SideBarAchieved.svg";
 import { Link } from "react-router-dom";
@@ -61,6 +60,7 @@ const SideBarContent = ({mainImg, mainTitle, subTitle, isCompleted}) => {
             <Link to={"/"} className="sideBarLink">
               Self-questioning (자기이해) 
             </Link>
+            <br />
             &nbsp;&nbsp;{">"}&nbsp;&nbsp;
             <Link to={"/"} className="sideBarLink">
               MBTI

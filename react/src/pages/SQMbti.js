@@ -4,6 +4,7 @@ import PageSubTitleIcon from "assets/images/portrait.png"; // TODO : change icon
 import { Header } from "components/Header";
 import ButtonModal from "components/ButtonModal";
 import { Footer } from "components/Footer";
+import { SideBar } from "components/SideBar/SideBar";
 import secureLocalStorage from "react-secure-storage";
 
 const SQMbti = () => {
@@ -94,26 +95,31 @@ const SQMbti = () => {
     <>
     {isActiveButtonModal && <ButtonModal onClose={onCloseModal} title={'3개 이상 선택하시면 안됩니다!'} message={'선택한 내용들은 초기화됩니다.'} buttonMessage={'확 인'}></ButtonModal>}
     <Header/>
-    <div className="sq-mbti">
-      <PageTitle korean="성향" english="Self-questioning" subIcon={PageSubTitleIcon} subTitle="Myers-Briggs Type Indicator(MBTI)"/>
-      <div className="SD-content" style={{ marginTop:'0', marginBottom:'7rem', display:'flex', justifyContent:'center',}}>
-        <div className="mbti-box" style={{width: '44.6875rem', height: '25rem', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
-        gridTemplateRows: 'repeat(4, 1fr)', gap: '2.0rem 2.5rem', }}>
-          {mbtis.map((item, i) => {
-            return (
-              <span key={i} style={isActive[i] ? buttonActiveStyle
-                                  : isMouseOver[i] ? hoverButtonStyle
-                                  : buttonStyle} className={"mbti-"+item}
-              onMouseLeave={(event) => onMouseLeave(event, i)} onMouseEnter={(event) => onMouseEnter(event, i)} onClick={(event) => onClickMbti(event, i)}
-              >
-                <p style={isActive[i] ? pActiveStyle : pStyle}>{item}</p>
-              </span>
-            );
-          })}
+    <div className="wrapper">
+      <div className="contentwithSidebar">
+        <SideBar/>
+          <div className="sq-mbti">
+              <PageTitle korean="성향" english="Self-questioning" subIcon={PageSubTitleIcon} subTitle="Myers-Briggs Type Indicator(MBTI)"/>
+              <div className="SD-content" style={{ marginTop:'0', marginBottom:'7rem', display:'flex', justifyContent:'center',}}>
+                <div className="mbti-box" style={{width: '44.6875rem', height: '25rem', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
+                gridTemplateRows: 'repeat(4, 1fr)', gap: '2.0rem 2.5rem', }}>
+                  {mbtis.map((item, i) => {
+                    return (
+                      <span key={i} style={isActive[i] ? buttonActiveStyle
+                                          : isMouseOver[i] ? hoverButtonStyle
+                                          : buttonStyle} className={"mbti-"+item}
+                      onMouseLeave={(event) => onMouseLeave(event, i)} onMouseEnter={(event) => onMouseEnter(event, i)} onClick={(event) => onClickMbti(event, i)}
+                      >
+                        <p style={isActive[i] ? pActiveStyle : pStyle}>{item}</p>
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+              . {/* marginBottom 임시로 넣은 것 때문에 점 하나 있어야 적용됨 */}
+              <Footer link={'/sq-desire'} helpContent={"자신에게 맞는 또는 가장 가까운 것 같은 MBTI를 최대 2개까지 선택할 수 있습니다."} onClickButton={onClickNext}/>
         </div>
       </div>
-      . {/* marginBottom 임시로 넣은 것 때문에 점 하나 있어야 적용됨 */}
-      <Footer link={'/sq-desire'} helpContent={"자신에게 맞는 또는 가장 가까운 것 같은 MBTI를 최대 2개까지 선택할 수 있습니다."} onClickButton={onClickNext}/>
     </div>
     </>
   );
