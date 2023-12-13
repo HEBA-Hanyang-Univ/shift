@@ -13,15 +13,15 @@ const SideBarContent = ({mainImg, mainTitle, subTitle, isCompleted}) => {
   const image = isCompleted ? DoneImg : ToDoImg;
   // Dummy Data
   const contents = [
-    { title: 'MBTI 성격 분석', link: '/' },
-    { title: 'Glasser 욕구 검사', link: '/'},
-    { title: '동기(1): 성공 실패 경험', link: '/'},
+    { title: 'MBTI 성격 분석', link: '/sq-mbti' },
+    { title: 'Glasser 욕구 검사', link: '/sq-desire'},
+    { title: '동기(1): 성공 실패 경험', link: '/sq-experience'},
     { title: '동기(2): 장래희망 및 버킷리스트', link: '/' },
-    { title: '가치관(1): 가치관 검사', link: '/' },
+    { title: '가치관(1): 가치관 검사', link: '/sq-value' },
     { title: '가치관(2): 삶의 우선순위', link: '/'},
     { title: '가치관(3): 좌우명', link: '/'}
   ];           
-
+  
   return (
     <>
       <div className="sideBarContentBox">
@@ -38,7 +38,7 @@ const SideBarContent = ({mainImg, mainTitle, subTitle, isCompleted}) => {
                 <li key={index} className="sideBarContent">
                   <div className="sideBarContentWrap">
                     <img src={image} alt="state img"></img>
-                    <Link to={content.link}className="contentTitle" >
+                    <Link to={content.link} className="contentTitle" >
                       <span>
                         {content.title}
                       </span>

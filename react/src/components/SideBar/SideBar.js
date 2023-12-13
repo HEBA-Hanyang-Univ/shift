@@ -4,6 +4,7 @@ import SideBarContent from "./SideBarContent";
 import CloseBtn from "assets/images/SideBarCloseBtn.svg";
 import OpenBtn from "assets/images/SideBarOpenBtn.svg";
 import { Transition } from "react-transition-group";
+import SH_sq from 'assets/images/SH_sq.svg';
 
 export const SideBar = ({showSideBar, setShowSideBar}) => {
   const duration = 300;
@@ -35,7 +36,7 @@ export const SideBar = ({showSideBar, setShowSideBar}) => {
               ...defaultStyle,
               ...transitionStyles[state]
             }} className={`sideBarContainer ${showSideBar ? '' : 'hidden'}`}>
-              <SideBarContent></SideBarContent>
+              <SideBarContent mainImg={SH_sq} mainTitle={'Self-definition 자기정의'} subTitle={'Self-questioning (자기 이해)'}></SideBarContent>
             </div>
           )}
         </Transition>
