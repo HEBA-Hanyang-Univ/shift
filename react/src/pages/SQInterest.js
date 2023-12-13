@@ -228,11 +228,14 @@ const SQInterest = () => {
     }
   }
 
+  // TODO : adjust calculated size...
   const calcFontSize = (width, height) => {
-    height = height < 20 ? height : 20;
-    width = width < 20 ? width : 20;
+    height = height < 15 ? height : 15;
+    width = width < 15 ? width : 15;
     const m = height > 10 ? 0.14
-              : height > 4 ? height * 0.014
+              : height > 8 ? 0.12
+              : height > 6 ? 0.10
+              : height > 4 ? 0.08
               : 0.04;
 
     const fontSize = width * m;
@@ -296,11 +299,11 @@ const SQInterest = () => {
               style={{ position:'absolute', }}
             >
                {layout.map(item => (
-                <div key={item.i} style={{ visibility:item.static?'hidden':'visible', backgroundColor: 'white',
+                <div key={item.i} style={{ visibility:item.static?'hidden':'visible', backgroundColor: 'white', padding : '3px 3px 3px 3px',
                 borderRadius: '50%', boxShadow: '0 0 0 3px #CCAFD9 inset', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', }}>
                   {/* Individual rendered components */}
-                  <input type="text" maxLength="7" size="7" rows="1" id={item.i} ref={elem => inputs.current[item.i] = elem}
-                    style={{border: "none", textAlign:"center", width: "80%", height:"auto",
+                  <input type="text" maxLength="14" size="7" rows="1" id={item.i} ref={elem => inputs.current[item.i] = elem}
+                    style={{border: "none", textAlign:"center", width: "70%", height:"auto",
                             fontSize:calcFontSize(item.w, item.h), overflow:'hidden', display:'flex', fontFamily:'Wanted Sans',}}
                     placeholder={inputValues[item.i] || defaultVal} onChange={()=>saveInputVal(item.i, inputs.current[item.i].value)}/>
                   <div style={{ display:'flex' }}>
