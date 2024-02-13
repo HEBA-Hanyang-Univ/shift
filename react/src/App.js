@@ -1,22 +1,27 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect, React } from "react";
+import { useLocation } from "react-router-dom";
+import Header from "./components/Header/Header";
 
 function App() {
+  const ScrollToTop = () => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+
+    return null;
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <ScrollToTop />
+        <Header />
+      </Router>
     </div>
-  );
-}
+  )
+};
 
 export default App;
