@@ -13,8 +13,24 @@
     }
   }
 
-  .headerBtnContainer {
+  .headerRight {
+    margin-top: 0.75rem;
     margin-left: auto;
-  
+    margin-right: 0.6rem;
+    display: flex;
+
+    .headerName {
+      margin-right: 1.22rem;
+    }
+
+    .headerBtnContainer {
+      img {
+        width: 1.525rem;
+        height: 1.525rem;
+      }
+    }
+
+
   }
+
 }

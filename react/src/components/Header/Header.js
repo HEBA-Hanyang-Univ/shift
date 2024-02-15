@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import "../../assets/styles/common.scss";
 import "./Header.scss";
 import Logo from "../../assets/images/HeaderLogo.svg";
 import NavBtn from "../../assets/images/NavBtn.svg";
+import Hamburger from "../../components/Hamburger/Hamburger.js";
 
 const Header = () => {
 
@@ -13,7 +14,7 @@ const Header = () => {
       </div>
       <div className="headerRight">
         <div className="headerName">
-          <span></span>
+          <span>username</span>
         </div>
         <div className="headerBtnContainer">
           <button>
