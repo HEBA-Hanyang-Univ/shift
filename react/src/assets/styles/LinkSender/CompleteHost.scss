@@ -1,0 +1,68 @@
+.chContainer {
+  margin: 0 auto;
+
+  .chImgWrapper {
+    display: flex;
+    margin-top: 6.3rem;
+    justify-content: center;
+  
+    img {
+      width: 4.75rem;
+      height: 4.75rem;
+    }
+  }
+
+  .chTextWrapper {
+    margin-top: 1.4rem;
+    margin-bottom: 2.1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .chTextPurple {
+
+    }
+
+    .chTextBlackL {
+      margin-top: 1.3em;
+    }
+    
+    .chTextBlackS {
+      margin-top: 1.9rem;
+    }
+  }
+
+  .chLinkShareWrapper {
+    margin: 0 auto;
+    width: 16rem;
+    display: flex;
+    justify-content: space-between;
+
+    .shareBtn {
+      border: 1px solid #C6C6C6;
+      border-radius: 15rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 2.3rem;
+        height: 2.3rem;
+      }
+    }
+  }
+
+  .chBtnWrapper {
+    margin: 3.2rem auto;
+    margin-top: 3.2rem;
+    width: 19rem;
+    display: flex;
+    justify-content:space-between;
+
+    .chBtn {
+      border-radius: 3rem;
+    }
+  }
+}
