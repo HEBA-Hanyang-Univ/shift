@@ -3,8 +3,16 @@
   padding: 0;
 }
 
+
 button {
   border: none;
   background-color: transparent;
   cursor: pointer;
+}
+
+#Container {
+  width: 100%;
+  height: calc(100vh - 3rem);
+  display: flex;
+  flex-direction: column;
 }
