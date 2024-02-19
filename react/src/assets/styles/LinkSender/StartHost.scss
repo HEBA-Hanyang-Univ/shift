@@ -1,0 +1,83 @@
+.shContainer {
+  background: linear-gradient(180deg, #B276D4 -26.65%, #A071BC -16.66%, #DFB0FB 127.01%);
+  
+  .shTitleWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding-top: 2rem; 
+
+    .shTitleS {
+
+    }
+
+    .shTitleM {
+
+    }
+  }
+
+  .shBoxWrapper {
+    margin: 2rem auto 0;
+    display: grid;
+    grid-template: repeat(2, 1fr)/ repeat(2, 1fr);
+    gap: 0.3rem;
+    background-color: palevioletred;
+    // width: 80%;
+
+    .shBox{
+      width: 9.7rem;
+      height: 8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: lemonchiffon;
+
+      .shBoxImg {
+        img {
+          width: 4.5rem;
+          height: 3.25rem;
+        }
+      }
+    }
+  }
+
+  .shButtonContainer {
+    margin: 3rem auto 2.7rem;
+    width: 19.7rem;
+
+    .shButtonL {
+      border-radius: 7.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .shButtonSpanL {
+      }
+    }
+
+    .shShareButtonWrapper {
+      margin-top: 0.7rem;
+      display: flex;
+      justify-content: space-between;
+
+      .testButton {
+        border-radius: 7.25rem;
+
+        img {
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+    }
+  }
+
+  .shFooter {
+    margin: 1rem auto 0;
+    
+    img {
+      width: 6rem;
+    }
+  }
+}
