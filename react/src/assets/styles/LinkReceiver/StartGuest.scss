@@ -1,0 +1,41 @@
+.sgContainer {
+  background: linear-gradient(180deg, #FFF 3.11%, #EDEDED 103.37%);
+  position: absolute;
+
+  .sgWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12rem;
+
+    .sgTitleWrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .sgButtonWrapper {
+      margin-top: 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;;
+
+      span {
+        padding-top: 0.8rem;
+      }
+    }
+  }
+  
+  .sgFooter {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin: 0 auto 0.9rem;
+    bottom: 0;
+  }
+}

@@ -1,0 +1,40 @@
+.landingContainer {
+  background: linear-gradient(180deg, #B276D4 -26.65%, #A071BC -16.66%, #C89CE3 127.01%);
+
+  .logoContainer {
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    align-self: center;
+
+    .landingLogo {
+      img {
+        width: 8.5rem;
+        height: 8.5rem;
+      }
+    }
+
+    .landingTitle {
+      margin-top: 1.4rem;
+
+      img {
+        width: 11rem;
+        height: 2.2rem;
+      }
+    }
+  }
+
+  .landingSpan {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      color: #FFF;
+    }
+  }
+}
