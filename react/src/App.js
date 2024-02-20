@@ -23,7 +23,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/startHost" element={<StartHost/>}></Route>
-          <Route path="/inputInfo" element={<InfoHost/>}></Route>
+          <Route path="/inputInfo" element={<InfoHost/>}></Route> 
           <Route path="/completeHost" element={<CompleteHost/>}></Route>
         </Routes>
       </Router>

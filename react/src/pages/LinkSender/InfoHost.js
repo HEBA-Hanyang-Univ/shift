@@ -1,11 +1,21 @@
 import React from "react";
+import "../../assets/styles/common.scss";
 import "../../assets/styles/LinkSender/InfoHost.scss";
 
-const InfoHost = () => {
+export const InfoHost = () => {
   
   return (
-    <div>유저 정보 입력</div>
+    <div id="Container">
+      <div className="ihWrapper">
+        <div className="ihTitle">
+          <span>MZ 자기객관화 테스트</span>
+        </div> 
+        <div className="ihInputName">
+          <span id="infoTitle">
+            이름 또는 별명을 입력하세요
+          </span>
+        </div>
+      </div> 
+    </div>
   )
 };
-
-export default InfoHost;

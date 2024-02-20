@@ -5,7 +5,7 @@ import Logo from "../../assets/images/HeaderLogo.svg";
 import NavBtn from "../../assets/images/NavBtn.svg";
 import Hamburger from "../../components/Hamburger/Hamburger.js";
 
-const Header = () => {
+export const Header = () => {
 
   return (
     <div className="headerContainer">
@@ -25,5 +25,3 @@ const Header = () => {
     </div>
   );
 }
-
-export default Header;
