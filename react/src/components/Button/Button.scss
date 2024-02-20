@@ -1,0 +1,13 @@
+.radioBtnWrapper {
+  display: flex;
+  justify-content: center;
+  width: 10rem;
+  height: 2.6rem;
+
+  .optionBtn {
+    width: 50%;
+    height: 100%;
+    border-left: 3rem;
+    border-radius: 0.3rem;
+  }  
+}
