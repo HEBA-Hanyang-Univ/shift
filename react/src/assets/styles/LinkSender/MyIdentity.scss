@@ -1,0 +1,33 @@
+.miContainer {
+  margin-top: 2.6rem;
+
+  .idTitle {
+    margin: 0 auto;
+
+    .idTitleTop {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .idTitleUserName {
+        color: #A570C4;
+      }
+    }
+
+    .idTitleBottom {
+      display: flex;
+      justify-content: center;
+      align-items: center ;
+    }
+  }
+
+  .keywordBox {
+    width: 150%;
+    overflow: scroll;
+    display: grid;
+    grid-template-columns: 5;
+    grid-template-columns: 4;
+    column-gap: 3rem;
+    row-gap: 3rem;
+  }
+}
