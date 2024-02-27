@@ -1,0 +1,74 @@
+.odWrapper {
+  height: 100%;
+  display: grid;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  grid-template-rows: 20% 30% 30%;
+  gap: 1rem;
+
+  .odTitleWrapper {
+    display: flex;
+    justify-content: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    span {
+      height: fit-content;
+      text-align: center;
+      display: inline;
+    }
+  }
+
+  .odInputWrapper {
+    width: 19rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+
+    .odInputTop {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .odInputMiddle{
+      border: none;
+      border-bottom: 1px solid #000 !important;
+    }
+
+    .odInputBottom {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .odExWrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    
+    .odExTitle {
+      margin-bottom: 0.7rem;     
+    }
+
+    .odExBox {
+      display: flex;
+      flex-direction: column;
+      padding: 1.3rem 0.8rem; 
+      width: 18rem;
+      height: 9rem;
+      border: 1px solid #C7BDDE;
+      border-radius: 0.6rem;
+
+      .odSpanBlack {
+        color: #000;
+      }
+
+      .odSpanPurple {
+        color: #A570C4;
+      }
+    }
+  }
+
+
+
+}
