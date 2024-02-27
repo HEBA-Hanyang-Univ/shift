@@ -1,0 +1,52 @@
+.cgContainer {
+  margin: 4rem auto 0;
+  display: flex;
+
+  .cgImgWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.1rem;
+
+    img {
+      width: 5.8rem;
+      height: 5.8rem;
+    }
+
+    span {
+      margin-top: 0.9rem;
+      font-size: 1.4rem;
+    }
+  }
+
+  .cgInfoWrapper{
+    margin: 0 auto;
+    display: grid;
+    grid-template: repeat(2, 1fr)/ repeat(2, 1fr);
+    gap: 0.3rem;
+    background-color: palevioletred;
+
+    .cgInfoBox {
+      width: 9.7rem;
+      height: 8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: lemonchiffon;
+
+      .cgInfoBoxImg {
+        img {
+          width: 4.5rem;
+          height: 3.25rem;
+        }
+      }
+    }
+  }
+  
+  .cgLinkBtn {
+    margin: 2rem auto 0;
+    border-radius: 3.9rem;
+  }
+}
