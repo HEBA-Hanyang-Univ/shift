@@ -5,49 +5,10 @@
   justify-content: center;
   align-items: center;
 
-  .ihInputName {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    .ihUserName {
-      border: none;
-      text-align: center;
+  .ihTitle {
+    .ihInputName {
+      
     }
   }
 
-  .ihInputGender {
-    margin-top: 1.3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .ihInputAge {
-    margin-top: 1.3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .ihPushAgree {
-    margin-top: 1.3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    .ihPushAgreeDescription {
-      text-align: center;
-      padding-bottom: 1rem;
-    }
-
-    .ihPushAgreeNotice {
-      margin-top: 1.2rem;
-    }
-  }
 }

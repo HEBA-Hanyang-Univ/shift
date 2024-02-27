@@ -1,0 +1,17 @@
+.reContainer {
+  margin: 0 auto;
+  
+  .reWrapper {
+    margin: 2rem;
+    display: grid;
+    grid-template-rows: 20% 80%;
+    height: 100%;
+
+    .reTitleWrapper {
+      span {
+        text-align: left;
+      }
+    }
+
+  }
+}
