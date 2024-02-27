@@ -16,16 +16,11 @@ export const MyIdentity = () => {
           <span>키워드 5개를 선택해 주세요.</span>
         </div>
       </div>
-      <div className="keywordBox">
-        <KeywordBtnBox
-          keywords={['방구를 잘 뀌는', '지혜로운', '화가 많이 나는', '행복한', '히키코모리'
-          ,'방구를 잘 뀌는', '지혜로운', '화가 많이 나는', '행복한', '히키코모리'
-          ,'방구를 잘 뀌는', '지혜로운', '화가 많이 나는', '행복한', '히키코모리',
-          '방구를 잘 뀌는', '지혜로운', '화가 많이 나는', '행복한', '히키코모리'  
-        ]}
-          gradient="180deg, #C6A0D6 0%, #9D7DAA 98%"
-          width={5}
-          height={2.4}
+      <div className="keywordBox">  
+        <KeywordBtnBox 
+          color="#FFF" 
+          width={5.2} 
+          height={3.2}
           className="keywordBtn"
         ></KeywordBtnBox>
       </div>
