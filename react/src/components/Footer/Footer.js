@@ -1,12 +1,16 @@
 import React from "react";
 import "./Footer.scss";
+import Dot from "./Dot";
 
-// 다음 버튼, 진행도 버튼 채워짐 
-
-const Footer = () => {
+const Footer = ({activeDots}) => {
 
   return (
-    <div>푸터</div>
+    <div className="footerContainer">
+      <div className="footerWrapper">
+        <div className="footerDotWrapper">
+        </div>
+      </div>
+    </div>
   )
 };
 
