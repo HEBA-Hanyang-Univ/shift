@@ -1,3 +1,5 @@
+// Radio Button css
+
 .radioBtnWrapper {
   display: flex;
   justify-content: center;
@@ -10,4 +12,62 @@
     border-left: 3rem;
     border-radius: 0.3rem;
   }  
+}
+
+// KeywordBox css
+
+.keywordBoxContainer {
+  display: flex;
+  justify-content: center;
+
+  .keywordBox {
+    margin-top: 2rem;
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.keywordBtnBox {
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 1rem;
+  overflow: scroll;
+  padding-right: 1rem;
+  padding-left: 1rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .keywordBtn {
+    border: 1px solid #D3D3D3;
+    border-radius: 0.5rem;
+  }
+
+  .keywordRow {
+    display: grid;
+    grid-template-columns: repeat(6, 5.2rem);
+    gap: 1rem;
+  }
+}
+
+.keywordRow-1 {
+  margin-left: 2rem;
+}
+
+.keywordRow-3 {
+  margin-left: 2rem;
+}
+
+// Selected Keyword
+.selectedKeywordWrapper {
+  margin-top: 2rem;
+
+  .selectedKeywordTitle {
+    
+  }
 }

@@ -20,26 +20,4 @@
       align-items: center ;
     }
   }
-
-  .keywordBox {
-    margin-top: 2rem;
-    overflow: scroll;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    // display: grid;
-    // grid-template-columns: repeat(4, 1fr);
-
-    .keywordBtnBox {
-
-      .keywordBtn {
-        border: 1px solid #D3D3D3;
-        border-radius: 0.5rem;
-      }
-    }
-
-
-  }
-
 }
