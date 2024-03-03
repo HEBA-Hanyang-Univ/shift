@@ -13,6 +13,8 @@ import { Reasoning } from "./pages/LinkReceiver/Reasoning";
 import { OneLineDescription } from "./pages/LinkReceiver/OneLineDescription";
 import { CompleteGuest } from "./pages/LinkReceiver/CompleteGuest";
 
+import { ResultDashBoard } from "./pages/Result/ResultDashBoard";
+
 function App() {
   const ScrollToTop = () => {
     const { pathname } = useLocation();
@@ -41,12 +43,13 @@ function App() {
           {/* LinkReceiver */}
           <Route path="/landing" element={<LandingGuest/>}></Route>
           <Route path="/startGuest" element={<StartGuest/>}></Route>
+          <Route path="/infoGuest" element={<InfoGuest/>}></Route> 
           <Route path="/reasoning" element={<Reasoning/>}></Route>
           <Route path="/oneLineDescription" element={<OneLineDescription/>}></Route>
           <Route path="/completeGuest" element={<CompleteGuest/>}></Route>
 
-
-          <Route path="/infoGuest" element={<InfoGuest/>}></Route> 
+          {/* Result */}
+          <Route path="/ResultDashBoard" element={<ResultDashBoard/>}></Route>
         </Routes>
       </Router>
     </div>

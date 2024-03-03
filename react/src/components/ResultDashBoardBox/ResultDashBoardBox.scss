@@ -1,0 +1,35 @@
+.rdbbWrapper {
+  width: 19rem;
+  height: 10.3rem;
+  display: grid;
+
+  background-color: #FFF;
+  border-radius: 1.3rem;
+}
+
+.preContainer {
+  width: 19rem;
+  height: 10.3rem;
+  background-color: #FFF;
+  border-radius: 1.3rem;
+  
+  .preWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .preImg {
+      padding-top: 1.5rem;
+
+      img {
+        width: 7.5rem;
+        height: 4.77rem;
+      }
+    }
+
+    .preSpan {
+      margin-top: 0.4rem;
+    }
+  }
+}
