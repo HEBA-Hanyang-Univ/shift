@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "../Button";
 import "../Button.scss";
 
-export const KeywordBtnBox = ({ keywords, color, width, height, className }) => {
+export const KeywordBtnBox = ({ keywords, color, width, height, className, onKeywordClick }) => {
 
   return (
     <div className="keywordBtnBox">
@@ -14,6 +14,7 @@ export const KeywordBtnBox = ({ keywords, color, width, height, className }) => 
             width={width}
             height={height}
             className={className}
+            onClick={() => {onKeywordClick(keyword)}}
             key={`${index}-${subIndex}`}
           >
             {keyword}
