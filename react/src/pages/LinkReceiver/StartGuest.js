@@ -3,15 +3,21 @@ import "../../assets/styles/common.scss";
 import "../../assets/styles/LinkReceiver/StartGuest.scss";
 import { Button } from "../../components/Button/Button";
 import { LandingGuest } from "./LandingGuest";
+import { Link } from "react-router-dom";
 
 export const StartGuest = () => {
 
+  // 랜딩페이지
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);   // 2초 후에 로딩 상태 변경
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   if(isLoading) {
@@ -23,11 +29,18 @@ export const StartGuest = () => {
       <div className="sgWrapper">
         <div className="sgTitleWrapper">
           <span className="sgTitleBlack">평소 내가 생각했던</span>
+          {/* TODO : username 받아오기 */}
           <span className="sgTitlePurple">USERNAME</span>
         </div>
         <div className="sgButtonWrapper">
-          <Button gradient="180deg, #9C76AC 0%, #AC86BD 100%" width={8} height={3} className="sgStartBtn">시작하기</Button>
-          <span>지금까지 5,800명이 참여했어요!</span>
+          {/* TODO : 추후 경로 설정 */}
+          <Link to="/InfoGuest">
+            <Button gradient="180deg, #9C76AC 0%, #AC86BD 100%" width={9.7} height={4}className="sgStartBtn">
+              <span>응답하기</span>
+            </Button>
+          </Link>
+          {/* TODO : 참여 인원 받아오기 */}
+          <span className="sgBtnSpan">지금까지 5,800명이 참여했어요!</span>
         </div>          
       </div> 
       <div className="sgFooter">

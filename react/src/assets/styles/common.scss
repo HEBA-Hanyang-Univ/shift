@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+span {
+  font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-style: normal;
+}
 
 button {
   border: none;
@@ -12,14 +16,17 @@ button {
 
 #Container {
   width: 100%;
-  height: calc(100vh - 3rem);
+  height: calc(100vh - 2.86rem);
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 
 #infoTitle {
   color: #1A1A1A;
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-bottom: 1.3rem;
+  text-align: center;
+  font-size: 0.84rem;
+  font-weight: 650;
+  letter-spacing: 0.06rem;
+  text-transform: uppercase;
 }
