@@ -1,12 +1,20 @@
 .igWrapper {
-  margin-top: 3rem;
+  margin-top: 2.34rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   .igTitle {
-    margin-bottom: 1.3rem;
+    margin-bottom: 1.56rem;
+
+    span {
+      color: #9B76AB;
+      text-align: center;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.11rem;
+    }
   }
 
   .igDisclosure {
@@ -15,8 +23,15 @@
     align-items: center;
 
     .igDisclosureDes {
+      margin-top: 0.4rem;
       text-align: center;
       padding-bottom: 0.6rem;
+
+      color: #909090;
+      font-size: 0.675rem;
+      font-weight: 500;
+      letter-spacing: 0.1rem;
+      line-height: 190.5%;
     }
   }
 
@@ -26,25 +41,61 @@
     flex-direction: column;
 
     input {
+      margin-top: 0.7rem;
       text-align: center;
+      width: 14.95rem;
+      height: 2.19rem;
+      border-radius: 0.45rem;
+      border: 1px solid #DEDEDE;
+
+      &::placeholder {
+        font-size: 0.84rem;
+        font-weight: 600;
+        color: #E8E8E8;
+      }
     }
   }
 
   .igInputGender {
-    margin-top: 1.3rem;
+    margin-top: 1.4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    span {
+      margin-bottom: 1.1rem;
+    }
   }
 
   .igDropDownBox {
-    margin-top: 1.3rem;
+    margin-top: 1.75rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    .infoDescription {
-      margin-top: 1.5rem;
+    span {
+      margin-bottom: 1.3rem;
     }
+
+    .dropDownWrapper {
+      width: 13.6rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .infoDescription {
+      margin-top: 1.6rem;
+      color: #9B76AB;
+      text-align: center;
+      font-size: 0.675rem;
+      font-weight: 600;
+      letter-spacing: 0.07rem;
+    }
+  }
+}
+
+@media screen and (max-width : 319px) {
+  #infoTitle {
+    font-size: 0.7rem !important;
   }
 }

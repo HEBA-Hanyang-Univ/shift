@@ -3,8 +3,8 @@
 .radioBtnWrapper {
   display: flex;
   justify-content: center;
-  width: 10rem;
-  height: 2.6rem;
+  width: 11.6rem;
+  height: 2.8rem;
 
   .optionBtn {
     width: 50%;
@@ -66,5 +66,32 @@
 // Selected Keyword
 .selectedKeywordWrapper {
   margin-top: 2rem;
-  
+}
+
+// DropDownBtn 
+.dropDownBtn {
+  width: 5.91rem;
+  height: 2.25rem;
+  border-radius: 0.4rem;
+  border: 1px solid #C4C4C4;
+
+  background-image: url("../../assets//images//dropDownArrow.svg");
+  background-size: 0.7rem auto;
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+select {
+  padding-right: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #E3DFDF;
+  letter-spacing: 0.3rem;
+  text-align: center;
+
+  option {
+    color: #1A1A1A;
+  }
 }
