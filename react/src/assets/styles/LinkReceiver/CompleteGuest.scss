@@ -21,6 +21,7 @@
       letter-spacing: 0.04rem;
       background: linear-gradient(180deg, #9C76AC 0%, #A984BA 100%);
       color: transparent;
+      background-clip: text;
       -webkit-background-clip: text;
     }
    }
@@ -51,13 +52,6 @@
         }
       }
 
-      .cgInfoBoxImg {
-        img {
-          width: 4.5rem;
-          height: auto;
-        }
-      }
-
       .shInfoBoxMainTitle {
 
         span {
@@ -81,5 +75,34 @@
       letter-spacing: 0.03rem;
     }
 
+  }
+}
+
+@media (min-height: 910px) and (max-height: 915px) {
+  .cgInfoWrapper {
+    margin-top: 4rem !important;
+  }
+
+  .cgLinkBtn {
+    margin-top: 8rem !important;
+  }
+}
+
+@media (max-width: 319px) {
+  .cgContainer {
+    height: 100% !important;
+    overflow: scroll !important;
+  }
+
+  .cgInfoWrapper {
+    grid-template-rows: repeat(4, 1fr) !important;
+    grid-template-columns: none !important;
+    padding-bottom: 1.3rem;
+  }
+
+  .cgLinkBtn {
+    margin-top: 0.1rem !important;
+    height: 3.2rem !important;
+    margin-bottom: 2rem !important;
   }
 }
