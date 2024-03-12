@@ -61,7 +61,7 @@ export const CompleteGuest = ()  => {
           </div>
         </div>
       </div>
-      <Button color="#A570C4" width={10} height={3.5} className="cgLinkBtn">
+      <Button color="#A570C4" width={10.16} height={3.14} className="cgLinkBtn">
         <span>나도 검사하기</span>
       </Button>
     </div>

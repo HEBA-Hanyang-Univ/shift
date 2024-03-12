@@ -1,52 +1,85 @@
 .cgContainer {
-  margin: 4rem auto 0;
   display: flex;
 
   .cgImgWrapper {
+    margin-top: 3.55rem;
+    margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 2.1rem;
 
     img {
-      width: 5.8rem;
-      height: 5.8rem;
+      width: 4.74rem;
+      height: 4.74rem;
     }
 
     span {
-      margin-top: 0.9rem;
-      font-size: 1.4rem;
+      margin-top: 1rem;
+      font-size: 1.687rem;
+      font-weight: 700;
+      letter-spacing: 0.04rem;
+      background: linear-gradient(180deg, #9C76AC 0%, #A984BA 100%);
+      color: transparent;
+      -webkit-background-clip: text;
     }
-  }
+   }
 
   .cgInfoWrapper{
     margin: 0 auto;
     display: grid;
     grid-template: repeat(2, 1fr)/ repeat(2, 1fr);
     gap: 0.3rem;
-    background-color: palevioletred;
 
     .cgInfoBox {
-      width: 9.7rem;
-      height: 8rem;
+      width: 10.1rem;
+      height: 8.31rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background-color: lemonchiffon;
+      background-color: #DCD1FC;
+      border-radius: 0.7rem;
+
+      .cgInfoBoxSubTitle {
+
+        span {
+          font-size: 0.5rem;
+          font-weight: 600;
+          color: #4C4C4C;
+          letter-spacing: 0.03rem;
+        }
+      }
 
       .cgInfoBoxImg {
         img {
           width: 4.5rem;
-          height: 3.25rem;
+          height: auto;
+        }
+      }
+
+      .shInfoBoxMainTitle {
+
+        span {
+          font-size: 0.84rem;
+          font-weight: 700;
+          letter-spacing: 0.04rem;
+          color: #7D6FAA;
         }
       }
     }
   }
   
   .cgLinkBtn {
-    margin: 2rem auto 0;
+    margin: 2.7rem auto 0;
     border-radius: 3.9rem;
+
+    span {
+      font-size: 0.928rem;
+      font-weight: 500;
+      color: #FFF;
+      letter-spacing: 0.03rem;
+    }
+
   }
 }
