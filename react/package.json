@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "BUILD_PATH='./tmp_build' react-scripts build && rm -rf build/* && mv tmp_build/* build/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
