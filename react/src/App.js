@@ -34,7 +34,7 @@ function App() {
         <Header />
         <Routes>
           {/* LinkSender */}
-          <Route path="/startHost" element={<StartHost/>}></Route>
+          <Route path="/" element={<StartHost/>}></Route>
           <Route path="/inputInfo" element={<InfoHost/>}></Route> 
           <Route path="/completeHost" element={<CompleteHost/>}></Route>
 
