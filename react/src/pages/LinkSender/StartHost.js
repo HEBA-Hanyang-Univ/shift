@@ -2,6 +2,7 @@ import React from "react";
 import "../../assets/styles/common.scss";
 import "../../assets/styles/LinkSender/StartHost.scss";
 import { Button } from '../../components/Button/Button.js';
+import { MainFooter } from '../../components/Footer/MainFooter.js';
 import shImg1 from "../../assets/images/StartHost/shImg1.svg";
 import shImg2 from "../../assets/images/StartHost/shImg2.svg";
 import shImg3 from "../../assets/images/StartHost/shImg3.svg";
@@ -12,6 +13,7 @@ import shFooterImg from "../../assets/images/StartHost/shFooter.svg";
 export const StartHost = () => {
 
   return (
+    <>
     <div id="Container" className="shContainer">
       <div className="shWrapper">
         <div className="shTitleWrapper">
@@ -85,5 +87,8 @@ export const StartHost = () => {
         </div>
       </div>
     </div>
+    
+    {/*<MainFooter/>*/}
+    </>
   )
 };
