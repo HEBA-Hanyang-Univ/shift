@@ -6,14 +6,14 @@ import META_SEQUOIA_ICON from "../../assets/images/MetaSequoia.png";
 export const MainFooter = () => {
   return (
     <div className="footerContainer" style={{background:'white', lineHeight:'1.9rem'}}>
-      <div className="footerWrapper" style={{overflowX:'hidden'}}>
+      <div className="footerWrapper" style={{overflowX:'hidden', margin:'1rem 0 0 1rem'}}>
         <div>
           <img src={SHIFT_LOGO} style={{width:'6rem'}}/>
         </div>
-        <div style={{display:'flex'}}>
+        <div style={{background:'white', display:'flex', justifyContent:'space-between'}}>
           <div>
             <div style = {{color: '#565656', fontSize:'0.6rem', fontFamily: 'Wanted Sans', fontWeight: '800', letterSpacing: 0.96, wordWrap: 'break-word'}}>
-              <span style={{marginRight:'1.8rem'}}>대표 : 이유빈</span>
+              <span style={{marginRight:'1.5rem'}}>대표 : 이유빈</span>
               <span>사업자등록번호 612-47-00768</span>
             </div>
             <div style={{color: '#565656', fontSize: '0.6rem', fontFamily: 'Wanted Sans', fontWeight: '400', letterSpacing: 0.96, wordWrap: 'break-word'}}>

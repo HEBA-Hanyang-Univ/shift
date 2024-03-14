@@ -86,6 +86,7 @@ export const StartHost = () => {
           <img src={shFooterImg} alt="footer logo" />
         </div>
       </div>
+      <MainFooter/>
     </div>
     
     {/*<MainFooter/>*/}
