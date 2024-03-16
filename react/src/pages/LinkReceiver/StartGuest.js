@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import "../../assets/styles/common.scss";
 import "../../assets/styles/LinkReceiver/StartGuest.scss";
 import { Button } from "../../components/Button/Button";
 import { LandingGuest } from "./LandingGuest";

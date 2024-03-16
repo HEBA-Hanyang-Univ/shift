@@ -1,5 +1,4 @@
 import React from "react";
-import "../../assets/styles/common.scss";
 import "../../assets/styles/Result/ResultDashBoard.scss";
 import { ResultDashBoardBox } from "../../components/ResultDashBoardBox/ResultDashBoardBox";
 import { PreparingDashBoardBox } from "../../components/ResultDashBoardBox/PreparingDashBoardBox";

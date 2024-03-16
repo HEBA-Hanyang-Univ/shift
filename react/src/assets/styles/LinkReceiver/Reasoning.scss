@@ -2,7 +2,7 @@
   margin: 0 auto;
   
   .reWrapper {
-    margin: 2rem;
+    margin: 3rem 2rem;
     display: grid;
     grid-template-rows: 20% 80%;
     height: 100%;
@@ -10,8 +10,67 @@
     .reTitleWrapper {
       span {
         text-align: left;
+        line-height: 2.3rem;
+      }
+
+      .reTitleBlack {
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: #1A1A1A;
+      }
+
+      .reTitlePurple {
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: #A570C4;
       }
     }
 
+    .reReasoningBox {
+
+      .reKeywordBtn {
+        margin-top: 1rem;
+        padding: 0.2rem 1.5rem 0.2rem 1.5rem;
+        width:fit-content;
+        height: 1.75rem;
+        border: 1px solid #9965B8;
+        border-radius: 1.3rem;
+
+        span {
+          color: #2D2D2D;
+          font-size: 0.72rem;
+          font-weight: 600;
+        }
+      }
+
+      .reKeywordReasonInputBox {
+        margin-top: 1.2rem;
+        margin-bottom: 3.8rem;
+        width: 16rem;
+        height: 3rem;
+
+        textarea {
+          padding: 0.6rem 1rem;
+          resize: none;
+          width: 100%;
+          height: 5rem;
+          border: 1px solid #B2A8B7 ;
+          border-radius: 1.3rem;
+          overflow: scroll;
+
+          font-size: 0.7rem;
+          font-weight: 400;
+          color: #333;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
   }
 }

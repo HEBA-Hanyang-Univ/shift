@@ -1,5 +1,4 @@
 import React from "react";
-import "../../assets/styles/common.scss";
 import "../../assets/styles/LinkSender/StartHost.scss";
 import { Button } from '../../components/Button/Button.js';
 import { MainFooter } from '../../components/Footer/MainFooter.js';

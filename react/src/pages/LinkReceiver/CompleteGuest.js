@@ -1,5 +1,4 @@
 import React from 'react';
-import "../../assets/styles/common.scss";
 import "../../assets/styles/LinkReceiver/CompleteGuest.scss";
 import { Button } from '../../components/Button/Button';
 import Checked from "../../assets/images/CheckedCircle.svg";

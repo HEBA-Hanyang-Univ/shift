@@ -1,5 +1,4 @@
 import React from "react";
-import "../../assets/styles/common.scss";
 import "../../assets/styles/LinkSender/InfoHost.scss";
 import { RadioBtn } from "../../components/Button/RadioBtn";
 import { DropDownBtn } from "../../components/Button/DropDownBtn";

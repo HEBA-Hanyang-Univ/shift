@@ -1,14 +1,13 @@
 .sgContainer {
+  height: calc(100vh - 2.5rem);
   background: linear-gradient(180deg, #FFF 3.11%, #d4d4d4 93.37%);
-  overflow: scroll;
-
 
   .sgWrapper {
-    margin-top: 10.2rem;
-    display: grid;
-    grid-template-rows: 1fr 1.5fr 0.3fr;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 9rem;
 
     .sgTitleWrapper {
       display: flex;
@@ -34,7 +33,7 @@
     }
 
     .sgButtonWrapper {
-      margin-top: -1.23rem;
+      margin-top: 3rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -52,7 +51,7 @@
       }
       
       .sgBtnSpan {
-        margin-top: 1.2rem;
+        margin-top: 1.47rem;
         font-size: 1.1rem;
         font-weight: 700;
         letter-spacing: 0.084rem;

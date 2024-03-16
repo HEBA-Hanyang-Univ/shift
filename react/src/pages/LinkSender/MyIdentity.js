@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../../assets/styles/common.scss";
 import "../../assets/styles/LinkSender/MyIdentity.scss";
 import { KeywordBtnBoxContainer } from "../../components/Button/KeywordBox/KeywordBtnBoxContainer";
 import {SelectedKeywordContainer} from "../../components/Button/KeywordBox/SelectedKeywordContainer";

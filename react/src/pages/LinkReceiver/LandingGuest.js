@@ -1,5 +1,4 @@
 import React from "react";
-import "../../assets/styles/common.scss";
 import "../../assets/styles/LinkReceiver/LandingGuest.scss";
 import LandingLogo from "../../assets/images/LandingLogo.svg";
 import LandingTitle from "../../assets/images/LandingTitle.svg";

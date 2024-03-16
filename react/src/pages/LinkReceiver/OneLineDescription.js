@@ -1,6 +1,5 @@
 import React from "react";
 import "../../assets/styles/LinkReceiver/OneLineDescription.scss";
-import "../../assets/styles/common.scss";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
   
 // TODO : username 받아오기
@@ -11,14 +10,16 @@ export const OneLineDescription = ({username}) => {
       <div className="odWrapper">
          <div className="odTitleWrapper">
             <div className="odTitleTop">
-               <div className="odTitlePurple">username</div>
+               {/* TODO : username 받아오기 */}
+               <div className="odTitlePurple">{username}</div>
                <div className="odTitleBlack">님은 한 줄로 소개하자면</div>
             </div>
             <br/>
             <div className="odTitleBlack">어떤 사람인가요?</div>
          </div>
          <div className="odInputWrapper">
-            <span className="odInputTop">USERNAME은</span>
+            {/* TODO : username 받아오기 */}
+            <span className="odInputTop">{username}은</span>
             <br/>
             {/* TODO : 사용자 입력값 처리 */}
             <input className="odInputMiddle" placeholder="사람이지만 그냥 돌인척 하는 애"/>

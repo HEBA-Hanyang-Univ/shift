@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, React, useState } from "react";
+import "./App.scss";
 import { Header } from "./components/Header/Header";
 import { StartHost } from "./pages/LinkSender/StartHost";
 import { InfoHost } from "./pages/LinkSender/InfoHost";
@@ -42,7 +43,6 @@ function App() {
           <Route path="/myIdentity" element={<MyIdentity/>}></Route>
 
           {/* LinkReceiver */}
-          <Route path="/landing" element={<LandingGuest/>}></Route>
           <Route path="/startGuest" element={<StartGuest/>}></Route>
           <Route path="/infoGuest" element={<InfoGuest/>}></Route>
           <Route path="/selectKeyword" element={<SelectKeyword/>}></Route>

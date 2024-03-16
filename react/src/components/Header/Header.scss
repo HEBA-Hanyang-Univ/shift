@@ -1,7 +1,7 @@
 .headerContainer {
   background: linear-gradient(180deg, #A778C2 -19.42%, #B98BD4 144.63%);
   width: 100%;
-  height: 2.86rem;
+  height: 2.5rem;
   display: flex;
 
   .headerLeft {
@@ -9,29 +9,32 @@
     float: left;
     
     img {
-      width: 7rem;
-      height: 1.2rem;
+      width: 6.4rem;
+      height: 1.1rem;
     }
   }
 
   .headerRight {
-    margin-top: 0.75rem;
     margin-left: auto;
     margin-right: 0.6rem;
     display: flex;
+    justify-content: center;
+    align-items: center;
 
     .headerName {
+      display: flex;
+      align-items: center;
       margin-right: 1.22rem;
     }
 
     .headerBtnContainer {
+      display: flex;
+      align-items: center;
+    
       img {
         width: 1.525rem;
         height: 1.525rem;
       }
     }
-
-
   }
-
 }
