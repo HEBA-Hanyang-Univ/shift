@@ -1,23 +1,38 @@
 import React, { useState } from "react";
 import "./Button.scss";
 
-export const DropDownBtn = ({ options, placeholder }) => {
-  const {selectedOption, setSelectedOption} = useState(options[0]);
-
-  const handleChange = (e) => {
-    setSelectedOption(e.target.value);
+export const DropDownBtn = ({ options, placeholder, onChange }) => {
+  const [currentValue, setCurrentValue] = useState(placeholder || options[0].value);
+  const [showOptions, setShowOptions] = useState(false);
+  
+  const toggleOptions = () => {
+    setShowOptions(prev => !prev);
   }
+  
+  const handleOnChangeSelected = (e) => {
+    e.stopPropagation();
+    const newValue = e.target.getAttribute("data-value");
+    setCurrentValue(newValue);
+    setShowOptions(false); // hide options after select
+    if(onChange) onChange(newValue);
+  };
 
   return (
-    <select  className="dropDownBtn" value={selectedOption} onChange={handleChange}>
-      <option value="" disabled selected>
-        {placeholder}
-      </option>
-      {options.map((option, index) => 
-      <option key={index} value={option}>
-        {option}
-      </option>
-      )}
-    </select>
-  );
+    <div className={`dropDownBox ${showOptions ? "dropDownBoxActive":""}`} onClick={toggleOptions} >
+      <label>{currentValue}</label>
+      <i className={`arrow ${showOptions?"up":"down"}`}></i>
+      {showOptions && <ul>
+        {options.map((option) => (
+          <li
+            key={option.key}
+            data-value={option.value}
+            onClick={handleOnChangeSelected}
+          >
+            {option.value}
+          </li>
+        ))}
+        </ul>
+        }
+    </div>
+  )
 }
