@@ -2,9 +2,10 @@ import React from "react";
 import "../../assets/styles/LinkSender/InfoHost.scss";
 import { RadioBtn } from "../../components/Button/RadioBtn";
 import { DropDownBtn } from "../../components/Button/DropDownBtn";
+import { GuestFooter } from "../../components/Footer/GuestFooter";
 
 export const InfoHost = () => {
-  const ageOptions = Array.from({ length: 51}, (_, i) => `${i + 10}세`);
+  const ageOptions = Array.from({ length: 51}, (_, i) => ({key:i, value: `${i + 10}세`}));
   
   return (
     <div id="Container">
@@ -14,21 +15,22 @@ export const InfoHost = () => {
         </div> 
         <div className="ihInputName">
           <span id="infoTitle">
-            이름 또는 별명을 입력하세요
+            이름 또는 별명을 입력하세요.
           </span>
-          <input className="ihUserName" placeholder="난준석그냥돌"></input>
+          <input placeholder="난준석그냥돌"></input>
         </div>
         <div className="ihInputGender">
           <span id="infoTitle">
-            성별을 선택해주세요
+            성별을 선택해주세요.
           </span>
           <RadioBtn option1Text={'남자'} option2Text={'여자'} />
         </div>
         <div className="ihInputAge">
           <span id="infoTitle">
-            연령을 선택해주세요
+            연령을 선택해주세요.
           </span>
-          <DropDownBtn options={ageOptions}></DropDownBtn>
+          {/* TODO: 추후 옵션 데이터 전달 */}
+          <DropDownBtn options={ageOptions} placeholder="나이" onChange={(value) => console.log(value)}></DropDownBtn>
         </div>
         <div className="ihPushAgree">
           <span id="infoTitle">알림톡 발송 동의</span>
@@ -42,7 +44,8 @@ export const InfoHost = () => {
             테스트 결과 제공만을 위한 정보 수집입니다.
           </span>
         </div>
-      </div> 
+      </div>
+      <GuestFooter/> 
     </div>
   )
 };
