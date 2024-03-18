@@ -5,9 +5,11 @@ import { Header } from "./components/Header/Header";
 import { StartHost } from "./pages/LinkSender/StartHost";
 import { InfoHost } from "./pages/LinkSender/InfoHost";
 import { MyIdentity } from "./pages/LinkSender/MyIdentity";
+import { MyAspiration } from "./pages/LinkSender/MyAspiration";
+import { PerceivedByOthers } from "./pages/LinkSender/PerceivedByOthers";
 import { CompleteHost } from "./pages/LinkSender/CompleteHost";
 
-import { LandingGuest } from "./pages/LinkReceiver/LandingGuest";
+
 import { StartGuest } from "./pages/LinkReceiver/StartGuest";
 import { InfoGuest } from "./pages/LinkReceiver/InfoGuest";
 import { SelectKeyword } from "./pages/LinkReceiver/SelectKeyword";
@@ -36,11 +38,12 @@ function App() {
         <Routes>
           {/* LinkSender */}
           <Route path="/" element={<StartHost/>}></Route>
-          <Route path="/inputInfo" element={<InfoHost/>}></Route> 
+          <Route path="/inputInfo" element={<InfoHost/>}></Route>
+          <Route path="/myIdentity" element={<MyIdentity/>}></Route>
+          <Route path="/myAspiration" element={<MyAspiration/>}></Route>
+          <Route path="/perceivedByOthers" element={<PerceivedByOthers/>}></Route>
           <Route path="/completeHost" element={<CompleteHost/>}></Route>
 
-
-          <Route path="/myIdentity" element={<MyIdentity/>}></Route>
 
           {/* LinkReceiver */}
           <Route path="/startGuest" element={<StartGuest/>}></Route>

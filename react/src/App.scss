@@ -3,8 +3,7 @@
   padding: 0;
 }
 
-
-span {
+span, input {
   font-family: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-style: normal;
 }
@@ -25,6 +24,6 @@ button {
   text-align: center;
   font-size: 0.84rem;
   font-weight: 650;
-  letter-spacing: 0.06rem;
+  letter-spacing: 0.08rem;
   text-transform: uppercase;
 }

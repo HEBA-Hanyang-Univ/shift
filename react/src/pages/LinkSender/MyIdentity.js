@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "../../assets/styles/LinkSender/MyIdentity.scss";
 import { KeywordBtnBoxContainer } from "../../components/Button/KeywordBox/KeywordBtnBoxContainer";
-import {SelectedKeywordContainer} from "../../components/Button/KeywordBox/SelectedKeywordContainer";
+import { SelectedKeyword } from "../../components/Button/KeywordBox/SelectedKeyword";
+import { GuestFooter } from "../../components/Footer/GuestFooter";
+
 // dummy data
 const dummyKeywords = [
   ["지혜로운", "옷을 굉장히 잘 입는", "방구를 심히 잘 뀌어버리는", "킹 받는", "밥을 잘 사주는 이쁜", "아는체를 잘하는"], 
@@ -12,8 +14,15 @@ const dummyKeywords = [
 
 export const MyIdentity = () => {
   const [selectedKeywords, setSelectedKeywords] = useState([]);
+  const removeKeyword = (indexToRemove) => {
+    setSelectedKeywords(selectedKeywords.filter((_, index) => index !== indexToRemove));
+  };
 
   const handleKeywordClick = (keyword) => {
+    if(selectedKeywords.includes(keyword)) {
+      return;
+    }
+
     if(selectedKeywords.length < 5) {
       setSelectedKeywords([...selectedKeywords, keyword]);
     } else {
@@ -34,18 +43,13 @@ export const MyIdentity = () => {
       </div>
       <KeywordBtnBoxContainer
         keywords={dummyKeywords}
+        selectedKeywords={selectedKeywords}
         onKeywordClick={handleKeywordClick}
       />
-      <div className="idSelectedKeywordWrapper">
-        <div className="idSelectedKeywordTitle">
-          선택된 키워드
-        </div>
-        <div className="idSelectedKeywordBox">
-          {selectedKeywords.map((keyword, index) =>(
-            <div key={index}>{keyword}</div>
-          ))}
-        </div>
+      <div className="idSelectedKeywordContainer">
+        <SelectedKeyword selectedKeywords={selectedKeywords} removeKeyword={removeKeyword} />
       </div>
+      <GuestFooter/>
     </div>
   )
 };
