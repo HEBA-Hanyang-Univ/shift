@@ -16,19 +16,19 @@ export const SelectKeyword = () => {
   const [selectedKeywords, setSelectedKeywords] = useState([]);
   const [clickedKeywords, setClickedKeywords] = useState([]);
 
-  const handleKeywordClick = (keyword) => {
-    if(selectedKeywords.length < 5) {
-      setSelectedKeywords([...selectedKeywords, keyword]);
-      setClickedKeywords([...clickedKeywords, keyword]);
-    } else {
-      alert('키워드는 최대 5개까지 선택 가능합니다.');
-    }
-  };
+  // const handleKeywordClick = (keyword) => {
+  //   if(selectedKeywords.length < 5) {
+  //     setSelectedKeywords([...selectedKeywords, keyword]);
+  //     setClickedKeywords([...clickedKeywords, keyword]);
+  //   } else {
+  //     alert('키워드는 최대 5개까지 선택 가능합니다.');
+  //   }
+  // };
 
-  // 클릭된 키워드인지 확인하는 함수
-  const isKeywordClicked = (keyword) => {
-    return clickedKeywords.includes(keyword);
-  }
+  // // 클릭된 키워드인지 확인하는 함수
+  // const isKeywordClicked = (keyword) => {
+  //   return clickedKeywords.includes(keyword);
+  // }
 
   return (
   <div id="Container" className="miContainer">
@@ -41,11 +41,11 @@ export const SelectKeyword = () => {
         <span>키워드 5개를 선택해 주세요.</span>
       </div>
     </div>
-    <KeywordBtnBoxContainer
+    {/* <KeywordBtnBoxContainer
       keywords={dummyKeywords}
       onKeywordClick={handleKeywordClick}
       isKeywordClicked={isKeywordClicked}
-    />
+    /> */}
     <div className="idSelectedKeywordWrapper">
       <div className="idSelectedKeywordTitle">
         선택된 키워드
