@@ -1,33 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Footer.scss";
+import { Button } from "../Button/Button";
 import { Dot } from "./Dot";
+import NextArrow from "../../assets/images/nextArrow.svg";
 
-export const GuestFooter = ({ currentPage, totalPages, goToPrevPage, goToNextPage}) => {
-  
-  const renderDots = () => {
-    let dots = [];
-    for (let i = 1; i <= totalPages; i++) {
-      dots.push(<Dot key={i} isActive={i === currentPage} />)
-    }
-    return dots;
-  };
+export const GuestFooter = ({ prevPageUrl, nextPageUrl, isNextEnabled }) => {
 
   return (
-    <div className="footerContainer">
+    <div className="guestFooterContainer">
       <div className="footerWrapper">
-        <div className="footerDotWrapper">
-          {/* prev btn - show up when currentPage is bigger than 1 */}
-          {currentPage > 1 && (
-            <button onClick={goToPrevPage} className="prevButton">이전</button>
-          )}
-          {renderDots()}
-          {/* next btn - show up when current page is smaller than total pages */}
-          {currentPage < totalPages && (
-            <button onClick={goToNextPage} className="nextButton">다음</button>
-          )}
+        <div className="prevBtnBox">
+          {prevPageUrl && 
+            <Link to={prevPageUrl} style={{textDecoration:'none'}}>
+              <Button color='#9C76AC' width={5} height={2.5} className="prevPageBtn">
+                이전
+              </Button>
+            </Link>}
+        </div>
+
+        <div className="nextBtnBox">
+          {nextPageUrl && 
+            <Link to={nextPageUrl} style={{textDecoration:'none'}}>
+              <Button color='#9C76AC' width={5} height={2} className="nextPageBtn" disabled={!isNextEnabled} >
+                다음
+                <img src={NextArrow} alt="nextBtn"/>
+              </Button>
+            </Link>}
         </div>
       </div>
     </div>
   )
-};
+}
   

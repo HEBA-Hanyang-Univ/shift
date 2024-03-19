@@ -1,4 +1,4 @@
- .footerContainer {
+ .guestFooterContainer {
   width: 100%;
   height: 3.48rem;
   position: absolute;
@@ -6,7 +6,58 @@
   background: linear-gradient(180deg, #F1F1F1 -19.42%, #F9F9F9 144.63%);
   
   .footerWrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
 
+    .prevBtnBox {
+      float: left;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 1rem;
 
+      .prevPageBtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1.4rem;
+        cursor: pointer;
+
+        font-size: 0.73rem;
+        font-weight: 700;
+        color: #FFF;
+        letter-spacing: 0.4rem;
+      }
+    }
+
+    .nextBtnBox {
+      display: flex;
+      float: right;
+      justify-content: center;
+      align-items: center;
+      margin-right: 1rem;
+
+      .nextPageBtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1.4rem;
+        cursor: pointer;
+
+        font-size: 0.73rem;
+        font-weight: 700;
+        color: #FFF;
+        letter-spacing: 0.4rem;
+
+        img {
+          margin-left: 0.5rem;
+          margin-right: -0.4rem;
+          width: 0.4rem;
+          height: auto;
+        }
+      }
+    }
   }
  }
