@@ -4,20 +4,19 @@
   height: 100%;
   
   .shWrapper{
-    display: grid;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    grid-template-rows: 19% 48% 30% 6%;
     
     .shTitleWrapper {
       display: flex;
       flex-direction: column; 
-      margin: 0 auto;
-      padding-top: 0.7rem; 
+      margin: 1.8rem auto 1rem;
 
       .shTitleS {
          color: #FFf;
-         font-size: 1.28em;
+         font-size: 1.04rem;
          font-weight: 500;
          text-align: center;
          letter-spacing: 0.05rem;
@@ -38,7 +37,6 @@
       display: grid;
       grid-template: repeat(2, 1fr)/ repeat(2, 1fr);
       gap: 0.3rem;
-      background-color: palevioletred;
 
       .shBox{
         width: 9.7rem;
@@ -47,7 +45,18 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: lemonchiffon;
+        background-color: #FFF;
+        border-radius: 0.6rem;
+
+        .shBoxSubTitle {
+
+          span {
+            color: #7E7E7E;
+            font-weight: 600;
+            font-size: 0.64rem;
+            letter-spacing: 0.018rem;
+          }
+        }
 
         .shBoxImg {
           img {
@@ -55,12 +64,26 @@
             height: 3.25rem;
           }
         }
+
+        .shBoxMainTitle {
+          span {
+            font-size: 0.84rem;
+            font-weight: 700;
+            letter-spacing: 0.04rem;
+            color: #9A6BB5;
+          }
+        }
       }
     }
 
     .shButtonContainer {
-      margin: 3rem auto 2.7rem;
+      margin-top: 1.2rem;
+      padding: 0 auto 0.6rem;
       width: 19.7rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
       .shButtonL {
         border-radius: 7.25rem;
@@ -68,33 +91,94 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-bottom: 0.4rem;
 
         .shButtonSpanL {
+          color: #FFF;
+          font-weight: 500;
+          font-size: 1.18rem;
+          letter-spacing: 0.1rem;
+        }
+
+        .shButtonSpanS {
+          padding-top: 0.13rem;
+          color: #FFF;
+          font-weight: 400;
+          font-size: 0.5rem;
         }
       }
 
       .shShareButtonWrapper {
         margin-top: 0.7rem;
         display: flex;
+        width: 100%;
         justify-content: space-between;
 
         .testButton {
+          display: flex;
           border-radius: 7.25rem;
+          justify-content: center;
+          align-items: center;
 
           img {
-            width: 1rem;
-            height: 1rem;
+            width: 0.8rem;
+            height: auto;
+            margin-left: -0.2rem;
+            padding-right: 0.6rem;
+          }
+
+          span {
+            text-align: center;
+            color: #9C76AC;
+            font-weight: 500;
+            font-size: 0.78rem;
+            letter-spacing: 0.05rem;
           }
         }
       }
     }
 
     .shFooter {
-      margin: 1rem auto 0;
+      margin: 1rem auto 0.6rem;
       
       img {
-        width: 6rem;
+        width: 4.2rem;
+        height: auto;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .shContainer {
+    width: 100vw !important;
+  }
+
+  .shBox {
+    width: 8rem !important;
+  }
+
+  .shButtonL {
+    width: 15rem !important;
+    
+  }
+
+  .shShareButtonWrapper {
+    width: 14rem !important;
+  }
+
+  .testButton {
+    width: 6.4rem !important;
+    height: 1.7rem !important;
+
+    img {
+      width: 0.5rem !important;
+      padding-right: 0.2rem !important;
+      margin-left: 0 !important;
+    }
+
+    span {
+      font-size: 0.6rem !important;
     }
   }
 }
