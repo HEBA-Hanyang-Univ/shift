@@ -30,6 +30,8 @@ export const MyIdentity = () => {
     }
   }
 
+  const isNextEnabled = selectedKeywords.length === 5;
+
   return (
     <div id="Container" className="miContainer">
       <div className="idTitle">
@@ -50,7 +52,7 @@ export const MyIdentity = () => {
         <SelectedKeyword selectedKeywords={selectedKeywords} removeKeyword={removeKeyword} />
       </div>
       {/* TODO: 추후 url 수정 */}
-      <GuestFooter prevPageUrl={"/inputInfo"} nextPageUrl={"/myAspiration"}/>
+      <GuestFooter prevPageUrl={"/inputInfo"} nextPageUrl={"/myAspiration"} isNextEnabled={isNextEnabled}/>
     </div>
   )
 };

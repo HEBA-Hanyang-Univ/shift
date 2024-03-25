@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import "./Button.scss";
 
-export const RadioBtn = ({ option1Text, option2Text }) => {
+export const RadioBtn = ({ option1Text, option2Text, onChange }) => {
   const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleClick = (optionValue) => {
+    setSelectedOption(optionValue);
+    onChange(optionValue);
+  };
 
   return (
     <div className="radioBtnWrapper">
-      <button className="optionBtn" onClick={() => setSelectedOption('option1')}
+      <button className="optionBtn" onClick={() => handleClick('option1')}
         style={selectedOption === 'option1' ? { backgroundColor: '#FFF', color: '#1A1A1A', border: '2px solid #A570C4'} : { backgroundColor: '#F1F1F1' }}
       >
         <span style={{fontSize: '0.84rem', fontWeight: '600'}}>
           {option1Text}
         </span>
       </button>
-      <button className="optionBtn" onClick={() => setSelectedOption('option2')}
+      <button className="optionBtn" onClick={() => handleClick('option2')}
         style={selectedOption === 'option2' ? { backgroundColor: '#FFF', color: '1A1A1A', border: '2px solid #A570C4' } : { backgroundColor: '#F1F1F1' }}
       >
         <span style={{fontSize: '0.84rem', fontWeight: '600'}}>

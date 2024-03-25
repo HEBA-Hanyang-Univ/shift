@@ -30,6 +30,8 @@ export const PerceivedByOthers = () => {
     }
   }
 
+  const isNextEnabled = selectedKeywords.length === 5;
+
   return (
     <div id="Container" className="miContainer">
       <div className="idTitle">
@@ -50,7 +52,7 @@ export const PerceivedByOthers = () => {
       <div className="idSelectedKeywordContainer">
         <SelectedKeyword selectedKeywords={selectedKeywords} removeKeyword={removeKeyword} />
       </div>
-      <GuestFooter/>
+      <GuestFooter prevPageUrl={"/myAspiration"} nextPageUrl={"/completeHost"} isNextEnabled={isNextEnabled}/>
     </div>
   )
 };

@@ -14,19 +14,19 @@ export const InfoHost = () => {
 
   const handleNameChange = (e) => {
     setName(e.target.value);
-  }
+  };
 
   const handleGenderChange = (value) => {
     setGender(value);
-  }
+  };
 
   const handleAgeChange = (value) => {
     setAge(value);
-  }
+  };
 
   const handleAlarmChange = (value) => {
     setAlarm(value);
-  }
+  };
 
   const [isNextEnabled, setIsNextEnabled] = useState(false);
 
