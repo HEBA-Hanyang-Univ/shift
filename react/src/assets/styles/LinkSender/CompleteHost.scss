@@ -3,7 +3,7 @@
 
   .chImgWrapper {
     display: flex;
-    margin-top: 6.3rem;
+    margin-top: 6.9rem;
     justify-content: center;
   
     img {
@@ -14,30 +14,46 @@
 
   .chTextWrapper {
     margin-top: 1.4rem;
-    margin-bottom: 2.1rem;
+    margin-bottom: 2.96rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     .chTextPurple {
+      text-align: center;
+      font-weight: 800;
+      font-size: 1.27rem;
+      background: linear-gradient(180deg, #9C76AC 0%, #A984BA 100%);
+      color: transparent;
+      background-clip: text;
+      letter-spacing: 0.06rem;
 
     }
 
     .chTextBlackL {
-      margin-top: 1.3em;
+      margin-top: 1.05em;
+      font-size: 1.1rem;
+      color: #0F0F0F;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0.06rem;
     }
     
     .chTextBlackS {
-      margin-top: 1.9rem;
+      margin-top: 1.8rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #434343;
+      letter-spacing: 0.05rem;
     }
   }
 
   .chLinkShareWrapper {
     margin: 0 auto;
-    width: 16rem;
+    width: 17.5rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 
     .shareBtn {
       border: 1px solid #C6C6C6;
@@ -48,21 +64,36 @@
       align-items: center;
 
       img {
-        width: 2.3rem;
-        height: 2.3rem;
+        width: 2.2rem;
+        height: 2.2rem;
       }
     }
   }
 
   .chBtnWrapper {
-    margin: 3.2rem auto;
-    margin-top: 3.2rem;
-    width: 19rem;
+    margin: 3.6rem auto;
+    width: 17.5rem;
     display: flex;
     justify-content:space-between;
+    align-items: center;
 
     .chBtn {
       border-radius: 3rem;
+
+      span {
+        font-size: 0.8rem;
+        letter-spacing: 0.04rem;
+      }
+    }
+
+    .chBtnGray {
+      color: #555;
+      font-weight: 500;
+    }
+
+    .chBtnPurple {
+      color: #FFF;
+      font-weight: 400;
     }
   }
 }
