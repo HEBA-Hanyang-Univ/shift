@@ -48,6 +48,11 @@
     border-radius: 0.5rem;
     font-size: 0.77rem;
     font-weight: 600;
+    padding: 0.1rem;
+
+    &:hover {
+      background-color: #F1F1F1;
+    }
   }
 
   .keywordRow {
@@ -86,6 +91,7 @@
     grid-template-columns: auto auto;
     grid-template-rows: repeat(3, 1fr);
     overflow-y: scroll;
+    gap: 0.7rem 0.3rem;
     
     &::-webkit-scrollbar {
       display: none;
@@ -107,7 +113,7 @@
       border: 2px solid #9965B8;
 
       padding: 0.3rem 1.9rem;
-      margin-bottom: 0.5rem;
+
 
       button {
         width: 0.87rem;
@@ -169,6 +175,10 @@
       text-align: center;
       line-height: 1.4rem;
       cursor: pointer;
+
+      &:hover {
+        background-color: #E3DFDF;
+      }
     }
   }
 }
@@ -206,6 +216,7 @@
   background: linear-gradient(180deg, #C6A0D6 0%, #9D7DAA 98%);
   color: #FFF;
   border: none !important;
+  padding: 0.2rem !important;
 }
 
 .buttonInactive {

@@ -47,3 +47,11 @@
   flex-direction: column;
   margin-top: 0.3rem;
 }
+
+@media screen and (min-width: 1080px) {
+  .idSelectedKeywordContainer {
+    padding-left: 7rem;
+    width: 40%;
+    margin: 0.3rem auto;
+  }
+}

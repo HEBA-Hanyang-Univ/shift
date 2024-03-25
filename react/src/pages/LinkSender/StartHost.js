@@ -1,5 +1,6 @@
 import React from "react";
 import "../../assets/styles/LinkSender/StartHost.scss";
+import { Link } from "react-router-dom";
 import { Button } from '../../components/Button/Button.js';
 import { MainFooter } from '../../components/Footer/MainFooter.js';
 import shImg1 from "../../assets/images/StartHost/shImg1.svg";
@@ -66,11 +67,13 @@ export const StartHost = () => {
           </div>
         </div>
         <div className="shButtonContainer">
-          <Button className="shButtonL" gradient="180deg, #9B6EB6 20%, #9361B0 80%" width={19.7} height={3.4}>
-            <span className="shButtonSpanL" style={{paddingTop: '0.2rem'}}>시작하기</span>
-            {/* TODO : 추후 참여 인원 수 넣기 */}
-            <span className="shButtonSpanS">지금까지 1,054 명이 참여했어요!</span>
-          </Button>
+          <Link to="/inputInfo" style={{textDecoration: 'none'}}>
+            <Button className="shButtonL" gradient="180deg, #9B6EB6 20%, #9361B0 80%" width={19.7} height={3.4}>
+              <span className="shButtonSpanL" style={{paddingTop: '0.2rem'}}>시작하기</span>
+              {/* TODO : 추후 참여 인원 수 넣기 */}
+              <span className="shButtonSpanS">지금까지 1,054 명이 참여했어요!</span>
+            </Button>
+          </Link>
           <Button className="shButtonL" gradient="180deg, #A27DB2 0%, #A570C4 100%" width={19.7} height={3.4}>
             <span className="shButtonSpanL">결과 확인하기</span>
           </Button>

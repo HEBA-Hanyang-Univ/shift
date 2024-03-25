@@ -49,7 +49,8 @@ export const MyIdentity = () => {
       <div className="idSelectedKeywordContainer">
         <SelectedKeyword selectedKeywords={selectedKeywords} removeKeyword={removeKeyword} />
       </div>
-      <GuestFooter/>
+      {/* TODO: 추후 url 수정 */}
+      <GuestFooter prevPageUrl={"/inputInfo"} nextPageUrl={"/myAspiration"}/>
     </div>
   )
 };
