@@ -1,10 +1,15 @@
 .rdbbWrapper {
   width: 19rem;
   height: 10.3rem;
-  display: grid;
+  display: flex;
+  flex-direction: column;
 
   background-color: #FFF;
   border-radius: 1.3rem;
+
+  .rdbbContentWrapper {
+    
+  }
 }
 
 .preContainer {
@@ -20,16 +25,23 @@
     align-items: center;
 
     .preImg {
-      padding-top: 1.5rem;
+      padding-top: 1.8rem;
 
       img {
         width: 7.5rem;
-        height: 4.77rem;
+        height: auto;
       }
     }
 
     .preSpan {
-      margin-top: 0.4rem;
+      margin-top: 0.6rem;
+
+      span {
+        color: #B5B5B5;
+        font-weight: 700;
+        font-size: 0.7rem;
+        letter-spacing: 0.05rem;
+      }
     }
   }
 }

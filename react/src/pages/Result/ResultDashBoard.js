@@ -17,7 +17,6 @@ export const ResultDashBoard = () => {
           <PreparingDashBoardBox></PreparingDashBoardBox>
         </div>
       </div>
-
     </div>
   )
 }
