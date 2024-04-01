@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../assets/styles/LinkReceiver/SelectKeyword.scss";
 import "../../assets/styles/LinkSender/MyIdentity.scss";
 import { KeywordBtnBoxContainer } from "../../components/Button/KeywordBox/KeywordBtnBoxContainer";
+import { SelectedKeyword } from "../../components/Button/KeywordBox/SelectedKeyword";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
 
 // dummy data
@@ -14,21 +15,23 @@ const dummyKeywords = [
 
 export const SelectKeyword = () => {
   const [selectedKeywords, setSelectedKeywords] = useState([]);
-  const [clickedKeywords, setClickedKeywords] = useState([]);
+  const removeKeyword = (indexToRemove) => {
+    setSelectedKeywords(selectedKeywords.filter((_, index) => index !== indexToRemove));
+  };
 
-  // const handleKeywordClick = (keyword) => {
-  //   if(selectedKeywords.length < 5) {
-  //     setSelectedKeywords([...selectedKeywords, keyword]);
-  //     setClickedKeywords([...clickedKeywords, keyword]);
-  //   } else {
-  //     alert('키워드는 최대 5개까지 선택 가능합니다.');
-  //   }
-  // };
+  const handleKeywordClick = (keyword) => {
+    if(selectedKeywords.includes(keyword)) {
+      return;
+    }
 
-  // // 클릭된 키워드인지 확인하는 함수
-  // const isKeywordClicked = (keyword) => {
-  //   return clickedKeywords.includes(keyword);
-  // }
+    if(selectedKeywords.length < 5) {
+      setSelectedKeywords([...selectedKeywords, keyword]);
+    } else {
+      alert('키워드는 최대 5개까지 선택 가능합니다.');
+    }
+  }
+
+  const isNextEnabled = selectedKeywords.length === 5;
 
   return (
   <div id="Container" className="miContainer">
@@ -41,22 +44,16 @@ export const SelectKeyword = () => {
         <span>키워드 5개를 선택해 주세요.</span>
       </div>
     </div>
-    {/* <KeywordBtnBoxContainer
+    <KeywordBtnBoxContainer
       keywords={dummyKeywords}
+      selectedKeywords={selectedKeywords}
       onKeywordClick={handleKeywordClick}
-      isKeywordClicked={isKeywordClicked}
-    /> */}
+    />
     <div className="idSelectedKeywordWrapper">
-      <div className="idSelectedKeywordTitle">
-        선택된 키워드
-      </div>
-      <div className="idSelectedKeywordBox">
-        {selectedKeywords.map((keyword, index) =>(
-          <div key={index}>{keyword}</div>
-        ))}
-      </div>
+      <SelectedKeyword selectedKeywords={selectedKeywords} removeKeyword={removeKeyword} />
     </div>
-    <GuestFooter/>
+    {/* TODO: 추후 url 수정 */}
+    <GuestFooter prevPageUrl={"/infoGuest"} nextPageUrl={"/reasoning"} isNextEnabled={isNextEnabled}/>
   </div>
   )
 };
