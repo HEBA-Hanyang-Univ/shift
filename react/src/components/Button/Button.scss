@@ -208,7 +208,7 @@
 }
 
 .dropDownBoxActive {
-  border-color: #A570C4;
+  border: 2px solid #A570C4;
 }
 
 
@@ -222,6 +222,14 @@
 .buttonInactive {
   background-color: #FFF;
   color: #2D2D2D;
+}
+
+.placeholder {
+  color: #E3DFDF !important;
+}
+
+.selectedValue {
+  color: #747474 !important;
 }
 
 @media screen and (max-width: 319px) {
