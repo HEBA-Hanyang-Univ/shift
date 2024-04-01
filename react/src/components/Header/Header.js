@@ -1,10 +1,15 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState } from "react";
 import "./Header.scss";
 import Logo from "../../assets/images/HeaderLogo.svg";
 import NavBtn from "../../assets/images/NavBtn.svg";
-import Hamburger from "../../components/Hamburger/Hamburger.js";
+import { HamburgerMenu } from "../Hamburger/HamburgerMenu";
 
 export const Header = () => {
+  const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
+  
+  const toggleHamburgerMenu = () => {
+    setShowHamburgerMenu(!showHamburgerMenu);
+  };
 
   return (
     <div className="headerContainer">
@@ -13,12 +18,14 @@ export const Header = () => {
       </div>
       <div className="headerRight">
         <div className="headerName">
+          {/* TODO : 추후 닉네임 연결 */}
           <span>username</span>
         </div>
         <div className="headerBtnContainer">
-          <button>
+          <button onClick={toggleHamburgerMenu}>
             <img src={NavBtn} alt="navigationButton"></img>
           </button>
+          {showHamburgerMenu && <HamburgerMenu isOpen={showHamburgerMenu} toggleMenu={toggleHamburgerMenu}/>}
         </div>
       </div>
     </div>
