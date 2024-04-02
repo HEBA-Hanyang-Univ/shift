@@ -3,11 +3,13 @@
   
   .reWrapper {
     margin: 3rem 2rem;
-    display: grid;
-    grid-template-rows: 20% 80%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 
     .reTitleWrapper {
+      margin-bottom: 1rem;
+
       span {
         text-align: left;
         line-height: 2.3rem;
@@ -27,8 +29,9 @@
     }
 
     .reReasoningBox {
-
+      
       .reKeywordBtn {
+        background-color: #FFF;
         margin-top: 1rem;
         padding: 0.2rem 1.5rem 0.2rem 1.5rem;
         width:fit-content;
@@ -40,6 +43,14 @@
           color: #2D2D2D;
           font-size: 0.72rem;
           font-weight: 600;
+        }
+
+        &.toggleActive {
+          background: linear-gradient(180deg, #9F78AF 0%, #A97FBA 100%);
+
+          span {
+            color: #FFF;
+          }
         }
       }
 
@@ -61,6 +72,7 @@
           font-size: 0.7rem;
           font-weight: 400;
           color: #333;
+          font-family: 'Wanted Sans', sans-serif;
 
           &::-webkit-scrollbar {
             display: none;
@@ -69,8 +81,10 @@
           &:focus {
             outline: none;
           }
+          
         }
       }
     }
   }
 }
+
