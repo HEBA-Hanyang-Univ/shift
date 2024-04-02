@@ -1,0 +1,47 @@
+.tabContainer {
+  width: 100vw;
+  height: 100vh;
+
+  .tabWrapper {
+    width: 100vw;
+    height: 2.1rem;
+    border-bottom: 1px solid #EAEAEA;
+    display: flex;
+    align-items: center;
+
+    .tabMenu {
+      width: 100vw;
+      display: flex;
+      justify-content: space-around;
+
+      .tab {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        
+        span {
+          color: #AAA;
+          font-size: 0.8rem;
+          font-weight: 600;
+          text-align: center;
+        }
+      }
+
+      .selectedTab {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid #A778C2; 
+
+        span {
+          color: #444;
+          font-weight: 600;
+          font-size: 0.8rem;
+        text-align: center;
+
+        }
+      }
+    }
+  }
+}
