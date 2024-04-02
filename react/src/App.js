@@ -18,6 +18,7 @@ import { OneLineDescription } from "./pages/LinkReceiver/OneLineDescription";
 import { CompleteGuest } from "./pages/LinkReceiver/CompleteGuest";
 
 import { ResultDashBoard } from "./pages/Result/ResultDashBoard";
+import { Result } from "./pages/Result/Result";
 
 function App() {
   const ScrollToTop = () => {
@@ -55,6 +56,7 @@ function App() {
 
           {/* Result */}
           <Route path="/ResultDashBoard" element={<ResultDashBoard/>}></Route>
+          <Route path="/result" element={<Result/>}></Route>
         </Routes>
       </Router>
     </div>
