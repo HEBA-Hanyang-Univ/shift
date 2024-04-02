@@ -25,7 +25,7 @@
       const [anonymous, setAnonymous] = useState(null);
       const [name, setName] = useState('');
       const [gender, setGender] = useState(null);
-      const [relationship, setRelationhip] = useState(null);
+      const [relationship, setRelationship] = useState(null);
       const [ageRange,setAgeRange] = useState(null);
 
       const handleAnonymousChange = (value) => {
@@ -33,7 +33,7 @@
       };
 
       const handleNameChange = (e) => {
-        setName(e.targe.value);
+        setName(e.target.value);
       };
 
       const handleGenderChange = (value) => {
@@ -41,7 +41,7 @@
       };
 
       const handleRelationshipChange = (value) => {
-        setRelationhip(value);
+        setRelationship(value);
       };
 
       const handleAgeRangeChange = (value) => {
@@ -90,7 +90,7 @@
             </div>
           </div>
           {/* TODO : 추후 pageurl 수정 */}
-          <GuestFooter nextPageUrl="http://localhost:3000/SelectKeyword" isNextEnabled={isNextEnabled}/>
+          <GuestFooter nextPageUrl="/selectKeyword" isNextEnabled={isNextEnabled}/>
         </div>
         </>
       )
