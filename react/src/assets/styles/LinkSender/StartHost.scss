@@ -1,6 +1,6 @@
 .shContainer {
   background: linear-gradient(180deg, #B276D4 -26.65%, #A071BC -16.66%, #DFB0FB 127.01%);
-  width: 100%;
+  width: 100vw;
   height: 100%;
   
   .shWrapper{
@@ -150,12 +150,8 @@
 }
 
 @media screen and (max-width: 300px) {
-  .shContainer {
-    width: 100vw !important;
-  }
-
   .shBox {
-    width: 8rem !important;
+    width: 8rem !important  ;
   }
 
   .shButtonL {
@@ -180,5 +176,9 @@
     span {
       font-size: 0.6rem !important;
     }
+  }
+
+  .shButtonContainer {
+    width: 100vw !important;
   }
 }
