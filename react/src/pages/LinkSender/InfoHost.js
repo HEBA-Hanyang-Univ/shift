@@ -4,14 +4,13 @@ import { RadioBtn } from "../../components/Button/RadioBtn";
 import { DropDownBtn } from "../../components/Button/DropDownBtn";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
 
-const InfoHost = () => {
+export const InfoHost = () => {
   const ageOptions = Array.from({ length: 51}, (_, i) => ({key:i, value: `${i + 10}세`}));
 
   const [name, setName] = useState('');
-  const [gender, setGender] = useState('');
+  const [gender, setGender] = useState(null);
   const [age, setAge] = useState('');
-  const [alarm, setAlarm] = useState('');
-  const [isNextEnabled, setIsNextEnabled] = useState(false);
+  const [alarm, setAlarm] = useState(null);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -29,10 +28,12 @@ const InfoHost = () => {
     setAlarm(value);
   };
 
-  useEffect(() => {
-    setIsNextEnabled(name.trim() !== '' && gender !== '' && age !== '' && alarm !== '');
-  }, [name, gender, age, alarm]);
+  const [isNextEnabled, setIsNextEnabled] = useState(false);
 
+  useEffect(() => {
+    setIsNextEnabled(name.trim() !== '' && gender !== null && age !== '' && alarm !== null);
+  }, [name, gender, age, alarm]);
+  
   return (
     <div id="Container">
       <div className="ihWrapper">
@@ -43,7 +44,7 @@ const InfoHost = () => {
           <span id="infoTitle">
             이름 또는 별명을 입력하세요.
           </span>
-          <input placeholder="이름 또는 별명을 입력하세요" onChange={handleNameChange}></input>
+          <input placeholder="난준석그냥돌" onChange={handleNameChange}></input>
         </div>
         <div className="ihInputGender">
           <span id="infoTitle">
@@ -55,6 +56,7 @@ const InfoHost = () => {
           <span id="infoTitle">
             연령을 선택해주세요.
           </span>
+          {/* TODO: 추후 옵션 데이터 전달 */}
           <DropDownBtn options={ageOptions} placeholder="나이" onChange={handleAgeChange} ></DropDownBtn>
         </div>
         <div className="ihPushAgree">
@@ -64,19 +66,14 @@ const InfoHost = () => {
             <br></br>
             결과를 전달해드립니다.
           </span>
-          <RadioBtn option1Text={'동 의'} option2Text={'비동의'} onChange={handleAlarmChange} />
+          <RadioBtn option1Text={'동의'} option2Text={'비동의'} onChange={handleAlarmChange} />
           <span className="ihPushAgreeNotice">
             테스트 결과 제공만을 위한 정보 수집입니다.
           </span>
         </div>
       </div>
-      <GuestFooter 
-        prevPageUrl={"/"} 
-        nextPageUrl={"/host/identity"} 
-        isNextEnabled={isNextEnabled}
-       /> 
+      {/* TODO: 추후 url 수정 */}
+      <GuestFooter prevPageUrl={"/"} nextPageUrl={"/myIdentity"} isNextEnabled={isNextEnabled} /> 
     </div>
   )
 };
-
-export default InfoHost;
