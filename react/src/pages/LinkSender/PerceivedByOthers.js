@@ -52,7 +52,11 @@ export const PerceivedByOthers = () => {
       <div className="idSelectedKeywordContainer">
         <SelectedKeyword selectedKeywords={selectedKeywords} removeKeyword={removeKeyword} />
       </div>
-      <GuestFooter prevPageUrl={"/myAspiration"} nextPageUrl={"/completeHost"} isNextEnabled={isNextEnabled}/>
+      <GuestFooter
+        prevPageUrl={"/host/aspiration"}
+        nextPageUrl={"/host/completion"}
+        isNextEnabled={isNextEnabled}
+      />
     </div>
   )
 };

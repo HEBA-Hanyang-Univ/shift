@@ -79,7 +79,7 @@ const StartHost = () => {
             </div>
           </div>
           <div className="shButtonContainer">
-            <Link to="/inputInfo" style={{textDecoration: 'none'}}>
+            <Link to="/host/info" style={{textDecoration: 'none'}}>
               <Button className="shButtonL" gradient="180deg, #9B6EB6 20%, #9361B0 80%" width={19.7} height={3.4}>
                 <span className="shButtonSpanL" style={{paddingTop: '0.2rem'}}>시작하기</span>
                 {/* TODO : 추후 참여 인원 수 넣기 */}

@@ -51,7 +51,11 @@ export const OneLineDescription = ({username}) => {
             </div>
          </div>
       </div>
-      <GuestFooter />
+      <GuestFooter 
+         prevPageUrl={"/guest/reasoning"}
+         nextPageUrl={"/guest/completion"}
+         isNextEnabled={true}
+      />
     </div>
    ) 
 };

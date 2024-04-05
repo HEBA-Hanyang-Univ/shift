@@ -3,7 +3,7 @@ import { useEffect, React } from "react";
 import "./App.scss";
 import { Header } from "./components/Header/Header";
 import StartHost from "./pages/LinkSender/StartHost";
-import { InfoHost } from "./pages/LinkSender/InfoHost";
+import InfoHost from "./pages/LinkSender/InfoHost";
 import { MyIdentity } from "./pages/LinkSender/MyIdentity";
 import { MyAspiration } from "./pages/LinkSender/MyAspiration";
 import { PerceivedByOthers } from "./pages/LinkSender/PerceivedByOthers";
@@ -39,24 +39,24 @@ function App() {
         <Routes>
           {/* LinkSender */}
           <Route path="/" element={<StartHost/>}></Route>
-          <Route path="/inputInfo" element={<InfoHost/>}></Route>
-          <Route path="/myIdentity" element={<MyIdentity/>}></Route>
-          <Route path="/myAspiration" element={<MyAspiration/>}></Route>
-          <Route path="/perceivedByOthers" element={<PerceivedByOthers/>}></Route>
-          <Route path="/completeHost" element={<CompleteHost/>}></Route>
+          <Route path="/host/info" element={<InfoHost/>}></Route>
+          <Route path="/host/identity" element={<MyIdentity/>}></Route>
+          <Route path="/host/aspiration" element={<MyAspiration/>}></Route>
+          <Route path="/host/perception" element={<PerceivedByOthers/>}></Route>
+          <Route path="/host/completion" element={<CompleteHost/>}></Route>
 
 
           {/* LinkReceiver */}
-          <Route path="/startGuest" element={<StartGuest/>}></Route>
-          <Route path="/infoGuest" element={<InfoGuest/>}></Route>
-          <Route path="/selectKeyword" element={<SelectKeyword/>}></Route>
-          <Route path="/reasoning" element={<Reasoning/>}></Route>
-          <Route path="/oneLineDescription" element={<OneLineDescription/>}></Route>
-          <Route path="/completeGuest" element={<CompleteGuest/>}></Route>
+          <Route path="/guest/start" element={<StartGuest/>}></Route>
+          <Route path="/guest/info" element={<InfoGuest/>}></Route>
+          <Route path="/guest/keyword" element={<SelectKeyword/>}></Route>
+          <Route path="/guest/reasoning" element={<Reasoning/>}></Route>
+          <Route path="/guest/description" element={<OneLineDescription/>}></Route>
+          <Route path="/guest/completion" element={<CompleteGuest/>}></Route>
 
           {/* Result */}
-          <Route path="/ResultDashBoard" element={<ResultDashBoard/>}></Route>
-          <Route path="/result" element={<Result/>}></Route>
+          <Route path="/result/dashboard" element={<ResultDashBoard/>}></Route>
+          <Route path="/result/detail" element={<Result/>}></Route>
         </Routes>
       </Router>
     </div>

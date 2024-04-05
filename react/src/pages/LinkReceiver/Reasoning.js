@@ -70,7 +70,11 @@
             ))}
           </div>
         </div>
-        <GuestFooter prevPageUrl={"/selectKeyword"} nextPageUrl={"/oneLineDescription"} isNextEnabled={isNextEnabled}/>
+        <GuestFooter 
+          prevPageUrl={"/guest/keyword"} 
+          nextPageUrl={"/guest/description"} 
+          isNextEnabled={isNextEnabled}
+        />
       </div>
     )
   };

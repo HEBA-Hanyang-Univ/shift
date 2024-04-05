@@ -51,7 +51,11 @@ export const MyAspiration = () => {
       <div className="idSelectedKeywordContainer">
         <SelectedKeyword selectedKeywords={selectedKeywords} removeKeyword={removeKeyword} />
       </div>
-      <GuestFooter prevPageUrl={"/myIdentity"} nextPageUrl={"/perceivedByOthers"} isNextEnabled={isNextEnabled}/>
+      <GuestFooter 
+        prevPageUrl={"/host/identity"} 
+        nextPageUrl={"/host/perception"}
+        isNextEnabled={isNextEnabled}
+      />
     </div>
   )
 };

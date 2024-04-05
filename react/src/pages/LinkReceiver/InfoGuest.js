@@ -89,8 +89,10 @@
               <span className="infoDescription">테스트 결과 제공만을 위한 정보 수집입니다.</span>
             </div>
           </div>
-          {/* TODO : 추후 pageurl 수정 */}
-          <GuestFooter nextPageUrl="/selectKeyword" isNextEnabled={isNextEnabled}/>
+          <GuestFooter 
+            nextPageUrl="/guest/keyword" 
+            isNextEnabled={isNextEnabled}
+          />
         </div>
         </>
       )

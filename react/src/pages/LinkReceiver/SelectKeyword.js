@@ -52,8 +52,11 @@ export const SelectKeyword = () => {
     <div className="idSelectedKeywordWrapper">
       <SelectedKeyword selectedKeywords={selectedKeywords} removeKeyword={removeKeyword} />
     </div>
-    {/* TODO: 추후 url 수정 */}
-    <GuestFooter prevPageUrl={"/infoGuest"} nextPageUrl={"/reasoning"} isNextEnabled={isNextEnabled}/>
+    <GuestFooter
+      prevPageUrl={"/guest/info"} 
+      nextPageUrl={"/guest/reasoning"} 
+      isNextEnabled={isNextEnabled}
+    />
   </div>
   )
 };

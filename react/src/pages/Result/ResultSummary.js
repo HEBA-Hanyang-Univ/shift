@@ -11,8 +11,9 @@ export const ResultSummary = () => {
           </div>
           <div className="rsSectionOneSubTitle">
             <span>username</span>
+          </div>
         </div>
       </div>
     </div>
-  );
+  );  
 }

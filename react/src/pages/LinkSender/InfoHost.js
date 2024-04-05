@@ -72,8 +72,11 @@ export const InfoHost = () => {
           </span>
         </div>
       </div>
-      {/* TODO: 추후 url 수정 */}
-      <GuestFooter prevPageUrl={"/"} nextPageUrl={"/myIdentity"} isNextEnabled={isNextEnabled} /> 
+      <GuestFooter
+        prevPageUrl={"/"} 
+        nextPageUrl={"/host/identity"} 
+        isNextEnabled={isNextEnabled} 
+      /> 
     </div>
   )
 };
