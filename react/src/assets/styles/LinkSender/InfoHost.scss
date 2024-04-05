@@ -87,3 +87,17 @@
   }
   }
 }
+
+@media screen and (max-width: 300px) {
+  .ihInputName {
+    input::placeholder {
+      font-size: 0.8rem !important;
+    }
+  }
+}
+
+@media screen and (min-height: 800px) {
+  .ihWrapper {
+    margin-top: 5rem;
+  }
+}
