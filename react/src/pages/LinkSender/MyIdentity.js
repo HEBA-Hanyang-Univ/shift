@@ -12,31 +12,29 @@ const dummyKeywords = [
   ["더미데이터", "아이스 아메리카노", "기이이이이이인 문장", "키워드", "세 단어만 더", "두 단어만 더"]
 ]
 
-export const MyIdentity = () => {
+const MyIdentity = () => {
   const [selectedKeywords, setSelectedKeywords] = useState([]);
-  const removeKeyword = (indexToRemove) => {
-    setSelectedKeywords(selectedKeywords.filter((_, index) => index !== indexToRemove));
-  };
+
+  const [username, setUsername] = useState("username"); // TODO: 추후 사용자 이름 받아오기
 
   const handleKeywordClick = (keyword) => {
+    // if keyword is already selected, remove it from selectedKeywords
     if(selectedKeywords.includes(keyword)) {
-      return;
-    }
-
-    if(selectedKeywords.length < 5) {
-      setSelectedKeywords([...selectedKeywords, keyword]);
+      setSelectedKeywords(selectedKeywords.filter(k => k !== keyword))
     } else {
-      alert('키워드는 최대 5개까지 선택 가능합니다.')
-    }
-  }
+      setSelectedKeywords([...selectedKeywords, keyword]);
+    };
+  };
 
-  const isNextEnabled = selectedKeywords.length === 5;
+  const removeKeyword = (indexToRemove) => { 
+    setSelectedKeywords(selectedKeywords.filter((_, index) => index !== indexToRemove));
+  };
 
   return (
     <div id="Container" className="miContainer">
       <div className="idTitle">
         <div className="idTitleTop">
-          <span className="idTitleUserName">username</span>
+          <span className="idTitleUserName">{username}</span>
           <span>님을 가장 잘 나타내는</span>
         </div>
         <div className="idTitleBottom">
@@ -49,14 +47,18 @@ export const MyIdentity = () => {
         onKeywordClick={handleKeywordClick}
       />
       <div className="idSelectedKeywordContainer">
-        <SelectedKeyword selectedKeywords={selectedKeywords} removeKeyword={removeKeyword} />
+        <SelectedKeyword 
+          selectedKeywords={selectedKeywords} 
+          removeKeyword={removeKeyword} 
+        />
       </div>
       <GuestFooter 
         prevPageUrl={"/host/info"} 
         nextPageUrl={"/host/aspiration"} 
-        isNextEnabled={isNextEnabled}
+        isNextEnabled={selectedKeywords.length === 5}
       />
     </div>
-  )
+  );
 };
 
+export default MyIdentity;
