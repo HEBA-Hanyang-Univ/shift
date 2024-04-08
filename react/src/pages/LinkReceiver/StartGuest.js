@@ -4,7 +4,7 @@ import { Button } from "../../components/Button/Button";
 import { LandingGuest } from "./LandingGuest";
 import { Link } from "react-router-dom";
 
-export const StartGuest = () => {
+const StartGuest = () => {
 
   // 랜딩페이지
   const [isLoading, setIsLoading] = useState(true);
@@ -48,3 +48,5 @@ export const StartGuest = () => {
     </div>
   )
 };
+
+export default StartGuest;
