@@ -99,3 +99,21 @@
     font-size: 0.7rem !important;
   }
 }
+
+@media screen and (min-height: 700px) {
+  .igTitle {
+    padding-bottom: 0.6rem;
+  }
+
+  .igDisclosure {
+    padding-bottom: 1.6rem;
+  }
+
+  .igInputName {
+    padding-bottom: 1.6rem;
+  }
+
+  .igInputGender {
+    padding-bottom: 1.6rem;
+  }
+}

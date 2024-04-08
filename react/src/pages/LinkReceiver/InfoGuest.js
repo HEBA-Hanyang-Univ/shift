@@ -22,11 +22,11 @@
         { key: 'age6', value: '60대' }
       ];
 
-      const [anonymous, setAnonymous] = useState(null);
+      const [anonymous, setAnonymous] = useState('');
       const [name, setName] = useState('');
-      const [gender, setGender] = useState(null);
-      const [relationship, setRelationship] = useState(null);
-      const [ageRange,setAgeRange] = useState(null);
+      const [gender, setGender] = useState('');
+      const [relationship, setRelationship] = useState('');
+      const [ageRange,setAgeRange] = useState('');
 
       const handleAnonymousChange = (value) => {
         setAnonymous(value);
@@ -51,7 +51,7 @@
       const [isNextEnabled, setIsNextEnabled] = useState(false);
 
       useEffect(() => {
-        setIsNextEnabled(anonymous !== null && name.trim() !== '' && gender !== null && relationship !== null && ageRange !== null);
+        setIsNextEnabled(anonymous !== '' && name.trim() !== '' && gender !== '' && relationship !== '' && ageRange !== '');
       }, [anonymous, name, gender, relationship, ageRange]);
 
       return (
