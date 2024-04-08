@@ -13,7 +13,7 @@ import StartGuest from "./pages/LinkReceiver/StartGuest";
 import InfoGuest from "./pages/LinkReceiver/InfoGuest";
 import SelectKeyword from "./pages/LinkReceiver/SelectKeyword";
 import Reasoning from "./pages/LinkReceiver/Reasoning";
-import { OneLineDescription } from "./pages/LinkReceiver/OneLineDescription";
+import OneLineDescription from "./pages/LinkReceiver/OneLineDescription";
 import { CompleteGuest } from "./pages/LinkReceiver/CompleteGuest";
 
 import { ResultDashBoard } from "./pages/Result/ResultDashBoard";
