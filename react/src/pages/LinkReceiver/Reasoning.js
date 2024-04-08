@@ -1,9 +1,9 @@
-  import React, { useState, useEffect } from "react";
+  import React, { useState } from "react";
   import "../../assets/styles/LinkReceiver/Reasoning.scss";
   import { GuestFooter } from "../../components/Footer/GuestFooter";
   import { motion, AnimatePresence } from "framer-motion";
 
-  export const Reasoning = () => {
+  const Reasoning = () => {
     // dummy data 
     const [keywords, setKeywords] = useState([
       { id: 1, text: "방구를 잘뀌는", visible: true, reason: "" },
@@ -13,28 +13,17 @@
       { id: 5, text: "밥을 잘사주는 이쁜", visible: false, reason: "" }
     ]);
 
-    const [isNextEnabled, setIsNextEnabled] = useState(false);
-
     const toggleVisibility = (id) => {
-      const updatedKeywords = keywords.map((keyword) => {
-        if (keyword.id === id) {
-          return { ...keyword, visible: !keyword.visible };
-        }
-        return { ...keyword, visible: false };
-      });
-      setKeywords(updatedKeywords);
+      setKeywords(keywords.map((keyword) => 
+        keyword.id === id ? { ...keyword, visible: !keyword.visible } : { ...keyword, visible: false }
+      ));
     };
 
     const updateReason = (id, reason) => {
-      const updatedKeywords = keywords.map((keyword) => (
+      setKeywords(keywords.map(keyword =>
         keyword.id === id ? { ...keyword, reason: reason } : keyword
       ));
-      setKeywords(updatedKeywords);
     };
-  
-    useEffect(() => {
-      setIsNextEnabled(true);
-    }, []);
 
     return (
       <div id="Container" className="reContainer">
@@ -62,7 +51,12 @@
                       transition={{duration: 0.2}}
                       className="reKeywordReasonInputBox"
                     >
-                      <textarea className="reKeywordReasonInput" placeholder="일화를 입력하세요" value={keyword.reason} onChange={(e) => updateReason(keyword.id, e.target.value)} />
+                      <textarea 
+                        className="reKeywordReasonInput" 
+                        placeholder="일화를 입력하세요" 
+                        value={keyword.reason} 
+                        onChange={(e) => updateReason(keyword.id, e.target.value)}
+                      />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -73,8 +67,10 @@
         <GuestFooter 
           prevPageUrl={"/guest/keyword"} 
           nextPageUrl={"/guest/description"} 
-          isNextEnabled={isNextEnabled}
+          isNextEnabled={true}
         />
       </div>
     )
   };
+
+  export default Reasoning;

@@ -88,3 +88,19 @@
   }
 }
 
+@media screen and (max-width: 300px){
+  .reTitleBlack {
+    font-size: 1.2rem !important;
+  }
+
+  .reTitlePurple {
+    font-size: 1.2rem !important;
+  }
+  
+  .reKeywordReasonInputBox {
+    textarea {
+      width: 70% !important;
+    }
+  }
+  
+}
