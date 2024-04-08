@@ -90,13 +90,13 @@
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: repeat(3, 1fr);
-    overflow-y: scroll;
-    gap: 0.7rem 0.3rem;
-    
+    overflow-x: scroll;
+    gap: 0.7rem 0.3rem;  
+
     &::-webkit-scrollbar {
       display: none;
     }
-
+  
     .selectedKeyword {
       display: flex;
       justify-content: center;
@@ -113,7 +113,6 @@
       border: 2px solid #9965B8;
 
       padding: 0.3rem 1.9rem;
-
 
       button {
         width: 0.87rem;
