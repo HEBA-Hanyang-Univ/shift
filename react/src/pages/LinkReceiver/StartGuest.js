@@ -8,6 +8,7 @@ export const StartGuest = () => {
 
   // 랜딩페이지
   const [isLoading, setIsLoading] = useState(true);
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -29,11 +30,10 @@ export const StartGuest = () => {
         <div className="sgTitleWrapper">
           <span className="sgTitleBlack">평소 내가 생각했던</span>
           {/* TODO : username 받아오기 */}
-          <span className="sgTitlePurple">USERNAME</span>
+          <span className="sgTitlePurple">username</span>
         </div>
         <div className="sgButtonWrapper">
-          {/* TODO : 추후 경로 설정 */}
-          <Link to="/InfoGuest">
+          <Link to="/guest/info">
             <Button gradient="180deg, #9C76AC 0%, #AC86BD 100%" width={9.7} height={4}className="sgStartBtn">
               <span>응답하기</span>
             </Button>
