@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import { useEffect, React } from "react";
 import "./App.scss";
 import { Header } from "./components/Header/Header";
+import SocialLogin from "./pages/SocialLogin";
+
 import StartHost from "./pages/LinkSender/StartHost";
 import InfoHost from "./pages/LinkSender/InfoHost";
 import MyIdentity from "./pages/LinkSender/MyIdentity";
@@ -38,6 +40,7 @@ function App() {
         <Routes>
           {/* LinkSender */}
           <Route path="/" element={<StartHost/>}></Route>
+          <Route path="/login" element={<SocialLogin/>}></Route>
           <Route path="/host/info" element={<InfoHost/>}></Route>
           <Route path="/host/identity" element={<MyIdentity/>}></Route>
           <Route path="/host/aspiration" element={<MyAspiration/>}></Route>

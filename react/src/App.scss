@@ -27,3 +27,67 @@ button {
   letter-spacing: 0.08rem;
   text-transform: uppercase;
 }
+
+// Social Login
+.socialContainer {
+  height: calc(100vh - 2.5rem);
+  background: linear-gradient(180deg, #FFF 3.11%, #d4d4d4 93.37%);
+
+  .socialWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6.3rem;
+
+    .socialLogo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  
+      .socialIconImg {
+        width: 8.6rem;
+        height: auto;
+      }
+
+      .socialLogoImg {
+        width: 9.5rem;
+        height: auto;
+      }
+    }
+
+    .socialDes {
+      display: flex;
+      flex-direction: column  ;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+
+      span {
+        text-align: center;
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 160%;
+      }
+
+    }
+  }
+}
+
+.kakaoLoginBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2.3rem;
+
+  button {
+    margin: 0 auto;
+    width: 15rem;
+
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
+}
