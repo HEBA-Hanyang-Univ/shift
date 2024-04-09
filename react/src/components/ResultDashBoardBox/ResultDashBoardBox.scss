@@ -1,14 +1,50 @@
-.rdbbWrapper {
+.rdbbContainer {
   width: 19rem;
   height: 10.3rem;
   display: flex;
   flex-direction: column;
-
   background-color: #FFF;
   border-radius: 1.3rem;
 
-  .rdbbContentWrapper {
-    
+  .rdbbWrapper {
+    padding: 1.8rem 2rem;
+
+    .rdbbContentWrapper {
+      display: flex;
+      justify-content: space-between;
+
+      .rdbbContentLeft {
+        display: flex;
+        flex-direction: column;
+
+        .rdbbContentTitle {
+          color: #9B76AB;
+          text-align: center;
+          font-size: 0.85rem;
+          font-weight: 700;
+          letter-spacing: 0.07rem;
+        }
+      }
+
+      .rdbbContentSubTitle {
+        margin-top: 2.5rem;
+
+        span {
+          color: #CDCDCD;
+          font-weight: 700;
+          font-size: 0.85rem;
+        }
+      }
+      .rdbbContentRight {
+        display: flex;
+
+        img {
+          width: 3.2rem;
+          height: auto;
+        }
+      }
+    }
+
   }
 }
 
