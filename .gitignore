@@ -5,6 +5,7 @@ __pycache__/
 config.py
 logs/
 backups/
+flask_session/
 
 
 # for react
