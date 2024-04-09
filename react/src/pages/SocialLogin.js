@@ -6,7 +6,7 @@ import Kakao from "../assets/images/kakao_login.png";
 const SocialLogin = () => {
   // TODO: REST_API_KEY
   const REST_API_KEY = "REST_API_KEY"
-  const REDIRECT_URI = "http://localhost:3000/login"
+  const REDIRECT_URI = "http://localhost:3000/host/info"
   const KAKAO_LINK = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   const loginHandler = () => {

@@ -79,7 +79,7 @@ const StartHost = () => {
             </div>
           </div>
           <div className="shButtonContainer">
-            <Link to="/host/info" style={{textDecoration: 'none'}}>
+            <Link to="/login" style={{textDecoration: 'none'}}>
               <Button className="shButtonL" gradient="180deg, #9B6EB6 20%, #9361B0 80%" width={19.7} height={3.4}>
                 <span className="shButtonSpanL" style={{paddingTop: '0.2rem'}}>시작하기</span>
                 {/* TODO : 추후 참여 인원 수 넣기 */}
@@ -87,9 +87,11 @@ const StartHost = () => {
               </Button>
             </Link>
             {/* TODO: 추후 테스트가 완료되지 않았으면 버튼 회색처리 */}
-            <Button className="shButtonL" gradient="180deg, #A27DB2 0%, #A570C4 100%" width={19.7} height={3.4}>
-              <span className="shButtonSpanL">결과 확인하기</span>
-            </Button>
+            <Link to="/result/dashboard" style={{textDecoration: 'none'}} >
+              <Button className="shButtonL" gradient="180deg, #A27DB2 0%, #A570C4 100%" width={19.7} height={3.4}>
+                <span className="shButtonSpanL">결과 확인하기</span>
+              </Button>
+            </Link>
             <div className="shShareButtonWrapper">
               <Button onClick={() => {handle()}} className="testButton" color="#FFF" width={9.2} height={2}>
                 <img src={shareImg} alt="share img"></img>
