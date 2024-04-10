@@ -3,7 +3,7 @@ import "../../assets/styles/Result/ResultDashBoard.scss";
 import { ResultDashBoardBox } from "../../components/ResultDashBoardBox/ResultDashBoardBox";
 import { PreparingDashBoardBox } from "../../components/ResultDashBoardBox/PreparingDashBoardBox";
 
-export const ResultDashBoard = () => {
+const ResultDashBoard = () => {
 
   return (
     <div id="Container">
@@ -20,3 +20,5 @@ export const ResultDashBoard = () => {
     </div>
   )
 }
+
+export default ResultDashBoard;
