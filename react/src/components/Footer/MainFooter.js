@@ -1,5 +1,5 @@
 import React from "react";
-import SHIFT_LOGO from "../../assets/images/ShiftLogo.svg";
+import SHIFT_LOGO from "../../assets/images/ShiftLogo_Purple.svg";
 import SHIFT_ICON from "../../assets/images/ShiftIcon_transparent.png";
 import META_SEQUOIA_ICON from "../../assets/images/MetaSequoia.png";
 
@@ -13,7 +13,8 @@ export const MainFooter = () => {
         <div style={{width:'100%', background:'white', display:'flex', justifyContent:'space-between'}}>
           <div>
             <div style = {{color: '#565656', fontSize:'0.6rem', fontFamily: 'Wanted Sans', fontWeight: '800', letterSpacing: 0.96, wordWrap: 'break-word'}}>
-              <span style={{paddingRight:'1.5rem'}}>대표 : 이유빈</span>
+              <span style={{paddingRight: '0.7rem'}}>메타세콰이어</span>
+              <span style={{paddingRight:'0.7rem'}}>대표 : 이유빈</span>
               <span>사업자등록번호 612-47-00768</span>
             </div>
             <div style={{color: '#565656', fontSize: '0.6rem', fontFamily: 'Wanted Sans', fontWeight: '400', letterSpacing: 0.96, wordWrap: 'break-word'}}>
@@ -22,15 +23,15 @@ export const MainFooter = () => {
             </div>
           </div>
           <div>
-            <img src={SHIFT_ICON} style={{width:'6rem'}}/>
+            <img src={SHIFT_ICON} style={{width:'5rem'}}/>
           </div>
         </div>
         <div style={{width: '100%', height: 0, padding: 0, border: '1px #E4E4E4 solid'}}></div>
         <div>
           <div style={{fontSize: '0.6rem', fontFamily: 'Wanted Sans', fontWeight: '500', letterSpacing: 0.96, wordWrap: 'break-word'}}>
-            <span style={{color: '#818181', textAlign:'end'}}>Contact Us : godsaenglab@gmail.com</span>
-            {/*<span style={{color: '#CACACA'}}>이용약관</span>
-            <span style={{color: '#CACACA'}}>개인정보처리방침</span>*/}
+            <span style={{color: '#818181', textAlign:'end', paddingRight: '0.4rem'}}>Contact Us : godsaenglab@gmail.com</span>
+            <span style={{color: '#CACACA', paddingRight: '0.4rem'}}>이용약관</span>
+            <span style={{color: '#CACACA'}}>개인정보처리방침</span>
           </div>
         </div>
         <div style={{width:'100%', display:'flex', justifyContent: 'space-between', color: '#5A5A5A', fontSize: '0.5rem', fontFamily: 'Wanted Sans', fontWeight: '500', letterSpacing: 0.78, wordWrap: 'break-word'}}>
