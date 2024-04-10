@@ -1,12 +1,13 @@
 import React from 'react';
 import "../../assets/styles/LinkReceiver/CompleteGuest.scss";
+import { Link } from 'react-router-dom';
 import { Button } from '../../components/Button/Button';
 import Checked from "../../assets/images/CheckedCircle.svg";
 import cgImg1 from "../../assets/images/StartHost/shImg1.svg";
 import cgImg2 from "../../assets/images/StartHost/shImg2.svg";
 import cgImg3 from "../../assets/images/StartHost/shImg3.svg";
 import cgImg4 from "../../assets/images/StartHost/shImg4.svg";
-export const CompleteGuest = ()  => {
+const CompleteGuest = ()  => {
   
   return (
     <div id="Container" className="cgContainer">
@@ -61,9 +62,13 @@ export const CompleteGuest = ()  => {
         </div>
       </div>
       {/* TODO: 추후 검사 링크 넣기 */}
-      <Button color="#A570C4" width={10.16} height={3.14} className="cgLinkBtn">
-        <span>나도 검사하기</span>
-      </Button>
+      <Link to="/">
+        <Button color="#A570C4" width={10.16} height={3.14} className="cgLinkBtn">
+          <span>나도 검사하기</span>
+        </Button>
+      </Link>
     </div>
   )
 };
+
+export default CompleteGuest;

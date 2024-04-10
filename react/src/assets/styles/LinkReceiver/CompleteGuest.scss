@@ -67,6 +67,9 @@
   .cgLinkBtn {
     margin: 2.7rem auto 0;
     border-radius: 3.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     span {
       font-size: 0.928rem;
