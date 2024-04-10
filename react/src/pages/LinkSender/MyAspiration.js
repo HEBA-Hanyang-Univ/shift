@@ -12,25 +12,22 @@ const dummyKeywords = [
   ["더미데이터", "아이스 아메리카노", "기이이이이이인 문장", "키워드", "세 단어만 더", "두 단어만 더"]
 ]
 
-export const MyAspiration = () => {
+const MyAspiration = () => {
   const [selectedKeywords, setSelectedKeywords] = useState([]);
+  const [username, setUsername] = useState("username"); //TODO: 추후 사용자 이름 받아오기
+
+  const handleKeywordClick = (keyword) => {
+    // if keyword is already selected, remove it from selectedKeywords
+    if(selectedKeywords.includes(keyword)) {
+      setSelectedKeywords(selectedKeywords.filter(k => k !== keyword))
+    } else {
+      setSelectedKeywords([...selectedKeywords, keyword]);
+    };
+  };
+  
   const removeKeyword = (indexToRemove) => {
     setSelectedKeywords(selectedKeywords.filter((_, index) => index !== indexToRemove));
   };
-
-  const handleKeywordClick = (keyword) => {
-    if(selectedKeywords.includes(keyword)) {
-      return;
-    }
-
-    if(selectedKeywords.length < 5) {
-      setSelectedKeywords([...selectedKeywords, keyword]);
-    } else {
-      alert('키워드는 최대 5개까지 선택 가능합니다.')
-    }
-  }
-
-  const isNextEnabled = selectedKeywords.length === 5;
 
   return (
     <div id="Container" className="miContainer">
@@ -49,14 +46,18 @@ export const MyAspiration = () => {
         onKeywordClick={handleKeywordClick}
       />
       <div className="idSelectedKeywordContainer">
-        <SelectedKeyword selectedKeywords={selectedKeywords} removeKeyword={removeKeyword} />
+        <SelectedKeyword 
+          selectedKeywords={selectedKeywords} 
+          removeKeyword={removeKeyword}
+         />
       </div>
       <GuestFooter 
         prevPageUrl={"/host/identity"} 
         nextPageUrl={"/host/perception"}
-        isNextEnabled={isNextEnabled}
+        isNextEnabled={selectedKeywords.length === 5}
       />
     </div>
   )
 };
 
+export default MyAspiration;
