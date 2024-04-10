@@ -11,8 +11,11 @@
     float: left;
     
     img {
+      display: flex;
+      align-self: center;
       width: 5rem;
       height: auto;
+      cursor: pointer;
     }
   }
 

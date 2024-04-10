@@ -3,6 +3,7 @@ import "./Header.scss";
 import Logo from "../../assets/images/HeaderLogo.svg";
 import NavBtn from "../../assets/images/NavBtn.svg";
 import { HamburgerMenu } from "../Hamburger/HamburgerMenu";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
@@ -14,7 +15,9 @@ export const Header = () => {
   return (
     <div className="headerContainer">
       <div className="headerLeft">
-        <img src={Logo} alt="mainLogo"></img>
+        <Link to="/">
+          <img className="headerLogo" src={Logo} alt="mainLogo"></img>
+        </Link>
       </div>
       <div className="headerRight">
         <div className="headerName">
