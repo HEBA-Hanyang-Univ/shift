@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../../assets/styles/LinkSender/StartHost.scss";
-import { Link } from "react-router-dom";
 import { Button } from '../../components/Button/Button.js';
 import { MainFooter } from '../../components/Footer/MainFooter.js';
+import HandleLogin from "../../components/Login/HandleLogin.js";
 import shImg1 from "../../assets/images/StartHost/shImg1.svg";
 import shImg2 from "../../assets/images/StartHost/shImg2.svg";
 import shImg3 from "../../assets/images/StartHost/shImg3.svg";
@@ -11,13 +12,43 @@ import shareImg from "../../assets/images/StartHost/shareImg.svg";
 import shFooterImg from "../../assets/images/StartHost/shFooter.svg";
 
 const StartHost = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handle = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: 'SHIFT',
-        text: 'MZ 자기객관화 테스트',
-        url: 'http://shift2me.com',
+  const handleStart = () => {
+    console.log(location.pathname);
+    HandleLogin(() => {
+      navigate("/host/info");
+    }, location.pathname, navigate);
+  };
+
+  const handleResult = () => {
+    HandleLogin(() => {
+      navigate("/result/dashboard");
+    }, location.pathname, navigate);
+  };
+
+  const handleShareTest = () => {
+    HandleLogin(() => {
+      // TODO : Add test sharing function
+      if (navigator.share) {
+        navigator.share({
+          title: 'SHIFT',
+          text: 'MZ 자기객관화 테스트',
+          url: 'http://shift2me.com',
+        });
+      } else {
+        alert('공유하기 기능을 지원하지 않는 브라우저입니다.');
+      }
+    }, location.pathname, navigate);
+  };
+
+const handleShareLink = () => {
+  if (navigator.share) {
+    navigator.share({
+      title: 'SHIFT',
+      text: 'MZ 자기객관화 테스트',
+      url: 'http://shift2me.com',
     });
   } else { 
     alert('공유하기 기능을 지원하지 않는 브라우저입니다.');
@@ -79,25 +110,21 @@ const StartHost = () => {
             </div>
           </div>
           <div className="shButtonContainer">
-            <Link to="/login" style={{textDecoration: 'none'}}>
-              <Button className="shButtonL" gradient="180deg, #9B6EB6 20%, #9361B0 80%" width={19.7} height={3.4}>
-                <span className="shButtonSpanL" style={{paddingTop: '0.2rem'}}>시작하기</span>
-                {/* TODO : 추후 참여 인원 수 넣기 */}
-                <span className="shButtonSpanS">지금까지 1,054 명이 참여했어요!</span>
-              </Button>
-            </Link>
+            <Button onClick={handleStart}className="shButtonL" gradient="180deg, #9B6EB6 20%, #9361B0 80%" width={19.7} height={3.4}>
+              <span className="shButtonSpanL" style={{paddingTop: '0.2rem'}}>시작하기</span>
+              {/* TODO : 추후 참여 인원 수 넣기 */}
+              <span className="shButtonSpanS">지금까지 1,054 명이 참여했어요!</span>
+            </Button>
             {/* TODO: 추후 테스트가 완료되지 않았으면 버튼 회색처리 */}
-            <Link to="/result/dashboard" style={{textDecoration: 'none'}} >
-              <Button className="shButtonL" gradient="180deg, #A27DB2 0%, #A570C4 100%" width={19.7} height={3.4}>
-                <span className="shButtonSpanL">결과 확인하기</span>
-              </Button>
-            </Link>
+            <Button onClick={handleResult}className="shButtonL" gradient="180deg, #A27DB2 0%, #A570C4 100%" width={19.7} height={3.4}>
+              <span className="shButtonSpanL">결과 확인하기</span>
+            </Button>
             <div className="shShareButtonWrapper">
-              <Button onClick={() => {handle()}} className="testButton" color="#FFF" width={9.2} height={2}>
+              <Button onClick={handleShareTest} className="testButton" color="#FFF" width={9.2} height={2}>
                 <img src={shareImg} alt="share img"></img>
                 <span>테스트 공유하기</span>
               </Button>
-              <Button className="testButton" color="#FFF" width={9.2} height={2}>
+              <Button onClick={handleShareLink} className="testButton" color="#FFF" width={9.2} height={2}>
                 <img src={shareImg} alt="share img"></img>
                 <span>설문 링크 공유하기</span>
               </Button>

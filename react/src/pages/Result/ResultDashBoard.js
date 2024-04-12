@@ -1,9 +1,13 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import "../../assets/styles/Result/ResultDashBoard.scss";
+import HandleLogin from "../../components/Login/HandleLogin.js";
 import { ResultDashBoardBox } from "../../components/ResultDashBoardBox/ResultDashBoardBox";
 import { PreparingDashBoardBox } from "../../components/ResultDashBoardBox/PreparingDashBoardBox";
 
 export const ResultDashBoard = () => {
+
+  HandleLogin(() => {});
 
   return (
     <div id="Container">

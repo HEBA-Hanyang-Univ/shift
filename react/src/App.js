@@ -3,6 +3,7 @@ import { useEffect, React } from "react";
 import "./App.scss";
 import { Header } from "./components/Header/Header";
 import SocialLogin from "./pages/SocialLogin";
+import KakaoCallback from "./components/Login/SocialLoginCallback"
 
 import StartHost from "./pages/LinkSender/StartHost";
 import InfoHost from "./pages/LinkSender/InfoHost";
@@ -38,6 +39,9 @@ function App() {
         <ScrollToTop />
         <Header />
         <Routes>
+          {/* Social Login Callback */}
+          <Route path="/kakao_callback" element={<KakaoCallback/>}></Route>
+
           {/* LinkSender */}
           <Route path="/" element={<StartHost/>}></Route>
           <Route path="/login" element={<SocialLogin/>}></Route>
