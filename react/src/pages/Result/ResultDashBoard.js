@@ -5,7 +5,7 @@ import HandleLogin from "../../components/Login/HandleLogin.js";
 import { ResultDashBoardBox } from "../../components/ResultDashBoardBox/ResultDashBoardBox";
 import { PreparingDashBoardBox } from "../../components/ResultDashBoardBox/PreparingDashBoardBox";
 
-export const ResultDashBoard = () => {
+const ResultDashBoard = () => {
 
   HandleLogin(() => {});
 
@@ -24,3 +24,5 @@ export const ResultDashBoard = () => {
     </div>
   )
 }
+
+export default ResultDashBoard;

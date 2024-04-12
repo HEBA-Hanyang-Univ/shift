@@ -6,7 +6,7 @@ import KakaoImg from "../../assets/images/kakao.svg";
 import InstaImg from "../../assets/images/insta.svg";
 import LinkImg from "../../assets/images/linkImg.svg";
 
-export const CompleteHost = () => {
+const CompleteHost = () => {
 
   return (
     <div id="Container" className="chContainer">
@@ -41,3 +41,5 @@ export const CompleteHost = () => {
     </div>
   )
 };
+
+export default CompleteHost;

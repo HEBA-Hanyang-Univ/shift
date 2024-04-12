@@ -8,19 +8,19 @@ import KakaoCallback from "./components/Login/SocialLoginCallback"
 import StartHost from "./pages/LinkSender/StartHost";
 import InfoHost from "./pages/LinkSender/InfoHost";
 import MyIdentity from "./pages/LinkSender/MyIdentity";
-import { MyAspiration } from "./pages/LinkSender/MyAspiration";
-import { PerceivedByOthers } from "./pages/LinkSender/PerceivedByOthers";
-import { CompleteHost } from "./pages/LinkSender/CompleteHost";
+import MyAspiration from "./pages/LinkSender/MyAspiration";
+import PerceivedByOthers from "./pages/LinkSender/PerceivedByOthers";
+import CompleteHost from "./pages/LinkSender/CompleteHost";
 
 import StartGuest from "./pages/LinkReceiver/StartGuest";
 import InfoGuest from "./pages/LinkReceiver/InfoGuest";
 import SelectKeyword from "./pages/LinkReceiver/SelectKeyword";
 import Reasoning from "./pages/LinkReceiver/Reasoning";
 import OneLineDescription from "./pages/LinkReceiver/OneLineDescription";
-import { CompleteGuest } from "./pages/LinkReceiver/CompleteGuest";
+import CompleteGuest from "./pages/LinkReceiver/CompleteGuest";
 
-import { ResultDashBoard } from "./pages/Result/ResultDashBoard";
-import { Result } from "./pages/Result/Result";
+import ResultDashBoard from "./pages/Result/ResultDashBoard";
+import Result from "./pages/Result/Result";
 
 function App() {
   const ScrollToTop = () => {
@@ -50,7 +50,6 @@ function App() {
           <Route path="/host/aspiration" element={<MyAspiration/>}></Route>
           <Route path="/host/perception" element={<PerceivedByOthers/>}></Route>
           <Route path="/host/completion" element={<CompleteHost/>}></Route>
-
 
           {/* LinkReceiver */}
           <Route path="/guest" element={<StartGuest/>}></Route>
