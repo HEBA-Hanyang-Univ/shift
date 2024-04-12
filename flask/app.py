@@ -38,9 +38,10 @@ def google_login():
     return redirect(f"https://accounts.google.com/o/oauth2/auth/authorize?client_id={GOOGLE_CLIENT_ID}&redirect_uri={GOOGLE_REDIRECT_URI}&scope=profile+email&response_type=code")
 '''
 
-@app.route("/kakao_callback")
+@app.route("/kakao_callback", methods=['GET', 'POST'])
 def kakao_callback():
-    code = request.args.get("code")
+    data = request.get_json()
+    code = data.get('code')
     if code:
         token_req = requests.post("https://kauth.kakao.com/oauth/token", headers={
             "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
@@ -61,6 +62,7 @@ def kakao_callback():
                 "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
             })
             my_info_json = my_info.json()
+
             prop = UserProperty()
             if "kakao_account" in my_info_json:
                 if "email" in my_info_json["kakao_account"] and my_info_json["kakao_account"]["is_email_valid"] and my_info_json["kakao_account"]["is_email_verified"]:
@@ -86,7 +88,9 @@ def kakao_callback():
             #session["expires_in"] = token_json["expires_in"]
             #session["refresh_token_expires_in"] = token_json["refresh_token_expires_in"]
             #session["login_time"] = datetime.now()
-            return redirect(f"{react_host}/host/info")
+            return make_response("logged in", 200)
+        else:
+            return make_response("failed to get token", 403)
 
     else:
         error_type = request.args.get("error")
@@ -132,6 +136,13 @@ def google_callback():
 
     return "Failed to get google access token."
 '''
+
+@app.route("/verify_login")
+def verify_login():
+    if validate_token():
+        return make_response("already_logged_in", 200)
+    else:
+        return make_response("not_logged_in", 403)
 
 @app.route("/logout")
 def logout():
