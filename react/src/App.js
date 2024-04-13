@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, React } from "react";
+import { React, useEffect, useState } from "react";
+import secureLocalStorage from "react-secure-storage";
 import "./App.scss";
 import { Header } from "./components/Header/Header";
 import SocialLogin from "./pages/SocialLogin";
@@ -21,11 +22,29 @@ import CompleteGuest from "./pages/LinkReceiver/CompleteGuest";
 
 import ResultDashBoard from "./pages/Result/ResultDashBoard";
 import Result from "./pages/Result/Result";
+import HandleLogin from "./components/Login/HandleLogin";
 
 function App() {
+  const loginRequired = (pathname) => {
+    if (pathname === "/login" || pathname === "/kakao_callback") return false;
+    return true;
+  };
+
+  const [ username, setUsername ] = useState(undefined);
+
+  const LoginCheck = () => {
+    const { pathname } = useLocation();
+    useEffect(() => {
+      if (loginRequired(pathname)) {
+        HandleLogin(() => {
+          setUsername(secureLocalStorage.getItem("name"));
+        }, (pathname !== '/') ? pathname:undefined);
+      }
+    }, [pathname]);
+  };
+
   const ScrollToTop = () => {
     const { pathname } = useLocation();
-
     useEffect(() => {
       window.scrollTo(0, 0);
     }, [pathname]);
@@ -36,8 +55,9 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <LoginCheck />
         <ScrollToTop />
-        <Header />
+        <Header name={username}/>
         <Routes>
           {/* Social Login Callback */}
           <Route path="/kakao_callback" element={<KakaoCallback/>}></Route>

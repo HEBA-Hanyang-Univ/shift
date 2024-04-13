@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Header.scss";
 import Logo from "../../assets/images/HeaderLogo.svg";
 import NavBtn from "../../assets/images/NavBtn.svg";
 import { HamburgerMenu } from "../Hamburger/HamburgerMenu";
 import { Link } from "react-router-dom";
 
-export const Header = () => {
+export const Header = ({ name }) => {
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
   
   const toggleHamburgerMenu = () => {
@@ -21,8 +21,7 @@ export const Header = () => {
       </div>
       <div className="headerRight">
         <div className="headerName">
-          {/* TODO : 추후 닉네임 연결 */}
-          <span>username</span>
+          {name !== undefined && <span>{name}님</span>}
         </div>
         <div className="headerBtnContainer">
           <button onClick={toggleHamburgerMenu}>

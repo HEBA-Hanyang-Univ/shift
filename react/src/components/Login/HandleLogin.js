@@ -1,7 +1,6 @@
+import secureLocalStorage from "react-secure-storage";
 
 const HandleLogin = (onAuthSuccess, from, navigate) => {
-  console.log(from);
-  
   const verifyLogin = async () => {
     try {
         const response = await fetch(`${process.env.REACT_APP_SERVER_IP}/verify_login`, {
@@ -12,14 +11,24 @@ const HandleLogin = (onAuthSuccess, from, navigate) => {
             credentials: "include",
         });
         if (response.status === 200) {
+            const resp_data = await response.json();
+            for (let key in resp_data) {
+                secureLocalStorage.setItem(key, resp_data[key]);
+            }
             onAuthSuccess();
         } else {
-            alert('로그인이 필요합니다.');
-            navigate("/login", { state: { from: from } });
+            secureLocalStorage.clear();
+            if (navigate !== undefined) {
+              alert('로그인이 필요합니다.');
+              navigate("/login", { state: { from: from } });
+            } else if (from !== undefined) {
+              alert('로그인이 필요합니다.');
+              window.location.replace("/login?from=" + from);
+            }
         }
     } catch (error) {
         console.error("Error:", error);
-        navigate("/login", { state: { from: from } });
+        if (navigate !== undefined) navigate("/login", { state: { from: from } });
     }
   }
   verifyLogin();

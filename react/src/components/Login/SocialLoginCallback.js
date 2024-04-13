@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import secureLocalStorage from "react-secure-storage";
 
 const SocialLoginCallback = () => {
   const navigate = useNavigate();
@@ -17,7 +18,6 @@ const SocialLoginCallback = () => {
   if (error_description) { data.error_description = error_description; }
 
   const verifyLogin = async () => {
-    console.log(data);
     try {
       const response = await fetch(`${process.env.REACT_APP_SERVER_IP}/kakao_callback`, {
         method: "POST",
@@ -27,8 +27,11 @@ const SocialLoginCallback = () => {
         body: JSON.stringify(data),
         credentials: "include",
       });
-      console.log(response);
-      if (response.status === 200) {
+      if (response.status === 200 || response.status === 201) {
+        const resp_data = await response.json();
+        for (let key in resp_data) {
+            secureLocalStorage.setItem(key, resp_data[key]);
+        }
         navigate(state);
       } else {
         alert('Failed to login. Please try again.');
@@ -40,7 +43,6 @@ const SocialLoginCallback = () => {
   }
   
   useEffect(() => {
-    console.log("useEffect called");
     verifyLogin();
   }, []);
 

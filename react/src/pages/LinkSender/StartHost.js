@@ -16,7 +16,6 @@ const StartHost = () => {
   const location = useLocation();
 
   const handleStart = () => {
-    console.log(location.pathname);
     HandleLogin(() => {
       navigate("/host/info");
     }, location.pathname, navigate);
