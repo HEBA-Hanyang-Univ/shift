@@ -65,6 +65,9 @@ def kakao_callback():
 
             prop = UserProperty()
             if "kakao_account" in my_info_json:
+                if "name" in my_info_json["kakao_account"] and my_info_json["kakao_account"]["name_needs_agreement"] == False:
+                    prop.name = my_info_json["kakao_account"]["name"]
+
                 if "email" in my_info_json["kakao_account"] and my_info_json["kakao_account"]["is_email_valid"] and my_info_json["kakao_account"]["is_email_verified"]:
                     prop.email = my_info_json["kakao_account"]["email"]
 
@@ -76,8 +79,16 @@ def kakao_callback():
 
                 if "phone_number" in my_info_json["kakao_account"]:
                     prop.phone_number = my_info_json["kakao_account"]["phone_number"]
+            else:
+                return make_response("no kakao account info", 403)
 
-            DB.sign_in("KAKAO", my_info_json["id"], prop)
+            resp_data = {}
+            if DB.sign_in("KAKAO", my_info_json["id"], prop):
+                resp_code = 200
+            else:
+                resp_code = 201
+
+            resp_data["name"] = prop.name
             session["id"] = my_info_json["id"]
             session["login_type"] = "KAKAO"
             session["access_token"] = token_json["access_token"]
@@ -88,7 +99,7 @@ def kakao_callback():
             #session["expires_in"] = token_json["expires_in"]
             #session["refresh_token_expires_in"] = token_json["refresh_token_expires_in"]
             #session["login_time"] = datetime.now()
-            return make_response("logged in", 200)
+            return make_response(resp_data, resp_code)
         else:
             return make_response("failed to get token", 403)
 
@@ -140,7 +151,11 @@ def google_callback():
 @app.route("/verify_login")
 def verify_login():
     if validate_token():
-        return make_response("already_logged_in", 200)
+        userProp = DB.get_user_property(session["login_type"], session["id"])
+        print(userProp)
+        resp_data = {}
+        resp_data["name"] = userProp['name']
+        return make_response(resp_data, 200)
     else:
         return make_response("not_logged_in", 403)
 

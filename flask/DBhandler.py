@@ -8,6 +8,7 @@ from dataclasses import asdict, dataclass
 
 @dataclass
 class UserProperty:
+    name: str = 'unknown'
     email: str = 'unknown'
     age_range: str = 'unknown'
     gender: str = 'unknown'
@@ -18,7 +19,7 @@ class DBModule:
     def __init__(self):
         firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
         self.db = firebase.database()
-    
+
     def register(self, platform_type, id, user_property: UserProperty):
         info = asdict(user_property)
         self.db.child("users").child(platform_type).child(id).set(info)
@@ -34,11 +35,16 @@ class DBModule:
             
         return False
 
+    def get_user_property(self, platform_type, id):
+        return self.db.child("users").child(platform_type).child(id).get().val()
+
+    # if user is not registered, register user and return False
     def sign_in(self, platform_type, id, user_property: UserProperty = None):
         if not self.verification(platform_type, id):
             if user_property == None:
                 user_property = UserProperty()
             self.register(platform_type, id, user_property)
+            return False
         return True
 
     def save_test(self):
