@@ -25,15 +25,11 @@ class DBModule:
         self.db.child("users").child(platform_type).child(id).set(info)
 
     def verification(self, platform_type, id):
-        users = self.db.child("users").child(platform_type).get().val()
-        if users == None:
+        user = self.db.child("users").child(platform_type).child(id).get().val()
+        if user == None:
             return False
-        
-        for user in users:
-            if user == str(id):
-                return True
-            
-        return False
+        else:
+            return True
 
     def get_user_property(self, platform_type, id):
         return self.db.child("users").child(platform_type).child(id).get().val()
@@ -45,6 +41,12 @@ class DBModule:
                 user_property = UserProperty()
             self.register(platform_type, id, user_property)
             return False
+        else:
+            original_prop = self.db.child("users").child(platform_type).child(id).get().val()
+            diff_prop = {k: v for k, v in asdict(user_property).items() if original_prop.get(k) != v}
+            if diff_prop:
+                self.db.child("users").child(platform_type).child(id).update(diff_prop)
+
         return True
 
     def save_test(self):
