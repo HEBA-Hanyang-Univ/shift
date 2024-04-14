@@ -3,6 +3,7 @@ import secureLocalStorage from "react-secure-storage";
 const HandleLogin = (onAuthSuccess, from, navigate) => {
   const verifyLogin = async () => {
     try {
+        console.log(`${process.env.REACT_APP_SERVER_IP}/verify_login`);
         const response = await fetch(`${process.env.REACT_APP_SERVER_IP}/verify_login`, {
             method: "GET",
             headers: {
@@ -10,6 +11,7 @@ const HandleLogin = (onAuthSuccess, from, navigate) => {
             },
             credentials: "include",
         });
+	console.log(response);
         if (response.status === 200) {
             const resp_data = await response.json();
             for (let key in resp_data) {

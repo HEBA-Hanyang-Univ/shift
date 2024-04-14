@@ -19,15 +19,16 @@ DB = DBModule()
 
 #Release: http://shift2me.com 
 #Debug: http://localhost:3000
-react_host = "http://localhost:3000"
+react_host = "http://shift2me.com"
 
 @app.route("/kakao_login")
 def kakao_login():
     if "KAKAOTALK" in request.headers.get('User-Agent'):
         #TODO: redirect to a react page that asserts change browser
-        return redirect(url_for(""), 302)
+        return redirect(url_for(react_host), 302)
     else:
         return redirect(f"https://kauth.kakao.com/oauth/authorize?client_id={KAKAO_CLIENT_ID}&redirect_uri={KAKAO_REDIRECT_URI}&prompt=select_account&response_type=code")
+
 '''
 @app.route("/naver_login")
 def naver_login():
@@ -80,6 +81,8 @@ def kakao_callback():
                 if "phone_number" in my_info_json["kakao_account"]:
                     prop.phone_number = my_info_json["kakao_account"]["phone_number"]
             else:
+                print('kakao account info not exist')
+                logger.info(f'no kakao account info: {my_info_json}')
                 return make_response("no kakao account info", 403)
 
             resp_data = {}
@@ -95,18 +98,22 @@ def kakao_callback():
             session["access_expires"] = now + timedelta(seconds=token_json["expires_in"])
             session["refresh_token"] = token_json["refresh_token"]
             session["refresh_expires"] = now + timedelta(seconds=token_json["refresh_token_expires_in"])
-
             #session["expires_in"] = token_json["expires_in"]
             #session["refresh_token_expires_in"] = token_json["refresh_token_expires_in"]
             #session["login_time"] = datetime.now()
             return make_response(resp_data, resp_code)
         else:
+            print('failed to get token from kakao: ', token_json)
+            logger.info(f'failed to get token from kakao: {token_json}')
             return make_response("failed to get token", 403)
 
     else:
+        print('error occured while login to kakao')
         error_type = request.args.get("error")
         error_description = request.args.get("error_description")
+        logger.info(f'error occured while login to kakao, error: {error_type}, description: {error_description}')
         return make_response(f"error: {error_type}\n description: {error_description}", 403)
+
 '''
 @app.route("/naver_callback")
 def naver_callback():
@@ -235,3 +242,6 @@ def _refresh_token():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+

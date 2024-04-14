@@ -12,5 +12,6 @@ app.secret_key = Flask_secret_key #os.environ.get("SECRET_KEY") or os.urandom(24
 #app.config['JWT_COOKIE_SECURE'] = False # in production, set to True
 #app.config['JWT_COOKIE_CSRF_PROTECT'] = True
 app.config['SESSION_TYPE'] = 'filesystem'
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}}, supports_credentials=True)
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+CORS(app, resources={r"/*": {"origins": "https://shift2me.com"}}, supports_credentials=True)
 Session(app)
