@@ -159,7 +159,6 @@ def google_callback():
 def verify_login():
     if validate_token():
         userProp = DB.get_user_property(session["login_type"], session["id"])
-        print(userProp)
         resp_data = {}
         resp_data["name"] = userProp['name']
         return make_response(resp_data, 200)
