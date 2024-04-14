@@ -31,8 +31,6 @@ function HashTagComponent({ hashTagTop, hashTagBottom}) {
   );
 }
 
-// meterValues
-// meterValues example : {MZ: 50, T: 70, R: 30, O: 25}
 function RangeDisplay ({className, label1, label1Span, label2, label2Span, value}) {
   return (
     <div className={`rangeDisplay ${className}`}>
@@ -52,7 +50,8 @@ function RangeDisplay ({className, label1, label1Span, label2, label2Span, value
 }
 
 
-const ResultDetail = ({ mzType, meterValues }) => { 
+const ResultDetail = ({ data }) => { 
+  const { mzType, meterValues } = data;
 
   // 기본 값 TRO
   const setData = stateData[mzType] || stateData.TRO;
