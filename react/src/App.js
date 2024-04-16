@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import { React, useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 import "./App.scss";
-import { Header } from "./components/Header/Header";
+import Header from "./components/Header/Header";
 import SocialLogin from "./pages/SocialLogin";
 import KakaoCallback from "./components/Login/SocialLoginCallback"
 import TOS from "./pages/TOS";

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./Header.scss";
 import Logo from "../../assets/images/HeaderLogo.svg";
 import NavBtn from "../../assets/images/NavBtn.svg";
-import { HamburgerMenu } from "../Hamburger/HamburgerMenu";
+import HamburgerMenu from "../Hamburger/HamburgerMenu";
 import { Link } from "react-router-dom";
 
-export const Header = ({ name }) => {
+const Header = ({ name }) => {
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
   
   const toggleHamburgerMenu = () => {
@@ -32,4 +32,6 @@ export const Header = ({ name }) => {
       </div>
     </div>
   );
-}
+};
+
+export default Header;
