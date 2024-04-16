@@ -1,13 +1,31 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import "../../assets/styles/Result/Result.scss";
 import Arrow from "../../assets/images/rangeArrow.png";
 
 const ResultMZSectionOne = ({ username, correctKeywords, percentage }) => {
+  const [rangeWidth, setRangeWidth] = useState(17);
 
-  const arrowWidth = 0.6; // 화살표 너비
-  const rangeWidth = 17;
-  const marginLeft = (rangeWidth - arrowWidth) * (percentage / 100); // 화살표 위치 계산
+  useEffect(() => {
+    // update rangeWidth based on media query
+    const updateRangeWidth = () => {
+      if (window.matchMedia("(max-width: 300px)").matches) {
+        setRangeWidth(14);
+      } else {
+        setRangeWidth(17);
+      }
+    };
 
+    // add event listener for window resize
+    updateRangeWidth();
+    window.addEventListener("resize", updateRangeWidth);
+
+    // remove event listener when component unmounts
+    return () => window.removeEventListener("resize", updateRangeWidth);
+   }, []); // empty dependency array to run only once
+
+   const arrowWidth = 0.6;
+   const marginLeft = (rangeWidth - arrowWidth) * (percentage / 100);
+   
   return(
     <div className="rsSectionOne"> 
       <div className="rsSectionOneTitle">
@@ -20,7 +38,7 @@ const ResultMZSectionOne = ({ username, correctKeywords, percentage }) => {
         </div>
         {/* TODO : 추후 상위 퍼센트 넣기 */}
         <div className="rsSectionOneSubTitleBottom">
-          <span className="rsosBold">자기객관화 상위 5%</span>
+          <span className="rsosBold">자기객관화 상위 {percentage}%</span>
           <span className="rsosGray">&nbsp;입니다.</span>
         </div>
       </div>

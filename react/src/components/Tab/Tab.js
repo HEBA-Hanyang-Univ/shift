@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { ResultSummary } from "../../pages/Result/MZ/ResultSummary";
-import ResultDetail from "../../pages/Result/MZ/ResultDetail";
+import ResultSummary from "../../pages/Result/MZTabContent/ResultSummary";
+import ResultDetail from "../../pages/Result/MZTabContent/ResultDetail";
 import "./Tab.scss";
 
-export const Tab = () => {
+export const Tab = ({ data }) => {
   const [currentTab, setCurrentTab] = useState(0);
 
   const tabList = [
-    { name: '결과 요약', content: <ResultSummary/> },
+    { name: '결과 요약', content: <ResultSummary data={data} /> },
     // TODO : meterValues 받아오기
-    { name: '자세히 보기', content: <ResultDetail meterValues={{MZ: 50, T: 50, R: 30, O: 25}}/>},
+    { name: '자세히 보기', content: <ResultDetail data={data}/>},
     { name: '응답자 통계', content: <div>준비중입니다.</div> }
   ]; 
 
