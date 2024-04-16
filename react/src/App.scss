@@ -95,3 +95,61 @@ a {
     }
   }
 }
+
+// TOS
+.tosTitle {
+  margin: 1.35rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .subTitle {
+    color: #000;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: -0.03rem;
+  }
+  
+  .mainTitle {
+    padding-top: 0.2rem;
+    color: #9B76AB;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.12rem;
+  }
+}
+
+.tosContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+
+  section {
+    width: 88%;
+    
+    .tosContentTitle {
+      color: #000;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: -0.03rem;
+    }
+
+    .tosContentText {
+      margin: 0.3rem 0 0.95rem;
+      color: #000;
+      font-size: 0.7rem;
+      font-weight: 700;
+      line-height: 1.062rem;
+      letter-spacing: -0.03rem;
+
+      ol {
+        padding-left: 1rem;
+        list-style:inside;
+      }
+    }
+  }
+}

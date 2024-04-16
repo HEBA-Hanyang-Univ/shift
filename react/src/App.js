@@ -5,6 +5,8 @@ import "./App.scss";
 import { Header } from "./components/Header/Header";
 import SocialLogin from "./pages/SocialLogin";
 import KakaoCallback from "./components/Login/SocialLoginCallback"
+import TOS from "./pages/TOS";
+import Privacy from "./pages/Privacy";
 
 import StartHost from "./pages/LinkSender/StartHost";
 import InfoHost from "./pages/LinkSender/InfoHost";
@@ -82,6 +84,10 @@ function App() {
           {/* Result */}
           <Route path="/result/dashboard" element={<ResultDashBoard/>}></Route>
           <Route path="/result/detail" element={<Result/>}></Route>
+
+          {/* Footer Links */}
+          <Route path="/terms" element={<TOS/>}></Route>
+          <Route path="/privacy" element={<Privacy/>}></Route>
         </Routes>
       </Router>
     </div>
