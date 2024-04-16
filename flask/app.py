@@ -9,7 +9,7 @@ from flask import redirect, url_for, session, request, jsonify, make_response
 import requests
 from config import KAKAO_CLIENT_ID, KAKAO_SECRET, KAKAO_REDIRECT_URI, NAVER_CLIENT_ID, NAVER_SECRET, NAVER_REDIRECT_URI, GOOGLE_SECRET, GOOGLE_CLIENT_ID, GOOGLE_REDIRECT_URI
 #from model import UserData_N, UserModel, UserData_G, UserData_K
-from DBhandler import DBModule, UserProperty
+from DBhandler import DBModule, UserProperty, EPATest, EPAReply
 from flask_app import *
 import logs
 from datetime import datetime, timedelta
@@ -105,7 +105,7 @@ def kakao_callback():
         else:
             print('failed to get token from kakao: ', token_json)
             logger.info(f'failed to get token from kakao: {token_json}')
-            return make_response("failed to get token", 403)
+            return make_response("failed to get token", 401)
 
     else:
         print('error occured while login to kakao')
@@ -163,12 +163,12 @@ def verify_login():
         resp_data["name"] = userProp['name']
         return make_response(resp_data, 200)
     else:
-        return make_response("not_logged_in", 403)
+        return make_response("not_logged_in", 401)
 
 @app.route("/logout")
 def logout():
     if not validate_token():
-        return make_response("already_logged_out", 403)
+        return make_response("already_logged_out", 401)
 
     access_token = session["access_token"]
     if "login_type" in session and session["login_type"] == "KAKAO":
@@ -200,7 +200,50 @@ def logout():
 
         return response
     '''
-    return make_response("failed_to_logout", 403)
+    return make_response("failed_to_logout", 401)
+
+@app.route("/save_epa", methods=['POST'])
+def save_epa_test():
+    if not validate_token():
+        return make_response("not_logged_in", 401)
+
+    data = request.get_json()
+
+    test = EPATest()
+    test.age = data.get("age")
+    test.nickname = data.get("nickname")
+    test.gender = data.get("gender")
+    test.notification_agree = data.get("notification_agree")
+    test.keyword_myself = data.get("keyword_myself")
+    test.keyword_want = data.get("keyword_want")
+    test.keyword_others = data.get("keyword_others")
+    test.replies = []
+    tid = DB.save_epa_test(session["login_type"], session["id"], test);
+
+    result = {"tid": tid}
+    return make_response(result, 201);
+
+@app.route("/save_epa_reply", methods=['POST'])
+def save_epa_reply():
+    data = request.get_json()
+    reply = EPAReply()
+    reply.anonymous = data.get("anonymous")
+    reply.nickname = data.get("nickname")
+    reply.age_range = data.get("age_range")
+    reply.gender = data.get("gender")
+    reply.relationship = data.get("relationship")
+    reply.keyword_selected = data.get("keyword_selected")
+    reply.one_line_intro = data.get("one_line_intro")
+    tid = data.get("tid")
+
+    if DB.save_epa_reply(tid, reply):
+        return make_response("success", 201)
+    else:
+        return make_response("failed", 401)
+
+@app.route("/epa_keywords", methods=['GET'])
+def get_all_epa_keywords():
+    return make_response(DB.get_all_epa_keywords(), 200)
 
 # This function is used to validate the token in the session
 # If there's no token in the session, it returns False, so you can use this function to check if the user is logged in

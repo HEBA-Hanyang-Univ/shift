@@ -6,6 +6,7 @@ import pyrebase
 from config import FIREBASE_CONFIG
 from dataclasses import asdict, dataclass, field
 from typing import Dict, List
+from EPAKeyword import EPAKeyword
 
 @dataclass
 class UserProperty:
@@ -43,6 +44,7 @@ class DBModule:
     def __init__(self):
         firebase = pyrebase.initialize_app(FIREBASE_CONFIG)
         self.db = firebase.database()
+        self.keywords_epa = EPAKeyword().get_dict()
 
     def register(self, platform_type, id, user_property: UserProperty):
         info = asdict(user_property)
@@ -110,3 +112,5 @@ class DBModule:
     def get_test_list(self, platform_type, id):
         return self.db.child("users").child(platform_type).child(id).child("tests").get().val()
 
+    def get_all_epa_keywords(self):
+        return self.keywords_epa
