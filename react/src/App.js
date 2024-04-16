@@ -7,6 +7,7 @@ import SocialLogin from "./pages/SocialLogin";
 import KakaoCallback from "./components/Login/SocialLoginCallback"
 import TOS from "./pages/TOS";
 import Privacy from "./pages/Privacy";
+import Error from "./pages/Error";
 
 import StartHost from "./pages/LinkSender/StartHost";
 import InfoHost from "./pages/LinkSender/InfoHost";
@@ -88,6 +89,7 @@ function App() {
           {/* Footer Links */}
           <Route path="/terms" element={<TOS/>}></Route>
           <Route path="/privacy" element={<Privacy/>}></Route>
+          <Route path="/*" element={<Error/>}></Route>
         </Routes>
       </Router>
     </div>
