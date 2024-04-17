@@ -424,12 +424,8 @@
     }
 
     .rsSectionThreeSpin {
-      margin: 1rem 0 1.3  rem;
-
-      .rsSwiperWrapper {
-        width: 100%;
-        height: 20rem;
-      }
+      margin: 1rem 0 1.3rem;
+      width: 100%;
     }
     
   }
@@ -707,4 +703,82 @@
   .rsSectionOneRange {
     width: 15rem !important;
   } 
+}
+
+
+// Slider
+
+.swiperContainer {
+  width: 100%;
+  height: 14rem;
+  display: grid !important;
+  grid-template-rows: 0.72fr 0.72fr 1fr 0.72fr 0.72fr;
+
+  .swiperSlide {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    transition: background 0.3 ease;
+
+    .swiperSlideText {
+      line-height: 0.8rem;
+      color: #000;
+      font-size: 0.84rem;
+      font-weight: 600;
+      transition: font-size 0.3s ease-in, color 0.3s ease-in;
+    }    
+  }
+  .swiper-slide-prev, .swiper-slide-next {
+     .swiperSlideText {
+      font-size: 0.98rem;     
+    }
+  }
+
+  .swiper-slide-prev {
+    .swiperSlideText {
+      margin-top: -0.3rem;
+    }
+  }
+
+  .swiper-slide-next {
+    .swiperSlideText {
+      margin-top: 0.5rem;
+    }
+  }
+
+  .swiper-slide-active {
+    height: 3.2rem;
+
+    .swiperSlideText {
+      color: #FFF;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.05rem;
+    }
+  }
+}
+
+.swiperBox {
+  width: 100%;
+  height: 14rem;
+  margin-top: -14rem;
+  display: grid !important;
+  grid-template-rows: 0.72fr 0.72fr 1fr 0.72fr 0.72fr;
+  border: none;
+  z-index: -2;
+
+  .swiperBox1, .swiperBox5 {
+    background-color: #F6F6F6;
+  }
+
+  .swiperBox2, .swiperBox4 {
+    background-color: #E9E9E9;
+  }
+
+  .swiperBox3 {
+    background: linear-gradient(90deg, #9C76AC 5.29%, #9C76AC 5.3%, #B695C5 51.39%, #9C76AC 94.8%);
+  }
 }
