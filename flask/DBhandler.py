@@ -112,5 +112,8 @@ class DBModule:
     def get_test_list(self, platform_type, id):
         return self.db.child("users").child(platform_type).child(id).child("tests").get().val()
 
+    def get_epa_test(self, tid):
+        return self.db.child("tests").child("epa").child(tid).get().val()
+
     def get_all_epa_keywords(self):
         return self.keywords_epa

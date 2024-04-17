@@ -245,6 +245,57 @@ def save_epa_reply():
 def get_all_epa_keywords():
     return make_response(DB.get_all_epa_keywords(), 200)
 
+@app.route("/my_tests", methods=['GET'])
+def get_my_tests():
+    if not validate_token():
+        return make_response("not_logged_in", 401)
+
+    result = {}
+
+    test_list = DB.get_test_list(session["login_type"], session["id"])
+    if test_list == None:
+        return make_response(result, 200)
+
+    tid = test_list["epa"]
+    if tid == None:
+        return make_response(result, 200)
+
+    test = DB.get_epa_test(tid)
+    if test == None:
+        return make_response(result, 200)
+
+    t = [tid, len(test.get("replies")) if test.get("replies") != None else 0]
+    result["epa"] = t
+    return make_response(result, 200)
+
+@app.route("/epa_test_reply/<tid>", methods=['GET'])
+def get_epa_test(tid):
+    test = DB.get_epa_test(tid)
+    if test == None:
+        return make_response("no test", 404)
+
+    result = {}
+    result['nickname'] = test.nickname
+    #TODO: check this number is relies on the number of replies or the total number of all tests
+    result['total_num'] = len(test.replies) if test.replies != None else 0
+    result['keyword_myself'] = test.keyword_myself
+    result['keyword_want'] = test.keyword_want
+    result['keyword_others'] = test.keyword_others
+
+    return make_response(result, 200)
+
+@app.route("/result/epa", methods=['GET'])
+def get_epa_result():
+    if not validate_token():
+        return make_response("not_logged_in", 401)
+
+    tests = DB.get_test_list(session['login_type'], session['id'])
+    if tests == None or tests['epa'] == None:
+        return make_response("no test", 404)
+
+    return make_response(tests['epa'], 200)
+
+
 # This function is used to validate the token in the session
 # If there's no token in the session, it returns False, so you can use this function to check if the user is logged in
 # Also, this function includes a token validation process with _refresh_token() function
@@ -275,8 +326,9 @@ def _refresh_token():
         now = datetime.now()
         session["access_token"] = token_json["access_token"]
         session["access_expires"] = now + timedelta(seconds=token_json["expires_in"])
-        session["refresh_token"] = token_json["refresh_token"]
-        session["refresh_expires"] = now + timedelta(seconds=token_json["refresh_token_expires_in"])
+        if "refresh_token" in token_json:
+            session["refresh_token"] = token_json["refresh_token"]
+            session["refresh_expires"] = now + timedelta(seconds=token_json["refresh_token_expires_in"])
         return True
     else:
         session.clear()
