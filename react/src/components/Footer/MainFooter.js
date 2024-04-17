@@ -2,6 +2,8 @@ import React from "react";
 import SHIFT_LOGO from "../../assets/images/ShiftLogo_Purple.svg";
 import SHIFT_ICON from "../../assets/images/ShiftIcon_transparent.png";
 import META_SEQUOIA_ICON from "../../assets/images/MetaSequoia.png";
+import { Link } from "react-router-dom";
+import TOS from "../../pages/TOS";
 
 export const MainFooter = () => {
   return (
@@ -30,8 +32,16 @@ export const MainFooter = () => {
         <div>
           <div style={{fontSize: '0.6rem', fontFamily: 'Wanted Sans', fontWeight: '500', letterSpacing: 0.96, wordWrap: 'break-word'}}>
             <span style={{color: '#818181', textAlign:'end', paddingRight: '0.4rem'}}>Contact Us : godsaenglab@gmail.com</span>
-            <span style={{color: '#CACACA', paddingRight: '0.4rem'}}>이용약관</span>
-            <span style={{color: '#CACACA'}}>개인정보처리방침</span>
+            <Link to="/terms" style={{color: '#CACACA', paddingRight: '0.4rem'}}>
+              <span>
+                이용약관
+              </span>
+            </Link>
+            <Link to="/privacy" style={{color: '#CACACA', paddingRight: '0.4rem'}}>         
+              <span>
+                개인정보처리방침
+              </span>
+            </Link>
           </div>
         </div>
         <div style={{width:'100%', display:'flex', justifyContent: 'space-between', color: '#5A5A5A', fontSize: '0.5rem', fontFamily: 'Wanted Sans', fontWeight: '500', letterSpacing: 0.78, wordWrap: 'break-word'}}>
