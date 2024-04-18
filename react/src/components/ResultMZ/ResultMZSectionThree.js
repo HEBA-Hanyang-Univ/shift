@@ -1,12 +1,20 @@
 import React from "react";
 import "../../assets/styles/Result/Result.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/scss";
+import 'swiper/scss';
 
-import {Scrollbar} from "swiper/modules";
+import 'swiper/scss/pagination';
+import { Pagination, Autoplay, Navigation } from 'swiper/modules';
 
-const ResultMZSectionThree = ({username}) => {
+const ResultMZSectionThree = ({username, descriptionSentences }) => {
 
+  const BOX_COUNT = 5;
+  const MIN_SLIDES = 5;
+
+  // descriptionSentences가 5개 이하일 경우, 배열을 확장
+  while (descriptionSentences.length <= MIN_SLIDES) {
+    descriptionSentences = descriptionSentences.concat(descriptionSentences);
+  }
 
   return (
     <div className="rsSectionThree">
@@ -27,24 +35,33 @@ const ResultMZSectionThree = ({username}) => {
           <span className="titleBlack">님은</span>
         </div>
         <div className="rsSectionThreeSpin">
-          <Swiper
-            direction={"vertical"}
-            className="rsSwiperWrapper"
-            spaceBetween={0}
-            slidesPerView={3}
+          {/* Slider */}
+          <Swiper 
+            className="swiperContainer"
+            slidesPerView={5}
+            direction={'vertical'}
             loop={true}
-            resistance={false}
             centeredSlides={true}
-            modules={[Scrollbar]}
+            modules={[Pagination, Autoplay, Navigation]}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
           >
-            <SwiperSlide>1</SwiperSlide>
-            <SwiperSlide>2</SwiperSlide>
-            <SwiperSlide>3</SwiperSlide>
-            <SwiperSlide>4</SwiperSlide>
-            <SwiperSlide>5</SwiperSlide>
-            {/* infinite scroll works when the preview is more than the slide. */}
-            <SwiperSlide>1</SwiperSlide>
+            {descriptionSentences.map((sentence, index) => (
+              <SwiperSlide 
+                key={index}
+                className="swiperSlide"
+              >
+                <span className="swiperSlideText">{sentence}</span>
+              </SwiperSlide>
+            ))}
           </Swiper>
+          <div className="swiperBox">
+            {Array.from({ length: BOX_COUNT }, (_, index) => (
+                <div key={index} className={`swiperBox${index + 1}`}></div>
+              ))}
+          </div>
         </div>
       </div>
     </div>

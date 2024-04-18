@@ -22,7 +22,10 @@ const ResultSummary = ({ data }) => {
           typeOfUser={typeOfUser}       
         />
         {/* OneLineDescription  */}
-        <ResultMZSectionThree username={username}/>
+        <ResultMZSectionThree 
+          username={username}
+          descriptionSentences={descriptionSentences}
+        />
       </div>
     </div>
   );  
