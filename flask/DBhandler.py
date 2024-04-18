@@ -37,7 +37,14 @@ class EPAReply:
     gender: str = 'unknown'
     relationship: str = 'unknown'
     age_range: str = 'unknown'
-    keyword_selected: Dict = field(default_factory=dict)
+    keyword_selected: List = field(default_factory=list)
+    keyword_detail: Dict = field(default_factory=dict)
+    keyword_in_myself: List = field(default_factory=list)
+    keyword_not_in_myself: List = field(default_factory=list)
+    keyword_in_want: List = field(default_factory=list)
+    keyword_not_in_want: List = field(default_factory=list)
+    keyword_in_others: List = field(default_factory=list)
+    keyword_not_in_others: List = field(default_factory=list)
     one_line_intro: str = 'unknown'
 
 class DBModule:
@@ -49,6 +56,16 @@ class DBModule:
     def register(self, platform_type, id, user_property: UserProperty):
         info = asdict(user_property)
         self.db.child("users").child(platform_type).child(id).set(info)
+
+        user_count = self.db.child("user_count").get().val()
+        if user_count == None:
+            user_count = {"total": 0, "KAKAO": 0, "NAVER": 0, "GOOGLE": 0}
+        self.db.child("user_count").child("total").set(user_count.get("total") + 1)
+        platform_user_count = user_count.get(platform_type, 0)
+        self.db.child("user_count").child(platform_type).set(platform_user_count + 1)
+
+    def get_user_count(self):
+        return self.db.child("user_count").child("total").get().val()
 
     def verification(self, platform_type, id):
         user = self.db.child("users").child(platform_type).child(id).get().val()
@@ -64,7 +81,7 @@ class DBModule:
     def sign_in(self, platform_type, id, user_property: UserProperty = None):
         if not self.verification(platform_type, id):
             if user_property == None:
-                user_property = UserProperty()
+                return False
             self.register(platform_type, id, user_property)
             return False
 
@@ -90,7 +107,17 @@ class DBModule:
         # update user's test data
         self.db.child("users").child(platform_type).child(id).child("tests").child("epa").set(tid)
 
+        # update test count
+        test_count = self.db.child("test_count").get().val()
+        if test_count == None:
+            test_count = {"total": 0, "epa": 0}
+        self.db.child("test_count").child("total").set(test_count.get("total") + 1)
+        self.db.child("test_count").child("epa").set(test_count.get("epa") + 1)
+
         return tid
+
+    def get_test_count(self):
+        return self.db.child("test_count").child("total").get().val()
 
     def save_epa_reply(self, tid, reply: EPAReply):
         # check tid is valid
@@ -107,7 +134,15 @@ class DBModule:
             replies = before + [info]
 
         self.db.child("tests").child("epa").child(tid).child("replies").set(replies)
+
+        reply_count = self.db.child("reply_count").get().val()
+        if reply_count == None:
+            reply_count = 0
+        self.db.child("reply_count").set(reply_count + 1)
         return True
+
+    def get_reply_count(self):
+        return self.db.child("reply_count").get().val()
 
     def get_test_list(self, platform_type, id):
         return self.db.child("users").child(platform_type).child(id).child("tests").get().val()
