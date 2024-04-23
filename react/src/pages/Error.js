@@ -1,9 +1,27 @@
-import React from "react";
-import ErrorImg from "../assets/images/Result/Preparing.svg";
+import React, { useState, useEffect } from "react";
+import ErrorImg from "../assets/images/Result/Preparing.png";
 import { Link } from "react-router-dom";
 import { Button } from "../components/Button/Button";
 
 const Error = () => {
+  const [keywords, setKeywords] = useState({});
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:5000/epa_keywords')
+      .then((response) => {
+        // 응답을 JSON으로 변환
+        return response.json();
+      })
+      .then((data) => {
+        // 변환된 JSON을 사용하여 상태 설정
+        setKeywords(data);
+      })
+      .catch((error) => {
+        // 오류 처리
+        console.error('Error!', error);
+      });
+  }, []);
+
   return (
     <div id="Container" className="errorContainer">
       <div className="errorWrapper">
