@@ -1,11 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Arrow from "../../assets/images/headerArrow.svg";
+import secureLocalStorage from "react-secure-storage";
 import "./Hamburger.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const HamburgerMenu = ({ toggleMenu }) => {
 
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const loggedIn = secureLocalStorage.getItem("isLoggedIn");
+    setIsLoggedIn(loggedIn);
+  }, []);
+
+  const handleLogout = () => {
+    secureLocalStorage.clear();
+    setIsLoggedIn(false);
+    navigate("/"); // redirect to main page
+  };
+
   const showPreparationAlert = () => {
     alert("준비중입니다!  다음 컨텐츠도 기대헤주세요 :)");
   };
@@ -40,9 +55,15 @@ const HamburgerMenu = ({ toggleMenu }) => {
             </a>
         </li>
         <Link to={"/login"} onClick={toggleMenu}>
-          <li className="hamburgerLi">
-            <span className="hamburgerLiSpan">로그인</span>
-          </li>
+          {isLoggedIn ? (
+            <li className="hamburgerLi" onClick={handleLogout}>
+              <span className="hamburgerLiSpan">로그아웃</span>
+            </li>
+          ) : (
+            <li className="hamburgerLi">
+              <span className="hamburgerLiSpan">로그인</span>
+            </li>
+          )}
         </Link>
       </ul>
     </div>
