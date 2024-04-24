@@ -56,6 +56,7 @@
                         placeholder="일화를 입력하세요" 
                         value={keyword.reason} 
                         onChange={(e) => updateReason(keyword.id, e.target.value)}
+                        maxLength={150}
                       />
                     </motion.div>
                   )}

@@ -72,7 +72,10 @@ const InfoGuest = () => {
         </div>
         <div className="igInputName">
           <span id="infoTitle">이름 또는 별명을 입력하세요.</span>
-          <input placeholder="이름을 입력하세요" onChange={handleNameChange}></input>
+          <input 
+            placeholder="이름을 입력하세요" onChange={handleNameChange}
+            maxLength={10}
+          ></input>
         </div>
         <div className="igInputGender">
           <span id="infoTitle">성별을 선택해주세요.</span>

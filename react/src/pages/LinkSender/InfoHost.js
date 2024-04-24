@@ -43,7 +43,11 @@ const InfoHost = () => {
           <span id="infoTitle">
             이름 또는 별명을 입력하세요.
           </span>
-          <input placeholder="이름 또는 별명을 입력하세요" onChange={handleNameChange}></input>
+          <input 
+            type="text"
+            placeholder="이름 또는 별명을 입력하세요" onChange={handleNameChange}
+            maxLength={10}
+          ></input>
         </div>
         <div className="ihInputGender">
           <span id="infoTitle">

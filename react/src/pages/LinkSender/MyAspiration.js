@@ -39,7 +39,7 @@ const MyAspiration = () => {
     <div id="Container" className="miContainer">
       <div className="idTitle">
         <div className="idTitleTop">
-          <span className="idTitleUserName">username</span>
+          <span className="idTitleUserName">{username}</span>
           <span className="idTitleSpan">님을 나타내지 않지만</span>
         </div>
         <div className="idTitleBottom">

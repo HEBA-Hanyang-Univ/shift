@@ -14,7 +14,10 @@ import { GuestFooter } from "../../components/Footer/GuestFooter";
    const handleInputChange = (e) => {
       setInputValue(e.target.value);
    };
-  
+
+   // 입력되었던 데이터 전송
+
+   
    return (
     <div id="Container">
       <div className="odWrapper">
@@ -32,7 +35,13 @@ import { GuestFooter } from "../../components/Footer/GuestFooter";
             <span className="odInputTop">{username}은 </span>
             <br/>
             {/* TODO : 사용자 입력값 처리 */}
-            <input className="odInputMiddle"  placeholder="사람이지만 그냥 돌인척 하는 애" value={inputValue} onChange={handleInputChange}/>
+            <input 
+               className="odInputMiddle"  placeholder="사람이지만 그냥 돌인척 하는 애" 
+               value={inputValue} 
+               type="text"
+               onChange={handleInputChange}
+               maxLength={20}
+            />
             <br/>
             <span className="odInputBottom">이다.</span>
          </div>
