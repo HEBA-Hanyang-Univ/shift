@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button } from "../Button";
 import "../Button.scss";
 
-export const KeywordBtnBox = ({ keywords, width, height, className, onKeywordClick, selectedKeywords }) => {
 
+export const KeywordBtnBox = ({ keywords, onKeywordClick, selectedKeywords }) => {
+
+  
   // activeButtons: 키워드 버튼의 활성화 여부를 관리하는 상태
   const [activeButtons, setActiveButtons] = useState(
     keywords.flat().reduce((acc, keyword) => ({ ...acc, [keyword]: true }), {})
@@ -31,24 +33,26 @@ export const KeywordBtnBox = ({ keywords, width, height, className, onKeywordCli
     setActiveButtons(prev => ({...prev, [keyword]: !prev[keyword]}));
   };
 
-
   return (
-    <div className="keywordBtnBox">
+    <div className="keywordBtnWrapper">
       {keywords.map((keywordGroup, index) => (
-        <div className={`keywordRow keywordRow-${index}`} key={index}>
-          {keywordGroup.map((keyword, subIndex) => (
-          <Button
-            width={width}
-            height={height}
-            className={`${className} ${activeButtons[keyword] ? 'buttonInactive' : 'buttonActive'}`}
-            onClick = {() => handleClick(keyword)}
-            key={`${index}-${subIndex}`}
+          <div 
+            key={index} 
+            className={`keywordRow ${index === 0 ? 'marginFirstRow' : index === 2 ? 'marginThirdRow' : ''}`}
           >
-            {keyword}
-          </Button>
-          ))}
+              {keywordGroup.map((keyword, subIndex) => (  
+                <Button
+                  width={5.1}
+                  height={3.51}
+                  className={`keywordBtn ${activeButtons[keyword] ? 'buttonInactive' : 'buttonActive'}`}
+                  onClick = {() => handleClick(keyword)}
+                  key={`${index}-${subIndex}`}
+                >
+                  {keyword}
+                </Button>
+              ))}
         </div>
-      ))}
+      ))}      
     </div>
   );
 };

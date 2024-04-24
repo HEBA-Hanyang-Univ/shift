@@ -26,6 +26,7 @@ import CompleteGuest from "./pages/LinkReceiver/CompleteGuest";
 import ResultDashBoard from "./pages/Result/ResultDashBoard";
 import Result from "./pages/Result/Result";
 import HandleLogin from "./components/Login/HandleLogin";
+import { KeywordsProvider } from "./assets/data/MZ/KeywordsProvider";
 
 function App() {
   const loginRequired = (pathname) => {
@@ -58,6 +59,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <KeywordsProvider>
         <LoginCheck />
         <ScrollToTop />
         <Header name={username}/>
@@ -91,6 +93,7 @@ function App() {
           <Route path="/privacy" element={<Privacy/>}></Route>
           <Route path="/*" element={<Error/>}></Route>
         </Routes>
+        </KeywordsProvider>
       </Router>
     </div>
   )

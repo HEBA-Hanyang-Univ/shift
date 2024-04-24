@@ -3,19 +3,24 @@ import "../../assets/styles/LinkSender/MyIdentity.scss";
 import { KeywordBtnBoxContainer } from "../../components/Button/KeywordBox/KeywordBtnBoxContainer";
 import { SelectedKeyword } from "../../components/Button/KeywordBox/SelectedKeyword";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
+import { useKeywords } from "../../assets/data/MZ/KeywordsProvider";
 
-// dummy data
-const dummyKeywords = [
-  ["지혜로운", "옷을 굉장히 잘 입는", "방구를 심히 잘 뀌어버리는", "킹 받는", "밥을 잘 사주는 이쁜", "아는체를 잘하는"], 
-  ["마음씨가 고운", "행복한", "버블티", "vkdfld", "항상 감사하고", "응원해주시고"], 
-  ["성원해주시고", "자고싶어", "ㅗ", "개강하기 싫은", "무엇을 쓸 지 모르겠는", "이것은"],
-  ["더미데이터", "아이스 아메리카노", "기이이이이이인 문장", "키워드", "세 단어만 더", "두 단어만 더"]
-]
 
 const MyIdentity = () => {
+  const { keywords } = useKeywords();
   const [selectedKeywords, setSelectedKeywords] = useState([]);
 
-  const [username, setUsername] = useState("username"); // TODO: 추후 사용자 이름 받아오기
+  // 데이터에 들어가도록 가공
+  // keywords에서 0번째 요소만 추출
+  const keywordZeroIndex = Object.values(keywords).map(arr => arr[0]);
+
+  const groupSize = Math.ceil(keywordZeroIndex.length / 4);
+
+  const keywordList = Array.from({ length: 4 }, (_, i) => 
+  keywordZeroIndex.slice(i * groupSize, i * groupSize + groupSize)
+  );
+
+  const [username, setUsername] = useState("username");
 
   const handleKeywordClick = (keyword) => {
     // if keyword is already selected, remove it from selectedKeywords
@@ -42,7 +47,7 @@ const MyIdentity = () => {
         </div>
       </div>
       <KeywordBtnBoxContainer
-        keywords={dummyKeywords}
+        keywords={keywordList}
         selectedKeywords={selectedKeywords}
         onKeywordClick={handleKeywordClick}
       />
