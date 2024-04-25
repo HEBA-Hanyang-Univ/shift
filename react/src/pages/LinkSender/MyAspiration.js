@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../assets/styles/LinkSender/MyIdentity.scss";
 import { KeywordBtnBoxContainer } from "../../components/Button/KeywordBox/KeywordBtnBoxContainer";
 import { SelectedKeyword } from "../../components/Button/KeywordBox/SelectedKeyword";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
 import { useKeywords } from "../../assets/data/MZ/KeywordsProvider";
-
+import secureLocalStorage from "react-secure-storage";
 
 const MyAspiration = () => {
   const { keywords } = useKeywords();
@@ -12,15 +12,31 @@ const MyAspiration = () => {
 
   // 데이터에 들어가도록 가공
   // keywords에서 0번째 요소만 추출
-  const keywordZeroIndex = Object.values(keywords).map(arr => arr[0]);
+  const processKeywords = (keywords) => {
+    const keywordZeroIndex = Object.values(keywords).map(arr => arr[0]);
+    const groupSize = Math.ceil(keywordZeroIndex.length / 4);
+    return Array.from({ length: 4 }, (_, i) => 
+      keywordZeroIndex.slice(i * groupSize, i * groupSize + groupSize)
+    );
+  };
 
-  const groupSize = Math.ceil(keywordZeroIndex.length / 4);
+  const keywordList = processKeywords(keywords);
 
-  const keywordList = Array.from({ length: 4 }, (_, i) => 
-  keywordZeroIndex.slice(i * groupSize, i * groupSize + groupSize)
-  );
+  const [username, setUsername] = useState("username");
 
-  const [username, setUsername] = useState("username"); //TODO: 추후 사용자 이름 받아오기
+  // 데이터 불러오기
+
+  useEffect(() => {
+    try {
+      const userInfoStr = secureLocalStorage.getItem("userInfo");
+      if (userInfoStr && typeof userInfoStr === "string") {
+        const userInfo = JSON.parse(userInfoStr);
+        setUsername(userInfo.nickname);
+      }
+    } catch (error) {
+      console.error("userInfo 파싱 중 오류 발생:", error);
+    }
+  }, []);
 
   const handleKeywordClick = (keyword) => {
     // if keyword is already selected, remove it from selectedKeywords

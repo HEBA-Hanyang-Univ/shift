@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../assets/styles/LinkSender/MyIdentity.scss";
 import { KeywordBtnBoxContainer } from "../../components/Button/KeywordBox/KeywordBtnBoxContainer";
 import { SelectedKeyword } from "../../components/Button/KeywordBox/SelectedKeyword";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
 import { useKeywords } from "../../assets/data/MZ/KeywordsProvider";
+import  secureLocalStorage from "react-secure-storage";
 
 
 const MyIdentity = () => {
@@ -12,15 +13,31 @@ const MyIdentity = () => {
 
   // 데이터에 들어가도록 가공
   // keywords에서 0번째 요소만 추출
-  const keywordZeroIndex = Object.values(keywords).map(arr => arr[0]);
+  const processKeywords = (keywords) => {
+    const keywordZeroIndex = Object.values(keywords).map(arr => arr[0]);
+    const groupSize = Math.ceil(keywordZeroIndex.length / 4);
+    return Array.from({ length: 4 }, (_, i) => 
+      keywordZeroIndex.slice(i * groupSize, i * groupSize + groupSize)
+    );
+  };
 
-  const groupSize = Math.ceil(keywordZeroIndex.length / 4);
-
-  const keywordList = Array.from({ length: 4 }, (_, i) => 
-  keywordZeroIndex.slice(i * groupSize, i * groupSize + groupSize)
-  );
+  const keywordList = processKeywords(keywords);
 
   const [username, setUsername] = useState("username");
+
+  useEffect(() => {
+    const userInfoStr = secureLocalStorage.getItem("userInfo");
+    if (userInfoStr) {
+      const userInfo = JSON.parse(userInfoStr);
+      setUsername(userInfo.nickname);
+    }
+  }, []);
+
+  const saveSelectedKeywords = () => {
+    secureLocalStorage.setItem("keywordMyself", JSON.stringify(selectedKeywords));
+    // 저장 시 콘솔에 로그 출력
+    console.log("Selected Keywords Saved:", selectedKeywords);
+  };
 
   const handleKeywordClick = (keyword) => {
     // if keyword is already selected, remove it from selectedKeywords
@@ -61,6 +78,7 @@ const MyIdentity = () => {
         prevPageUrl={"/host/info"} 
         nextPageUrl={"/host/aspiration"} 
         isNextEnabled={selectedKeywords.length === 5}
+        onClickNext={saveSelectedKeywords}
       />
     </div>
   );
