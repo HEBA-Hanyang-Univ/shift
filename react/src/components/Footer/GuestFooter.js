@@ -6,39 +6,43 @@ import { StepNavigation } from "./StepNavigation";
 import NextArrow from "../../assets/images/nextArrow.svg";
 import { useState } from "react";
 
-export const GuestFooter = ({ prevPageUrl, nextPageUrl, isNextEnabled }) => {
+export const GuestFooter = ({ prevPageUrl, nextPageUrl, isNextEnabled, onClickNext }) => {
   const navigate = useNavigate();
 
-  const stepPaths = [
-    {label: '', path: '/guest/info'},
-    {label: '', path: '/guest/keyword'},
-    {label: '', path: '/guest/reasoning'},
-    {label: '', path: '/guest/description'},
-  ];
+  // const stepPaths = [
+  //   {label: '', path: '/guest/info'},
+  //   {label: '', path: '/guest/keyword'},
+  //   {label: '', path: '/guest/reasoning'},
+  //   {label: '', path: '/guest/description'},
+  // ];
 
-  const [currentPage, setCurrentPage] = useState(0);
-  const [currentStep, setCurrentStep] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(0);
+  // const [currentStep, setCurrentStep] = useState(1);
   
-  const updateStep = (step) => {
-    setCurrentStep(step);
-  };
+  // const updateStep = (step) => {
+  //   setCurrentStep(step);
+  // };
 
   const handlePrevPage = () => {
     if(prevPageUrl) {
-      const prevStepIndex = stepPaths.findIndex(step => step.path === prevPageUrl);
-      setCurrentPage(prevStepIndex);
+      // const prevStepIndex = stepPaths.findIndex(step => step.path === prevPageUrl);
+      // setCurrentPage(prevStepIndex);
       navigate(prevPageUrl);
-      setCurrentPage(prevStepIndex);
+      // setCurrentPage(prevStepIndex);
     }
   };
 
   const handleNextPage = () => {
     if(isNextEnabled) {
-      const nextStepIndex = stepPaths.findIndex(step => step.path === nextPageUrl);
-      setCurrentStep(nextStepIndex);
+      if(onClickNext) {
+        onClickNext();
+      }
+      // const nextStepIndex = stepPaths.findIndex(step => step.path === nextPageUrl);
+      // setCurrentStep(nextStepIndex);
       navigate(nextPageUrl);
-      setCurrentPage(nextStepIndex);
+      // setCurrentPage(nextStepIndex);
     }
+
   };
 
   return (
