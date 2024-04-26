@@ -2,7 +2,7 @@ import React from "react";
 import { KeywordBtnBox } from "./KeywordBtnBox";
 import "../Button.scss";
 
-export const KeywordBtnBoxContainer = ({keywords, selectedKeywords, onKeywordClick}) => {
+export const KeywordBtnBoxContainer = ({keywords, selectedKeywords, onKeywordClick, disabledKeywords}) => {
   return (
     <div className="keywordBoxContainer">
       <div className="keywordBox">  
@@ -11,6 +11,7 @@ export const KeywordBtnBoxContainer = ({keywords, selectedKeywords, onKeywordCli
           selectedKeywords={selectedKeywords}
           color="#FFF" 
           onKeywordClick={onKeywordClick}
+          disabledKeywords={disabledKeywords}
         />
       </div>
     </div> 

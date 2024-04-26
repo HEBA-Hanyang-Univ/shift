@@ -9,6 +9,7 @@ import secureLocalStorage from "react-secure-storage";
 const MyAspiration = () => {
   const { keywords } = useKeywords();
   const [selectedKeywords, setSelectedKeywords] = useState([]);
+  const [disabledKeywords, setDisabledKeywords] = useState([]); 
 
   // 데이터에 들어가도록 가공
   // keywords에서 0번째 요소만 추출
@@ -28,17 +29,28 @@ const MyAspiration = () => {
 
   useEffect(() => {
     try {
+      // 사용자 정보 불러오기
       const userInfoStr = secureLocalStorage.getItem("userInfo");
       if (userInfoStr && typeof userInfoStr === "string") {
         const userInfo = JSON.parse(userInfoStr);
         setUsername(userInfo.nickname);
       }
+
+      // 선택된 키워드 불러오기
+      const keywordMyselfStr = secureLocalStorage.getItem("keywordMyself");
+      if(keywordMyselfStr) {
+        const keywordMyself = JSON.parse(keywordMyselfStr);
+        setDisabledKeywords(keywordMyself);
+      }
     } catch (error) {
-      console.error("userInfo 파싱 중 오류 발생:", error);
+      console.error("데이터 파싱 중 오류 발생:", error);
     }
   }, []);
 
   const handleKeywordClick = (keyword) => {
+    if(disabledKeywords.includes(keyword)) {
+      return;
+    }
     // if keyword is already selected, remove it from selectedKeywords
     if(selectedKeywords.includes(keyword)) {
       setSelectedKeywords(selectedKeywords.filter(k => k !== keyword))
@@ -66,6 +78,7 @@ const MyAspiration = () => {
         keywords={keywordList}
         selectedKeywords={selectedKeywords}
         onKeywordClick={handleKeywordClick}
+        disabledKeywords={disabledKeywords}
       />
       <div className="idSelectedKeywordContainer">
         <SelectedKeyword 

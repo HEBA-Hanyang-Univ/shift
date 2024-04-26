@@ -234,6 +234,11 @@
   color: #747474 !important;
 }
 
+.buttonDisabled {
+  background-color: #F1F1F1 !important;
+  pointer-events: none;
+}
+
 @media screen and (max-width: 319px) {
   .isSelectedKeywordBox {
     width: 100% !important;
