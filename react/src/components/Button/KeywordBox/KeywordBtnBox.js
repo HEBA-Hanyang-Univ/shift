@@ -5,7 +5,11 @@
 
   export const KeywordBtnBox = ({ keywords, onKeywordClick, selectedKeywords, disabledKeywords }) => {
 
-    
+    KeywordBtnBox.defaultProps = {
+      selectedKeywords: [],
+      disabledKeywords: []
+    };
+  
     // activeButtons: 키워드 버튼의 활성화 여부를 관리하는 상태
     const [activeButtons, setActiveButtons] = useState(
       keywords.flat().reduce((acc, keyword) => ({ ...acc, [keyword]: true }), {})
@@ -22,6 +26,7 @@
 
     // handleClick: 키워드 버튼 클릭 시 실행되는 함수
     const handleClick = (keyword) => {
+  
       if (selectedKeywords.length >= 5 && !selectedKeywords.includes(keyword)) {
         // I know the code below is not good, but I don't know how to fix it....
         alert("키워드는 5개까지 선택 가능합니다.");
