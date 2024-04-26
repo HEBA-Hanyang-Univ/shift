@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../assets/styles/LinkSender/MyIdentity.scss";
 import { KeywordBtnBoxContainer } from "../../components/Button/KeywordBox/KeywordBtnBoxContainer";
 import { SelectedKeyword } from "../../components/Button/KeywordBox/SelectedKeyword";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
 import { useKeywords } from "../../assets/data/MZ/KeywordsProvider";
+import secureLocalStorage from "react-secure-storage";
 
 const PerceivedByOthers = () => {
   const { keywords } = useKeywords();
@@ -11,14 +12,32 @@ const PerceivedByOthers = () => {
 
   // 데이터에 들어가도록 가공
   // keywords에서 0번째 요소만 추출
-  const keywordZeroIndex = Object.values(keywords).map(arr => arr[0]);
+  const processKeywords = (keywords) => {
+    const keywordZeroIndex = Object.values(keywords).map(arr => arr[0]);
+    const groupSize = Math.ceil(keywordZeroIndex.length / 4);
+    return Array.from({ length: 4 }, (_, i) => 
+      keywordZeroIndex.slice(i * groupSize, i * groupSize + groupSize)
+    );
+  };
 
-  const groupSize = Math.ceil(keywordZeroIndex.length / 4);
+  const keywordList = processKeywords(keywords);
 
-  const keywordList = Array.from({ length: 4 }, (_, i) => 
-  keywordZeroIndex.slice(i * groupSize, i * groupSize + groupSize)
-  );
-  const [username, setUsername] = useState("username"); // TODO: 추후 사용자 이름 받아오기
+  const [username, setUsername] = useState("username");
+
+
+  useEffect(() => {
+    const userInfoStr = secureLocalStorage.getItem("userInfo");
+    if (userInfoStr) {
+      const userInfo = JSON.parse(userInfoStr);
+      setUsername(userInfo.nickname);
+    }
+  }, []);
+
+  const saveSelectedKeywords = () => {
+    secureLocalStorage.setItem("keywordOthers", JSON.stringify(selectedKeywords));
+    // 저장 시 콘솔에 로그 출력
+    console.log("Selected Keywords Saved:", selectedKeywords);
+  };
 
   const handleKeywordClick = (keyword) => {
     // if keyword is already selected, remove it from selectedKeywords
@@ -60,6 +79,7 @@ const PerceivedByOthers = () => {
         prevPageUrl={"/host/aspiration"}
         nextPageUrl={"/host/completion"}
         isNextEnabled={selectedKeywords.length === 5}
+        onClickNext={saveSelectedKeywords}
       />
     </div>
   )
