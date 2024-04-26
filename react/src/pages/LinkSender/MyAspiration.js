@@ -26,7 +26,6 @@ const MyAspiration = () => {
   const [username, setUsername] = useState("username");
 
   // 데이터 불러오기
-
   useEffect(() => {
     try {
       // 사용자 정보 불러오기
@@ -46,6 +45,12 @@ const MyAspiration = () => {
       console.error("데이터 파싱 중 오류 발생:", error);
     }
   }, []);
+
+  const saveSelectedKeywords = () => {
+    secureLocalStorage.setItem("keywordWant", JSON.stringify(selectedKeywords));
+    // 저장 시 콘솔에 로그 출력
+    console.log("Selected Keywords Saved:", selectedKeywords);
+  };
 
   const handleKeywordClick = (keyword) => {
     if(disabledKeywords.includes(keyword)) {
@@ -90,6 +95,7 @@ const MyAspiration = () => {
         prevPageUrl={"/host/identity"} 
         nextPageUrl={"/host/perception"}
         isNextEnabled={selectedKeywords.length === 5}
+        onClickNext={saveSelectedKeywords}
       />
     </div>
   )
