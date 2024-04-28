@@ -17,5 +17,5 @@ app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 app.config['SESSION_PERMANENT'] = True
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=1)
 #app.config['SESSION_FILE_THRESHOLD'] = 500 # default value is 500
-CORS(app, resources={r"/*": {"origins": "https://shift2me.com"}}, supports_credentials=True)
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}}, supports_credentials=True)
 Session(app)
