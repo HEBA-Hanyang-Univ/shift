@@ -100,19 +100,22 @@ class DBModule:
         tid = test_info['name']
 
         # if test data exists, remove the previous test result
+        add = 1
         before = self.db.child("users").child(platform_type).child(id).child("tests").child("epa").get().val()
         if before != 'unknown' and before != None:
             self.db.child("tests").child("epa").child(before).remove()
+            add = 0
 
         # update user's test data
+        print(type(tid))
         self.db.child("users").child(platform_type).child(id).child("tests").child("epa").set(tid)
 
         # update test count
         test_count = self.db.child("test_count").get().val()
         if test_count == None:
             test_count = {"total": 0, "epa": 0}
-        self.db.child("test_count").child("total").set(test_count.get("total") + 1)
-        self.db.child("test_count").child("epa").set(test_count.get("epa") + 1)
+        self.db.child("test_count").child("total").set(test_count.get("total") + add)
+        self.db.child("test_count").child("epa").set(test_count.get("epa") + add)
 
         return tid
 
