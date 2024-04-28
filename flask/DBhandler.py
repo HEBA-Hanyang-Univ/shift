@@ -107,7 +107,6 @@ class DBModule:
             add = 0
 
         # update user's test data
-        print(type(tid))
         self.db.child("users").child(platform_type).child(id).child("tests").child("epa").set(tid)
 
         # update test count
