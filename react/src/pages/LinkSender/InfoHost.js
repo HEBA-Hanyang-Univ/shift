@@ -9,12 +9,10 @@ import HandleLogin from "../../components/Login/HandleLogin";
 const InfoHost = () => {
   const ageOptions = Array.from({ length: 51}, (_, i) => ({key:i, value: `${i + 10}세`}));
 
-  const [nickname, setNickname] = useState('');
+  const [name, setName] = useState('');
   const [gender, setGender] = useState('');
   const [age, setAge] = useState('');
-  const [notificationAgree, setNotificationAgree] = useState(false);
-  // check if all required fields are filled
-  const [notificationChecked, setNotificationChecked] = useState(false);
+  const [alarm, setAlarm] = useState('');
   const [isNextEnabled, setIsNextEnabled] = useState(false);
 
   const handleNameChange = (e) => {
@@ -62,31 +60,19 @@ const InfoHost = () => {
           <span id="infoTitle">
             이름 또는 별명을 입력하세요.
           </span>
-          <input 
-            type="text"
-            placeholder="이름 또는 별명을 입력하세요" 
-            onChange={(e) => handleInputChange(setNickname)(e.target.value)}
-            maxLength={10}
-          ></input>
+          <input placeholder="이름 또는 별명을 입력하세요" onChange={handleNameChange}></input>
         </div>
         <div className="ihInputGender">
           <span id="infoTitle">
             성별을 선택해주세요.
           </span>
-          <RadioBtn
-            option1Text={'남자'} 
-            option2Text={'여자'}  
-            onChange={(value) => handleInputChange(setGender)(value)}
-          />
+          <RadioBtn option1Text={'남자'} option2Text={'여자'}  onChange={handleGenderChange}/>
         </div>
         <div className="ihInputAge">
           <span id="infoTitle">
             연령을 선택해주세요.
           </span>
-          <DropDownBtn 
-            options={ageOptions} placeholder="나이" 
-            onChange={(value) => handleInputChange(setAge)(value)} 
-          />
+          <DropDownBtn options={ageOptions} placeholder="나이" onChange={handleAgeChange} ></DropDownBtn>
         </div>
         <div className="ihPushAgree">
           <span id="infoTitle">알림톡 발송 동의</span>
@@ -95,15 +81,7 @@ const InfoHost = () => {
             <br></br>
             결과를 전달해드립니다.
           </span>
-          <RadioBtn
-            option1Text={'동의'}
-            option2Text={'비동의'} 
-            onChange={(value) => {
-              setNotificationAgree(value === '동의');
-              setNotificationChecked(true);
-              // if user agrees to receive notification, enable next button
-            }} 
-          />
+          <RadioBtn option1Text={'동의'} option2Text={'비동의'} onChange={handleAlarmChange} />
           <span className="ihPushAgreeNotice">
             테스트 결과 제공만을 위한 정보 수집입니다.
           </span>
@@ -116,7 +94,7 @@ const InfoHost = () => {
         doBeforeNext={saveInfo}
       /> 
     </div>
-  );
+  )
 };
 
 export default InfoHost; 

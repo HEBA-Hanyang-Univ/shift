@@ -21,7 +21,7 @@ export const MainFooter = () => {
             </div>
             <div style={{color: '#565656', fontSize: '0.6rem', fontFamily: 'Wanted Sans', fontWeight: '400', letterSpacing: 0.96, wordWrap: 'break-word'}}>
               <div>경기도 수원시 광교중앙로 145 A1827</div>
-              <div>통신판매업신고번호 2024-수원영통-0717</div>
+              <div>통신판매업신고번호 2023-경기하남-0843</div>
             </div>
           </div>
           <div>

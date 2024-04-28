@@ -1,6 +1,6 @@
 import React from "react";
 import "./ResultDashBoardBox.scss";
-import Preparing from "../../assets/images/Result/Preparing.png";
+import Preparing from "../../assets/images/Result/Preparing.svg";
 
 export const PreparingDashBoardBox = () => {
   return (

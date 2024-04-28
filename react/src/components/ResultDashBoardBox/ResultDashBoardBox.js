@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../Button/Button";
-import MZImg from "../../assets/images/Result/Result_MZ.png";
+import MZImg from "../../assets/images/Result_MZ.svg";
 import "./ResultDashBoardBox.scss";
 import { Link } from "react-router-dom";
 

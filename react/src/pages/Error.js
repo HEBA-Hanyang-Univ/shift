@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import ErrorImg from "../assets/images/Result/Preparing.png";
+import React from "react";
+import ErrorImg from "../assets/images/Result/Preparing.svg";
 import { Link } from "react-router-dom";
 import { Button } from "../components/Button/Button";
 
 const Error = () => {
-  
   return (
     <div id="Container" className="errorContainer">
       <div className="errorWrapper">
