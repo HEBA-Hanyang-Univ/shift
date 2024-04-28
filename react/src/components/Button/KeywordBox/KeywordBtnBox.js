@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Button } from "../Button";
-import "../Button.scss";
+  import React, { useState, useEffect } from "react";
+  import { Button } from "../Button";
+  import "../Button.scss";
 
 export const KeywordBtnBox = ({ keywords, width, height, className, onKeywordClick, selectedKeywords }) => {
   const wordsPerLine = 10;

@@ -16,6 +16,9 @@ const MyAspiration = () => {
   const [keywords, setKeywords] = useState({});
 
   const handleKeywordClick = (keyword) => {
+    if(disabledKeywords.includes(keyword)) {
+      return;
+    }
     // if keyword is already selected, remove it from selectedKeywords
     if(selectedKeywords.includes(keyword)) {
       setSelectedKeywords(selectedKeywords.filter(k => k !== keyword))
@@ -69,6 +72,7 @@ const MyAspiration = () => {
       <div className="idTitle">
         <div className="idTitleTop">
           <span className="idTitleUserName">{username}</span>
+          <span className="idTitleUserName">{username}</span>
           <span className="idTitleSpan">님을 나타내지 않지만</span>
         </div>
         <div className="idTitleBottom">
@@ -79,6 +83,7 @@ const MyAspiration = () => {
         keywords={keywords}
         selectedKeywords={selectedKeywords}
         onKeywordClick={handleKeywordClick}
+        disabledKeywords={disabledKeywords}
       />
       <div className="idSelectedKeywordContainer">
         <SelectedKeyword

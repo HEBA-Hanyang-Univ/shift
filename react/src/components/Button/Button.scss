@@ -15,61 +15,64 @@
 }
 
 // KeywordBox css
-
 .keywordBoxContainer {
+  width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  white-space: nowrap;
 
   .keywordBox {
-    margin-top: 2rem;
-    overflow: scroll;
+    width: 100%;
+    margin-top: 1rem;
+    
+    .keywordBtnWrapper {
+      width: 100%;
+      display: grid;
+      grid-template-rows: repeat(4, 1fr);
+      justify-content: center;
+      align-items: center;
 
-    &::-webkit-scrollbar {
-      display: none;
+      .keywordRow {
+        overflow-x: scroll;
+        padding-top: 0.5rem;
+        display: grid;
+        grid-template-columns: repeat(16, 1fr);
+        gap: 0.3rem;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      
+        .keywordBtn {
+          display: grid;
+          justify-content: center;
+          align-items: center;
+          white-space: wrap;
+
+          border: 1px solid #E9ECEF;
+          border-radius: 0.5rem;
+          font-size: 0.77rem;
+          font-weight: 600;
+          padding: 0.1rem;
+
+          &:hover {
+            background-color: #F1F1F1;
+          }
+        }
+      }
     }
   }
 }
 
-.keywordBtnBox {
-  width: 100%;
-  display: grid;
-  grid-template-rows: repeat(4, 1fr);
-  gap: 1rem;
-  overflow: scroll;
-  padding-right: 1rem;
-  padding-left: 1rem;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  .keywordBtn {
-    border: 1px solid #D3D3D3;
-    border-radius: 0.5rem;
-    font-size: 0.77rem;
-    font-weight: 600;
-    padding: 0.1rem;
-
-    &:hover {
-      background-color: #F1F1F1;
-    }
-  }
-
-  .keywordRow {
-    display: grid;
-    grid-template-columns: repeat(6, 5.2rem);
-    gap: 0.2rem;
-  }
+.marginFirstRow {
+  padding-left: 1.5rem;
 }
 
-.keywordRow-1 {
-  margin-left: 2rem;
-}
-
-.keywordRow-3 {
-  margin-left: 2rem;
-}
-
+.marginThirdRow {
+  padding-left: 1.5rem;
+} 
 // Selected Keyword
 .isSelectedKeywordWrapper {
   margin-top: 0.5rem;
@@ -229,6 +232,11 @@
 
 .selectedValue {
   color: #747474 !important;
+}
+
+.buttonDisabled {
+  background-color: #F1F1F1 !important;
+  pointer-events: none;
 }
 
 @media screen and (max-width: 319px) {
