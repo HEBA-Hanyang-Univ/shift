@@ -1,58 +1,104 @@
-import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../assets/styles/LinkSender/StartHost.scss";
 import { Button } from '../../components/Button/Button.js';
 import { MainFooter } from '../../components/Footer/MainFooter.js';
-import HandleLogin from "../../components/Login/HandleLogin.js";
 import shImg1 from "../../assets/images/StartHost/shImg1.svg";
 import shImg2 from "../../assets/images/StartHost/shImg2.svg";
 import shImg3 from "../../assets/images/StartHost/shImg3.svg";
 import shImg4 from "../../assets/images/StartHost/shImg4.svg";
 import shareImg from "../../assets/images/StartHost/shareImg.svg";
 import shFooterImg from "../../assets/images/StartHost/shFooter.svg";
+import TryFetch from "../../components/FetchComponent/FetchComponent.js";
+import HandleLogin from "../../components/Login/HandleLogin.js";
+import { saveDataWithExpiration, loadDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends.js";
+import secureLocalStorage from "react-secure-storage";
+
 
 const StartHost = () => {
+  const [ totalNum, setTotalNum ] = useState(0);
+
   const navigate = useNavigate();
-  const location = useLocation();
+
+  const loginFail = () => {
+    alert("로그인이 필요합니다.");
+    navigate("/login");
+  };
 
   const handleStart = () => {
-    HandleLogin(() => {
-      navigate("/host/info");
-    }, location.pathname, navigate);
+    TryFetch("my_tests", "GET", {}, (data) => {
+      if (data.epa === null || data.epa === undefined) {
+        navigate("/host/info");
+      } else {
+        console.log(data);
+        // TODO : make modal to ask if user wants to continue (delete previous and start new one)
+        alert("이미 진행중인 테스트가 있습니다. 기존 테스트를 삭제합니다.");
+        navigate("/host/info");
+      }
+    }, loginFail);
   };
 
   const handleResult = () => {
-    HandleLogin(() => {
-      navigate("/result/dashboard");
-    }, location.pathname, navigate);
+    HandleLogin({
+      assertLogin: true,
+      navigate: navigate,
+      toWhere: "/result/dashboard"
+    });
   };
 
   const handleShareTest = () => {
-    HandleLogin(() => {
-      // TODO : Add test sharing function
-      if (navigator.share) {
-        navigator.share({
-          title: 'SHIFT',
-          text: 'MZ 자기객관화 테스트',
-          url: 'http://shift2me.com',
-        });
-      } else {
-        alert('공유하기 기능을 지원하지 않는 브라우저입니다.');
-      }
-    }, location.pathname, navigate);
+    let makeUrl = false;
+    let tid = secureLocalStorage.getItem("tid");
+    if (tid === null || tid === undefined) {
+      TryFetch("my_tests", "GET", {}, (data) => {
+        if (data.epa === null || data.epa === undefined) {
+          alert("진행중인 테스트가 없습니다.");
+        } else {
+          makeUrl = true;
+          tid = data.epa[0];
+        }
+      }, loginFail);
+    } else {
+      makeUrl = true;
+    }
+    if (!makeUrl) {
+      return;
+    }
+    if (navigator.share) {
+      navigator.share({
+        title: 'SHIFT',
+        text: 'MZ 자기객관화 테스트',
+        url: 'http://shift2me.com/guest/' + tid,
+      });
+    } else {
+      alert('공유하기 기능을 지원하지 않는 브라우저입니다.');
+    }
   };
 
-const handleShareLink = () => {
-  if (navigator.share) {
-    navigator.share({
-      title: 'SHIFT',
-      text: 'MZ 자기객관화 테스트',
-      url: 'http://shift2me.com',
+  const handleShareLink = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: 'SHIFT',
+        text: 'MZ 자기객관화 테스트',
+        url: 'http://shift2me.com',
+      });
+    } else {
+      alert('공유하기 기능을 지원하지 않는 브라우저입니다.');
+    }
+  };
+
+  useEffect(() => {
+    const before = loadDataWithExpiration("totalNum");
+    if (before !== null) {
+      setTotalNum(before);
+      return;
+    }
+
+    TryFetch("total_num", "GET", {}, (data) => {
+      saveDataWithExpiration("totalNum", data.total_num, 1);
+      setTotalNum(data.total_num);
     });
-  } else { 
-    alert('공유하기 기능을 지원하지 않는 브라우저입니다.');
-  }
-};
+  }, []);
 
   return (
     <>
@@ -111,8 +157,7 @@ const handleShareLink = () => {
           <div className="shButtonContainer">
             <Button onClick={handleStart}className="shButtonL" gradient="180deg, #9B6EB6 20%, #9361B0 80%" width={19.7} height={3.4}>
               <span className="shButtonSpanL" style={{paddingTop: '0.2rem'}}>시작하기</span>
-              {/* TODO : 추후 참여 인원 수 넣기 */}
-              <span className="shButtonSpanS">지금까지 1,054 명이 참여했어요!</span>
+              <span className="shButtonSpanS">지금까지 {totalNum.toLocaleString()} 명이 참여했어요!</span>
             </Button>
             {/* TODO: 추후 테스트가 완료되지 않았으면 버튼 회색처리 */}
             <Button onClick={handleResult}className="shButtonL" gradient="180deg, #A27DB2 0%, #A570C4 100%" width={19.7} height={3.4}>

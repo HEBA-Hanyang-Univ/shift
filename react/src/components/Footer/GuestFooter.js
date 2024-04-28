@@ -6,7 +6,7 @@ import { StepNavigation } from "./StepNavigation";
 import NextArrow from "../../assets/images/nextArrow.svg";
 import { useState } from "react";
 
-export const GuestFooter = ({ prevPageUrl, nextPageUrl, isNextEnabled }) => {
+export const GuestFooter = ({ prevPageUrl, nextPageUrl, isNextEnabled, doBeforeNext }) => {
   const navigate = useNavigate();
 
   const stepPaths = [
@@ -34,6 +34,7 @@ export const GuestFooter = ({ prevPageUrl, nextPageUrl, isNextEnabled }) => {
 
   const handleNextPage = () => {
     if(isNextEnabled) {
+      doBeforeNext?.();
       const nextStepIndex = stepPaths.findIndex(step => step.path === nextPageUrl);
       setCurrentStep(nextStepIndex);
       navigate(nextPageUrl);

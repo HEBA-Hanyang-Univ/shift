@@ -3,6 +3,8 @@ import "../../assets/styles/LinkSender/InfoHost.scss";
 import { RadioBtn } from "../../components/Button/RadioBtn";
 import { DropDownBtn } from "../../components/Button/DropDownBtn";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
+import secureLocalStorage from "react-secure-storage";
+import HandleLogin from "../../components/Login/HandleLogin";
 
 const InfoHost = () => {
   const ageOptions = Array.from({ length: 51}, (_, i) => ({key:i, value: `${i + 10}세`}));
@@ -30,8 +32,23 @@ const InfoHost = () => {
   };
 
   useEffect(() => {
+    HandleLogin({
+      assertLogin: true
+    });
+  }, []);
+
+  useEffect(() => {
     setIsNextEnabled(name.trim() !== '' && gender !== '' && age !== '' && alarm !== '');
   }, [name, gender, age, alarm]);
+
+  const saveInfo = () => {
+    secureLocalStorage.setItem("epa_test", {
+        nickname: name,
+        gender: (gender === "option1") ? "male" : "female",
+        age: age,
+        notification_agree: (alarm === "option1" ? true : false),
+    });
+  }
   
   return (
     <div id="Container">
@@ -73,7 +90,8 @@ const InfoHost = () => {
       <GuestFooter
         prevPageUrl={"/"} 
         nextPageUrl={"/host/identity"} 
-        isNextEnabled={isNextEnabled} 
+        isNextEnabled={isNextEnabled}
+        doBeforeNext={saveInfo}
       /> 
     </div>
   )

@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Header.scss";
 import Logo from "../../assets/images/HeaderLogo.svg";
 import NavBtn from "../../assets/images/NavBtn.svg";
 import HamburgerMenu from "../Hamburger/HamburgerMenu";
 import { Link } from "react-router-dom";
+import { loadDataWithExpiration } from "../CookieUtils/SecureLocalStorageExtends";
 
-const Header = ({ name }) => {
+const Header = () => {
+  const name = loadDataWithExpiration("name");
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
-  
+
   const toggleHamburgerMenu = () => {
     setShowHamburgerMenu(!showHamburgerMenu);
   };
@@ -21,7 +23,7 @@ const Header = ({ name }) => {
       </div>
       <div className="headerRight">
         <div className="headerName">
-          {name !== undefined && <span>{name}님</span>}
+          {name !== undefined && name !== null && <span>{name}님</span>}
         </div>
         <div className="headerBtnContainer">
           <button onClick={toggleHamburgerMenu}>

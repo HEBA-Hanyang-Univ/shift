@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../assets/styles/LinkSender/MyIdentity.scss";
 import { KeywordBtnBoxContainer } from "../../components/Button/KeywordBox/KeywordBtnBoxContainer";
 import { SelectedKeyword } from "../../components/Button/KeywordBox/SelectedKeyword";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
-
-// dummy data
-const dummyKeywords = [
-  ["지혜로운", "옷을 굉장히 잘 입는", "방구를 심히 잘 뀌어버리는", "킹 받는", "밥을 잘 사주는 이쁜", "아는체를 잘하는"], 
-  ["마음씨가 고운", "행복한", "버블티", "vkdfld", "항상 감사하고", "응원해주시고"], 
-  ["성원해주시고", "자고싶어", "ㅗ", "개강하기 싫은", "무엇을 쓸 지 모르겠는", "이것은"],
-  ["더미데이터", "아이스 아메리카노", "기이이이이이인 문장", "키워드", "세 단어만 더", "두 단어만 더"]
-]
+import HandleLogin from "../../components/Login/HandleLogin";
+import secureLocalStorage from "react-secure-storage";
+import TryFetch from "../../components/FetchComponent/FetchComponent";
+import { loadDataWithExpiration, saveDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
 
 const PerceivedByOthers = () => {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("username");
   const [selectedKeywords, setSelectedKeywords] = useState([]);
-
-  const [username, setUsername] = useState("username"); // TODO: 추후 사용자 이름 받아오기
+  const [keywords, setKeywords] = useState({});
 
   const handleKeywordClick = (keyword) => {
     // if keyword is already selected, remove it from selectedKeywords
@@ -30,6 +28,45 @@ const PerceivedByOthers = () => {
     setSelectedKeywords(selectedKeywords.filter((_, index) => index !== indexToRemove));
   };
 
+  const saveSelectedKeyword = () => {
+    const testData = secureLocalStorage.getItem("epa_test");
+    testData.keyword_others = selectedKeywords;
+    TryFetch("save_epa", "POST", testData, (data) => {
+      secureLocalStorage.setItem("tid", data.tid);
+    }, (error) => {
+      alert("저장하는데 실패했습니다: ", error);
+      navigate("/");
+    });
+    secureLocalStorage.removeItem("epa_test");
+    secureLocalStorage.removeItem("epa_keywords");
+  }
+
+  useEffect(() => {
+    HandleLogin({
+      assertLogin: true,
+    });
+    const testInfo = secureLocalStorage.getItem("epa_test");
+    if (!testInfo) {
+      alert("비정상적인 접근입니다.");
+      navigate("/");
+      return;
+    }
+    setUsername(testInfo.nickname);
+
+    let epa_keywords = loadDataWithExpiration("epa_keywords");
+    if (epa_keywords === null) {
+      TryFetch("get_epa_keywords", "GET", {}, (data) => {
+        saveDataWithExpiration("epa_keywords", data, 720);
+        epa_keywords = data;
+      }, (error) => {
+        alert("키워드를 불러오는데 실패했습니다.");
+        navigate("/");
+        return;
+      });
+    }
+    setKeywords(epa_keywords);
+  }, []);
+
   return (
     <div id="Container" className="miContainer">
       <div className="idTitle">
@@ -43,12 +80,13 @@ const PerceivedByOthers = () => {
         </div>
       </div>
       <KeywordBtnBoxContainer
-        keywords={dummyKeywords}
+        keywords={keywords}
         selectedKeywords={selectedKeywords}
         onKeywordClick={handleKeywordClick}
       />
       <div className="idSelectedKeywordContainer">
-        <SelectedKeyword 
+        <SelectedKeyword
+          originalKeyword={keywords}
           selectedKeywords={selectedKeywords}
           removeKeyword={removeKeyword} 
         />
@@ -57,6 +95,7 @@ const PerceivedByOthers = () => {
         prevPageUrl={"/host/aspiration"}
         nextPageUrl={"/host/completion"}
         isNextEnabled={selectedKeywords.length === 5}
+        doBeforeNext={saveSelectedKeyword}
       />
     </div>
   )

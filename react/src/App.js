@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { React, useEffect, useState } from "react";
-import secureLocalStorage from "react-secure-storage";
+import { React, useEffect } from "react";
 import "./App.scss";
 import Header from "./components/Header/Header";
 import SocialLogin from "./pages/SocialLogin";
@@ -25,27 +24,8 @@ import CompleteGuest from "./pages/LinkReceiver/CompleteGuest";
 
 import ResultDashBoard from "./pages/Result/ResultDashBoard";
 import Result from "./pages/Result/Result";
-import HandleLogin from "./components/Login/HandleLogin";
 
 function App() {
-  const loginRequired = (pathname) => {
-    if (pathname === "/login" || pathname === "/kakao_callback") return false;
-    return true;
-  };
-
-  const [ username, setUsername ] = useState(undefined);
-
-  const LoginCheck = () => {
-    const { pathname } = useLocation();
-    useEffect(() => {
-      if (loginRequired(pathname)) {
-        HandleLogin(() => {
-          setUsername(secureLocalStorage.getItem("name"));
-        }, (pathname !== '/') ? pathname:undefined);
-      }
-    }, [pathname]);
-  };
-
   const ScrollToTop = () => {
     const { pathname } = useLocation();
     useEffect(() => {
@@ -58,9 +38,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <LoginCheck />
         <ScrollToTop />
-        <Header name={username}/>
+        <Header/>
         <Routes>
           {/* Social Login Callback */}
           <Route path="/kakao_callback" element={<KakaoCallback/>}></Route>
@@ -75,16 +54,16 @@ function App() {
           <Route path="/host/completion" element={<CompleteHost/>}></Route>
 
           {/* LinkReceiver */}
-          <Route path="/guest" element={<StartGuest/>}></Route>
-          <Route path="/guest/info" element={<InfoGuest/>}></Route>
-          <Route path="/guest/keyword" element={<SelectKeyword/>}></Route>
-          <Route path="/guest/reasoning" element={<Reasoning/>}></Route>  
-          <Route path="/guest/description" element={<OneLineDescription/>}></Route>
-          <Route path="/guest/completion" element={<CompleteGuest/>}></Route>
+          <Route path="/guest/:tid" element={<StartGuest/>}></Route>
+          <Route path="/guest/info/:tid" element={<InfoGuest/>}></Route>
+          <Route path="/guest/keyword/:tid" element={<SelectKeyword/>}></Route>
+          <Route path="/guest/reasoning/:tid" element={<Reasoning/>}></Route>
+          <Route path="/guest/description/:tid" element={<OneLineDescription/>}></Route>
+          <Route path="/guest/completion/" element={<CompleteGuest/>}></Route>
 
           {/* Result */}
           <Route path="/result/dashboard" element={<ResultDashBoard/>}></Route>
-          <Route path="/result/detail" element={<Result/>}></Route>
+          <Route path="/result/detail/:tid" element={<Result/>}></Route>
 
           {/* Footer Links */}
           <Route path="/terms" element={<TOS/>}></Route>

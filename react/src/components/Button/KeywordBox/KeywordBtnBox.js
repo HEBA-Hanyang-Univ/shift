@@ -3,15 +3,16 @@ import { Button } from "../Button";
 import "../Button.scss";
 
 export const KeywordBtnBox = ({ keywords, width, height, className, onKeywordClick, selectedKeywords }) => {
+  const wordsPerLine = 10;
 
   // activeButtons: 키워드 버튼의 활성화 여부를 관리하는 상태
   const [activeButtons, setActiveButtons] = useState(
-    keywords.flat().reduce((acc, keyword) => ({ ...acc, [keyword]: true }), {})
+    Object.keys(keywords).reduce((acc, keyword) => ({ ...acc, [keyword]: true }), {})
   );
 
   // selectedKeywords가 변경될 때마다 activeButtons를 업데이트
   useEffect(() => {
-    const updatedActiveButtons = keywords.flat().reduce((acc, keyword) => ({
+    const updatedActiveButtons = Object.keys(keywords).reduce((acc, keyword) => ({
       ...acc,
       [keyword]:!selectedKeywords.includes(keyword)
     }),{});
@@ -31,20 +32,27 @@ export const KeywordBtnBox = ({ keywords, width, height, className, onKeywordCli
     setActiveButtons(prev => ({...prev, [keyword]: !prev[keyword]}));
   };
 
+  const entries = Object.entries(keywords);
+  const chunks = [];
+  const lines = Math.floor(entries.length / wordsPerLine);
+  const remain = entries.length % wordsPerLine;
+  for (let i = 0; i < lines; i++) {
+    chunks.push(entries.slice(i*wordsPerLine, (i === lines-1)? (i+1)*wordsPerLine+remain : (i+1)*wordsPerLine));
+  }
 
   return (
     <div className="keywordBtnBox">
-      {keywords.map((keywordGroup, index) => (
+      {chunks.map((chunk, index) => (
         <div className={`keywordRow keywordRow-${index}`} key={index}>
-          {keywordGroup.map((keyword, subIndex) => (
+          {chunk.map(([keyword, value]) => (
           <Button
             width={width}
             height={height}
             className={`${className} ${activeButtons[keyword] ? 'buttonInactive' : 'buttonActive'}`}
             onClick = {() => handleClick(keyword)}
-            key={`${index}-${subIndex}`}
+            key={`${index}-${keyword-wordsPerLine*index}`}
           >
-            {keyword}
+            {value[0]}
           </Button>
           ))}
         </div>

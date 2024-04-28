@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "../../assets/styles/LinkReceiver/InfoGuest.scss";
 import { RadioBtn } from "../../components/Button/RadioBtn";
 import { DropDownBtn } from "../../components/Button/DropDownBtn";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
+import secureLocalStorage from "react-secure-storage";
 
 const InfoGuest = () => {
+  const { tid } = useParams();
+  const navigate = useNavigate();
+  const [ test, setTest ] = useState(null);
+  const [ username, setUsername ] = useState("username");
+
   const relationshipOptions = [
     { key: 'relation1', value: '지인'},
     { key: 'relation2', value: '가족'},
@@ -50,9 +57,29 @@ const InfoGuest = () => {
 
   const [isNextEnabled, setIsNextEnabled] = useState(false);
 
+  const saveInfo = () => {
+    secureLocalStorage.setItem("epa_reply", {
+      anonymous: (anonymous === "option1") ? false : true,
+      nickname: name,
+      gender: (gender === "option1") ? "male" : "female",
+      relation: relationship,
+      age_range: ageRange
+    });
+  }
+
   useEffect(() => {
     setIsNextEnabled(anonymous !== '' && name.trim() !== '' && gender !== '' && relationship !== '' && ageRange !== '');
   }, [anonymous, name, gender, relationship, ageRange]);
+
+  useEffect(() => {
+    const t = secureLocalStorage.getItem("epa_test");
+    if (tid === null || tid === undefined || t.tid != tid) {
+      alert("잘못된 접근입니다.");
+      navigate("/");
+    }
+    setTest(t);
+    setUsername(t["nickname"]);
+  }, []);
 
   return (
     <>
@@ -79,7 +106,7 @@ const InfoGuest = () => {
           <RadioBtn option1Text={'남자'} option2Text={'여자'} onChange={handleGenderChange}></RadioBtn>
         </div>
         <div className="igDropDownBox">
-          <span id="infoTitle">username님과의 관계와 연령대를 선택해주세요.</span>
+          <span id="infoTitle">{username}님과의 관계와 연령대를 선택해주세요.</span>
           {/* TODO : 추후 옵션 데이터 전달 */}
           <div className="dropDownWrapper">
             <DropDownBtn options={relationshipOptions} placeholder="관계" onChange={handleRelationshipChange} className="dropDownRelation"></DropDownBtn>
@@ -90,8 +117,9 @@ const InfoGuest = () => {
         </div>
       </div>
       <GuestFooter 
-        nextPageUrl="/guest/keyword" 
+        nextPageUrl={`/guest/keyword/${tid}`}
         isNextEnabled={isNextEnabled}
+        doBeforeNext={saveInfo}
       />
     </div>
     </>
