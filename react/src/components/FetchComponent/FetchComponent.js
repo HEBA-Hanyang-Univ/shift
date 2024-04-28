@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import secureLocalStorage from 'react-secure-storage';
 
 const MAX_RETRIES = 3;

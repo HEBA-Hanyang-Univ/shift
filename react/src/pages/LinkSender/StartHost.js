@@ -47,40 +47,38 @@ const StartHost = () => {
   };
 
   const handleShareTest = () => {
-    let makeUrl = false;
-    let tid = secureLocalStorage.getItem("tid");
+    const tid = secureLocalStorage.getItem("tid");
     if (tid === null || tid === undefined) {
       TryFetch("my_tests", "GET", {}, (data) => {
         if (data.epa === null || data.epa === undefined) {
           alert("진행중인 테스트가 없습니다.");
         } else {
-          makeUrl = true;
-          tid = data.epa[0];
+          testShareUrl(data.epa[0]);
         }
       }, loginFail);
     } else {
-      makeUrl = true;
+      testShareUrl(tid);
     }
-    if (!makeUrl) {
-      return;
-    }
+  };
+
+  const testShareUrl = (tid) => {
     if (navigator.share) {
       navigator.share({
         title: 'SHIFT',
         text: 'MZ 자기객관화 테스트',
-        url: 'http://shift2me.com/guest/' + tid,
+        url: 'https://shift2me.com/guest/' + tid,
       });
     } else {
       alert('공유하기 기능을 지원하지 않는 브라우저입니다.');
     }
-  };
+  }
 
   const handleShareLink = () => {
     if (navigator.share) {
       navigator.share({
         title: 'SHIFT',
         text: 'MZ 자기객관화 테스트',
-        url: 'http://shift2me.com',
+        url: 'https://shift2me.com',
       });
     } else {
       alert('공유하기 기능을 지원하지 않는 브라우저입니다.');

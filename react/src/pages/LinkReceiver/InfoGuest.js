@@ -62,7 +62,7 @@ const InfoGuest = () => {
       anonymous: (anonymous === "option1") ? false : true,
       nickname: name,
       gender: (gender === "option1") ? "male" : "female",
-      relation: relationship,
+      relationship: relationship,
       age_range: ageRange
     });
   }

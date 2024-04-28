@@ -38,12 +38,10 @@ const OneLineDescription = () => {
     }
     rep.one_line_intro = inputValue;
     rep.tid = tid;
-
     TryFetch("save_epa_reply", "POST", rep, (data) => {
       secureLocalStorage.removeItem("epa_reply");
       secureLocalStorage.removeItem("epa_test");
     }, (error) => {
-      console.error(error);
       alert("서버와의 통신 중 오류가 발생했습니다. 다시 시도해주세요.");
       navigate("/");
     });

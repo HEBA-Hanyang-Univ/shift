@@ -29,11 +29,10 @@ const HandleLogin = ({ assertLogin, navigate, toWhere }) => {
       saveDataWithExpiration("name", data.name, expires_in);
       navigate?.(toWhere);
     } else {
-      console.log(data);
       secureLocalStorage.clear();
       loginFail("로그인이 만료되었습니다. 다시 로그인해주세요.");
     }
-  }, loginFail);
+  }, (error) => {loginFail()});
 };
 
 export default HandleLogin;

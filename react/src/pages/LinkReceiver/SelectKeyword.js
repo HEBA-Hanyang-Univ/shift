@@ -14,7 +14,6 @@ const SelectKeyword = () => {
   const { tid } = useParams();
   const [selectedKeywords, setSelectedKeywords] = useState([]);
 
-  const [ test, setTest ] = useState(null);
   const [ username, setUsername ] = useState("username");
   const [ keywords, setKeywords ] = useState([]);
 
@@ -24,18 +23,17 @@ const SelectKeyword = () => {
       alert("잘못된 접근입니다.");
       navigate("/");
     }
-    let epa_keywords = loadDataWithExpiration("epa_keywords");
+    const epa_keywords = loadDataWithExpiration("epa_keywords");
     if (epa_keywords === null) {
       TryFetch("get_epa_keywords", "GET", {}, (data) => {
         saveDataWithExpiration("epa_keywords", data, 720);
-        epa_keywords = data;
+        setKeywords(data);
       }, (error) => {
         alert("키워드를 불러오는데 실패했습니다.");
         navigate("/");
         return;
       });
     }
-    setTest(t);
     setKeywords(epa_keywords);
     setUsername(t['nickname']);
   },[]);

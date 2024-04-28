@@ -5,6 +5,7 @@ import { LandingGuest } from "./LandingGuest";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import TryFetch from "../../components/FetchComponent/FetchComponent";
+import { loadDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
 
 const StartGuest = () => {
   const { tid } = useParams();
@@ -16,17 +17,21 @@ const StartGuest = () => {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    let alertMsg = "";
     if (tid === undefined || tid === null) {
-      alertMsg = "잘못된 접근입니다.";
-    } else if (secureLocalStorage.getItem("tid") === tid) {
-      alertMsg = "자기 자신의 테스트는 응답할 수 없습니다.";
-    }
-    if (alertMsg !== "") {
-      alert(alertMsg);
+      alert("잘못된 접근입니다.");
       navigate("/");
       return;
     }
+
+    TryFetch("my_tests", "GET", {}, (data) => {
+      if (data.epa !== null && data.epa !== undefined) {
+        if (data.epa[0] === tid) {
+          alert("자기 자신의 테스트는 응답할 수 없습니다.");
+          navigate("/");
+          return;
+        }
+      }
+    }, (error) => {});
 
     TryFetch(`epa_test_reply/${tid}`, "GET", {}, (data) => {
       const test = {};

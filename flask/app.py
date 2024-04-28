@@ -248,7 +248,6 @@ def save_epa_reply():
     if DB.save_epa_reply(tid, reply):
         return make_response({"description": "success"}, 201)
     else:
-        print('failed to save in DB')
         return make_response({"description": "failed"}, 400)
 
 @app.route("/get_epa_keywords", methods=['GET'])
@@ -310,7 +309,9 @@ def get_epa_result():
 # If there's no token in the session, it returns False, so you can use this function to check if the user is logged in
 # Also, this function includes a token validation process with _refresh_token() function
 def validate_token():
-    if "expires_in" in session and datetime.now() > session["expires_in"]:
+    if 'login_type' not in session:
+        return False
+    elif "expires_in" in session and datetime.now() > session["expires_in"]:
         session.clear()
         return False
     elif "access_expires" in session and datetime.now() > session["access_expires"]:
