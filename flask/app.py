@@ -13,6 +13,7 @@ from DBhandler import DBModule, UserProperty, EPATest, EPAReply
 from flask_app import *
 import logs
 from datetime import datetime, timedelta
+from dataclasses import fields
 
 ### temporary server setup
 DB = DBModule()
@@ -83,7 +84,7 @@ def kakao_callback():
             else:
                 print('kakao account info not exist')
                 logger.info(f'no kakao account info: {my_info_json}')
-                return make_response("no kakao account info", 403)
+                return make_response({"description": "no kakao account info"}, 403)
 
             resp_data = {}
             if DB.sign_in("KAKAO", my_info_json["id"], prop):
@@ -98,6 +99,7 @@ def kakao_callback():
             session["access_expires"] = now + timedelta(seconds=token_json["expires_in"])
             session["refresh_token"] = token_json["refresh_token"]
             session["refresh_expires"] = now + timedelta(seconds=token_json["refresh_token_expires_in"])
+            session["expires_in"] = now + timedelta(minutes=60)
             #session["expires_in"] = token_json["expires_in"]
             #session["refresh_token_expires_in"] = token_json["refresh_token_expires_in"]
             #session["login_time"] = datetime.now()
@@ -105,14 +107,14 @@ def kakao_callback():
         else:
             print('failed to get token from kakao: ', token_json)
             logger.info(f'failed to get token from kakao: {token_json}')
-            return make_response("failed to get token", 401)
+            return make_response({"description": "failed to get token"}, 401)
 
     else:
         print('error occured while login to kakao')
         error_type = request.args.get("error")
         error_description = request.args.get("error_description")
         logger.info(f'error occured while login to kakao, error: {error_type}, description: {error_description}')
-        return make_response(f"error: {error_type}\n description: {error_description}", 403)
+        return make_response({f"error: {error_type}\n description: {error_description}"}, 403)
 
 '''
 @app.route("/naver_callback")
@@ -157,18 +159,20 @@ def google_callback():
 
 @app.route("/verify_login")
 def verify_login():
-    if validate_token():
-        userProp = DB.get_user_property(session["login_type"], session["id"])
-        resp_data = {}
-        resp_data["name"] = userProp['name']
-        return make_response(resp_data, 200)
-    else:
-        return make_response("not_logged_in", 401)
+    if not validate_token():
+        return make_response({"description": "not_logged_in"}, 401)
+
+    userProp = DB.get_user_property(session["login_type"], session["id"])
+    resp_data = {}
+    resp_data["name"] = userProp['name']
+    resp_data["expires_in"] = (session["expires_in"] - datetime.now()).total_seconds()
+    return make_response(resp_data, 200)
+
 
 @app.route("/logout")
 def logout():
     if not validate_token():
-        return make_response("already_logged_out", 401)
+        return make_response({"description": "already_logged_out"}, 401)
 
     access_token = session["access_token"]
     if "login_type" in session and session["login_type"] == "KAKAO":
@@ -200,16 +204,21 @@ def logout():
 
         return response
     '''
-    return make_response("failed_to_logout", 401)
+    return make_response({"description": "failed_to_logout"}, 401)
+
+@app.route("/total_num", methods=['GET'])
+def get_total_num():
+    return make_response({"total_num": DB.get_test_count()}, 200)
 
 @app.route("/save_epa", methods=['POST'])
 def save_epa_test():
     if not validate_token():
-        return make_response("not_logged_in", 401)
+        return make_response({"description": "not_logged_in"}, 401)
 
     data = request.get_json()
 
     test = EPATest()
+
     test.age = data.get("age")
     test.nickname = data.get("nickname")
     test.gender = data.get("gender")
@@ -226,31 +235,32 @@ def save_epa_test():
 @app.route("/save_epa_reply", methods=['POST'])
 def save_epa_reply():
     data = request.get_json()
+
     reply = EPAReply()
-    reply.anonymous = data.get("anonymous")
-    reply.nickname = data.get("nickname")
-    reply.age_range = data.get("age_range")
-    reply.gender = data.get("gender")
-    reply.relationship = data.get("relationship")
-    reply.keyword_selected = data.get("keyword_selected")
-    reply.one_line_intro = data.get("one_line_intro")
+    reply_fields = fields(EPAReply)
+    for field in reply_fields:
+        if field.name not in data:
+            return make_response({"description": "missing field"}, 400)
+        reply.__setattr__(field.name, data.get(field.name))
+
     tid = data.get("tid")
 
     if DB.save_epa_reply(tid, reply):
-        return make_response("success", 201)
+        return make_response({"description": "success"}, 201)
     else:
-        return make_response("failed", 401)
+        print('failed to save in DB')
+        return make_response({"description": "failed"}, 400)
 
-@app.route("/epa_keywords", methods=['GET'])
+@app.route("/get_epa_keywords", methods=['GET'])
 def get_all_epa_keywords():
     return make_response(DB.get_all_epa_keywords(), 200)
 
 @app.route("/my_tests", methods=['GET'])
 def get_my_tests():
     if not validate_token():
-        return make_response("not_logged_in", 401)
+        return make_response({"description": "not_logged_in"}, 401)
 
-    result = {}
+    result = dict()
 
     test_list = DB.get_test_list(session["login_type"], session["id"])
     if test_list == None:
@@ -272,26 +282,26 @@ def get_my_tests():
 def get_epa_test(tid):
     test = DB.get_epa_test(tid)
     if test == None:
-        return make_response("no test", 404)
+        return make_response({"description": "no test"}, 404)
 
     result = {}
-    result['nickname'] = test.nickname
-    #TODO: check this number is relies on the number of replies or the total number of all tests
-    result['total_num'] = len(test.replies) if test.replies != None else 0
-    result['keyword_myself'] = test.keyword_myself
-    result['keyword_want'] = test.keyword_want
-    result['keyword_others'] = test.keyword_others
+    result['nickname'] = test.get('nickname')
+    #NOTE : 'total_num' is the total number of tests
+    result['total_num'] = DB.get_test_count()
+    result['keyword_myself'] = test.get('keyword_myself')
+    result['keyword_want'] = test.get('keyword_want')
+    result['keyword_others'] = test.get('keyword_others')
 
     return make_response(result, 200)
 
 @app.route("/result/epa", methods=['GET'])
 def get_epa_result():
     if not validate_token():
-        return make_response("not_logged_in", 401)
+        return make_response({"description": "not_logged_in"}, 401)
 
     tests = DB.get_test_list(session['login_type'], session['id'])
     if tests == None or tests['epa'] == None:
-        return make_response("no test", 404)
+        return make_response({"description": "no test"}, 404)
 
     return make_response(tests['epa'], 200)
 
@@ -300,9 +310,10 @@ def get_epa_result():
 # If there's no token in the session, it returns False, so you can use this function to check if the user is logged in
 # Also, this function includes a token validation process with _refresh_token() function
 def validate_token():
-    if "access_expires" not in session:
+    if "expires_in" in session and datetime.now() > session["expires_in"]:
+        session.clear()
         return False
-    elif datetime.now() > session["access_expires"]:
+    elif "access_expires" in session and datetime.now() > session["access_expires"]:
         if "refresh_expires" in session and datetime.now() < session["refresh_expires"]:
             return _refresh_token()
         else:
