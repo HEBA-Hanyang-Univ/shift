@@ -25,6 +25,8 @@ import CompleteGuest from "./pages/LinkReceiver/CompleteGuest";
 import ResultDashBoard from "./pages/Result/ResultDashBoard";
 import Result from "./pages/Result/Result";
 
+import secureLocalStorage from "react-secure-storage";
+
 function App() {
   const ScrollToTop = () => {
     const { pathname } = useLocation();
@@ -35,9 +37,18 @@ function App() {
     return null;
   };
 
+  const CheckData = () => {
+    const version = secureLocalStorage.getItem("cookie-v");
+    if (version === undefined || version === null) {
+      secureLocalStorage.clear();
+      secureLocalStorage.setItem("cookie-v", "240430");
+    }
+  };
+
   return (
     <div className="App">
       <Router>
+	<CheckData />
         <ScrollToTop />
         <Header/>
         <Routes>

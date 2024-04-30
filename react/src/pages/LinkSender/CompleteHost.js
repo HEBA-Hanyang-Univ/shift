@@ -1,12 +1,48 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../../assets/styles/LinkSender/CompleteHost.scss";
 import { Button } from "../../components/Button/Button";
 import CheckedImg from "../../assets/images/CheckedCircle.svg";
 import KakaoImg from "../../assets/images/kakao.svg";
 import InstaImg from "../../assets/images/insta.svg";
 import LinkImg from "../../assets/images/linkImg.svg";
+import secureLocalStorage from "react-secure-storage";
 
 const CompleteHost = () => {
+  const navigate = useNavigate();
+
+  const handleShareLink = () => {
+    const tid = secureLocalStorage.getItem("tid");
+    if (tid === null || tid === undefined) {
+      alert("");
+      return;
+    }
+    if (navigator.share) {
+      navigator.share({
+      title: 'SHIFT',
+      text: 'MZ 자기객관화 테스트',
+      url: 'https://shift2me.com/guest/' + tid,
+      });
+    } else {
+      alert('공유하기 기능을 지원하지 않는 브라우저입니다.');
+    }
+  }
+
+  const handleShareKakao = () => {
+    alert("현재 준비중인 기능입니다.");
+  }
+
+  const handleShareInstagram = () => {
+    alert("현재 준비중인 기능입니다.");
+  }
+
+  const handleShareImage = () => {
+    alert("현재 준비중인 기능입니다.");
+  }
+
+  const handleShowResult = () => {
+    navigate("/result/dashboard");
+  }
 
   return (
     <div id="Container" className="chContainer">
@@ -20,21 +56,21 @@ const CompleteHost = () => {
       </div>
       <div className="chLinkShareWrapper">
         {/* TODO: 추후 링크 달기 */}
-        <Button className="shareBtn" color="#FFF" width={3.92} height={3.92}>
+        <Button onClick={handleShareKakao} className="shareBtn" color="#FFF" width={3.92} height={3.92}>
           <img src={KakaoImg} alt="kakao share"></img>
         </Button>
-        <Button className="shareBtn" color="#FFF" width={3.92} height={3.92}>
+        <Button onClick={handleShareInstagram} className="shareBtn" color="#FFF" width={3.92} height={3.92}>
           <img src={InstaImg} alt="insta share"></img>
         </Button>
-        <Button className="shareBtn" color="#FFF" width={3.92} height={3.92}>
+        <Button onClick={handleShareLink} className="shareBtn" color="#FFF" width={3.92} height={3.92}>
           <img src={LinkImg} alt="link share"></img>
         </Button>        
       </div>
       <div className="chBtnWrapper">
-        <Button className="chBtnGray chBtn" color="#EDEDED" width={8.4} height={2.5}>
+        <Button onClick={handleShareImage} className="chBtnGray chBtn" color="#EDEDED" width={8.4} height={2.5}>
           <span>이미지 저장</span>
         </Button>
-        <Button className="chBtnPurple chBtn" color="#A570C4" width={8.4} height={2.5}>
+        <Button onClick={handleShowResult} className="chBtnPurple chBtn" color="#A570C4" width={8.4} height={2.5}>
           <span>결과 확인</span>
         </Button>
       </div>
