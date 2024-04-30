@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Tab } from "../../components/Tab/Tab";
 import "../../assets/styles/Result/Result.scss";
+import TryFetch from "../../components/FetchComponent/FetchComponent";
 
 // data는 여기서 한 번에 하위 컴포넌트들로 전달
 // dummy data
@@ -26,6 +28,23 @@ const dummyData = {
 }
 
 const Result = () => {
+
+  const navigate = useNavigate();
+  const [ data, setData ] = useState({});
+
+  useEffect(() => {
+    TryFetch("/result/epa", "GET", {}, (data) => {
+      if (!data["replies"] || data["replies"].length < 3) {
+        alert("비정상적인 접근입니다.");
+        navigate("/");
+        return;
+      }
+      console.log(data);
+    }, (error) => {
+      console.log(error);
+    });
+  }, []);
+
   return (
     <div id="Container" className="resultContainer">
       <div className="resultContent">
