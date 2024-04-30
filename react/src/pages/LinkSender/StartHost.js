@@ -16,6 +16,11 @@ import { saveDataWithExpiration, loadDataWithExpiration } from "../../components
 
 const StartHost = () => {
   const [ totalNum, setTotalNum ] = useState(0);
+  const [ test, setTest ] = useState(null); // [tid, number]
+  const [ canSeeResult, setCanSeeResult ] = useState(false); // [tid, number
+
+  const [gradientValue, setGradientValue] = useState(0);
+  const [increase, setIncrease] = useState(true);
 
   const navigate = useNavigate();
 
@@ -26,15 +31,12 @@ const StartHost = () => {
       toWhere: "/"
     });
 
-    TryFetch("my_tests", "GET", {}, (data) => {
-      if (data.epa === null || data.epa === undefined) {
-        navigate("/host/info");
-      } else {
-        // TODO : make modal to ask if user wants to continue (delete previous and start new one)
-        alert("이미 진행중인 테스트가 있습니다. 기존 테스트를 삭제합니다.");
-        navigate("/host/info");
-      }
-    });
+    if (test && test.epa !== null && test.epa !== undefined) {
+      alert("이미 진행중인 테스트가 있습니다. 기존 테스트를 삭제합니다.");
+      navigate("/host/info");
+    } else {
+      navigate("/host/info");
+    }
   };
 
   const handleResult = () => {
@@ -101,7 +103,32 @@ const StartHost = () => {
       saveDataWithExpiration("totalNum", data.total_num, 1);
       setTotalNum(data.total_num);
     });
+
+    TryFetch("my_tests", "GET", {}, (data) => {
+      setTest(data);
+      if (data.epa !== null && data.epa !== undefined && data.epa[1] >= 3) {
+        setCanSeeResult(true);
+      }
+    });
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (increase) {
+        setGradientValue((prevValue) => prevValue + 1);
+        if (gradientValue >= 100) {
+          setIncrease(false);
+        }
+      } else {
+        setGradientValue((prevValue) => prevValue - 1);
+        if (gradientValue <= 0) {
+          setIncrease(true);
+        }
+      }
+    }, 10);
+    return () => clearInterval(interval);
+    }, [increase, gradientValue]);
+
 
   return (
     <>
@@ -160,18 +187,22 @@ const StartHost = () => {
           <div className="shButtonContainer">
             <Button onClick={handleStart}className="shButtonL" gradient="180deg, #9B6EB6 20%, #9361B0 80%" width={19.7} height={3.4}>
               <span className="shButtonSpanL" style={{paddingTop: '0.2rem'}}>시작하기</span>
-              <span className="shButtonSpanS">지금까지 {totalNum.toLocaleString()} 명이 참여했어요!</span>
+              {/* TODO: 페이지 디자인 변경하면서 색상 변경하기 */}
+              <span className="shButtonSpanS" style={{
+                backgroundImage: "linear-gradient(90deg, #FFFFFF 0%, #000000 " + gradientValue + "%, #FFFFFF 100%)",
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                color: "transparent"}}>지금까지 {totalNum.toLocaleString()} 명이 참여했어요!</span>
             </Button>
-            {/* TODO: 추후 테스트가 완료되지 않았으면 버튼 회색처리 */}
-            <Button onClick={handleResult}className="shButtonL" gradient="180deg, #A27DB2 0%, #A570C4 100%" width={19.7} height={3.4}>
+            <Button onClick={handleResult}className="shButtonL" gradient={canSeeResult ? "180deg, #A27DB2 0%, #A570C4 100%" : "180deg, #F1F1F1 0%, #F5F5F5 100%"} width={19.7} height={3.4}>
               <span className="shButtonSpanL">결과 확인하기</span>
             </Button>
             <div className="shShareButtonWrapper">
-              <Button onClick={handleShareTest} className="testButton" color="#FFF" width={9.2} height={2}>
+              <Button onClick={handleShareLink} className="testButton" color="#FFF" width={9.2} height={2}>
                 <img src={shareImg} alt="share img"></img>
                 <span>테스트 공유하기</span>
               </Button>
-              <Button onClick={handleShareLink} className="testButton" color="#FFF" width={9.2} height={2}>
+              <Button onClick={handleShareTest} className="testButton" color="#FFF" width={9.2} height={2}>
                 <img src={shareImg} alt="share img"></img>
                 <span>설문 링크 공유하기</span>
               </Button>
