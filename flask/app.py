@@ -11,7 +11,7 @@ from config import KAKAO_CLIENT_ID, KAKAO_SECRET, KAKAO_REDIRECT_URI, NAVER_CLIE
 #from model import UserData_N, UserModel, UserData_G, UserData_K
 from DBhandler import DBModule, UserProperty, EPATest, EPAReply
 from flask_app import *
-import logs
+from logs import *
 from datetime import datetime, timedelta
 from dataclasses import fields
 
