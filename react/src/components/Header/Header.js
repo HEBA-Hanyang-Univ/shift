@@ -1,18 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./Header.scss";
 import Logo from "../../assets/images/HeaderLogo.svg";
 import NavBtn from "../../assets/images/NavBtn.svg";
 import HamburgerMenu from "../Hamburger/HamburgerMenu";
 import { Link } from "react-router-dom";
 import { loadDataWithExpiration } from "../CookieUtils/SecureLocalStorageExtends";
+import UseOutsideClick from "../Modal/UseOutsideClick";
 
 const Header = () => {
   const name = loadDataWithExpiration("name");
   const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
+  const hamburgerMenuRef = useRef();
 
   const toggleHamburgerMenu = () => {
     setShowHamburgerMenu(!showHamburgerMenu);
   };
+
+  UseOutsideClick(hamburgerMenuRef, () => {
+    if(showHamburgerMenu) {
+      setShowHamburgerMenu(false);
+    }
+  });
 
   return (
     <div className="headerContainer">
@@ -29,7 +37,13 @@ const Header = () => {
           <button onClick={toggleHamburgerMenu}>
             <img src={NavBtn} alt="navigationButton"></img>
           </button>
-          {showHamburgerMenu && <HamburgerMenu isOpen={showHamburgerMenu} toggleMenu={toggleHamburgerMenu}/>}
+          {showHamburgerMenu && (
+            <div ref={hamburgerMenuRef}>
+              <HamburgerMenu 
+                isOpen={showHamburgerMenu} toggleMenu={toggleHamburgerMenu}
+              />
+            </div>
+          )}
           {showHamburgerMenu && <div className="hamburgerBackground"></div>}
         </div>
       </div>

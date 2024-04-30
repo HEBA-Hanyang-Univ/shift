@@ -88,6 +88,8 @@ const Reasoning = () => {
                     <textarea
                       className="reKeywordReasonInput"
                       placeholder="일화를 입력하세요"
+                      type="text"
+                      maxLength={150}
                       value={keyword.reason}
                       onChange={(e) => updateReason(keyword.id, e.target.value)}
                     />

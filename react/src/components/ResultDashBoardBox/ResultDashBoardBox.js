@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Button";
-import MZImg from "../../assets/images/Result_MZ.svg";
+import MZImg from "../../assets/images/Result_MZ.png";
 import "./ResultDashBoardBox.scss";
 
 export const ResultDashBoardBox = ({ tid, number }) => {
