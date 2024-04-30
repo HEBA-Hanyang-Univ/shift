@@ -20,12 +20,13 @@ const StartHost = () => {
 
   const navigate = useNavigate();
 
-  const loginFail = () => {
-    alert("로그인이 필요합니다.");
-    navigate("/login");
-  };
-
   const handleStart = () => {
+    HandleLogin({
+      assertLogin: true,
+      navigate: navigate,
+      toWhere: "/"
+    });
+    
     TryFetch("my_tests", "GET", {}, (data) => {
       if (data.epa === null || data.epa === undefined) {
         navigate("/host/info");
@@ -35,7 +36,7 @@ const StartHost = () => {
         alert("이미 진행중인 테스트가 있습니다. 기존 테스트를 삭제합니다.");
         navigate("/host/info");
       }
-    }, loginFail);
+    });
   };
 
   const handleResult = () => {
@@ -47,6 +48,12 @@ const StartHost = () => {
   };
 
   const handleShareTest = () => {
+    HandleLogin({
+      assertLogin: true,
+      navigate: navigate,
+      toWhere: "/"
+    });
+
     const tid = secureLocalStorage.getItem("tid");
     if (tid === null || tid === undefined) {
       TryFetch("my_tests", "GET", {}, (data) => {
@@ -55,7 +62,7 @@ const StartHost = () => {
         } else {
           testShareUrl(data.epa[0]);
         }
-      }, loginFail);
+      });
     } else {
       testShareUrl(tid);
     }

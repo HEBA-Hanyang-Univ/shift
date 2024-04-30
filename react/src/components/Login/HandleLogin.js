@@ -13,7 +13,7 @@ const HandleLogin = ({ assertLogin, navigate, toWhere }) => {
     if (assertLogin) {
       alert(alertString);
       if (navigate) {
-        navigate("/login");
+        navigate("/login", { state: { from: toWhere } });
       } else {
         window.location.href = "/login";
       }
