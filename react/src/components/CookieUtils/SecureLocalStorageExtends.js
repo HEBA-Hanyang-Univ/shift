@@ -1,26 +1,30 @@
 import secureStorage from 'react-secure-storage';
 
 // Save data with expiration
-export const saveDataWithExpiration = (key, data, expirationInMinutes) => {
+export const saveDataWithExpiration = (key, data, expirationInMinutes=60) => {
     const expirationDate = new Date().getTime() + expirationInMinutes * 60 * 1000;
     secureStorage.setItem(key, JSON.stringify({ data, expirationDate }));
 };
 
 // Load data and check expiration
 export const loadDataWithExpiration = (key) => {
-  const data = JSON.parse(secureStorage.getItem(key));
+  try {
+    const data = JSON.parse(secureStorage.getItem(key));
+    if (!data) return null;
 
-  if (!data) return null;
+    const now = new Date().getTime();
 
-  const now = new Date().getTime();
+    if (now >= data.expirationDate) {
+      // Data expired
+      secureStorage.removeItem(key);
+      return null;
+    }
 
-  if (now >= data.expirationDate) {
-    // Data expired
-    secureStorage.removeItem(key);
+    return data.data;
+  } catch (e) {
+    console.log('Failed to parse data from storage');
     return null;
   }
-
-  return data.data;
 };
 
 // Usage

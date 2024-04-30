@@ -5,7 +5,6 @@ import { KeywordBtnBoxContainer } from "../../components/Button/KeywordBox/Keywo
 import { SelectedKeyword } from "../../components/Button/KeywordBox/SelectedKeyword";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
 import HandleLogin from "../../components/Login/HandleLogin";
-import secureLocalStorage from "react-secure-storage";
 import TryFetch from "../../components/FetchComponent/FetchComponent";
 import { loadDataWithExpiration, saveDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
 
@@ -29,16 +28,16 @@ const MyAspiration = () => {
   };
 
   const saveSelectedKeyword = () => {
-    const testData = secureLocalStorage.getItem("epa_test");
+    const testData = loadDataWithExpiration("epa_test");
     testData.keyword_want = selectedKeywords;
-    secureLocalStorage.setItem("epa_test", testData);
+    saveDataWithExpiration("epa_test", testData);
   }
 
   useEffect(() => {
     HandleLogin({
       assertLogin: true,
     });
-    const testInfo = secureLocalStorage.getItem("epa_test");
+    const testInfo = loadDataWithExpiration("epa_test");
     if (!testInfo) {
       alert("비정상적인 접근입니다.");
       navigate("/");

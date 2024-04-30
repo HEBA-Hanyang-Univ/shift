@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import secureLocalStorage from "react-secure-storage";
+import { saveDataWithExpiration } from "../CookieUtils/SecureLocalStorageExtends.js";
 
 const SocialLoginCallback = () => {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ const SocialLoginCallback = () => {
       if (response.status === 200 || response.status === 201) {
         const resp_data = await response.json();
         for (let key in resp_data) {
-            secureLocalStorage.setItem(key, resp_data[key]);
+          saveDataWithExpiration(key, resp_data[key]);
         }
         navigate(state);
       } else {

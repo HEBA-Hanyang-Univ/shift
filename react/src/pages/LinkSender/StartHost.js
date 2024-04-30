@@ -12,7 +12,6 @@ import shFooterImg from "../../assets/images/StartHost/shFooter.svg";
 import TryFetch from "../../components/FetchComponent/FetchComponent.js";
 import HandleLogin from "../../components/Login/HandleLogin.js";
 import { saveDataWithExpiration, loadDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends.js";
-import secureLocalStorage from "react-secure-storage";
 
 
 const StartHost = () => {
@@ -26,12 +25,11 @@ const StartHost = () => {
       navigate: navigate,
       toWhere: "/"
     });
-    
+
     TryFetch("my_tests", "GET", {}, (data) => {
       if (data.epa === null || data.epa === undefined) {
         navigate("/host/info");
       } else {
-        console.log(data);
         // TODO : make modal to ask if user wants to continue (delete previous and start new one)
         alert("이미 진행중인 테스트가 있습니다. 기존 테스트를 삭제합니다.");
         navigate("/host/info");
@@ -54,7 +52,7 @@ const StartHost = () => {
       toWhere: "/"
     });
 
-    const tid = secureLocalStorage.getItem("tid");
+    const tid = loadDataWithExpiration("tid");
     if (tid === null || tid === undefined) {
       TryFetch("my_tests", "GET", {}, (data) => {
         if (data.epa === null || data.epa === undefined) {

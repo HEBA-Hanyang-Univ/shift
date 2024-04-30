@@ -4,7 +4,7 @@ import "../../assets/styles/LinkReceiver/InfoGuest.scss";
 import { RadioBtn } from "../../components/Button/RadioBtn";
 import { DropDownBtn } from "../../components/Button/DropDownBtn";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
-import secureLocalStorage from "react-secure-storage";
+import { saveDataWithExpiration, loadDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
 
 const InfoGuest = () => {
   const { tid } = useParams();
@@ -58,7 +58,7 @@ const InfoGuest = () => {
   const [isNextEnabled, setIsNextEnabled] = useState(false);
 
   const saveInfo = () => {
-    secureLocalStorage.setItem("epa_reply", {
+    saveDataWithExpiration("epa_reply", {
       anonymous: (anonymous === "option1") ? false : true,
       nickname: name,
       gender: (gender === "option1") ? "male" : "female",
@@ -72,7 +72,7 @@ const InfoGuest = () => {
   }, [anonymous, name, gender, relationship, ageRange]);
 
   useEffect(() => {
-    const t = secureLocalStorage.getItem("epa_test");
+    const t = loadDataWithExpiration("epa_received_test");
     if (tid === null || tid === undefined || t.tid != tid) {
       alert("잘못된 접근입니다.");
       navigate("/");

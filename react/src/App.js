@@ -39,16 +39,16 @@ function App() {
 
   const CheckData = () => {
     const version = secureLocalStorage.getItem("cookie-v");
-    if (version === undefined || version === null) {
+    if (version !== "240430-1") {
       secureLocalStorage.clear();
-      secureLocalStorage.setItem("cookie-v", "240430");
+      secureLocalStorage.setItem("cookie-v", "240430-1");
     }
   };
 
   return (
     <div className="App">
       <Router>
-	<CheckData />
+        <CheckData />
         <ScrollToTop />
         <Header/>
         <Routes>

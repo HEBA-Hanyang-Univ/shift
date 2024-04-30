@@ -5,7 +5,6 @@ import "../../assets/styles/LinkSender/MyIdentity.scss";
 import { KeywordBtnBoxContainer } from "../../components/Button/KeywordBox/KeywordBtnBoxContainer";
 import { SelectedKeyword } from "../../components/Button/KeywordBox/SelectedKeyword";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
-import secureLocalStorage from "react-secure-storage";
 import TryFetch from "../../components/FetchComponent/FetchComponent.js";
 import { loadDataWithExpiration, saveDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends.js";
 
@@ -18,7 +17,7 @@ const SelectKeyword = () => {
   const [ keywords, setKeywords ] = useState([]);
 
   useEffect(() => {
-    const t = secureLocalStorage.getItem("epa_test");
+    const t = loadDataWithExpiration("epa_received_test");
     if (t === null || t === undefined || t.tid !== tid) {
       alert("잘못된 접근입니다.");
       navigate("/");
@@ -52,8 +51,8 @@ const SelectKeyword = () => {
   };
 
   const saveKeywords = () => {
-    const replyData = secureLocalStorage.getItem("epa_reply");
-    const testData = secureLocalStorage.getItem("epa_test");
+    const replyData = loadDataWithExpiration("epa_reply");
+    const testData = loadDataWithExpiration("epa_received_test");
     if (replyData === null || replyData === undefined || testData === null || testData === undefined) {
       alert("잘못된 접근입니다.")
       navigate("/");
@@ -84,7 +83,7 @@ const SelectKeyword = () => {
         replyData.keyword_not_in_others.push(keyword);
       }
     });
-    secureLocalStorage.setItem("epa_reply", replyData);
+    saveDataWithExpiration("epa_reply", replyData);
   }
 
   return (

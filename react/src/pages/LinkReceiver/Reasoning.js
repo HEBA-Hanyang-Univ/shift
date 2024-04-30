@@ -3,8 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import "../../assets/styles/LinkReceiver/Reasoning.scss";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
 import { motion, AnimatePresence } from "framer-motion";
-import secureLocalStorage from "react-secure-storage";
-import { loadDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
+import { saveDataWithExpiration, loadDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
 
 const Reasoning = () => {
   const { tid } = useParams();
@@ -32,9 +31,9 @@ const Reasoning = () => {
   };
 
   useEffect(() => {
-    const t = secureLocalStorage.getItem("epa_test");
+    const t = loadDataWithExpiration("epa_received_test");
     const keywordData = loadDataWithExpiration("epa_keywords");
-    const rep = secureLocalStorage.getItem("epa_reply");
+    const rep = loadDataWithExpiration("epa_reply");
     if (t === null || t === undefined || t.tid !== tid ||
       keywordData === null || keywordData === undefined ||
       rep === null || rep === undefined) {
@@ -49,7 +48,7 @@ const Reasoning = () => {
   }, []);
 
   const saveKeywords = () => {
-    const rep = secureLocalStorage.getItem("epa_reply");
+    const rep = loadDataWithExpiration("epa_reply");
     if (rep === null || rep === undefined) {
       alert("잘못된 접근입니다. 다시 시도해주세요.");
       navigate("/");
@@ -57,7 +56,7 @@ const Reasoning = () => {
     rep.keyword_detail = keywords.map(keyword => {
       return { id: keyword.id, reason: keyword.reason }
     });
-    secureLocalStorage.setItem("epa_reply", rep);
+    saveDataWithExpiration("epa_reply", rep);
   }
 
   return (

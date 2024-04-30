@@ -29,10 +29,10 @@ const PerceivedByOthers = () => {
   };
 
   const saveSelectedKeyword = () => {
-    const testData = secureLocalStorage.getItem("epa_test");
+    const testData = loadDataWithExpiration("epa_test");
     testData.keyword_others = selectedKeywords;
     TryFetch("save_epa", "POST", testData, (data) => {
-      secureLocalStorage.setItem("tid", data.tid);
+      saveDataWithExpiration("tid", data.tid);
     }, (error) => {
       alert("저장하는데 실패했습니다: ", error);
       navigate("/");
@@ -45,7 +45,7 @@ const PerceivedByOthers = () => {
     HandleLogin({
       assertLogin: true,
     });
-    const testInfo = secureLocalStorage.getItem("epa_test");
+    const testInfo = loadDataWithExpiration("epa_test");
     if (!testInfo) {
       alert("비정상적인 접근입니다.");
       navigate("/");

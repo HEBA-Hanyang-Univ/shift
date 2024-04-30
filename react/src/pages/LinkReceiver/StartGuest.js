@@ -3,9 +3,8 @@ import "../../assets/styles/LinkReceiver/StartGuest.scss";
 import { Button } from "../../components/Button/Button";
 import { LandingGuest } from "./LandingGuest";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import secureLocalStorage from "react-secure-storage";
 import TryFetch from "../../components/FetchComponent/FetchComponent";
-import { loadDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
+import { saveDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
 
 const StartGuest = () => {
   const { tid } = useParams();
@@ -40,7 +39,7 @@ const StartGuest = () => {
       test["keyword_myself"] = data["keyword_myself"];
       test["keyword_want"] = data["keyword_want"];
       test["keyword_others"] = data["keyword_others"];
-      secureLocalStorage.setItem("epa_test", test);
+      saveDataWithExpiration("epa_received_test", test);
 
       setUsername(data["nickname"]);
       setTotal(data["total_num"]);

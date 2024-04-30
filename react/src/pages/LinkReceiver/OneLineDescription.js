@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../../assets/styles/LinkReceiver/OneLineDescription.scss";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
-import secureLocalStorage from "react-secure-storage";
 import TryFetch from "../../components/FetchComponent/FetchComponent";
+import secureLocalStorage from "react-secure-storage";
+import { loadDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
 
 const OneLineDescription = () => {
   const { tid } = useParams();
@@ -22,7 +23,7 @@ const OneLineDescription = () => {
   };
 
   useEffect(() => {
-    const t = secureLocalStorage.getItem("epa_test");
+    const t = loadDataWithExpiration("epa_received_test");
     if (t === null || t === undefined || t.tid !== tid) {
       alert("잘못된 접근입니다. 다시 시도해주세요.");
       navigate("/");
@@ -31,7 +32,7 @@ const OneLineDescription = () => {
   });
 
   const saveKeywords = () => {
-    const rep = secureLocalStorage.getItem("epa_reply");
+    const rep = loadDataWithExpiration("epa_reply");
     if (rep === null || rep === undefined) {
        alert("잘못된 접근입니다. 다시 시도해주세요.");
        navigate("/");
@@ -40,7 +41,7 @@ const OneLineDescription = () => {
     rep.tid = tid;
     TryFetch("save_epa_reply", "POST", rep, (data) => {
       secureLocalStorage.removeItem("epa_reply");
-      secureLocalStorage.removeItem("epa_test");
+      secureLocalStorage.removeItem("epa_received_test");
     }, (error) => {
       alert("서버와의 통신 중 오류가 발생했습니다. 다시 시도해주세요.");
       navigate("/");

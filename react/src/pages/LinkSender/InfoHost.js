@@ -3,7 +3,7 @@ import "../../assets/styles/LinkSender/InfoHost.scss";
 import { RadioBtn } from "../../components/Button/RadioBtn";
 import { DropDownBtn } from "../../components/Button/DropDownBtn";
 import { GuestFooter } from "../../components/Footer/GuestFooter";
-import secureLocalStorage from "react-secure-storage";
+import { saveDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
 import HandleLogin from "../../components/Login/HandleLogin";
 
 const InfoHost = () => {
@@ -42,7 +42,7 @@ const InfoHost = () => {
   }, [name, gender, age, alarm]);
 
   const saveInfo = () => {
-    secureLocalStorage.setItem("epa_test", {
+    saveDataWithExpiration("epa_test", {
         nickname: name,
         gender: (gender === "option1") ? "male" : "female",
         age: age,
