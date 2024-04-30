@@ -3,16 +3,13 @@ import "./Modal.scss";
 import UseOutsideClick from "./UseOutsideClick";
 import ModalContainer from "./ModalContainer";
 
-function Modal({ isOpen, onClose, width, height, children }) {
+function Modal({ onClose, width, height, children }) {
   const modalRef = useRef(null);
+  const handleClose = () => {
+    onClose();
+  };  
 
-  UseOutsideClick(modalRef, () => {
-    if(isOpen) {
-      onClose();
-    }
-  });
-
-  if(!isOpen) return null;
+  UseOutsideClick(modalRef, handleClose);
 
   return (
     <ModalContainer>
@@ -20,10 +17,13 @@ function Modal({ isOpen, onClose, width, height, children }) {
         <div
           className="modalWrap"
           ref={modalRef}
-          width={width}
-          height={height}  
         >
-          <div className="modalContent">
+          <div className="modalContent"
+            style={{
+              width: `${width}rem`,
+              height: `${height}rem`
+            }}
+          >
             {children}
           </div>
         </div>
