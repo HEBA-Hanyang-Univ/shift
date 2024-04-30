@@ -41,7 +41,9 @@ function App() {
     const version = secureLocalStorage.getItem("cookie-v");
     if (version !== "240430-1") {
       secureLocalStorage.clear();
-      secureLocalStorage.setItem("cookie-v", "240430-1");
+      setTimeout(() => {
+        secureLocalStorage.setItem("cookie-v", "240430-1");
+      }, 2000)
     }
   };
 
