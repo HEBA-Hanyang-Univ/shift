@@ -16,8 +16,8 @@ import { saveDataWithExpiration, loadDataWithExpiration } from "../../components
 
 const StartHost = () => {
   const [ totalNum, setTotalNum ] = useState(0);
-  const [ test, setTest ] = useState(null); // [tid, number]
-  const [ canSeeResult, setCanSeeResult ] = useState(false); // [tid, number
+  const [ test, setTest ] = useState(loadDataWithExpiration("myTests")); // [tid, number]
+  const [ canSeeResult, setCanSeeResult ] = useState(false);
 
   const [gradientValue, setGradientValue] = useState(0);
   const [increase, setIncrease] = useState(true);
@@ -96,21 +96,24 @@ const StartHost = () => {
     const before = loadDataWithExpiration("totalNum");
     if (before !== null) {
       setTotalNum(before);
-      return;
+    } else {
+      TryFetch("total_num", "GET", {}, (data) => {
+        saveDataWithExpiration("totalNum", data.total_num, 1);
+        setTotalNum(data.total_num);
+      });
     }
 
-    TryFetch("total_num", "GET", {}, (data) => {
-      saveDataWithExpiration("totalNum", data.total_num, 1);
-      setTotalNum(data.total_num);
-    });
-
-    TryFetch("my_tests", "GET", {}, (data) => {
-      setTest(data);
-      if (data.epa !== null && data.epa !== undefined && data.epa[1] >= 3) {
-        setCanSeeResult(true);
-      }
-    });
-  }, []);
+    if (test) {
+      setCanSeeResult(true);
+    } else {
+      TryFetch("my_tests", "GET", {}, (data) => {
+        setTest(data);
+        if (data.epa !== null && data.epa !== undefined && data.epa[1] >= 3) {
+          setCanSeeResult(true);
+        }
+      });
+    }
+   }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -194,7 +197,7 @@ const StartHost = () => {
                 WebkitBackgroundClip: "text",
                 color: "transparent"}}>지금까지 {totalNum.toLocaleString()} 명이 참여했어요!</span>
             </Button>
-            <Button onClick={handleResult}className="shButtonL" gradient={canSeeResult ? "180deg, #A27DB2 0%, #A570C4 100%" : "180deg, #F1F1F1 0%, #F5F5F5 100%"} width={19.7} height={3.4}>
+            <Button onClick={handleResult} className="shButtonL" gradient={canSeeResult ? "180deg, #A27DB2 0%, #A570C4 100%" : "180deg, #F1F1F1 0%, #F5F5F5 100%"} width={19.7} height={3.4}>
               <span className="shButtonSpanL">결과 확인하기</span>
             </Button>
             <div className="shShareButtonWrapper">
