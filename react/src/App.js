@@ -74,7 +74,7 @@ function App() {
 
           {/* Result */}
           <Route path="/result/dashboard" element={<ResultDashBoard/>}></Route>
-          <Route path="/result/detail/:tid" element={<Result/>}></Route>
+          <Route path="/result/detail/" element={<Result/>}></Route>
 
           {/* Footer Links */}
           <Route path="/terms" element={<TOS/>}></Route>
