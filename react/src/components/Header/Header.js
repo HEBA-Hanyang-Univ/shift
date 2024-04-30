@@ -30,6 +30,7 @@ const Header = () => {
             <img src={NavBtn} alt="navigationButton"></img>
           </button>
           {showHamburgerMenu && <HamburgerMenu isOpen={showHamburgerMenu} toggleMenu={toggleHamburgerMenu}/>}
+          {showHamburgerMenu && <div className="hamburgerBackground"></div>}
         </div>
       </div>
     </div>

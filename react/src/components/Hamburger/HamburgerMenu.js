@@ -29,21 +29,21 @@ const HamburgerMenu = ({ toggleMenu }) => {
             </ul>
           )}
         </li>
-        <Link to={"/result/dashboard"} onClick={toggleMenu}>
-          <li className="hamburgerLi">
-            <span className="hamburgerLiSpan">결과 확인</span>           
-          </li>
-        </Link>
+        <li className="hamburgerLi">
+          <Link to={"/result/dashboard"} onClick={toggleMenu}>
+            <span className="hamburgerLiSpan">결과 확인</span>
+          </Link>
+        </li>
         <li className="hamburgerLi" onClick={toggleMenu}>
           <a href="mailto:godsaenglab@gmail.com?subject=의견 보내기&body=여기에 의견을 작성해주세요.">
             <span className="hamburgerLiSpan">의견보내기</span>
-            </a>
+          </a>
         </li>
-        <Link to={"/login"} onClick={toggleMenu}>
-          <li className="hamburgerLi">
+        <li className="hamburgerLi">
+          <Link to={"/login"} onClick={toggleMenu}>
             <span className="hamburgerLiSpan">로그인</span>
-          </li>
-        </Link>
+          </Link>
+        </li>
       </ul>
     </div>
   );
