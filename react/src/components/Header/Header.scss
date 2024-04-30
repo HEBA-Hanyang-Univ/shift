@@ -3,13 +3,13 @@
   width: 100%;
   height: 2.5rem;
   display: flex;
-  z-index:150;
 
   .headerLeft {
     display: flex;
     align-items: center;
     margin-left: 1rem;
     float: left;
+
     img {
       display: flex;
       align-self: center;
@@ -25,6 +25,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
     .headerName {
       display: flex;
       align-items: center;
