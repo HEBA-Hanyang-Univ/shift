@@ -298,11 +298,19 @@ def get_epa_result():
     if not validate_token():
         return make_response({"description": "not_logged_in"}, 401)
 
-    tests = DB.get_test_list(session['login_type'], session['id'])
-    if tests == None or tests['epa'] == None:
+    tid = DB.get_test_list(session['login_type'], session['id'])
+    if tid == None or tid['epa'] == None:
         return make_response({"description": "no test"}, 404)
 
-    return make_response(tests['epa'], 200)
+    test = DB.get_epa_test(tid['epa'])
+    resp_data = {}
+    resp_data['nickname'] = test['nickname']
+    resp_data['keyword_myself'] = test['keyword_myself']
+    resp_data['keyword_want'] = test['keyword_want']
+    resp_data['keyword_others'] = test['keyword_others']
+    resp_data['replies'] = test['replies']
+
+    return make_response(resp_data, 200)
 
 
 # This function is used to validate the token in the session
