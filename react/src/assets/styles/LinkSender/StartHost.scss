@@ -1,5 +1,5 @@
 .shContainer {
-  background: linear-gradient(180deg, #B276D4 -26.65%, #A071BC -16.66%, #DFB0FB 127.01%);
+  background: #FFF;
   width: 100vw;
   height: 100%;
   
@@ -15,16 +15,16 @@
       margin: 1.8rem auto 1rem;
 
       .shTitleS {
-         color: #FFf;
+         color: #9C76AC;
          font-size: 1.04rem;
-         font-weight: 500;
+         font-weight: 600;
          text-align: center;
          letter-spacing: 0.05rem;
          padding-bottom: 0.5rem;
         }
 
       .shTitleM {
-        color: #FFF;
+        color: #9C76AC;
         font-size: 1.7rem;
         font-weight: 700;
         text-align: center;
@@ -36,7 +36,11 @@
       margin: 0.5rem auto 0;
       display: grid;
       grid-template: repeat(2, 1fr)/ repeat(2, 1fr);
-      gap: 0.3rem;
+      background-color: #D9C5E1;
+      gap: 1px;
+      border: 0.15rem solid #D9C5E1;
+      border-radius: 0.75rem;
+      overflow: hidden;
 
       .shBox{
         width: 9.7rem;
@@ -46,22 +50,23 @@
         justify-content: center;
         align-items: center;
         background-color: #FFF;
-        border-radius: 0.6rem;
 
         .shBoxSubTitle {
-
+          margin-bottom: 0.4rem;
           span {
-            color: #7E7E7E;
-            font-weight: 600;
+            color: #9C76AC;
+            font-weight: 700;
             font-size: 0.64rem;
             letter-spacing: 0.018rem;
           }
         }
 
         .shBoxImg {
+          margin-bottom: 0.4rem;
           img {
             width: 4.5rem;
-            height: 3.25rem;
+            height: 3.5rem;
+            object-fit: contain;
           }
         }
 
@@ -69,15 +74,19 @@
           span {
             font-size: 0.84rem;
             font-weight: 700;
-            letter-spacing: 0.04rem;
-            color: #9A6BB5;
+            letter-spacing: 0.025rem;
+            color: #775F82;
           }
         }
       }
     }
 
+    .shUserCount {
+      margin-top: 0.8rem;
+    }
+
     .shButtonContainer {
-      margin-top: 1.2rem;
+      margin-top: 0.8rem;
       padding: 0 auto 0.6rem;
       width: 19.7rem;
       display: flex;
