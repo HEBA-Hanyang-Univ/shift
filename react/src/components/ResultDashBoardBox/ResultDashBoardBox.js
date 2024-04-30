@@ -7,6 +7,7 @@ import "./ResultDashBoardBox.scss";
 export const ResultDashBoardBox = ({ tid, number }) => {
   const navigate = useNavigate();
 
+
   const testShareUrl = (tid) => {
     if (navigator.share) {
       navigator.share({
@@ -37,6 +38,14 @@ export const ResultDashBoardBox = ({ tid, number }) => {
     }
   }
 
+  const getNumberString = (number) => {
+    if (number >= 3) {
+      return number;
+    } else {
+      return number + " / 3";
+    }
+  }
+
   return (
     <div className="rdbbContainer">
       <div className="rdbbWrapper">
@@ -47,17 +56,17 @@ export const ResultDashBoardBox = ({ tid, number }) => {
             </div>
             <div className="rdbbContentSubTitle">
               <span style={number >= 3 ? {
-                background: "linear-gradient(90deg, #825595 -23.48%, #9C76AC 47.2%, #C292D6 122.26%)",
+                background: "linear-gradient(90deg, #825595 -23.48%, #9C76AC 37%, #C292D6 122.26%)",
                 backgroundClip: "text",
                 WebkitBackgroundClip: "text",
                 color: "transparent",
               } : {color: getColor(number)}}>응답자 수 &nbsp;&nbsp;&nbsp;</span>
               <span style={number >= 3 ? {
-                background: "linear-gradient(90deg, #C79DD9 -23%, #9C76AC 49.99%, #6E5678 127.5%)",
+                background: "linear-gradient(90deg, #C79DD9 -23%, #9C76AC 95.9%, #6E5678 127.5%)",
                 backgroundClip: "text",
                 WebkitBackgroundClip: "text",
                 color: "transparent",
-              } : {color: getColor(number)}}>{number} / 3</span>
+              } : {color: getColor(number)}}>{getNumberString(number)}</span>
             </div>
           </div>
           <div className="rdbbContentRight">
