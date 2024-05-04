@@ -32,7 +32,11 @@ const SocialLoginCallback = () => {
         for (let key in resp_data) {
           saveDataWithExpiration(key, resp_data[key]);
         }
-        navigate(state);
+        if (state) {
+          navigate(state);
+	} else {
+	  navigate("/");
+	}
       } else {
         alert('Failed to login. Please try again.');
         navigate("/login",  { state: { from: state } });
