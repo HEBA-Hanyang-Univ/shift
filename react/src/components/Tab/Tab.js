@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ResultSummary from "../../pages/Result/MZTabContent/ResultSummary";
 import ResultDetail from "../../pages/Result/MZTabContent/ResultDetail";
+import ResultStatistic from "../../pages/Result/MZTabContent/ResultStatistic";
 import "./Tab.scss";
 
 export const Tab = ({ data }) => {
@@ -10,7 +11,7 @@ export const Tab = ({ data }) => {
     { name: '결과 요약', content: <ResultSummary data={data} /> },
     // TODO : meterValues 받아오기
     { name: '자세히 보기', content: <ResultDetail data={data}/>},
-    { name: '응답자 통계', content: <div>준비중입니다.</div> }
+    { name: '응답자 통계', content: <ResultStatistic />}
   ]; 
 
   const selectMenuHandler = (index) => {
