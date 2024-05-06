@@ -656,6 +656,7 @@
 // Result Detail Section Two
 .rdSectionTwoContainer {
   width: 100vw;
+  height: fit-content;
 
   .rdSectionTwo {
     margin: 1.2rem 1.53rem 0;
@@ -696,20 +697,157 @@
   .rdSectionTwoContent {
     margin-top: 1.18rem;
     width: 100%;
-    height: 28.03rem;
     display: flex;
     flex-direction: column;
-    background-color: paleturquoise;
 
     .rdSectionTwoContentSwiper {
-      background: pink;
-      height: 28rem;
+      width: 100%;
 
-      
+      .rdSectionTwoContentBox {
+        display: flex;
+        margin-bottom: 0.95rem;
+        justify-content: center;
+        flex-direction: column;
+
+        button {
+          margin: 0 0.33rem;
+          width: 0.95rem;
+          height: 0.95rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        img {
+          width: 0.95rem;
+          height: 0.95rem;
+        }
+        
+        .rdSectionTwoKeyword {
+          width: fit-content;
+          height: 1.53rem;
+          border: 2px solid #9C76AC;
+          border-radius: 2.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0.038rem 0.74rem;
+  
+          span {
+            color: #9C76AC;
+            font-weight: 600; 
+            font-size: 0.7rem;
+            letter-spacing: 0.03rem;
+          }
+        }
+
+        .rdSectionTwoCountBox {
+          margin-left: 0.66rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          span {
+            color: #000;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.618rem;
+            line-height: 0.82rem;
+          }
+        }
+      }
+      .swiper-pagination {
+        position: relative;
+        margin-top: 1.2rem;
+        height: 1.54rem;
+        width: 55%;
+        left: 20%;
+        border-radius: 2.5rem;
+        background: linear-gradient(180deg, #F1F1F1 -19.42%, #F9F9F9 144.63%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        span {
+          color: #B5B4B4;
+          font-weight: 800;
+          font-size: 0.5rem;
+          text-align: center;
+        }
+      }
+
+      .swiper-pagination-bullet {
+        width: 0.5rem !important;
+        height: 0.5rem !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+  
+      .swiper-pagination-bullet-active {
+        background-color: #9C76AC;
+        color: #FFF !important;
+        font-weight: 800 !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .rdSectionTwoBtnBox {
+      display: flex;
+
+      align-items: center;
     }
   }
 }
 
+.rdSectionTwoOneLineBox {
+  display: none;
+}
+
+.rdSectionTwoOneLineBoxActive {
+  width: 90%;
+  height: fit-content;
+  display: flex;
+  margin-top: 1.83rem;
+  margin-bottom: 2.37rem;
+  flex-direction: column;
+  background-color: #F6F6F6;
+  border-radius: 0.825rem;
+
+  .rdSectionTwoOneLine {
+    margin: 0.44rem 0.66rem 2rem;
+
+    span {
+      color: #A570C4;
+      font-size: 0.66rem;
+      font-weight: 700;
+    }
+    
+    .rdSectionTwoOneLineText {
+      margin-top: 0.3rem;
+      background-color: #FFF;
+      border-radius: 0.618rem;
+      width: 90%;  
+      padding: 0.72rem 0;
+      height: fit-content;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        color: #000;
+        text-align: center;
+        font-weight: 500;
+        font-size: 0.74rem;
+      }
+    }
+  }
+  
+}
 
 .swiper-pagination-bullet-active {
   background: #9C76AC;
