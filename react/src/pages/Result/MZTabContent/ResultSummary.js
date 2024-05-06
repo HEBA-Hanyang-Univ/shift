@@ -1,30 +1,30 @@
 import React from "react";
 import "../../../assets/styles/Result/Result.scss";
-import  ResultMZSectionOne from "../../../components/ResultMZ/ResultMZSectionOne";
-import ResultMZSectionTwo from "../../../components/ResultMZ/ResultMZSectionTwo";
-import ResultMZSectionThree from "../../../components/ResultMZ/ResultMZSectionThree";
+import  ResultSummarySectionOne from "../../../components/ResultMZTab/ResultSummaryTab/ResultSummarySectionOne";
+import ResultSummarySectionTwo from "../../../components/ResultMZTab/ResultSummaryTab/ResultSummarySectionTwo";
+import ResultSummarySectionThree from "../../../components/ResultMZTab/ResultSummaryTab/ResultSummarySectionThree";
 
 const ResultSummary = ({ data }) => {
-  const { username, percentage, correctKeywords, typeOfUser, descriptionSentences } = data;
+  // const { username, percentage, correctKeywords, typeOfUser, descriptionSentences } = data;
 
   return (
     <div id="Container" className="rsContainer">
       <div className="rsWrapper">
         {/* From Title to selected keywords */}
-        <ResultMZSectionOne
-          username={username}
-          correctKeywords={correctKeywords}
-          percentage={percentage}
+        <ResultSummarySectionOne
+          // username={username}
+          // correctKeywords={correctKeywords}
+          // percentage={percentage}
         />
         {/* From type of user and graph */}
-        <ResultMZSectionTwo
-          username={username}
-          typeOfUser={typeOfUser}       
+        <ResultSummarySectionTwo
+          // username={username}
+          // typeOfUser={typeOfUser}       
         />
         {/* OneLineDescription  */}
-        <ResultMZSectionThree 
-          username={username}
-          descriptionSentences={descriptionSentences}
+        <ResultSummarySectionThree
+          // username={username}
+          // descriptionSentences={descriptionSentences}
         />
       </div>
     </div>
