@@ -1,18 +1,11 @@
 import React, { useState } from "react";
-import ResultSummary from "../../pages/Result/MZTabContent/ResultSummary";
-import ResultDetail from "../../pages/Result/MZTabContent/ResultDetail";
-import ResultStatistic from "../../pages/Result/MZTabContent/ResultStatistic";
 import "./Tab.scss";
 
-export const Tab = ({ data }) => {
-  const [currentTab, setCurrentTab] = useState(0);
+// use Tab component like this
+// const Tabs = [{name: '', content: <Component/> }]
 
-  const tabList = [
-    { name: '결과 요약', content: <ResultSummary data={data} /> },
-    // TODO : meterValues 받아오기
-    { name: '자세히 보기', content: <ResultDetail data={data}/>},
-    { name: '응답자 통계', content: <ResultStatistic />}
-  ]; 
+export const Tab = ({ tabList, initialTab = 0 }) => {
+  const [currentTab, setCurrentTab] = useState(initialTab);
 
   const selectMenuHandler = (index) => {
     setCurrentTab(index);
