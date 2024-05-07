@@ -63,7 +63,7 @@ const OneLineDescription = () => {
           <span className="odInputTop">{username}은(는) </span>
           <br/>
           {/* TODO : 사용자 입력값 처리 */}
-          <input className="odInputMiddle"  placeholder="사람이지만 그냥 돌인척 하는 애" value={inputValue} type="text" maxLength={20} onChange={handleInputChange}/>
+          <input className="odInputMiddle"  placeholder="사람이지만 그냥 돌인척 하는 애" value={inputValue} type="text" maxLength={30} onChange={handleInputChange}/>
           <br/>
           <span className="odInputBottom">이다.</span>
         </div>
