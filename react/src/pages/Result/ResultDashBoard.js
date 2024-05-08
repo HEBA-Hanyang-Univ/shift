@@ -16,8 +16,8 @@ const ResultDashBoard = () => {
         setMyTests(data);
         if (data["epa"]) {
           setShowResult(true);
-          // NOTE: myTests data's lifetime is 3 minutes.
-          saveDataWithExpiration("myTests", data, 3);
+          // NOTE: myTests data's lifetime is 6 seconds
+          saveDataWithExpiration("myTests", data, 0.1);
         }
       }, (error) => {});
     } else {
