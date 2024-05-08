@@ -1185,6 +1185,7 @@
       height: 4.66rem;
       display: flex;
       align-items: center;
+      justify-content: center;
 
       .rstUnknown {
         margin: 0 1.5rem;
@@ -1217,7 +1218,7 @@
       .rstChartTitle {
         display: flex;
         justify-content: center;
-        margin-top: 0.89rem;
+        margin: 0.89rem 0 0.3rem;
         
         span {
           color: #919191;
@@ -1294,6 +1295,9 @@
           grid-template-columns: 1fr 1fr 1.2fr 1.2fr;
           
           span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color: #000;
             text-align: center;
             font-size: 0.62rem;
