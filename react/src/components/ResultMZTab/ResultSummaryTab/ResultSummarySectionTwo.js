@@ -1,9 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../../assets/styles/Result/Result.scss";
+import { loadDataWithExpiration, saveDataWithExpiration } from "../../CookieUtils/SecureLocalStorageExtends";
 
-const ResultSummarySectionTwo = ({ username, typeOfUser }) => {
+const ResultSummarySectionTwo = ({ keywordData }) => {
 
+  const username = keywordData.nickname;
+  //TODO : Add logic to determine type of user
+  const typeOfUser = "자기주장형"; // keyword
+
+  const matchMyself = [...new Set(keywordData.replies.map((reply) => reply.keyword_in_myself).flat())]
+  const selected = [...new Set(keywordData.replies.map((reply) => reply.keyword_selected).flat())]
+  const boxData = {
+    1: matchMyself,
+    2: [...new Set(keywordData.replies.map((reply) => reply.keyword_not_in_myself).flat())],
+    3: [...new Set(keywordData.keyword_myself.filter((keyword) => !matchMyself.includes(keyword)).flat())],
+    4:[...new Set(keywordData.keyword_want.filter((keyword) => !selected.includes(keyword)).flat())],
+  }
+  const epaKeywords = loadDataWithExpiration("epa_keywords");
 
   return (
     <div className="rsSectionTwo">
@@ -48,11 +62,11 @@ const ResultSummarySectionTwo = ({ username, typeOfUser }) => {
             </div>
             <div className="contentBox">
               {/* TODO: the data in entries has not been added */}
-              {Object.entries().map(([key, values], index) => (
+              {Object.entries(boxData).map(([key, values], index) => (
                   <div className="content" key={index}>
                     {values.map((value, idx) => (
                       <div key={idx} className="keyword">
-                        <span>{value}</span>
+                        <span>{epaKeywords[value][1]} {epaKeywords[value][0]}</span>
                       </div>
                     ))}
                   </div>

@@ -36,7 +36,7 @@ const ResultSummarySectionThree = ({username, descriptionSentences }) => {
         </div>
         <div className="rsSectionThreeSpin">
           {/* Slider */}
-          <Swiper 
+          {<Swiper 
             className="swiperContainer"
             slidesPerView={5}
             direction={'vertical'}
@@ -56,7 +56,7 @@ const ResultSummarySectionThree = ({username, descriptionSentences }) => {
                 <span className="swiperSlideText">{sentence}</span>
               </SwiperSlide>
             ))}
-          </Swiper>
+          </Swiper>}
           <div className="swiperBox">
             {Array.from({ length: BOX_COUNT }, (_, index) => (
                 <div key={index} className={`swiperBox${index + 1}`}></div>

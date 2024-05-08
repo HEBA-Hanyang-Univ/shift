@@ -2,11 +2,22 @@ import React, { useEffect, useState } from "react"
 import "../../../assets/styles/Result/Result.scss";
 import Arrow from "../../../assets/images/rangeArrow.png";
 
-const ResultSummarySectionOne = ({ correctKeywords, percentage }) => {
+const ResultSummarySectionOne = ({ username, replyCount, keywordOthers, replyKeywords, epaKeywords }) => {
   const [rangeWidth, setRangeWidth] = useState(17);
-  const [username, setUsername] = useState("username");
+
+  const uniqueReplyKeywords = [...new Set(replyKeywords.flat())];
+  const count = uniqueReplyKeywords.filter((keyword) => keywordOthers.includes(keyword)).length;
+  //TODO : Add logic to calculate percentage
+  const percentage = 5;
+  const [matchedKeywords, setMatchedKeywords] = useState([]);
 
   useEffect(() => {
+    const k = [];
+    uniqueReplyKeywords.map((keyword) => {
+      k.push(epaKeywords[keyword]);
+    });
+    setMatchedKeywords(k);
+
     // update rangeWidth based on media query
     const updateRangeWidth = () => {
       if (window.matchMedia("(max-width: 300px)").matches) {
@@ -37,7 +48,6 @@ const ResultSummarySectionOne = ({ correctKeywords, percentage }) => {
           <span className="rsosPurple">{username}</span>
           <span className="rsosBlack">&nbsp;님은 </span>
         </div>
-        {/* TODO : 추후 상위 퍼센트 넣기 */}
         <div className="rsSectionOneSubTitleBottom">
           <span className="rsosBold">자기객관화 상위 {percentage}%</span>
           <span className="rsosGray">&nbsp;입니다.</span>
@@ -59,23 +69,21 @@ const ResultSummarySectionOne = ({ correctKeywords, percentage }) => {
           <span className="rsorResultTitle">
             객관적인 눈을 가지셨군요!
           </span>
-          {/* TODO : 맞춘 갯수 출력 */}
           <span className="rsorResultSubTitle">
-            총 4개의 응답에서 예측한 5개의 키워드 중
+            총 {replyCount}개의 응답에서 예측한 {keywordOthers.length}개의 키워드 중
             <br/>
-            3개를 맞췄습니다!
+            {count}개를 맞췄습니다!
           </span>
         </div>
         <div className="rsSectionOneResultKeywordBox">
-          {/* TODO : 맞춘 키워드 받아오기 */}
-          {/* {correctKeywords.map((keyword, index) => (
+          {matchedKeywords.map((keyword, index) => (
             <div 
               key={index} 
               className="rsorKeyword"
             >
-              <span>{keyword}</span>
+              <span>{keyword[1]} {keyword[0]}</span>
             </div>
-          ))} */}
+          ))}
         </div>
       </div>
     </div>
