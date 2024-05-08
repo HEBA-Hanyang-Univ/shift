@@ -62,11 +62,16 @@ const ResultSummarySectionTwo = ({ keywordData, epaKeywords }) => {
               {/* TODO: the data in entries has not been added */}
               {Object.entries(boxData).map(([key, values], index) => (
                   <div className="content" key={index}>
-                    {values.map((value, idx) => (
+                    {values.map((value, idx) => {
+		      const keyword = epaKeywords[value];
+                      if (!keyword) {
+		        return null;
+		      }
+                      return (
                       <div key={idx} className="keyword">
-                        <span>{epaKeywords[value][1]} {epaKeywords[value][0]}</span>
+                        <span>{keyword[1]} {keyword[0]}</span>
                       </div>
-                    ))}
+                    )})}
                   </div>
                 ))}
             </div>
