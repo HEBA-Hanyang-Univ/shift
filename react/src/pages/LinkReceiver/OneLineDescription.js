@@ -39,6 +39,10 @@ const OneLineDescription = () => {
     }
     rep.one_line_intro = inputValue;
     rep.tid = tid;
+
+    const date = new Date();
+    const options = { timeZone: 'Asia/Seoul', hour12: false };
+    rep.reply_time = date.toLocaleString('en-US', options);
     TryFetch("save_epa_reply", "POST", rep, (data) => {
       secureLocalStorage.removeItem("epa_reply");
       secureLocalStorage.removeItem("epa_received_test");

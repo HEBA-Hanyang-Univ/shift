@@ -46,6 +46,7 @@ class EPAReply:
     keyword_in_others: List = field(default_factory=list)
     keyword_not_in_others: List = field(default_factory=list)
     one_line_intro: str = 'unknown'
+    reply_time: str = 'unknown' # some data that created before this field is added might not exist this field
 
 class DBModule:
     def __init__(self):
@@ -107,7 +108,8 @@ class DBModule:
             add = 0
 
         # update user's test data
-        self.db.child("users").child(platform_type).child(id).child("tests").child("epa").set(tid)
+        data = {"tid": tid, "nickname": epa.nickname}
+        self.db.child("users").child(platform_type).child(id).child("tests").child("epa").set(data)
 
         # update test count
         test_count = self.db.child("test_count").get().val()

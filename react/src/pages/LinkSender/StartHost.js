@@ -48,27 +48,30 @@ const StartHost = () => {
     HandleLogin({
       assertLogin: true,
       onLoginSuccess: () => {
-        const tid = loadDataWithExpiration("tid");
-        if (tid === null || tid === undefined) {
+        if (test === null || test === undefined) {
           TryFetch("my_tests", "GET", {}, (data) => {
+            setTest(data);
             if (data.epa === null || data.epa === undefined) {
               alert("진행중인 테스트가 없습니다.");
             } else {
-              testShareUrl(data.epa[0]);
+              testShareUrl(data.epa[0], data.epa[2]);
             }
           });
         } else {
-          testShareUrl(tid);
+          if (test.epa)
+            testShareUrl(test.epa[0], test.epa[2]);
+          else
+            alert("진행중인 테스트가 없습니다.");
         }
       }
     });
   };
 
-  const testShareUrl = (tid) => {
+  const testShareUrl = (tid, nickname) => {
     if (navigator.share) {
       navigator.share({
         title: 'SHIFT',
-        text: 'MZ 자기객관화 테스트',
+        text: nickname + '님의 MZ 자기객관화 테스트',
         url: 'https://shift2me.com/guest/' + tid,
       });
     } else {

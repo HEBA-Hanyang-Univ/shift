@@ -7,7 +7,7 @@ from flask import redirect, url_for, session, request, jsonify, make_response
 #    jwt_refresh_token_required
 #)
 import requests
-from config import KAKAO_CLIENT_ID, KAKAO_SECRET, KAKAO_REDIRECT_URI, NAVER_CLIENT_ID, NAVER_SECRET, NAVER_REDIRECT_URI, GOOGLE_SECRET, GOOGLE_CLIENT_ID, GOOGLE_REDIRECT_URI
+from config import KAKAO_CLIENT_ID, KAKAO_SECRET, KAKAO_REDIRECT_URI
 #from model import UserData_N, UserModel, UserData_G, UserData_K
 from DBhandler import DBModule, UserProperty, EPATest, EPAReply
 from flask_app import *
@@ -265,15 +265,16 @@ def get_my_tests():
     if test_list == None:
         return make_response(result, 200)
 
-    tid = test_list["epa"]
-    if tid == None:
+    epa = test_list["epa"]
+    if epa == None:
         return make_response(result, 200)
 
-    test = DB.get_epa_test(tid)
+    test = DB.get_epa_test(epa.get('tid'))
     if test == None:
         return make_response(result, 200)
 
-    t = [tid, len(test.get("replies")) if test.get("replies") != None else 0]
+    # t = [tid, reply_count, nickname]
+    t = [epa.get('tid'), len(test.get("replies")) if test.get("replies") != None else 0, epa.get('nickname')]
     result["epa"] = t
     return make_response(result, 200)
 
@@ -298,17 +299,17 @@ def get_epa_result():
     if not validate_token():
         return make_response({"description": "not_logged_in"}, 401)
 
-    tid = DB.get_test_list(session['login_type'], session['id'])
-    if tid == None or tid['epa'] == None:
+    test = DB.get_test_list(session['login_type'], session['id'])
+    if test == None or test['epa'] == None:
         return make_response({"description": "no test"}, 404)
 
-    test = DB.get_epa_test(tid['epa'])
+    epa = DB.get_epa_test(test['epa'].get('tid'))
     resp_data = {}
-    resp_data['nickname'] = test['nickname']
-    resp_data['keyword_myself'] = test['keyword_myself']
-    resp_data['keyword_want'] = test['keyword_want']
-    resp_data['keyword_others'] = test['keyword_others']
-    resp_data['replies'] = test['replies']
+    resp_data['nickname'] = epa['nickname']
+    resp_data['keyword_myself'] = epa['keyword_myself']
+    resp_data['keyword_want'] = epa['keyword_want']
+    resp_data['keyword_others'] = epa['keyword_others']
+    resp_data['replies'] = epa['replies']
 
     return make_response(resp_data, 200)
 
