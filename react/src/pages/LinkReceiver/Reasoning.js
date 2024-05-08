@@ -35,7 +35,7 @@ const Reasoning = () => {
     }
 
     setKeywords(rep.keyword_selected.map((keyword, idx) => {
-      const match = keywordData[keyword][0];
+      const match = keywordData[keyword][1] + " " + keywordData[keyword][0];
       return { id: keyword, text: match, visible: false, reason: "" }
     }));
   }, []);

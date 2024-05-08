@@ -12,7 +12,7 @@ export const SelectedKeyword = ({ originalKeyword, selectedKeywords, removeKeywo
       <div className="isSelectedKeywordBox">
         {selectedKeywords.map((keyword, index) => (
           <div className="selectedKeyword" key={index}>
-            { originalKeyword[keyword][0] }
+            { originalKeyword[keyword][1] } { originalKeyword[keyword][0] }
             <button onClick={() => removeKeyword(index)}>
               <img src={DeleteBtn} alt="delete btn"/>
             </button>
