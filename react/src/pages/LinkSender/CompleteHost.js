@@ -6,13 +6,13 @@ import CheckedImg from "../../assets/images/CheckedCircle.svg";
 import KakaoImg from "../../assets/images/kakao.svg";
 import InstaImg from "../../assets/images/insta.svg";
 import LinkImg from "../../assets/images/linkImg.svg";
-import secureLocalStorage from "react-secure-storage";
+import { loadDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends.js";
 
 const CompleteHost = () => {
   const navigate = useNavigate();
 
   const handleShareLink = () => {
-    const tid = secureLocalStorage.getItem("tid");
+    const tid = loadDataWithExpiration("tid");
     if (tid === null || tid === undefined) {
       alert("");
       return;

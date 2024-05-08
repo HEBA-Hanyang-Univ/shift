@@ -2,17 +2,17 @@ import React from 'react';
 import "../../assets/styles/LinkReceiver/CompleteGuest.scss";
 import { Link } from 'react-router-dom';
 import { Button } from '../../components/Button/Button';
-import Checked from "../../assets/images/CheckedCircle.svg";
-import cgImg1 from "../../assets/images/StartHost/shImg1.svg";
-import cgImg2 from "../../assets/images/StartHost/shImg2.svg";
-import cgImg3 from "../../assets/images/StartHost/shImg3.svg";
-import cgImg4 from "../../assets/images/StartHost/shImg4.svg";
+import CompleteImoji from "../../assets/images/Guest_complete.png";
+import cgImg1 from "../../assets/images/StartHost/shImg1.png";
+import cgImg2 from "../../assets/images/StartHost/shImg2.png";
+import cgImg3 from "../../assets/images/StartHost/shImg3.png";
+import cgImg4 from "../../assets/images/StartHost/shImg4.png";
 const CompleteGuest = ()  => {
   
   return (
     <div id="Container" className="cgContainer">
       <div className="cgImgWrapper">
-        <img src={Checked} alt="checked img"/>
+        <img src={CompleteImoji} alt="checked img"/>
         <span>완료되었습니다! </span>
       </div>
       <div className="cgInfoWrapper">

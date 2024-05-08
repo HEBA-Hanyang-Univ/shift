@@ -10,21 +10,34 @@
     .reTitleWrapper {
       margin-bottom: 1rem;
 
-      span {
-        text-align: left;
-        line-height: 2.3rem;
+      .reMainTitle {
+        span {
+          text-align: left;
+          line-height: 2.3rem;
+        }
+  
+        .reTitleBlack {
+          font-size: 1.35rem;
+          font-weight: 600;
+          color: #1A1A1A;
+        }
+  
+        .reTitlePurple {
+          font-size: 1.35rem;
+          font-weight: 600;
+          color: #A570C4;
+        }
       }
 
-      .reTitleBlack {
-        font-size: 1.35rem;
-        font-weight: 600;
-        color: #1A1A1A;
-      }
+      .reSubTitle {
+        margin-top: 0.72rem;
 
-      .reTitlePurple {
-        font-size: 1.35rem;
-        font-weight: 600;
-        color: #A570C4;
+        span {
+          color: #ACACAC;
+          font-weight: 700;
+          font-size: 0.825rem;
+          letter-spacing: 0.07rem;
+        }
       }
     }
 
@@ -48,6 +61,14 @@
         &.toggleActive {
           background: linear-gradient(180deg, #9F78AF 0%, #A97FBA 100%);
 
+          span {
+            color: #FFF;
+          }
+        }
+
+        &.reasonFilled {
+          background: linear-gradient(180deg, #9F78AF 0%, #A97FBA 100%);
+          
           span {
             color: #FFF;
           }

@@ -9,14 +9,7 @@ const Reasoning = () => {
   const { tid } = useParams();
   const navigate = useNavigate();
 
-  // text is dummy before fetching data
-  const [keywords, setKeywords] = useState([
-    { id: 1, text: "방구를 잘뀌는", visible: true, reason: "" },
-    { id: 2, text: "킹 받는", visible: false, reason: "" },
-    { id: 3, text: "마음씨가 고운", visible: false, reason: "" },
-    { id: 4, text: "아는체를 잘하는", visible: false, reason: "" },
-    { id: 5, text: "밥을 잘사주는 이쁜", visible: false, reason: "" }
-  ]);
+  const [keywords, setKeywords] = useState([]);
 
   const toggleVisibility = (id) => {
     setKeywords(keywords.map((keyword) =>
@@ -42,7 +35,7 @@ const Reasoning = () => {
     }
 
     setKeywords(rep.keyword_selected.map((keyword, idx) => {
-      const match = keywordData[keyword][0];
+      const match = keywordData[keyword][1] + " " + keywordData[keyword][0];
       return { id: keyword, text: match, visible: false, reason: "" }
     }));
   }, []);
@@ -63,17 +56,22 @@ const Reasoning = () => {
     <div id="Container" className="reContainer">
       <div className="reWrapper">
         <div className="reTitleWrapper">
-          <span className="reTitleBlack">키워드를 선택한 </span>
-          <span className="reTitlePurple">이유</span>
-          <span className="reTitleBlack">나</span>
-          <br/>
-          <span className="reTitlePurple">일화</span>
-          <span className="reTitleBlack">가 있다면 적어보세요.</span>
+          <div className="reMainTitle">
+            <span className="reTitleBlack">키워드를 선택한 </span>
+            <span className="reTitlePurple">이유</span>
+            <span className="reTitleBlack">나</span>
+            <br/>
+            <span className="reTitlePurple">일화</span>
+            <span className="reTitleBlack">를 자세히 적어주세요.</span>
+          </div>
+          <div className="reSubTitle">
+            <span>구체적으로 적을수록 응답 신뢰도가 올라갑니다.</span>
+          </div>
         </div>
         <div className="reReasoningBox">
           {keywords.map((keyword) => (
             <div key={keyword.id}>
-              <button onClick={() => toggleVisibility(keyword.id)} className={`reKeywordBtn ${keyword.visible ? 'toggleActive' : ''}`}>
+              <button onClick={() => toggleVisibility(keyword.id)} className={`reKeywordBtn ${keyword.visible ? 'toggleActive' : ''} ${keyword.reason.trim() !== '' ? 'reasonFilled' : ''}`}>
                 <span>{keyword.text}</span>
               </button>
               <AnimatePresence>
