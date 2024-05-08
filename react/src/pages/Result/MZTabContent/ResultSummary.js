@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../../assets/styles/Result/Result.scss";
-import  ResultSummarySectionOne from "../../../components/ResultMZTab/ResultSummaryTab/ResultSummarySectionOne";
+import ResultSummarySectionOne from "../../../components/ResultMZTab/ResultSummaryTab/ResultSummarySectionOne";
 import ResultSummarySectionTwo from "../../../components/ResultMZTab/ResultSummaryTab/ResultSummarySectionTwo";
 import ResultSummarySectionThree from "../../../components/ResultMZTab/ResultSummaryTab/ResultSummarySectionThree";
 import TryFetch from "../../../components/FetchComponent/FetchComponent";

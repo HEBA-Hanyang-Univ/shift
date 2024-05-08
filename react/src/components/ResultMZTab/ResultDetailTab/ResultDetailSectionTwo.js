@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import "../../../assets/styles/Result/Result.scss";
 import upArrowImg from "../../../assets/images/resultUpArrow.png";
 import downArrowImg from "../../../assets/images/resultDownArrow.png";
-import TryFetch from "../../FetchComponent/FetchComponent";
-import { loadDataWithExpiration, saveDataWithExpiration } from "../../CookieUtils/SecureLocalStorageExtends";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useNavigate } from "react-router-dom";
 
 import 'swiper/scss';
 import 'swiper/scss/pagination';
@@ -20,20 +17,42 @@ function chunkArray(array, chunkSize) {
   return chunks;
 };
 
-const ResultDetailSectionTwo = ({ data }) => {
+const ResultDetailSectionTwo = ({ keywordData, epaKeywords }) => {
+  const selected = [...new Set(keywordData.replies.map((reply) => reply.keyword_selected).flat())]
+  const k = [];
+  selected.map((keyword) => {
+    k.push({
+      id: keyword,
+      keyword: epaKeywords[keyword][0],
+      selected: false,
+      selectCount: 0,
+      responseCount: 0,
+      visible: false,
+      reason: [],
+    });
+  });
 
-  // 데이터 받아올 때 isVisible 값 추가
-  const [keywords, setKeywords] = useState([
-    { id: 0, keyword: "방구를 잘 뀌는", selected: false, selectCount: 5, responseCount: 2, visible: false },
-    { id: 1, keyword: "방구를 잘 뀌는", selected: false, selectCount: 5, responseCount: 2, visible: false },
-    { id: 2, keyword: "방구를 잘 뀌는", selected: false, selectCount: 5, responseCount: 2, visible: false },
-    { id: 3, keyword: "방구를 잘 뀌는", selected: false, selectCount: 5, responseCount: 2, visible: false },
-    { id: 4, keyword: "방구를 잘 뀌는", selected: false, selectCount: 5, responseCount: 2, visible: false },   
-  ]);
+  keywordData.replies.map((reply) => {
+    reply.keyword_selected.map((keyword) => {
+      k.map((k) => {
+        if (k.id === keyword) {
+          k.selectCount++;
+        }
+      });
+    });
+    reply.keyword_detail.map((detail) => {
+      k.map((k) => {
+        if (k.id === detail.id && detail.reason.length > 0) {
+          k.responseCount++;
+          k.reason.push([reply.anonymous ? "익명": reply.nickname, detail.reason]);
+        }
+      });
+    })
+  });
+
+  const [keywords, setKeywords] = useState(k.filter((keyword) => keyword.responseCount > 0));
 
   const slideChunks = chunkArray(keywords, 4);
-
-  // const [keywords, setKeywords] = useState();
 
   const toggleVisibility = (id) => {
     setKeywords(keywords.map((keyword) =>
@@ -71,24 +90,23 @@ const ResultDetailSectionTwo = ({ data }) => {
                       <button onClick={() => toggleVisibility(item.id)} className={`${item.visible ? 'toggleActive' : ''}`}>
                         <img src={item.visible ? downArrowImg : upArrowImg} alt="upImg"/>
                       </button>
-                      {/* TODO: 키워드 받아오기 */}
-                      <div className="rdSectionTwoKeyword">
-                        <span>방구를 잘 뀌는</span>
+                      <div className="rdSectionTwoKeyword" onClick={() => toggleVisibility(item.id)}>
+                        <span>{epaKeywords[item.id][1]} {epaKeywords[item.id][0]}</span>
                       </div>
-                      {/* TODO: 선택수, 응답 수 */}
                       <div className="rdSectionTwoCountBox">
                         <span>선택 수 {item.selectCount}</span>
                         <span>응답 수 {item.responseCount}</span>
                       </div>
                     </div>
                     <div className={`rdSectionTwoOneLineBox ${item.visible ? "rdSectionTwoOneLineBoxActive" : ""}`}>
-                      {/* 닉네임과 한줄 평 */}
-                      <div className="rdSectionTwoOneLine">
-                        <span>이름</span>
+                      {item.reason.map((reason, index) => {
+                        return (
+                      <div className="rdSectionTwoOneLine" key={index}>
+                        <span>{reason[0]}</span>
                         <div className="rdSectionTwoOneLineText">
-                          <span>한줄평</span>
+                          <span>{reason[1]}</span>
                         </div>
-                      </div>
+                      </div>)})}
                     </div>
                   </div>
                   

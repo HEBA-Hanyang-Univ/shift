@@ -8,9 +8,6 @@ import 'swiper/scss';
 import 'swiper/scss/pagination';
 import { Pagination } from 'swiper/modules';
 
-const slides = [
-  // TODO: add data here
-];
 
 function chunkArray(array, chunkSize) {
   const chunks = [];
@@ -21,8 +18,18 @@ function chunkArray(array, chunkSize) {
   return chunks;
 };
 
-const ResultDetailSectionThree = () => {
+const ResultDetailSectionThree = ({keywordData}) => {
 
+  const slides = [];
+
+  keywordData.replies.map((reply) => {
+    const data = {
+      username: reply.anonymous ? "익명" : reply.nickname,
+      relationship: reply.relationship,
+      intro: reply.one_line_intro
+    }
+    slides.push(data);
+  });
   const slideChunks = chunkArray(slides, 5);
 
   return (
@@ -36,7 +43,7 @@ const ResultDetailSectionThree = () => {
             <div className="rdSectionThreeContentTitle">
               <span className="contentTitleName">응답자</span>
               <span>나와의 관계</span>
-              <span>username은</span>
+              <span>{keywordData.nickname}은(는)</span>
             </div>
           </div>
           <Swiper
@@ -54,9 +61,9 @@ const ResultDetailSectionThree = () => {
                 {chunk.map((item, subIndex) => (
                   <div className="rdSectionThreeSwiperSlideContentBox" key={subIndex}>
                     <div className= "rdSectionThreeSwiperSlideContent">
-                      <span className="contentTitle">{item.title}</span>
-                      <span className="contentRelationship">{item.content}</span>
-                      <span className="contentDes">{item.username}</span>
+                      <span className="contentTitle">{item.username}</span>
+                      <span className="contentRelationship">{item.relationship}</span>
+                      <span className="contentDes">{item.intro}(이)다.</span>
                     </div>
                   </div>
                 ))}

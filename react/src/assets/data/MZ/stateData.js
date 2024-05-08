@@ -8,12 +8,13 @@ import PCO_IMG from "../../images/PCO.png";
 import PCS_IMG from "../../images/PCS.png";
 
 const stateData = {
-  TRO: {
+  "TRO": {
     title: "TRO",
     subTitle: "MZ 바이블형",
     img: TRO_IMG,
     hashTagTop: ["#솔직함", "#MZ력만렙"],
     hashTagBottom: ["#눈치99단", "#줏대있는", "#소신발언"],
+    mzPower: 90,
     sectionThreeTitle : "당신은 MZ의 교과서 ",
     sectionThreeContent : [
       "행동에 꾸밈이 없고 솔직한 당신은 다른 사람들의 비위를 맞추고 싶어하지 않아요. 융통성 있는 척 하지만 사실 그렇게까지 융통성있지는 않습니다.",
@@ -22,12 +23,13 @@ const stateData = {
     ]
   },
 
-  TRS: {
+  "TRS": {
     title: "TRS",
     subTitle: "MZ 빌런형",
     img: TRS_IMG,
     hashTagTop: ["#맑눈광", "#MZ력만렙"],
     hashTagBottom: ["#순진한", "#고집 센", "#넓고 얇은 인간관계"],
+    mzPower: 100,
     sectionThreeTitle : "당신은 MZ 그 잡채!",
     sectionThreeContent : [
       "사회성 하나는 타고 났어요! 매사에 당당한 척 하지만, 마음 한 켠에는 이래도 되나? 하며 걱정하는 당신은 좋게 말하면 줏대 있고, 나쁘게 말하면 고집이 세다고 볼 수 있습니다. 그래도 인간관계에는 큰 문제가 없지만 가끔은 자중하라는 이야기를 듣기도 합니다.",
@@ -36,12 +38,13 @@ const stateData = {
     ]
   },
 
-  TCO: {
+  "TCO": {
     title: "TCO",
     subTitle: "MZ 오쏘몰형",
     img: TCO_IMG,
     hashTagTop: ["#인간 리트리버", "#비타민"],
     hashTagBottom: ["#극호감", "#갈등중재자", "#인기쟁이"],
+    mzPower: 35,
     sectionThreeTitle : "당신은 MZ의 희망편",
     sectionThreeContent : [
       "당신은 이 세상에 꼭 필요한 사람입니다...",
@@ -50,12 +53,13 @@ const stateData = {
     ]  
   },
 
-  TCS: {
+  "TCS": {
     title: "TCS",
     subTitle: "MZ 뽀시래기형",
     img: TCS_IMG,
     hashTagTop: ["#무해한", "#MZ력만렙"],
     hashTagBottom: ["#순진한", "#고집 센", "#넓고 얇은 인간 관계"],
+    mzPower: 80,
     sectionThreeTitle : "당신은 꽁꽁 얼어붙은 한강 위 MZ", 
     sectionThreeContent : [ 
       "당신은 소극적 관종이군요!",
@@ -64,12 +68,13 @@ const stateData = {
     ]
   },
 
-  PRO: {
+  "PRO": {
     title: "PRO",
     subTitle: "MZ 호소인형",
     img: PRO_IMG,
     hashTagTop: ["#젊은 꼰대", "#파워T"],
     hashTagBottom: ["#소시오패스", "#똥꼬집", "#근자감"],
+    mzPower: 0,
     sectionThreeTitle : "당신은 MZ의 절망편",
     sectionThreeContent : [
       "말씀 중에 죄송합니다만, 당신은 절대 MZ가 아닙니다.",
@@ -78,12 +83,13 @@ const stateData = {
     ]
   },
 
-  PRS: {
+  "PRS": {
     title: "PRS",
     subTitle: "MZ 하이브리드형",
     img: PRS_IMG,
     hashTagTop: ["#다가가기 어려운", "#공사구분"],
     hashTagBottom: ["#주관이 또렷", "#속을 알 수 없는", "#음침한"],
+    mzPower: 50,
     sectionThreeTitle : "당신은 MZ의 루시퍼",
     sectionThreeContent: [
       "당신은 MZ와 꼰대가 공존하는 혼종입니다. 하기 싫은 것은 죽어도 안하는 스타일이지만, 동기가 확실한 일에 대해서는 열정적이며 완벽하게 해내는 편입니다.",
@@ -94,12 +100,13 @@ const stateData = {
     ]
   },
 
-  PCO: {
+  "PCO": {
     title: "PCO",
     subTitle: "MZ 관전자형",
     img: PCO_IMG,
     hashTagTop: ["#안읽씹", "#공사구분"],
     hashTagBottom: ["#독립적인", "#기 잘 빨림", "#의외로 친절"],
+    mzPower: 40,
     sectionThreeTitle : "당신은 MZ 감성 모르면 나가라 ",
     sectionThreeContent: [
       "당신은 어떤 일에 깊게 관여하고 싶지 않아하는 사람입니다. 그래도 1인분은 꾸역꾸역 해내는 당신은 남들에게 폐 끼치는 것을 극도로 싫어합니다. 남들이 자신에게 폐끼치는 것도 극혐한다. 그러나.........후자가 더 크다.......",
@@ -108,12 +115,13 @@ const stateData = {
     ]
   },
 
-  PCS: {
+  "PCS": {
     title: "PCS",
     subTitle: "MZ 말괄량이형",
     img: PCS_IMG,
     hashTagTop: ["#막내st", "#자유분방"],
     hashTagBottom: ["#조용한 관종", "#책임감 강한", "#온순한"],
+    mzPower: 75,
     sectionThreeTitle : "당신은 MZ 학계의 점심!",
     sectionThreeContent: [
       "의도적으로 관심을 받고 싶지는 않지만 관심받는 것을 꺼려하지 않는 유형",

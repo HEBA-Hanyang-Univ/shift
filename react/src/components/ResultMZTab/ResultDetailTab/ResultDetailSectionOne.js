@@ -50,11 +50,19 @@ function RangeDisplay ({className, label1, label1Span, label2, label2Span, value
 }
 
 
-const ResultDetail = ({ data }) => { 
-  const { mzType, meterValues } = data;
+const ResultDetailSectionOne = ({ keywordData }) => {
+  const matchMyself = [...[keywordData.replies.map((reply) => reply.keyword_in_myself).flat()]]
+  const selected = [...new Set(keywordData.replies.map((reply) => reply.keyword_selected).flat())]
+  const wantNotSelected = [...keywordData.keyword_want.filter((keyword) => !selected.includes(keyword)).flat()]
+  const matchOthers = [...[keywordData.replies.map((reply) => reply.keyword_in_others).flat()]]
+  // TODO: need to add adjuster for the score. now it's just 1
+  const tpScore = matchMyself.length / (keywordData.replies.length * 5) * 100 * 1; 
+  const rcScore = wantNotSelected.length / (keywordData.replies.length * 5) * 100 * 1;
+  const osScore = matchOthers.length / (keywordData.replies.length * 5) * 100 * 1;
 
-  // 기본 값 TRO
-  const setData = stateData[mzType] || stateData.TRO;
+  const mzType = (tpScore > 50 ? "T" : "P") + (rcScore > 50 ? "R" : "C") + (osScore > 50 ? "O" : "S");
+
+  const setData = stateData[mzType]
 
   const {
     title,
@@ -62,6 +70,7 @@ const ResultDetail = ({ data }) => {
     img,
     hashTagTop,
     hashTagBottom,
+    mzPower,
     sectionThreeTitle,
     sectionThreeContent
   } = setData;
@@ -89,7 +98,7 @@ const ResultDetail = ({ data }) => {
             style={{marginTop: '-1rem !important'}}
             label1="MZ력"
             label2="꼰대력" 
-            value={meterValues.MZ} 
+            value={mzPower}
           />
           <RangeDisplay 
             className="rangeTP"
@@ -97,7 +106,7 @@ const ResultDetail = ({ data }) => {
             label1Span="투명성" 
             label2="P" 
             label2Span="은폐성" 
-            value={meterValues.T} 
+            value={tpScore}
           />
           <RangeDisplay 
             className="rangeRC"
@@ -105,7 +114,7 @@ const ResultDetail = ({ data }) => {
             label1Span="저항성" 
             label2="C" 
             label2Span="순응성" 
-            value={meterValues.R} 
+            value={rcScore}
           />
           <RangeDisplay 
             className="rangeOS"
@@ -113,7 +122,7 @@ const ResultDetail = ({ data }) => {
             label1Span="객관성" 
             label2="S" 
             label2Span="주관성" 
-            value={meterValues.O} 
+            value={osScore}
           />
         </section>
         <section className="rdBottom">
@@ -129,4 +138,4 @@ const ResultDetail = ({ data }) => {
   );
 };
 
-export default ResultDetail;
+export default ResultDetailSectionOne;
