@@ -9,7 +9,10 @@ class EPAKeyword :
 
         self.keyword_dict = {}
         for i in range(len(self.keyword_list)):
-            self.keyword_dict[i+1] = self.keyword_list[i].split(',')
+            if i < 13 :
+                self.keyword_dict[i+1] = self.keyword_list[i].split(',')
+            else :
+                self.keyword_dict[i+2] = self.keyword_list[i].split(',')
 
     def get_dict(self):
         return self.keyword_dict
