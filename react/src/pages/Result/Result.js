@@ -8,28 +8,33 @@ import ResultDetail from "./MZTabContent/ResultDetail";
 import ResultStatistic from "./MZTabContent/ResultStatistic";
 
 const Result = () => {
-  const { tid } = useParams();
   const navigate = useNavigate();
   const [ data, setData ] = useState({});
+  const [ isLoading, setIsLoading ] = useState(true);
 
-  const tabList = [
-    { name: '결과 요약', content: <ResultSummary /> },
-    { name: '자세히 보기', content: <ResultDetail />},
-    { name: '응답자 통계', content: <ResultStatistic />}
-  ]; 
+  const [tabList, setTabList] = useState([]);
 
   useEffect(() => {
-    TryFetch("/result/epa", "GET", {}, (data) => {
+    TryFetch("result/epa", "GET", {}, (data) => {
       if (!data["replies"] || data["replies"].length < 3) {
         alert("비정상적인 접근입니다.");
         navigate("/");
         return;
       }
       console.log(data);
+      setTabList([
+        { name: '결과 요약', content: <ResultSummary data={data}/> },
+        //{ name: '자세히 보기', content: <ResultDetail data={data}/>},
+        //{ name: '응답자 통계', content: <ResultStatistic data={data}/>}
+      ]);
+      setIsLoading(false);
     }, (error) => {
       console.log(error);
     }); 
   }, []);
+
+  // when data is not loaded yet, render nothing
+  if (isLoading) return null;
 
   return (
     <div id="Container" className="resultContainer">
