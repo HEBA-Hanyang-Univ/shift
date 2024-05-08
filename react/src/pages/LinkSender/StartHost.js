@@ -28,15 +28,13 @@ const StartHost = () => {
     HandleLogin({
       assertLogin: true,
       navigate: navigate,
-      toWhere: "/"
+      toWhere: "/host/info",
+      onLoginSuccess: () => {
+        if (test && test.epa !== null && test.epa !== undefined) {
+          alert("이미 진행중인 테스트가 있습니다. 기존 테스트를 삭제합니다.");
+        }
+      }
     });
-
-    if (test && test.epa !== null && test.epa !== undefined) {
-      alert("이미 진행중인 테스트가 있습니다. 기존 테스트를 삭제합니다.");
-      navigate("/host/info");
-    } else {
-      navigate("/host/info");
-    }
   };
 
   const handleResult = () => {
@@ -50,22 +48,21 @@ const StartHost = () => {
   const handleShareTest = () => {
     HandleLogin({
       assertLogin: true,
-      navigate: navigate,
-      toWhere: "/"
-    });
-
-    const tid = loadDataWithExpiration("tid");
-    if (tid === null || tid === undefined) {
-      TryFetch("my_tests", "GET", {}, (data) => {
-        if (data.epa === null || data.epa === undefined) {
-          alert("진행중인 테스트가 없습니다.");
+      onLoginSuccess: () => {
+        const tid = loadDataWithExpiration("tid");
+        if (tid === null || tid === undefined) {
+          TryFetch("my_tests", "GET", {}, (data) => {
+            if (data.epa === null || data.epa === undefined) {
+              alert("진행중인 테스트가 없습니다.");
+            } else {
+              testShareUrl(data.epa[0]);
+            }
+          });
         } else {
-          testShareUrl(data.epa[0]);
+          testShareUrl(tid);
         }
-      });
-    } else {
-      testShareUrl(tid);
-    }
+      }
+    });
   };
 
   const testShareUrl = (tid) => {
