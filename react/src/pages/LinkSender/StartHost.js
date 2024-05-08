@@ -107,7 +107,7 @@ const StartHost = () => {
     } else {
       TryFetch("my_tests", "GET", {}, (data) => {
         setTest(data);
-        if (data.epa !== null && data.epa !== undefined && data.epa[1] >= 3) {
+        if (data.epa !== null && data.epa !== undefined) {
           setCanSeeResult(true);
         }
       });
