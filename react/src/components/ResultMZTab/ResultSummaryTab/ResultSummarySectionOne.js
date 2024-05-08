@@ -9,15 +9,13 @@ const ResultSummarySectionOne = ({ username, replyCount, keywordOthers, replyKey
   const count = uniqueReplyKeywords.filter((keyword) => keywordOthers.includes(keyword)).length;
   //TODO : Add logic to calculate percentage
   const percentage = 5;
-  const [matchedKeywords, setMatchedKeywords] = useState([]);
+
+  const matchedKeywords = [];
+  uniqueReplyKeywords.map((keyword) => {
+    matchedKeywords.push(epaKeywords[keyword]);
+  });
 
   useEffect(() => {
-    const k = [];
-    uniqueReplyKeywords.map((keyword) => {
-      k.push(epaKeywords[keyword]);
-    });
-    setMatchedKeywords(k);
-
     // update rangeWidth based on media query
     const updateRangeWidth = () => {
       if (window.matchMedia("(max-width: 300px)").matches) {
@@ -76,7 +74,7 @@ const ResultSummarySectionOne = ({ username, replyCount, keywordOthers, replyKey
           </span>
         </div>
         <div className="rsSectionOneResultKeywordBox">
-          {matchedKeywords.map((keyword, index) => (
+          {matchedKeywords.filter(keyword=>keyword!==undefined).map((keyword, index) => (
             <div 
               key={index} 
               className="rsorKeyword"

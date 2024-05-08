@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../../assets/styles/Result/Result.scss";
-import { loadDataWithExpiration, saveDataWithExpiration } from "../../CookieUtils/SecureLocalStorageExtends";
 
-const ResultSummarySectionTwo = ({ keywordData }) => {
+const ResultSummarySectionTwo = ({ keywordData, epaKeywords }) => {
 
   const username = keywordData.nickname;
   //TODO : Add logic to determine type of user
@@ -17,7 +16,6 @@ const ResultSummarySectionTwo = ({ keywordData }) => {
     3: [...new Set(keywordData.keyword_myself.filter((keyword) => !matchMyself.includes(keyword)).flat())],
     4:[...new Set(keywordData.keyword_want.filter((keyword) => !selected.includes(keyword)).flat())],
   }
-  const epaKeywords = loadDataWithExpiration("epa_keywords");
 
   return (
     <div className="rsSectionTwo">
