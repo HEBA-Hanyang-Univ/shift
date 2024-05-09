@@ -17,6 +17,7 @@ function chunkArray(array, chunkSize) {
   return chunks;
 };
 
+
 const ResultDetailSectionTwo = ({ keywordData, epaKeywords }) => {
   const selected = [...new Set(keywordData.replies.map((reply) => reply.keyword_selected).flat())]
   const k = [];
@@ -60,6 +61,10 @@ const ResultDetailSectionTwo = ({ keywordData, epaKeywords }) => {
     ));
   };
 
+  const closeAllToggles = () => {
+    setKeywords(keywords.map((keyword) => ({ ...keyword, visible: false })));
+  };
+
   return (
     <div className="rdSectionTwoContainer">
       <div className="rdSectionTwo">
@@ -81,6 +86,7 @@ const ResultDetailSectionTwo = ({ keywordData, epaKeywords }) => {
             },
           }}
           modules={[Pagination]}
+          onSlideChange={() => closeAllToggles()}
           >
             {slideChunks.map((chunk, index) => (
               <SwiperSlide key={index}>
@@ -108,8 +114,7 @@ const ResultDetailSectionTwo = ({ keywordData, epaKeywords }) => {
                         </div>
                       </div>)})}
                     </div>
-                  </div>
-                  
+                  </div>                  
                 ))}
               </SwiperSlide>
             ))}

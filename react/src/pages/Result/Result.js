@@ -25,7 +25,7 @@ const Result = () => {
       setTabList([
         { name: '결과 요약', content: <ResultSummary data={data}/> },
         { name: '자세히 보기', content: <ResultDetail data={data}/>},
-        //{ name: '응답자 통계', content: <ResultStatistic data={data}/>}
+        { name: '응답자 통계', content: <ResultStatistic data={data}/>}
       ]);
       setIsLoading(false);
     }, (error) => {
