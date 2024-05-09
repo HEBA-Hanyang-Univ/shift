@@ -1,13 +1,13 @@
 .sgContainer {
   height: calc(100vh - 2.5rem);
-  background: linear-gradient(180deg, #FFF 3.11%, #d4d4d4 93.37%);
+  background: linear-gradient(180deg, #FFF 3.11%, #EDEDED 103.37%);
 
   .sgWrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 9rem;
+    margin-top: 50%;
 
     .sgTitleWrapper {
       display: flex;
@@ -34,7 +34,7 @@
     }
 
     .sgButtonWrapper {
-      margin-top: 3rem;
+      margin-top: 1rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -52,13 +52,14 @@
       }
       
       .sgBtnSpan {
-        margin-top: 1.47rem;
+        margin-top: 2.5rem;
         font-size: 1.1rem;
-        font-weight: 700;
         letter-spacing: 0.084rem;
-        background: linear-gradient(270deg, #AF8BBF -16.36%, #82678D 130.86%);
-        color: transparent;
+        font-weight: 700;
+        background-image: linear-gradient(90deg, #CFC8D2 0%, #9C76AC 50%, #CFC8D2 100%);
+        background-clip: text;
         -webkit-background-clip: text;
+        color: transparent;
       }
     }
   }
@@ -67,13 +68,10 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: end;
-    margin: 0 auto 0.9rem;
-    position: absolute;
-    bottom: 0;
+    margin-top: 1rem;
 
     span {
-      color: #282828;
+      color: #CDCDCD;
       text-align: center;
       font-size:  1.3rem;
       font-weight: 600;

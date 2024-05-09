@@ -15,6 +15,9 @@ const StartGuest = () => {
   const [username, setUsername] = useState("");
   const [total, setTotal] = useState(0);
 
+  const [gradientValue, setGradientValue] = useState(0);
+  const [increase, setIncrease] = useState(true);
+
   useEffect(() => {
     if (tid === undefined || tid === null) {
       alert("잘못된 접근입니다.");
@@ -50,6 +53,8 @@ const StartGuest = () => {
     });
 
     const timer = setTimeout(() => {
+      setGradientValue(0);
+      setIncrease(true);
       setIsLoading(false);
     }, 2000);   // 2초 후에 로딩 상태 변경
 
@@ -57,6 +62,23 @@ const StartGuest = () => {
       clearTimeout(timer);
     };
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (increase) {
+        setGradientValue((prevValue) => prevValue + 1);
+        if (gradientValue >= 100) {
+          setIncrease(false);
+        }
+      } else {
+        setGradientValue((prevValue) => prevValue - 1);
+        if (gradientValue <= 0) {
+          setIncrease(true);
+        }
+      }
+    }, 10);
+    return () => clearInterval(interval);
+  }, [increase, gradientValue]);
 
   if(isLoading) {
     return <LandingGuest />;
@@ -75,7 +97,8 @@ const StartGuest = () => {
               <span>응답하기</span>
             </Button>
           </Link>
-          <span className="sgBtnSpan">지금까지 {total}명이 참여했어요!</span>
+          <span className="sgBtnSpan" style={{backgroundImage: "linear-gradient(90deg, #CFC8D2 0%, #9C76AC " + gradientValue + "%, #CFC8D2 100%)"}}>
+            지금까지 {total}명이 참여했어요!</span>
         </div>          
       </div> 
       <div className="sgFooter">
