@@ -19,6 +19,7 @@
 .keywordBoxContainer {
   display: flex;
   justify-content: center;
+  width: 100%;
 
   .keywordBox {
     margin-top: 2rem;
@@ -35,9 +36,6 @@
   display: grid;
   grid-template-rows: repeat(4, 1fr);
   gap: 1rem;
-  overflow: scroll;
-  padding-right: 1rem;
-  padding-left: 1rem;
 
   &::-webkit-scrollbar {
     display: none;
@@ -55,19 +53,21 @@
     }
   }
 
+  
   .keywordRow {
     display: grid;
-    grid-template-columns: repeat(6, 5.2rem);
+    overflow: scroll;
+    grid-template-columns: repeat(10, 5.2rem);
     gap: 0.2rem;
+
+    // Hide scrollbar for Chrome, Safari and Opera
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    // Hide scrollbar for IE, Edge and Firefox
+    -ms-overflow-style: none;  // IE and Edge
+    scrollbar-width: none;  // Firefox
   }
-}
-
-.keywordRow-1 {
-  margin-left: 2rem;
-}
-
-.keywordRow-3 {
-  margin-left: 2rem;
 }
 
 // Selected Keyword

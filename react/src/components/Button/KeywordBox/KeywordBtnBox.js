@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button } from "../Button";
 import "../Button.scss";
 
@@ -40,10 +40,54 @@ export const KeywordBtnBox = ({ keywords, width, height, className, onKeywordCli
     chunks.push(entries.slice(i*wordsPerLine, (i === lines-1)? (i+1)*wordsPerLine+remain : (i+1)*wordsPerLine));
   }
 
+  const keywordRowRefs = useRef([]);
+  const scrollDirection = useRef([]);
+  const scrollPositions = useRef([]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      keywordRowRefs.current.forEach((keywordRow, index) => {
+        if (keywordRow) {
+          const scrollAmount = keywordRow.scrollLeft;
+          const maxScrollAmount = keywordRow.scrollWidth / 2;
+
+          if (scrollAmount >= maxScrollAmount) {
+            scrollDirection.current[index] = -0.5;
+          } else if (scrollAmount <= 0) {
+            scrollDirection.current[index] = 1;
+          }
+          keywordRow.scrollLeft = scrollAmount + scrollDirection.current[index];
+          scrollPositions.current[index] = keywordRow.scrollLeft;
+        }
+      });
+    }, 30);
+
+    // Clean up the interval on unmount
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    // Restore the scroll positions after the component updates
+    keywordRowRefs.current.forEach((keywordRow, index) => {
+      if (keywordRow && scrollPositions.current[index] !== undefined) {
+        keywordRow.scrollLeft = scrollPositions.current[index];
+      }
+    });
+  }, [activeButtons]);
+
   return (
     <div className="keywordBtnBox">
       {chunks.map((chunk, index) => (
-        <div className={`keywordRow keywordRow-${index}`} key={index}>
+        <div className={`keywordRow keywordRow-${index}`} key={index}
+          ref={el => {
+            keywordRowRefs.current[index] = el;
+            scrollDirection.current[index] = 1;
+            if (el && index % 2 === 0) {
+              el.scrollLeft = el.scrollWidth / 2;
+            } else if (el && index % 2 === 1) {
+              el.scrollLeft = 0;
+            }
+          }}>
           {chunk.map(([keyword, value]) => (
           <Button
             width={width}
