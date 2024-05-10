@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "../../assets/styles/LinkReceiver/SelectKeyword.scss";
 import "../../assets/styles/LinkSender/MyIdentity.scss";
 import { KeywordBtnBoxContainer } from "../../components/Button/KeywordBox/KeywordBtnBoxContainer";
 import { SelectedKeyword } from "../../components/Button/KeywordBox/SelectedKeyword";
