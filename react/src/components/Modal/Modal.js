@@ -3,7 +3,7 @@ import "./Modal.scss";
 import UseOutsideClick from "./UseOutsideClick";
 import ModalContainer from "./ModalContainer";
 
-function Modal({ onClose, width, height, children }) {
+function Modal({ onClose, className,  width, height, children }) {
   const modalRef = useRef(null);
   const handleClose = () => {
     onClose();
@@ -18,7 +18,7 @@ function Modal({ onClose, width, height, children }) {
           className="modalWrap"
           ref={modalRef}
         >
-          <div className="modalContent"
+          <div className={`modalContent ${className}`}
             style={{
               width: `${width}rem`,
               height: `${height}rem`

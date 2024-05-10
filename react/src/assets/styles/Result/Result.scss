@@ -150,7 +150,8 @@
       align-items: center;
       flex-wrap: wrap;
 
-      .rsorKeyword {
+      .rsor
+       {
         padding: 0.35rem 1rem;
         margin: 0.8rem 0.3rem 0;
         margin-top: 0.8rem;
@@ -333,6 +334,104 @@
             }
           }
         }
+      }
+    }
+  }
+}
+
+.rsSectionKeywordModal {
+  max-height: fit-content;
+  height: 7.6rem;
+
+  .keywordModalWrapper {
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+    border-radius: 0.56rem;
+    border: 2px solid #9C76AC;
+    padding: 0.66rem 0.36rem 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .keywordModalContentBox {
+      margin-right: -1.46rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+
+      .keywordModalTitle {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+  
+        .keywordModalSelectedKeyword {
+          width: 4.95rem;
+          height: 1.076rem;
+          border: 2px solid #9C76AC;
+          border-radius: 2.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0.1rem 0.2rem;
+  
+          span {
+            color: #000;
+            font-size: 0.62rem;
+            font-weight: 600; 
+            letter-spacing: 0.004rem;
+          }
+        }
+      } 
+      .keywordModalContent {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0.63rem;
+        
+        .totalNumOfSelectedKeyword {
+          color: #8753A5;
+          font-weight: 700;
+          font-size: 0.66rem;
+          letter-spacing: 0.033rem;
+        }
+
+        .unknownNum {
+          margin-top: 0.33rem;
+          color: #878787;
+          font-weight: 600;
+          font-size: 0.58rem;
+        }
+
+        .selectedKeywordResponders {
+          margin-top: 0.5rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          span {
+            color: #292929;
+            font-size: 0.51rem;
+            font-weight: 700;
+            letter-spacing: 0.025rem;
+            line-height: 0.8rem;
+          }
+        }
+      }
+    }
+    .exitBtn {
+      height: 100%;
+      display: flex;
+      justify-content: start;
+      margin-right: 0.66rem;
+
+      img {
+        width: 0.8rem;
+        height: 0.8rem;
       }
     }
   }
@@ -1008,7 +1107,7 @@
     }
 
     .rangeValue {
-      padding-top: 0.2rem;
+      padding-top: 0.2rem;     
       color: #ABABAB;
       font-weight: 600;
       font-size: 0.56rem;

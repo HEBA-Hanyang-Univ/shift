@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Modal from "../../Modal/Modal";
+import useModal  from "../../Modal/UseModal"; 
 import "../../../assets/styles/Result/Result.scss";
+import ExitBtn from "../../../assets/images/delBtn.svg";
 
 const ResultSummarySectionTwo = ({ keywordData, epaKeywords }) => {
-
+  const { isOpen, openModal, closeModal } = useModal();
+  // for set keyword in modal
+  const [selectedKeyword, setSelectedKeyword] = useState();
   const username = keywordData.nickname;
   //TODO : Add logic to determine type of user
   const typeOfUser = "자기주장형"; // keyword
@@ -17,10 +22,14 @@ const ResultSummarySectionTwo = ({ keywordData, epaKeywords }) => {
     4:[...new Set(keywordData.keyword_want.filter((keyword) => !selected.includes(keyword)).flat())],
   }
 
+  const handleKeywordClick = (keyword) => {
+    setSelectedKeyword(keyword);
+    openModal();
+  };
+
   return (
     <div className="rsSectionTwo">
       <div className="rsSectionTwoTitle">
-        {/* TODO : 추후 유형과 이름 넣기 */}
         <span style={{color: "#A570C4"}}>{username}</span>
         <span>님은&nbsp;</span>
         <span style={{color: "#A570C4"}}>{typeOfUser}</span>
@@ -63,23 +72,48 @@ const ResultSummarySectionTwo = ({ keywordData, epaKeywords }) => {
               {Object.entries(boxData).map(([key, values], index) => (
                   <div className="content" key={index}>
                     {values.map((value, idx) => {
-		      const keyword = epaKeywords[value];
+		                  const keyword = epaKeywords[value];
                       if (!keyword) {
-		        return null;
-		      }
+		                    return null;
+		                  }
                       return (
-                      <div key={idx} className="keyword">
+                      <div key={idx} className="keyword" onClick={() => handleKeywordClick(keyword)}>
                         <span>{keyword[1]} {keyword[0]}</span>
                       </div>
-                    )})}
+                    )})}                 
                   </div>
                 ))}
             </div>
+            {isOpen && (
+              <Modal className="rsSectionKeywordModal" onClose={() => { closeModal() }} isOpen={isOpen} width={10.75}>
+                <div className="keywordModalWrapper">
+                  <div className="keywordModalContentBox">
+                    <div className="keywordModalTitle">
+                      <div className="keywordModalSelectedKeyword">
+                        <span>{selectedKeyword[1]} {selectedKeyword[0]}</span>
+                      </div>
+                    </div>
+                    <div className="keywordModalContent">
+                      {/* TOOD: 선택한 사람 넣기 */}
+                      <span className="totalNumOfSelectedKeyword">선택 총 4명</span>
+                      <span className="unknownNum">익명: 2명</span>
+                      <div className="selectedKeywordResponders">
+                        <span>김철수</span>
+                        <span>도라에몽</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="exitBtn">
+                    <img src={ExitBtn} alt="exit" onClick={closeModal}/>
+                  </div>
+                </div>
+              </Modal>
+            )}
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default ResultSummarySectionTwo;
