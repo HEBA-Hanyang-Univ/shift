@@ -13,6 +13,10 @@ const ResultSummarySectionTwo = ({ keywordData, epaKeywords }) => {
   //TODO : Add logic to determine type of user
   const typeOfUser = "자기주장형"; // keyword
 
+  const [selectNum, setSelectNum] = useState(0);
+  const [anonymousNum, setAnonymousNum] = useState(0);
+  const [selectedKeywordResponders, setSelectedKeywordResponders] = useState([]);
+
   const matchMyself = [...new Set(keywordData.replies.map((reply) => reply.keyword_in_myself).flat())]
   const selected = [...new Set(keywordData.replies.map((reply) => reply.keyword_selected).flat())]
   const boxData = {
@@ -24,6 +28,24 @@ const ResultSummarySectionTwo = ({ keywordData, epaKeywords }) => {
 
   const handleKeywordClick = (keyword) => {
     setSelectedKeyword(keyword);
+
+    const num = Object.keys(epaKeywords).find((key) => epaKeywords[key] === keyword);
+    let sNum = 0;
+    let aNum = 0;;
+    let responders = [];
+    keywordData.replies.map((reply) => {
+      if (reply.keyword_selected.includes(num)) {
+        sNum++;
+        if (reply.anonymous) {
+          aNum++;
+        } else {
+          responders = [...responders, reply.nickname];
+        }
+      }
+    });
+    setSelectNum(sNum);
+    setAnonymousNum(aNum);
+    setSelectedKeywordResponders(responders);
     openModal();
   };
 
@@ -68,7 +90,6 @@ const ResultSummarySectionTwo = ({ keywordData, epaKeywords }) => {
               </span>
             </div>
             <div className="contentBox">
-              {/* TODO: the data in entries has not been added */}
               {Object.entries(boxData).map(([key, values], index) => (
                   <div className="content" key={index}>
                     {values.map((value, idx) => {
@@ -95,11 +116,14 @@ const ResultSummarySectionTwo = ({ keywordData, epaKeywords }) => {
                     </div>
                     <div className="keywordModalContent">
                       {/* TOOD: 선택한 사람 넣기 */}
-                      <span className="totalNumOfSelectedKeyword">선택 총 4명</span>
-                      <span className="unknownNum">익명: 2명</span>
+                      <span className="totalNumOfSelectedKeyword">선택 총 {selectNum}명</span>
+                      <span className="unknownNum">익명: {anonymousNum}명</span>
                       <div className="selectedKeywordResponders">
-                        <span>김철수</span>
-                        <span>도라에몽</span>
+                        {
+                          selectedKeywordResponders.map((responder, index) => (
+                            <span key={index}>{responder}</span>
+                          ))
+                        }
                       </div>
                     </div>
                   </div>
