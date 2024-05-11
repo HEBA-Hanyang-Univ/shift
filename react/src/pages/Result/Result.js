@@ -21,7 +21,6 @@ const Result = () => {
         navigate("/");
         return;
       }
-      console.log(data);
       setTabList([
         { name: '결과 요약', content: <ResultSummary data={data}/> },
         { name: '자세히 보기', content: <ResultDetail data={data}/>},
