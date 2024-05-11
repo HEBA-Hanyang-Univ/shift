@@ -29,26 +29,29 @@ function HashTagComponent({ hashTagTop, hashTagBottom}) {
       </div>
     </div>
   );
-}
+};
 
-function RangeDisplay ({className, label1, label1Span, label2, label2Span, value}) {
+function RangeMeter ({className, label1, label1Span, label2, label2Span, value}) {
   return (
-    <div className={`rangeDisplay ${className}`}>
+    <div className={`customMeterDisplay ${className}`}>
       <div className="rangeSpan">
         <span className="rangeLabel">{label1}</span>
         <span className="rangeLabel">{label1Span}</span>
         <span className="rangeValue">{value}%</span>
       </div>
-      <meter min={0} max={100} value={value} />
+      <div className="customMeter">
+        <div className="meterBar">
+          <div className="meterFill" style={{width: `${value}%`}}></div>
+        </div>
+      </div>
       <div className="rangeSpan">
         <span className="rangeLabel">{label2}</span>
         <span className="rangeLabel">{label2Span}</span>
         <span className="rangeValue">{100 - value}%</span>
       </div>
-    </div>
+    </div> 
   );
 }
-
 
 const ResultDetailSectionOne = ({ keywordData }) => {
   const matchMyself = [...[keywordData.replies.map((reply) => reply.keyword_in_myself).flat()]]
@@ -93,14 +96,14 @@ const ResultDetailSectionOne = ({ keywordData }) => {
           <HashTagComponent hashTagTop={hashTagTop} hashTagBottom={hashTagBottom} />
         </section>
         <section className="rdMiddle">
-          <RangeDisplay
+          <RangeMeter
             className="rangeMZ"
             style={{marginTop: '-1rem !important'}}
             label1="MZ력"
             label2="꼰대력" 
             value={mzPower}
           />
-          <RangeDisplay 
+          <RangeMeter
             className="rangeTP"
             label1="T" 
             label1Span="투명성" 
@@ -108,7 +111,7 @@ const ResultDetailSectionOne = ({ keywordData }) => {
             label2Span="은폐성" 
             value={tpScore}
           />
-          <RangeDisplay 
+          <RangeMeter 
             className="rangeRC"
             label1="R" 
             label1Span="저항성" 
@@ -116,7 +119,7 @@ const ResultDetailSectionOne = ({ keywordData }) => {
             label2Span="순응성" 
             value={rcScore}
           />
-          <RangeDisplay 
+          <RangeMeter 
             className="rangeOS"
             label1="O" 
             label1Span="객관성" 

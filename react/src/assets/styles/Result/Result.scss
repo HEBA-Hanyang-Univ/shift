@@ -633,73 +633,97 @@
     flex-direction: column;
 
     .rangeMZ {
-      meter {
-        width: 14rem;
-        height: 1.9rem;
-        margin: -0.34rem 0.7rem 1rem;
+      .meterBar {
+        background-color: #E2E2E2;
 
-        &::-webkit-meter-bar {
-          background-color: #E2E2E2;
-          border: none;
-        }
-
-        &::-webkit-meter-optimum-value {
-          background: #9F79AF;
+        .meterFill {
+          background-color: #9F79AF;
         }
       }
     }
 
     .rangeTP {
-      meter {
-        width: 14rem;
-        height: 1.9rem;
-        margin: 0 0.7rem;
+      margin-top: 1.8rem;
+      
+      .meterBar {
+        background-color: #4988AC;
 
-        &::-webkit-meter-bar {
-          background-color: #4988AC;
-          border: none;
-        }
-
-        &::-webkit-meter-optimum-value {
-          background: #9DD8F9;
+        .meterFill {
+          background-color: #9DD8F9;
         }
       }
     }
 
-    .rangeRC {      
-      meter {
-        width: 14rem;
-        height: 1.9rem;
-        margin: 0 0.7rem;
+    .rangeRC {    
+      .meterBar {
+        background-color: #FD974E;
 
-        &::-webkit-meter-bar {
-          background-color: #FD974E;
-          border: none;
+        .meterFill {
+          background-color: #FFC773;
         }
-
-        &::-webkit-meter-optimum-value {
-          background: #FFC773;
-        }
-      }
+      }  
     }
 
-    .rangeOS {     
-      meter {
-        width: 14rem;
-        height: 1.9rem;
-        margin: 0 0.7rem;
+    .rangeOS { 
+      .meterBar {
+        background-color: #A0513F;
 
-        &::-webkit-meter-bar {
-          background-color: #A0513F;
-          border: none;
+        .meterFill {
+          background-color: #FF7A5D;
         }
+      }    
+    }
+  }
 
-        &::-webkit-meter-optimum-value {
-          background: #FF7A5D;
-        }
+.customMeterDisplay {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  margin-top: 1rem;
+
+  .rangeSpan {
+    display: flex;
+    flex-direction: column;
+
+    .rangeLabel {
+      color: #322A33;
+      font-weight: 600;
+      font-size: 0.675rem;
+      text-align: center;
+      line-height: 1.1rem;
+    }
+
+    .rangeValue {
+      padding-top: 0.2rem;     
+      color: #ABABAB;
+      font-weight: 600;
+      font-size: 0.56rem;
+      text-align: center;
+    }
+  }
+
+  .customMeter {
+    width: 14rem;
+    height: 1.9rem;
+    margin: 0 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .meterBar {
+      width: 100%;
+      height: 0.97rem;
+      border-radius: 1rem;
+
+      .meterFill {
+        height: 100%;
+        z-index: -1;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
       }
     }
   }
+}
 
   // Result Detail Section One Bottom
 
