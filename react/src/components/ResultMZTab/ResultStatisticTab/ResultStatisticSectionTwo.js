@@ -24,7 +24,7 @@ const ResultStatisticSectionTwo = ({ repliesInfo }) => {
   const relationshipIcons = {
     가족: FAMILY_ICON,
     친구: FRIEND_ICON,
-    동료: COWORKER_ICON,
+    지인: COWORKER_ICON,
     커플: COUPLE_ICON,
   };
 

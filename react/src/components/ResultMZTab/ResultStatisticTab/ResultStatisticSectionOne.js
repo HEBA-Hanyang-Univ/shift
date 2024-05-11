@@ -114,7 +114,7 @@ const ResultStatisticSectionOne = ({ repliesInfo }) => {
               <div className="rstImgWrapper">
                 <img src={COWORKER_ICON} alt="coworker icon"/>
               </div>
-              <span>동료 {coworkerResponses}명</span>
+              <span>지인 {coworkerResponses}명</span>
             </div>
             <div className="rstRelationContent">
               <div className="rstImgWrapper">
