@@ -6,7 +6,7 @@ import ResultSummarySectionThree from "../../../components/ResultMZTab/ResultSum
 import TryFetch from "../../../components/FetchComponent/FetchComponent";
 import { loadDataWithExpiration, saveDataWithExpiration } from "../../../components/CookieUtils/SecureLocalStorageExtends";
 
-const ResultSummary = ({ data }) => {
+const ResultSummary = ({ data, setCurrentTab }) => {
   const username = data.nickname;
   const [replyKeywords, setReplyKeywords] = useState([]);
   const [descriptionSentences, setDescriptionSentences] = useState([]);
@@ -39,6 +39,7 @@ const ResultSummary = ({ data }) => {
   return (
     <div id="Container" className="rsContainer">
       <div className="rsWrapper">
+        <button>자세히보기</button>
         {/* From Title to selected keywords */}
         <ResultSummarySectionOne
           username={username}
@@ -51,11 +52,13 @@ const ResultSummary = ({ data }) => {
         <ResultSummarySectionTwo
           keywordData={data}
           epaKeywords={epaKeywords}
+          setCurrentTab={setCurrentTab}
         />
         {/* OneLineDescription  */}
         <ResultSummarySectionThree
           username={username}
           descriptionSentences={descriptionSentences}
+          setCurrentTab={setCurrentTab}
         />
       </div>
     </div>

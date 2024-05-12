@@ -27,7 +27,7 @@ export const Tab = ({ tabList, initialTab = 0 }) => {
         </div>
       </div>
       <div className="tabContent">
-        {tabList[currentTab].content}
+        {React.cloneElement(tabList[currentTab].content, { setCurrentTab })}
       </div>
     </div>
   );

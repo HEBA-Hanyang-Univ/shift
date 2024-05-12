@@ -5,7 +5,7 @@ import useModal  from "../../Modal/UseModal";
 import "../../../assets/styles/Result/Result.scss";
 import ExitBtn from "../../../assets/images/delBtn.svg";
 
-const ResultSummarySectionTwo = ({ keywordData, epaKeywords }) => {
+const ResultSummarySectionTwo = ({ keywordData, epaKeywords, setCurrentTab }) => {
   const { isOpen, openModal, closeModal } = useModal();
   // for set keyword in modal
   const [selectedKeyword, setSelectedKeyword] = useState();
@@ -58,13 +58,13 @@ const ResultSummarySectionTwo = ({ keywordData, epaKeywords }) => {
         <span>입니다</span>
       </div>
       <div className="rsSectionTwoLink">
-          <Link to="/result">
-            <button>
-              <span>
-                자세히 보기 {'>'}
-              </span>
-            </button>
-          </Link>
+        <button onClick={() => {
+          setCurrentTab(1);
+        }}>
+          <span>
+            자세히 보기 {'>'}
+          </span>
+        </button>
       </div>
       <div className="rsSectionTwoGraphWrapper">
         <div className="rsSectionTwoGraphBox">

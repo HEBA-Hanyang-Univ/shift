@@ -6,7 +6,7 @@ import 'swiper/scss';
 import 'swiper/scss/pagination';
 import { Pagination, Autoplay, Navigation } from 'swiper/modules';
 
-const ResultSummarySectionThree = ({username, descriptionSentences }) => {
+const ResultSummarySectionThree = ({username, descriptionSentences, setCurrentTab }) => {
 
   const BOX_COUNT = 5;
   const MIN_SLIDES = 5;
@@ -24,9 +24,11 @@ const ResultSummarySectionThree = ({username, descriptionSentences }) => {
           <span className="titleBlack">님의 한 줄 정의</span>
         </div>
         <div className="rsSectionThreeDetail">
-          <span>
-            자세히보기 {'>'}
-          </span>
+          <button onClick={()=>setCurrentTab(1)}>
+            <span>
+              자세히보기 {'>'}
+            </span>
+          </button>
         </div>
       </div>
       <div className="rsSectionThreeContent">
