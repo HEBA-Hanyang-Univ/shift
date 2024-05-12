@@ -39,7 +39,6 @@ const ResultSummary = ({ data, setCurrentTab }) => {
   return (
     <div id="Container" className="rsContainer">
       <div className="rsWrapper">
-        <button>자세히보기</button>
         {/* From Title to selected keywords */}
         <ResultSummarySectionOne
           username={username}
