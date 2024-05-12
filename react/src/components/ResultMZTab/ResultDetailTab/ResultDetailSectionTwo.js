@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import "../../../assets/styles/Result/Result.scss";
 import upArrowImg from "../../../assets/images/resultUpArrow.png";
 import downArrowImg from "../../../assets/images/resultDownArrow.png";
@@ -18,7 +18,7 @@ function chunkArray(array, chunkSize) {
 };
 
 
-const ResultDetailSectionTwo = ({ keywordData, epaKeywords }) => {
+const ResultDetailSectionTwo = forwardRef(({ keywordData, epaKeywords, setLoadStatus }, ref) => {
   const selected = [...new Set(keywordData.replies.map((reply) => reply.keyword_selected).flat())]
   const k = [];
   selected.map((keyword) => {
@@ -65,8 +65,12 @@ const ResultDetailSectionTwo = ({ keywordData, epaKeywords }) => {
     setKeywords(keywords.map((keyword) => ({ ...keyword, visible: false })));
   };
 
+  useEffect(()=> {
+    setLoadStatus(true);
+  }, [])
+
   return (
-    <div className="rdSectionTwoContainer">
+    <div className="rdSectionTwoContainer" ref={ref}>
       <div className="rdSectionTwo">
         <div className="rdSectionTwoTitle">
           <div className="rdSectionTwoTitleTop">
@@ -123,6 +127,6 @@ const ResultDetailSectionTwo = ({ keywordData, epaKeywords }) => {
       </div>
     </div>
   );
-}
+});
 
 export default ResultDetailSectionTwo;

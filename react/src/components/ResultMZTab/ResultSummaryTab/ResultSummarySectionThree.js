@@ -24,7 +24,7 @@ const ResultSummarySectionThree = ({username, descriptionSentences, setCurrentTa
           <span className="titleBlack">님의 한 줄 정의</span>
         </div>
         <div className="rsSectionThreeDetail">
-          <button onClick={()=>setCurrentTab(1)}>
+          <button onClick={()=>setCurrentTab(1, 3)}>
             <span>
               자세히보기 {'>'}
             </span>

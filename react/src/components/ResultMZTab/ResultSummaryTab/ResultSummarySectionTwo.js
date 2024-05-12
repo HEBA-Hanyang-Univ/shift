@@ -59,7 +59,7 @@ const ResultSummarySectionTwo = ({ keywordData, epaKeywords, setCurrentTab }) =>
       </div>
       <div className="rsSectionTwoLink">
         <button onClick={() => {
-          setCurrentTab(1);
+          setCurrentTab(1, 2);
         }}>
           <span>
             자세히 보기 {'>'}

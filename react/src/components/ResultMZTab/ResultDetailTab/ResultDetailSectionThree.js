@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import TryFetch from "../../FetchComponent/FetchComponent";
 import { loadDataWithExpiration, saveDataWithExpiration } from "../../CookieUtils/SecureLocalStorageExtends";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -18,7 +18,7 @@ function chunkArray(array, chunkSize) {
   return chunks;
 };
 
-const ResultDetailSectionThree = ({keywordData}) => {
+const ResultDetailSectionThree = forwardRef(({ keywordData, setLoadStatus }, ref) => {
 
   const slides = [];
 
@@ -32,8 +32,12 @@ const ResultDetailSectionThree = ({keywordData}) => {
   });
   const slideChunks = chunkArray(slides, 5);
 
+  useEffect(()=> {
+    setLoadStatus(true);
+  }, [])
+
   return (
-    <section className="rdSectionThreeContainer">
+    <section className="rdSectionThreeContainer" ref={ref}>
       <div className="rdSectionThreeWrapper">
         <div className="rdSectionThreeTitle">
           <span>한 줄 정의 자세히 보기</span>
@@ -74,6 +78,6 @@ const ResultDetailSectionThree = ({keywordData}) => {
       </div>
     </section>
   )
-}
+});
 
 export default ResultDetailSectionThree;
