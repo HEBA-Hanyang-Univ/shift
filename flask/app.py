@@ -208,7 +208,7 @@ def logout():
 
 @app.route("/total_num", methods=['GET'])
 def get_total_num():
-    return make_response({"total_num": DB.get_test_count()}, 200)
+    return make_response({"total_num": DB.get_reply_count() + DB.get_test_count()}, 200)
 
 @app.route("/save_epa", methods=['POST'])
 def save_epa_test():
