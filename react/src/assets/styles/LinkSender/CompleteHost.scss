@@ -3,18 +3,18 @@
 
   .chImgWrapper {
     display: flex;
-    margin-top: 6.9rem;
+    margin-top: 5rem;
     justify-content: center;
   
     img {
-      width: 4.75rem;
-      height: 4.75rem;
+      width: 5.6rem;
+      height: 5.6rem;
     }
   }
 
   .chTextWrapper {
     margin-top: 1.4rem;
-    margin-bottom: 2.96rem;
+    margin-bottom: 2.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,8 +22,8 @@
 
     .chTextPurple {
       text-align: center;
-      font-weight: 800;
-      font-size: 1.27rem;
+      font-weight: 700;
+      font-size: 1.6rem;
       background: linear-gradient(180deg, #9C76AC 0%, #A984BA 100%);
       color: transparent;
       background-clip: text;
@@ -32,7 +32,7 @@
     }
 
     .chTextBlackL {
-      margin-top: 1.05em;
+      margin-top: 1.54rem;
       font-size: 1.1rem;
       color: #0F0F0F;
       font-weight: 700;
@@ -41,7 +41,7 @@
     }
     
     .chTextBlackS {
-      margin-top: 1.8rem;
+      margin-top: 1.65rem;
       font-size: 0.82rem;
       font-weight: 700;
       color: #434343;
@@ -53,7 +53,7 @@
     margin: 0 auto;
     width: 17.5rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
     .shareBtn {
       border: 1px solid #C6C6C6;
@@ -64,25 +64,25 @@
       align-items: center;
 
       img {
-        width: 2.2rem;
-        height: 2.2rem;
+        width: 2.61rem;
+        height: 2.61rem;
       }
     }
   }
 
   .chBtnWrapper {
-    margin: 3.6rem auto;
+    margin: 3rem auto;
     width: 17.5rem;
     display: flex;
-    justify-content:space-between;
+    justify-content:space-around;
     align-items: center;
 
     .chBtn {
       border-radius: 3rem;
 
       span {
-        font-size: 0.8rem;
-        letter-spacing: 0.04rem;
+        font-size:1.1rem;
+        letter-spacing: 0.08rem;
       }
     }
 
@@ -92,8 +92,9 @@
     }
 
     .chBtnPurple {
+      background: linear-gradient(180deg, #9B6EB6 0%, #9361B0 100%);
       color: #FFF;
-      font-weight: 400;
+      font-weight: 500;
     }
   }
 }

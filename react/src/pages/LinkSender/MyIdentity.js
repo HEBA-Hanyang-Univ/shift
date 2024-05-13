@@ -64,7 +64,7 @@ const MyIdentity = () => {
       <div className="idTitle">
         <div className="idTitleTop">
           <span className="idTitleUserName">{username}</span>
-          <span>님을 가장 잘 나타내는</span>
+          <span className="idTitleSpan">님을 가장 잘 나타내는</span>
         </div>
         <div className="idTitleBottom">
           <span>키워드 5개를 선택해 주세요.</span>

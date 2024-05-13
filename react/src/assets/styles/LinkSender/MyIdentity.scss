@@ -11,33 +11,35 @@
       justify-content: center;
       align-items: center;
 
+      span {
+        font-size: 1.09rem;
+        letter-spacing: 0.03rem;
+      }
+
       .idTitleUserName {
         color: #A570C4;
-        font-size: 1.05rem;
-        font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.05rem;
         margin-top: -0.03rem;
+        font-weight: 700;
       }
 
       .idTitleSpan {
         color: #000;
-        font-size: 1.05rem;
         font-weight: 600;
-        letter-spacing: 0.05rem ;
       }
     }
 
     .idTitleBottom {
       display: flex;
       justify-content: center;
-      align-items: center ;
+      align-items: center;
       padding-top: 0.7rem;
+
       span {
         color: #000;
-        font-size: 1.05rem;
+        font-size: 1.09rem;
         font-weight: 600;
-        letter-spacing: 0.05rem;
+        letter-spacing: 0.03rem;
       }
     }
   }

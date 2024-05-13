@@ -1,19 +1,19 @@
 .ihWrapper {
-  margin-top: 2.34rem;
+  margin-top: 4.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   .ihTitle {
-    margin-bottom: 1.56rem;
+    margin-bottom: 3.13rem;
 
     span {
       color: #9B76AB;
       text-align: center;
-      font-size: 1.35rem;
+      font-size: 1.6rem;
       font-weight: 700;
-      letter-spacing: 0.11rem;
+      letter-spacing: 0.132rem;
     }
   }
 
@@ -22,7 +22,7 @@
     flex-direction: column;
 
     input {
-      margin-top: 0.7rem;
+      margin-top: 1.09rem;
       text-align: center;
       width: 14.95rem;
       height: 2.19rem;
@@ -39,18 +39,18 @@
   }
 
   .ihInputGender {
-    margin-top: 1.2rem;
+    margin-top: 2.34rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     span {
-      margin-bottom: 1.1rem;
+      margin-bottom: 1.15rem;
     }
   }
 
   .ihInputAge {
-    margin-top: 1.75rem;
+    margin-top: 2.87rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -60,31 +60,13 @@
     }
   }
 
-  .ihPushAgree {
-    margin-top: 1.75rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-   .ihPushAgreeDescription {
-    margin-top: 0.6rem;
-    text-align: center;
-    color: #909090;
-    font-size: 0.69rem;
-    font-weight: 500;
-    letter-spacing: 0.1rem;
-    line-height: 190.5%;
-    margin-bottom: 0.7rem;
-  }
-
-  .ihPushAgreeNotice {
-    margin-top: 1.3rem;
+  .ihAgreeNotice {
+    margin-top: 1.91rem;
     color: #9B76AB;
     text-align: center;
-    font-size: 0.675rem;
+    font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.07rem;
-  }
   }
 }
 

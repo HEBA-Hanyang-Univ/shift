@@ -32,10 +32,6 @@ const CompleteHost = () => {
     alert("현재 준비중인 기능입니다.");
   }
 
-  const handleShareInstagram = () => {
-    alert("현재 준비중인 기능입니다.");
-  }
-
   const handleShareImage = () => {
     alert("현재 준비중인 기능입니다.");
   }
@@ -56,21 +52,21 @@ const CompleteHost = () => {
       </div>
       <div className="chLinkShareWrapper">
         {/* TODO: 추후 링크 달기 */}
-        <Button onClick={handleShareKakao} className="shareBtn" color="#FFF" width={3.92} height={3.92}>
+        <Button onClick={handleShareKakao} className="shareBtn" color="#FFF" width={4.65} height={4.65}>
           <img src={KakaoImg} alt="kakao share"></img>
         </Button>
-        <Button onClick={handleShareInstagram} className="shareBtn" color="#FFF" width={3.92} height={3.92}>
+        {/* <Button onClick={handleShareInstagram} className="shareBtn" color="#FFF" width={3.92} height={3.92}>
           <img src={InstaImg} alt="insta share"></img>
-        </Button>
-        <Button onClick={handleShareLink} className="shareBtn" color="#FFF" width={3.92} height={3.92}>
+        </Button> */}
+        <Button onClick={handleShareLink} className="shareBtn" color="#FFF" width={4.65} height={4.65}>
           <img src={LinkImg} alt="link share"></img>
         </Button>        
       </div>
       <div className="chBtnWrapper">
-        <Button onClick={handleShareImage} className="chBtnGray chBtn" color="#EDEDED" width={8.4} height={2.5}>
+        {/* <Button onClick={handleShareImage} className="chBtnGray chBtn" color="#EDEDED" width={8.4} height={2.5}>
           <span>이미지 저장</span>
-        </Button>
-        <Button onClick={handleShowResult} className="chBtnPurple chBtn" color="#A570C4" width={8.4} height={2.5}>
+        </Button> */}
+        <Button onClick={handleShowResult} className="chBtnPurple chBtn" width={16} height={3}>
           <span>결과 확인</span>
         </Button>
       </div>
