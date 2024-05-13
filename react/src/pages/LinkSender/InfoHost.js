@@ -12,7 +12,6 @@ const InfoHost = () => {
   const [name, setName] = useState('');
   const [gender, setGender] = useState('');
   const [age, setAge] = useState('');
-  const [alarm, setAlarm] = useState('');
   const [isNextEnabled, setIsNextEnabled] = useState(false);
 
   const handleNameChange = (e) => {
@@ -27,10 +26,6 @@ const InfoHost = () => {
     setAge(value);
   };
 
-  const handleAlarmChange = (value) => {
-    setAlarm(value);
-  };
-
   useEffect(() => {
     HandleLogin({
       assertLogin: true
@@ -38,15 +33,14 @@ const InfoHost = () => {
   }, []);
 
   useEffect(() => {
-    setIsNextEnabled(name.trim() !== '' && gender !== '' && age !== '' && alarm !== '');
-  }, [name, gender, age, alarm]);
+    setIsNextEnabled(name.trim() !== '' && gender !== '' && age !== '');
+  }, [name, gender, age]);
 
   const saveInfo = () => {
     saveDataWithExpiration("epa_test", {
         nickname: name,
         gender: (gender === "option1") ? "male" : "female",
         age: age,
-        notification_agree: (alarm === "option1" ? true : false),
     });
   }
   
@@ -74,18 +68,9 @@ const InfoHost = () => {
           </span>
           <DropDownBtn options={ageOptions} placeholder="나이" onChange={handleAgeChange} ></DropDownBtn>
         </div>
-        <div className="ihPushAgree">
-          <span id="infoTitle">알림톡 발송 동의</span>
-          <span className="ihPushAgreeDescription">
-            3명 이상의 지인의 응답 완료시 알림톡을 통해
-            <br></br>
-            결과를 전달해드립니다.
-          </span>
-          <RadioBtn option1Text={'동의'} option2Text={'비동의'} onChange={handleAlarmChange} />
-          <span className="ihPushAgreeNotice">
-            테스트 결과 제공만을 위한 정보 수집입니다.
-          </span>
-        </div>
+        <span className="ihAgreeNotice">
+          테스트 결과 제공만을 위한 정보 수집입니다.
+        </span>
       </div>
       <GuestFooter
         prevPageUrl={"/"} 
