@@ -25,7 +25,7 @@ const ResultStatisticSectionTwo = ({ repliesInfo }) => {
     가족: FAMILY_ICON,
     친구: FRIEND_ICON,
     지인: COWORKER_ICON,
-    커플: COUPLE_ICON,
+    애인: COUPLE_ICON,
   };
 
   const slideChunks = chunkArray(repliesInfo, 5);
