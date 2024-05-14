@@ -2,79 +2,120 @@
   display: flex;
 
   .cgImgWrapper {
-    margin-top: 2.03rem;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1.22rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     img {
-      width: 8rem;
+      width: 8.48rem;
     }
 
     span {
       margin-top: -1rem;
-      font-size: 1.687rem;
+      font-size: 1.75rem;
       font-weight: 700;
-      letter-spacing: 0.04rem;
+      letter-spacing: 0.1rem;
       color: #9C76AC;
     }
    }
 
   .cgInfoWrapper{
-    margin: 0 auto;
+    margin: 0.5rem auto 0;
     display: grid;
     grid-template: repeat(2, 1fr)/ repeat(2, 1fr);
-    gap: 0.3rem;
+    background-color: #D9C5E1;
+    gap: 1px;
+    border: 0.15rem solid #D9C5E1;
+    border-radius: 0.75rem;
+    overflow: hidden;
 
     .cgInfoBox {
-      width: 10.1rem;
-      height: 8.31rem;
+      width: 10.77rem;
+      height: 9.296rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background-color: #DCD1FC;
-      border-radius: 0.7rem;
+      background-color: #FFF;
 
       .cgInfoBoxSubTitle {
+        margin-bottom: 0.4rem;
 
         span {
-          font-size: 0.5rem;
-          font-weight: 600;
-          color: #4C4C4C;
-          letter-spacing: 0.03rem;
+          color: #9C76AC;
+          font-weight: 700;
+          font-size: 0.7rem;
+          letter-spacing: 0.018rem;
+        }
+      }
+
+      .cgInfoBoxImg {
+        margin-bottom: 0.4rem;
+
+        img {
+          width: 6.6rem;
+          height: 4.55rem;
+          object-fit: contain;
         }
       }
 
       .shInfoBoxMainTitle {
 
         span {
-          font-size: 0.84rem;
+          font-size: 0.83rem;
           font-weight: 700;
-          letter-spacing: 0.04rem;
-          color: #7D6FAA;
+          letter-spacing: 0.025rem;
+          color: #775F82;
         }
       }
     }
   }
   
   .cgLinkBtn {
-    margin: 2.7rem auto 0;
+    margin: 1rem auto 0;
     border-radius: 3.9rem;
     display: flex;
     justify-content: center;
     align-items: center;
 
     span {
-      font-size: 0.928rem;
+      font-size: 1.05rem;
       font-weight: 500;
       color: #FFF;
-      letter-spacing: 0.03rem;
+      letter-spacing: 0.1rem;
+    }
+  }
+}
+
+.cgShareLink {
+  width: 80%;
+  margin: 0.9rem auto 0;
+  display: flex;
+  justify-content: space-between;
+
+  .cgShareLinkBtn {
+    border-radius: 2.53rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 0.76rem;
+      margin-right: 0.8rem;
     }
 
+    span {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #9C76AC;
+      text-align: center;
+      letter-spacing: 0.07rem;
+    }
   }
+
 }
 
 @media (min-height: 910px) and (max-height: 915px) {
