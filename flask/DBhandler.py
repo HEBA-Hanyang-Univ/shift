@@ -102,7 +102,7 @@ class DBModule:
 
         # if test data exists, remove the previous test result
         add = 1
-        before = self.db.child("users").child(platform_type).child(id).child("tests").child("epa").get().val()
+        before = self.db.child("users").child(platform_type).child(id).child("tests").child("epa").child("tid").get().val()
         if before != 'unknown' and before != None:
             self.db.child("tests").child("epa").child(before).remove()
             add = 0
