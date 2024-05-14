@@ -20,10 +20,10 @@ const ResultSummarySectionTwo = ({ keywordData, epaKeywords, setCurrentTab }) =>
   const matchMyself = [...new Set(keywordData.replies.map((reply) => reply.keyword_in_myself).flat())]
   const selected = [...new Set(keywordData.replies.map((reply) => reply.keyword_selected).flat())]
   const boxData = {
-    1: matchMyself,
-    2: [...new Set(keywordData.replies.map((reply) => reply.keyword_not_in_myself).flat())],
-    3: [...new Set(keywordData.keyword_myself.filter((keyword) => !matchMyself.includes(keyword)).flat())],
-    4:[...new Set(keywordData.keyword_want.filter((keyword) => !selected.includes(keyword)).flat())],
+    1: matchMyself.slice(0, 6),
+    2: [...new Set(keywordData.replies.map((reply) => reply.keyword_not_in_myself).flat())].slice(0, 6),
+    3: [...new Set(keywordData.keyword_myself.filter((keyword) => !matchMyself.includes(keyword)).flat())].slice(0, 6),
+    4: [...new Set(keywordData.keyword_want.filter((keyword) => !selected.includes(keyword)).flat())].slice(0, 6),
   }
 
   const handleKeywordClick = (keyword) => {
@@ -106,7 +106,7 @@ const ResultSummarySectionTwo = ({ keywordData, epaKeywords, setCurrentTab }) =>
                 ))}
             </div>
             {isOpen && (
-              <Modal className="rsSectionKeywordModal" onClose={() => { closeModal() }} isOpen={isOpen} width={10.75}>
+              <Modal className="rsSectionKeywordModal" onClose={() => { closeModal() }} isOpen={isOpen} width={12.39}>
                 <div className="keywordModalWrapper">
                   <div className="keywordModalContentBox">
                     <div className="keywordModalTitle">
