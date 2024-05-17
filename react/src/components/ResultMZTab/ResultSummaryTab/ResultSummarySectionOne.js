@@ -2,13 +2,56 @@ import React, { useEffect, useState } from "react"
 import "../../../assets/styles/Result/Result.scss";
 import Arrow from "../../../assets/images/rangeArrow.png";
 
+const SelfPercentage = [
+  [85, 50, 40, 15, 5, 0.3],
+  [90, 70, 50, 20, 5, 1],
+  [95, 85, 65, 40, 12, 5],
+  [100, 95, 80, 55, 35, 10],
+]
+
+const ResultMention = [
+  "객관적인 눈을 가지셨군요!",
+  "가끔 객관적으로 돌아보고 계시는군요",
+  "평소에 세상을 아름답게 보고 계시는군요...",
+  "이제 그만 깨어나세요! 객관적인 자신을 찾아보세요",
+]
+
 const ResultSummarySectionOne = ({ username, replyCount, keywordOthers, replyKeywords, epaKeywords }) => {
   const [rangeWidth, setRangeWidth] = useState(17);
 
   const uniqueReplyKeywords = [...new Set(replyKeywords.flat())];
   const count = uniqueReplyKeywords.filter((keyword) => keywordOthers.includes(keyword)).length;
-  //TODO : Add logic to calculate percentage
-  const percentage = 5;
+
+  const calPercentage = () => {
+    let key;
+    if (replyCount < 5) {
+      key = 0;
+    } else if (replyCount < 10) {
+      key = 1;
+    } else if (replyCount < 30) {
+      key = 2;
+    } else {
+      key = 3;
+    }
+
+    return SelfPercentage[key][count];
+  }
+
+  const percentage = calPercentage();
+
+  const getResultMention = () => {
+    let key;
+    if (count <= 25) {
+      key = 0;
+    } else if (count <= 50) {
+      key = 1;
+    } else if (count <= 75) {
+      key = 2;
+    } else {
+      key = 3;
+    }
+    return ResultMention[key];
+  }
 
   const matchedKeywords = [];
   uniqueReplyKeywords.map((keyword) => {
@@ -63,9 +106,8 @@ const ResultSummarySectionOne = ({ username, replyCount, keywordOthers, replyKey
       </div>
       <div className="rsSectionOneResultBox">
         <div className="rsSectionOneResultTitle">
-          {/* TODO : 추후 멘트 변경? */}
           <span className="rsorResultTitle">
-            객관적인 눈을 가지셨군요!
+            {getResultMention()}
           </span>
           <span className="rsorResultSubTitle">
             총 {replyCount}개의 응답에서 예측한 {keywordOthers.length}개의 키워드 중
