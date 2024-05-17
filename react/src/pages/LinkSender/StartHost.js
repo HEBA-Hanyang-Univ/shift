@@ -11,6 +11,7 @@ import shareImg from "../../assets/images/StartHost/shareImg.svg";
 import TryFetch from "../../components/FetchComponent/FetchComponent.js";
 import HandleLogin from "../../components/Login/HandleLogin.js";
 import { saveDataWithExpiration, loadDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends.js";
+import { ShareTestUrl, ShareNavigator } from "../../components/Share/ShareComponent.js";
 
 
 const StartHost = () => {
@@ -54,41 +55,17 @@ const StartHost = () => {
             if (data.epa === null || data.epa === undefined) {
               alert("진행중인 테스트가 없습니다.");
             } else {
-              testShareUrl(data.epa[0], data.epa[2]);
+              ShareTestUrl(data.epa[0], data.epa[2]);
             }
           });
         } else {
           if (test.epa)
-            testShareUrl(test.epa[0], test.epa[2]);
+            ShareTestUrl(test.epa[0], test.epa[2]);
           else
             alert("진행중인 테스트가 없습니다.");
         }
       }
     });
-  };
-
-  const testShareUrl = (tid, nickname) => {
-    if (navigator.share) {
-      navigator.share({
-        title: 'SHIFT',
-        text: nickname + '님의 MZ 자기객관화 테스트',
-        url: 'https://shift2me.com/guest/' + tid,
-      });
-    } else {
-      alert('공유하기 기능을 지원하지 않는 브라우저입니다.');
-    }
-  }
-
-  const handleShareLink = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: 'SHIFT',
-        text: 'MZ 자기객관화 테스트',
-        url: 'https://shift2me.com',
-      });
-    } else {
-      alert('공유하기 기능을 지원하지 않는 브라우저입니다.');
-    }
   };
 
   useEffect(() => {
@@ -202,7 +179,7 @@ const StartHost = () => {
               <span className="shButtonSpanL">결과 확인하기</span>
             </Button>
             <div className="shShareButtonWrapper">
-              <Button onClick={handleShareLink} className="testButton" color="#F5F5F5" width={9.2} height={2}>
+              <Button onClick={() => ShareNavigator('SHIFT', 'MZ 자기객관화 테스트', 'https://shift2me.com')} className="testButton" color="#F5F5F5" width={9.2} height={2}>
                 <img src={shareImg} alt="share img"></img>
                 <span>테스트 공유하기</span>
               </Button>

@@ -8,6 +8,7 @@ import TryFetch from "../../components/FetchComponent/FetchComponent";
 
 const ResultDashBoard = () => {
   const [ myTests, setMyTests ] = useState(loadDataWithExpiration("myTests"));
+  console.log(myTests);
   const [ showResult, setShowResult ] = useState(false);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const ResultDashBoard = () => {
           <span>테스트 결과 확인</span>
         </div>
         <div className="rdbResultDashBoardBoxWrapper">
-          {showResult && <ResultDashBoardBox tid={myTests["epa"][0]} number={myTests["epa"][1]}/>}
+          {showResult && <ResultDashBoardBox tid={myTests["epa"][0]} number={myTests["epa"][1]} nickname={myTests["epa"][2]} />}
           {/*TODO: consider if user doesn't have any test. */}
           {!showResult && <PreparingDashBoardBox />}
           <PreparingDashBoardBox />

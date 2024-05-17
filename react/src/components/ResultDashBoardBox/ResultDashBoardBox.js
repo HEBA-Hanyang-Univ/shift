@@ -3,22 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Button";
 import MZImg from "../../assets/images/Result_MZ.png";
 import "./ResultDashBoardBox.scss";
+import { ShareTestUrl } from "../Share/ShareComponent";
 
-export const ResultDashBoardBox = ({ tid, number }) => {
+export const ResultDashBoardBox = ({ tid, number, nickname }) => {
   const navigate = useNavigate();
-
-
-  const testShareUrl = (tid) => {
-    if (navigator.share) {
-      navigator.share({
-        title: 'SHIFT',
-        text: 'MZ 자기객관화 테스트',
-        url: 'https://shift2me.com/guest/' + tid,
-      });
-    } else {
-      alert('공유하기 기능을 지원하지 않는 브라우저입니다.');
-    }
-  }
 
   const onClickCheckResult = () => {
     if (number < 3) {
@@ -85,7 +73,7 @@ export const ResultDashBoardBox = ({ tid, number }) => {
           </Button>
           
           <Button
-            onClick={() => testShareUrl(tid)}
+            onClick={() => ShareTestUrl({tid, nickname})}
             width={7.2}
             height={1.85}
             className="rdbbWhiteBtn"
