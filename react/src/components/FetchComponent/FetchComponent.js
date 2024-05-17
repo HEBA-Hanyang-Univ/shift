@@ -27,14 +27,14 @@ function TryFetch(route, method, body, onSuccess, onFail) {
           secureLocalStorage.clear();
           onFail?.(new Error('Unauthorized'));
         } else if (RETRY_CODES.includes(response.status) && retryCount < MAX_RETRIES) {
-          setTimeout(() => fetchData(retryCount + 1), 1000);
+          setTimeout(() => fetchData(retryCount + 1), 3000);
         } else {
           onFail?.(new Error(`Request failed with status code ${response.status}`));
         }
       }
     } catch (error) {
       if (retryCount < MAX_RETRIES) {
-        setTimeout(() => fetchData(retryCount + 1), 1000);
+        setTimeout(() => fetchData(retryCount + 1), 3000);
       } else {
         onFail?.(error);
       }
