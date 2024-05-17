@@ -10,6 +10,10 @@ export function ShareNavigator(title, text, url) {
       text: text,
       url: url,
     });
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(title + '\n' + text + '\n' + url).then(() => {
+      alert('클립보드에 복사되었습니다.');
+    })
   } else {
     alert('공유하기 기능을 지원하지 않는 브라우저입니다.');
   }
