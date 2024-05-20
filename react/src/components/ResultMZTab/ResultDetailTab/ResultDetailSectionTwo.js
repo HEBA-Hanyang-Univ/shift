@@ -60,8 +60,6 @@ const ResultDetailSectionTwo = forwardRef(({ keywordData, epaKeywords, setLoadSt
   const [keywords, setKeywords] = useState(sortedK);
 
   const slideChunks = chunkArray(keywords, 4);
-
-  console.log(selected, k, slideChunks);
   
   const toggleVisibility = (id) => {
     setKeywords(keywords.map((keyword) =>
