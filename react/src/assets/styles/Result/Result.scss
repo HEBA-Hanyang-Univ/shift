@@ -946,12 +946,21 @@
   border-radius: 0.825rem;
 
   .rdSectionTwoOneLine {
-    margin: 0.44rem 0.66rem 2rem;
+    margin: 0.8rem 0.66rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     span {
+      width: 100%;
+      text-align: left;
       color: #A570C4;
       font-size: 0.66rem;
       font-weight: 700;
+    }
+
+    .rdSectionTwoOneLineSpan {
+      padding-left: 2rem;
     }
     
     .rdSectionTwoOneLineText {
@@ -959,13 +968,13 @@
       background-color: #FFF;
       border-radius: 0.618rem;
       width: 90%;  
-      padding: 0.72rem 0;
       height: fit-content;
       display: flex;
       justify-content: center;
       align-items: center;
 
       span {
+        padding: 0.72rem 1.424rem;
         color: #000;
         text-align: center;
         font-weight: 500;
