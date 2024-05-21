@@ -7,6 +7,7 @@ from config import FIREBASE_CONFIG
 from dataclasses import asdict, dataclass, field
 from typing import Dict, List
 from EPAKeyword import EPAKeyword
+from datetime import datetime
 
 @dataclass
 class UserProperty:
@@ -104,7 +105,8 @@ class DBModule:
         add = 1
         before = self.db.child("users").child(platform_type).child(id).child("tests").child("epa").child("tid").get().val()
         if before != 'unknown' and before != None:
-            self.db.child("tests").child("epa").child(before).remove()
+            deprecated = {"date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+            self.db.child("tests").child("epa").child(before).child("deprecated").set(deprecated)
             add = 0
 
         # update user's test data
@@ -127,6 +129,8 @@ class DBModule:
         # check tid is valid
         test = self.db.child("tests").child("epa").child(tid).get().val()
         if test == None:
+            return False
+        if test.get("deprecated") != None:
             return False
 
         info = asdict(reply)
