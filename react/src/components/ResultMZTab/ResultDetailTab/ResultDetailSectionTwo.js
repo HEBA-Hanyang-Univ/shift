@@ -51,13 +51,19 @@ const ResultDetailSectionTwo = forwardRef(({ keywordData, epaKeywords, setLoadSt
     })
   });
 
-  const [keywords, setKeywords] = useState(k.filter((keyword) => keyword.responseCount > 0));
+  const sortedK = [...k].sort((a, b) => {
+    if (b.selectCount !== a.selectCount) {
+      return b.selectCount - a.selectCount;
+    }
+    return b.responseCount - a.responseCount;
+  });
+  const [keywords, setKeywords] = useState(sortedK);
 
   const slideChunks = chunkArray(keywords, 4);
-
+  
   const toggleVisibility = (id) => {
     setKeywords(keywords.map((keyword) =>
-      keyword.id === id ? { ...keyword, visible: !keyword.visible } : keyword
+      keyword.id === id && keyword.responseCount > 0 ? { ...keyword, visible: !keyword.visible } : keyword
     ));
   };
 

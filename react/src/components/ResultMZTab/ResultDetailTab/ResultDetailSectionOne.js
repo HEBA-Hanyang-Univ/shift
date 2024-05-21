@@ -54,10 +54,10 @@ function RangeMeter ({className, label1, label1Span, label2, label2Span, value})
 }
 
 const ResultDetailSectionOne = ({ keywordData }) => {
-  const matchMyself = [...[keywordData.replies.map((reply) => reply.keyword_in_myself).flat()]]
-  const selected = [...new Set(keywordData.replies.map((reply) => reply.keyword_selected).flat())]
-  const wantNotSelected = [...keywordData.keyword_want.filter((keyword) => !selected.includes(keyword)).flat()]
-  const matchOthers = [...[keywordData.replies.map((reply) => reply.keyword_in_others).flat()]]
+  const matchMyself = keywordData.replies.map((reply) => reply.keyword_in_myself).flat();
+  const selected = [new Set(keywordData.replies.map((reply) => reply.keyword_selected).flat())];
+  const wantNotSelected = keywordData.keyword_want.filter((keyword) => !selected.includes(keyword)).flat();
+  const matchOthers = keywordData.replies.map((reply) => reply.keyword_in_others).flat();
   // TODO: need to add adjuster for the score. now it's just 1
   const tpScore = matchMyself.length / (keywordData.replies.length * 5) * 100 * 1; 
   const rcScore = wantNotSelected.length / (keywordData.replies.length * 5) * 100 * 1;
@@ -65,8 +65,7 @@ const ResultDetailSectionOne = ({ keywordData }) => {
 
   const mzType = (tpScore > 50 ? "T" : "P") + (rcScore > 50 ? "R" : "C") + (osScore > 50 ? "O" : "S");
 
-  const setData = stateData[mzType]
-
+  const setData = stateData[mzType];
   const {
     title,
     subTitle,
