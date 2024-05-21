@@ -63,17 +63,14 @@ function PostProcessScore(score, limit) {
 
 const ResultDetailSectionOne = ({ keywordData }) => {
   const matchMyself = keywordData.replies.map((reply) => reply.keyword_in_myself).flat();
-  let wantNotSelected = 0;
-  keywordData.replies.map((reply) => {
-    const selected = reply.keyword_keyword_in_want;
-    wantNotSelected += 5-(selected ? selected.length : 0);
-  }).flat();
+  const selected = [...new Set(keywordData.replies.map((reply) => reply.keyword_selected).flat())];
+  const wantNotSelected = keywordData.keyword_want.filter((keyword) => !selected.includes(keyword)).flat();
   const matchOthers = keywordData.replies.map((reply) => reply.keyword_in_others).flat();
 
-  // TODO: Limit change(40, 50, 40)
-  const tpScore = PostProcessScore(matchMyself.length / (keywordData.replies.length * 5) * 100, 40);
-  const rcScore = PostProcessScore(wantNotSelected / (keywordData.replies.length * 5) * 100, 50);
-  const osScore = PostProcessScore(matchOthers.length / (keywordData.replies.length * 5) * 100, 40);
+  // TODO: Limit change(30, 50, 30)
+  const tpScore = PostProcessScore(matchMyself.length / (keywordData.replies.length * 5) * 100, 30);
+  const rcScore = PostProcessScore(wantNotSelected.length / 5 * 100, 50);
+  const osScore = PostProcessScore(matchOthers.length / (keywordData.replies.length * 5) * 100, 30);
 
   const mzType = (tpScore > 50 ? "T" : "P") + (rcScore > 50 ? "R" : "C") + (osScore > 50 ? "O" : "S");
 
