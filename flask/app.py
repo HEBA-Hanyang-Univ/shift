@@ -287,7 +287,7 @@ def get_epa_test(tid):
     result = {}
     result['nickname'] = test.get('nickname')
     #NOTE : 'total_num' is the total number of tests
-    result['total_num'] = DB.get_test_count()
+    result['total_num'] = DB.get_test_count() + DB.get_reply_count()
     result['keyword_myself'] = test.get('keyword_myself')
     result['keyword_want'] = test.get('keyword_want')
     result['keyword_others'] = test.get('keyword_others')
