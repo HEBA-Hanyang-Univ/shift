@@ -53,15 +53,27 @@ function RangeMeter ({className, label1, label1Span, label2, label2Span, value})
   );
 }
 
+function PostProcessScore(score, limit) {
+  const beforeLimit = 50 / limit;
+  const afterLimit = 50 / (100 - limit);
+  const scoreBeforeLimit = score - limit > 0 ? limit : score;
+  const scoreAfterLimit = score - limit > 0 ? score - limit : 0;
+  return Math.round(scoreBeforeLimit * beforeLimit + scoreAfterLimit * afterLimit);
+}
+
 const ResultDetailSectionOne = ({ keywordData }) => {
   const matchMyself = keywordData.replies.map((reply) => reply.keyword_in_myself).flat();
-  const selected = [new Set(keywordData.replies.map((reply) => reply.keyword_selected).flat())];
-  const wantNotSelected = keywordData.keyword_want.filter((keyword) => !selected.includes(keyword)).flat();
+  let wantNotSelected = 0;
+  keywordData.replies.map((reply) => {
+    const selected = reply.keyword_keyword_in_want;
+    wantNotSelected += 5-(selected ? selected.length : 0);
+  }).flat();
   const matchOthers = keywordData.replies.map((reply) => reply.keyword_in_others).flat();
-  // TODO: need to add adjuster for the score. now it's just 1
-  const tpScore = matchMyself.length / (keywordData.replies.length * 5) * 100 * 1; 
-  const rcScore = wantNotSelected.length / (keywordData.replies.length * 5) * 100 * 1;
-  const osScore = matchOthers.length / (keywordData.replies.length * 5) * 100 * 1;
+
+  // TODO: Limit change(40, 50, 40)
+  const tpScore = PostProcessScore(matchMyself.length / (keywordData.replies.length * 5) * 100, 40);
+  const rcScore = PostProcessScore(wantNotSelected / (keywordData.replies.length * 5) * 100, 50);
+  const osScore = PostProcessScore(matchOthers.length / (keywordData.replies.length * 5) * 100, 40);
 
   const mzType = (tpScore > 50 ? "T" : "P") + (rcScore > 50 ? "R" : "C") + (osScore > 50 ? "O" : "S");
 
