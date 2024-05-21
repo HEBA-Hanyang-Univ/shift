@@ -32,6 +32,8 @@ function HashTagComponent({ hashTagTop, hashTagBottom}) {
 };
 
 function RangeMeter ({className, label1, label1Span, label2, label2Span, value}) {
+  const isFull = value === 100;
+
   return (
     <div className={`customMeterDisplay ${className}`}>
       <div className="rangeSpan">
@@ -41,7 +43,10 @@ function RangeMeter ({className, label1, label1Span, label2, label2Span, value})
       </div>
       <div className="customMeter">
         <div className="meterBar">
-          <div className="meterFill" style={{width: `${value}%`}}></div>
+          <div
+            className={`meterFill ${isFull ? "full" : ""}`}
+            style={{ width: `${value}%` }}
+          ></div>
         </div>
       </div>
       <div className="rangeSpan">
