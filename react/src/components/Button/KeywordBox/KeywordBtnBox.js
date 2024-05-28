@@ -66,16 +66,16 @@ export const KeywordBtnBox = ({ keywords, width, height, className, onKeywordCli
           const maxScrollAmount = Math.floor(keywordRow.scrollWidth - keywordRow.clientWidth - 1);
 
           if (scrollAmount >= maxScrollAmount) {
-            scrollDirection.current[index] = -0.5;
+            scrollDirection.current[index] = -1;
           } else if (scrollAmount <= 0) {
-            scrollDirection.current[index] = 1;
+            scrollDirection.current[index] = 1.5;
           }
 
           keywordRow.scrollLeft = scrollAmount + scrollDirection.current[index];
           scrollPositions.current[index] = keywordRow.scrollLeft;
         }
       });
-    }, 30);
+    }, 50);
 
     // Clean up the interval on unmount
     return () => clearInterval(intervalId);
