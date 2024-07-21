@@ -340,7 +340,8 @@
 
 .rsSectionKeywordModal {
   max-height: fit-content;
-  height: 8.75rem;
+  min-height: 8.75rem;
+  width: 16.28rem;
 
   .keywordModalWrapper {
     width: 100%;
@@ -348,18 +349,18 @@
     background-color: #FFF;
     border-radius: 0.56rem;
     border: 2px solid #9C76AC;
-    padding: 1rem 0.36rem 0.9rem;
+    padding: 1.89rem 0.36rem 0.9rem;
     display: flex;
-    align-items: center;
     justify-content: center;
 
     .keywordModalContentBox {
-      margin-right: -1.46rem;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
       width: 100%;
       height: 100%;
+      margin-right: -1.6rem;
 
       .keywordModalTitle {
         display: flex;
@@ -367,43 +368,43 @@
         width: 100%;
   
         .keywordModalSelectedKeyword {
-          width: 6.03rem;
+          width: fit-content;
           height: 1.21rem;
           border: 2px solid #9C76AC;
           border-radius: 2.5rem;
           display: flex;
-          justify-content: center;
           align-items: center;
-          padding: 0.17rem 0.2rem;
+          padding: 0.5rem 1.2rem;
   
           span {
             color: #000;
-            font-size: 0.71rem;
+            font-size: 1.23rem;
             font-weight: 600; 
-            letter-spacing: 0.004rem;
+            letter-spacing: 0.01rem;
           }
         }
       } 
+
       .keywordModalContent {
         width: 100%;
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        margin-top: 0.63rem;
+        margin: 0.63rem 0;
         
         .totalNumOfSelectedKeyword {
           color: #8753A5;
           font-weight: 700;
-          font-size: 0.8rem;
+          font-size: 1.32rem;
           letter-spacing: 0.035rem;
         }
 
         .unknownNum {
-          margin-top: 0.38rem;
+          margin-top: 0.66rem;
           color: #878787;
           font-weight: 600;
-          font-size: 0.7rem;
+          font-size: 1.15rem;
         }
 
         .selectedKeywordResponders {
@@ -417,23 +418,23 @@
             font-size: 1rem;
             font-weight: 700;
             letter-spacing: 0.025rem;
-            line-height: 0.8rem;
+            line-height: 160%;
           }
         }
       }
     }
-    .exitBtn {
-      height: 100%;
-      display: flex;
-      justify-content: start;
-      margin-right: 0.66rem;
-      margin-top: -0.5rem;
+  }
+}
 
-      img {
-        width: 1rem;
-        height: 1rem;
-      }
-    }
+.exitBtn {
+  height: 100%;
+  display: flex;
+  margin-right: 0.6rem;
+  margin-top: -0.8rem;
+
+  img {
+    width: 1rem;
+    height: 1rem;
   }
 }
 
@@ -946,12 +947,21 @@
   border-radius: 0.825rem;
 
   .rdSectionTwoOneLine {
-    margin: 0.44rem 0.66rem 2rem;
+    margin: 0.8rem 0.66rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     span {
+      width: 100%;
+      text-align: left;
       color: #A570C4;
       font-size: 0.66rem;
       font-weight: 700;
+    }
+
+    .rdSectionTwoOneLineSpan {
+      padding-left: 2rem;
     }
     
     .rdSectionTwoOneLineText {
@@ -959,13 +969,13 @@
       background-color: #FFF;
       border-radius: 0.618rem;
       width: 90%;  
-      padding: 0.72rem 0;
       height: fit-content;
       display: flex;
       justify-content: center;
       align-items: center;
 
       span {
+        margin: 0.72rem 1.424rem;
         color: #000;
         text-align: center;
         font-weight: 500;

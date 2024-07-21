@@ -118,7 +118,7 @@ const ResultDetailSectionTwo = forwardRef(({ keywordData, epaKeywords, setLoadSt
                       {item.reason.map((reason, index) => {
                         return (
                       <div className="rdSectionTwoOneLine" key={index}>
-                        <span>{reason[0]}</span>
+                        <span className="rdSectionTwoOneLineSpan">{reason[0]}</span>
                         <div className="rdSectionTwoOneLineText">
                           <span>{reason[1]}</span>
                         </div>

@@ -115,7 +115,7 @@ const ResultSummarySectionTwo = ({ keywordData, epaKeywords, setCurrentTab }) =>
                 ))}
             </div>
             {isOpen && (
-              <Modal className="rsSectionKeywordModal" onClose={() => { closeModal() }} isOpen={isOpen} width={12.39}>
+              <Modal className="rsSectionKeywordModal" onClose={() => { closeModal() }} isOpen={isOpen}>
                 <div className="keywordModalWrapper">
                   <div className="keywordModalContentBox">
                     <div className="keywordModalTitle">
