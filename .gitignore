@@ -6,7 +6,7 @@ config.py
 logs/
 backups/
 flask_session/
-
+firebase-shift-sdk.json
 
 # for react
 
