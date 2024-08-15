@@ -55,12 +55,13 @@ const StartHost = () => {
             if (data.epa === null || data.epa === undefined) {
               alert("진행중인 테스트가 없습니다.");
             } else {
-              ShareTestUrl(data.epa[0], data.epa[2]);
+              ShareTestUrl({tid:data.epa[0], nickname: data.epa[2]});
             }
           });
         } else {
-          if (test.epa)
-            ShareTestUrl(test.epa[0], test.epa[2]);
+          if (test.epa) {
+            ShareTestUrl({tid: test.epa[0], nickname: test.epa[2]});
+          }
           else
             alert("진행중인 테스트가 없습니다.");
         }

@@ -19,9 +19,18 @@ const ResultSummarySectionTwo = ({ keywordData, epaKeywords, setCurrentTab }) =>
 
   const matchMyself = [...new Set(keywordData.replies.map((reply) => reply.keyword_in_myself).flat())]
   const selected = [...new Set(keywordData.replies.map((reply) => reply.keyword_selected).flat())]
+
+  const keywordNotInMySelf = keywordData.replies.map((reply) => reply.keyword_not_in_myself).flat();
+  const frequency = keywordNotInMySelf.reduce((acc, val) => {
+    acc[val] = (acc[val] || 0) + 1;
+    return acc;
+  }, {});
+  const sorted = keywordNotInMySelf.sort((a, b) => frequency[b] - frequency[a]);
+  const unique = [...new Set(sorted)];
+
   const boxData = {
     1: matchMyself.slice(0, 6),
-    2: [...new Set(keywordData.replies.map((reply) => reply.keyword_not_in_myself).flat())].slice(0, 6),
+    2: unique.slice(0, 6),
     3: [...new Set(keywordData.keyword_myself.filter((keyword) => !matchMyself.includes(keyword)).flat())].slice(0, 6),
     4: [...new Set(keywordData.keyword_want.filter((keyword) => !selected.includes(keyword)).flat())].slice(0, 6),
   }

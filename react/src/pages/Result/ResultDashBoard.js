@@ -8,7 +8,6 @@ import TryFetch from "../../components/FetchComponent/FetchComponent";
 
 const ResultDashBoard = () => {
   const [ myTests, setMyTests ] = useState(loadDataWithExpiration("myTests"));
-  console.log(myTests);
   const [ showResult, setShowResult ] = useState(false);
 
   useEffect(() => {
