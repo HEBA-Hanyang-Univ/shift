@@ -181,7 +181,7 @@ def logout():
         })
         #session.pop("access_token", None)
         session.clear()
-        return redirect(react_host, 302)
+        return make_response({"description": "logout_success"}, 200)
     '''
     if "naver_token" in session:
         session.pop("naver_token", None)
