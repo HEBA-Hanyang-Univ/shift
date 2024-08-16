@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../assets/styles/Result/ResultDashBoard.scss";
 import { ResultDashBoardBox } from "../../components/ResultDashBoardBox/ResultDashBoardBox";
 import { PreparingDashBoardBox } from "../../components/ResultDashBoardBox/PreparingDashBoardBox";
 import { saveDataWithExpiration, loadDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
+import { HandleLogin } from "../../components/Login/HandleLogin";
 
 import TryFetch from "../../components/FetchComponent/FetchComponent";
 
 const ResultDashBoard = () => {
   const [ myTests, setMyTests ] = useState(loadDataWithExpiration("myTests"));
   const [ showResult, setShowResult ] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    HandleLogin({
+      assertLogin: true,
+      navigate: navigate,
+      toWhere: "/result/dashboard"
+    });
+
     if (myTests === null) {
       TryFetch("/my_tests", "GET", {}, (data) => {
         setMyTests(data);
