@@ -1,14 +1,29 @@
 import React, { useState } from "react";
 import Arrow from "../../assets/images/headerArrow.svg";
 import "./Hamburger.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { loadDataWithExpiration } from "../CookieUtils/SecureLocalStorageExtends";
+import HandleLogout from "../Login/HandleLogout";
 
 const HamburgerMenu = ({ toggleMenu }) => {
 
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(loadDataWithExpiration("isLogin"));
+  const navigate = useNavigate();
+
   const showPreparationAlert = () => {
     alert("준비중입니다!  다음 컨텐츠도 기대헤주세요 :)");
   };
+
+  const handleLogoutSuccess = () => {
+    setIsLogin(false);
+    toggleMenu();
+  };
+
+  const handleLogoutClick = () => {
+    HandleLogout({ navigate, onLogoutSuccess: handleLogoutSuccess });
+  };
+
 
   return (
     <div className="hamburgerContainer">
@@ -40,9 +55,15 @@ const HamburgerMenu = ({ toggleMenu }) => {
           </a>
         </li>
         <li className="hamburgerLi">
-          <Link to={"/login"} onClick={toggleMenu}>
-            <span className="hamburgerLiSpan">로그인</span>
-          </Link>
+          {isLogin ? (
+            <span className="hamburgerLiSpan" onClick={handleLogoutClick}>
+              로그아웃
+            </span>
+          ) : (
+            <Link to={"/login"} onClick={toggleMenu}>
+              <span className="hamburgerLiSpan">로그인</span>
+            </Link>
+          )}
         </li>
       </ul>
     </div>
