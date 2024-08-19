@@ -26,6 +26,7 @@ class EPATest:
     gender: str = 'unknown'
     age: int = 0
     notification_agree: bool = False
+    notified: bool = False
     keyword_myself: List = field(default_factory=list)
     keyword_want: List = field(default_factory=list)
     keyword_others: List = field(default_factory=list)
@@ -160,3 +161,7 @@ class DBModule:
 
     def get_all_epa_keywords(self):
         return self.keywords_epa
+
+    def update_epa_test(self, tid, epa: EPATest):
+        info = asdict(epa)
+        self.db.child("tests").child("epa").child(tid).update(info)

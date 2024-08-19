@@ -14,6 +14,7 @@ from flask_app import *
 from logs import *
 from datetime import datetime, timedelta
 from dataclasses import fields
+from notification import make_link_notify_message, make_result_notify_message, send_solapi_message
 
 ### temporary server setup
 DB = DBModule()
@@ -229,6 +230,14 @@ def save_epa_test():
     test.replies = []
     tid = DB.save_epa_test(session["login_type"], session["id"], test);
 
+    user_prop = DB.get_user_property(session["login_type"], session["id"])
+    #TODO : Is it okay without checking notification agreement?
+    if user_prop.get("phone_number") != 'unknown':
+        msg = make_link_notify_message(user_prop.get("phone_number"), user_prop.get("name"), "MZ 테스트", tid)
+        res = send_solapi_message(msg)
+        if res.get('failedMessageList') != None:
+            logger.error(f'failed to send solapi message: {res.get("failedMessageList")}')
+
     result = {"tid": tid}
     return make_response(result, 201);
 
@@ -246,6 +255,17 @@ def save_epa_reply():
     tid = data.get("tid")
 
     if DB.save_epa_reply(tid, reply):
+        test = DB.get_epa_test(tid)
+        if test.get('notified') != True:
+            owner_prop = DB.get_user_property(test.get('owner_platform'), test.get('owner_id'))
+            if owner_prop.get("phone_number") != 'unknown':
+                msg = make_result_notify_message(owner_prop.get("phone_number"), owner_prop.get("name"), "MZ 테스트", len(test.get("replies")))
+                res = send_solapi_message(msg)
+                if res.get('failedMessageList') != None:
+                    logger.error(f'failed to send solapi message: {res.get("failedMessageList")}')
+                else:
+                    test.update({"notified": True})
+                    DB.update_epa_test(tid, test)
         return make_response({"description": "success"}, 201)
     else:
         return make_response({"description": "failed"}, 400)
