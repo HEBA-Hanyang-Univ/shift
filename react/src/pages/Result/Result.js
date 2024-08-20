@@ -16,7 +16,7 @@ const Result = () => {
 
   useEffect(() => {
     TryFetch("result/epa", "GET", {}, (data) => {
-      if (!data["replies"] || data["replies"].length < 3) {
+      if (!data["replies"] || data["replies"].length < 1) {
         alert("비정상적인 접근입니다.");
         navigate("/");
         return;
