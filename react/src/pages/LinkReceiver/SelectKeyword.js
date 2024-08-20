@@ -20,6 +20,7 @@ const SelectKeyword = () => {
     if (t === null || t === undefined || t.tid !== tid) {
       alert("잘못된 접근입니다.");
       navigate("/");
+      return;
     }
     const epa_keywords = loadDataWithExpiration("epa_keywords");
     if (epa_keywords === null) {
