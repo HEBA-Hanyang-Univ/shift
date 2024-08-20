@@ -224,6 +224,7 @@ def save_epa_test():
     test.nickname = data.get("nickname")
     test.gender = data.get("gender")
     test.notification_agree = data.get("notification_agree")
+    test.notified = 0
     test.keyword_myself = data.get("keyword_myself")
     test.keyword_want = data.get("keyword_want")
     test.keyword_others = data.get("keyword_others")
@@ -256,7 +257,8 @@ def save_epa_reply():
 
     if DB.save_epa_reply(tid, reply):
         test = DB.get_epa_test(tid)
-        if test.get('notified') != True:
+        n = test.get('notified')
+        if n and (int(n) < 5 or int(n) % 5 == 0):
             owner_prop = DB.get_user_property(test.get('owner_platform'), test.get('owner_id'))
             if owner_prop.get("phone_number") != 'unknown':
                 msg = make_result_notify_message(owner_prop.get("phone_number"), owner_prop.get("name"), "MZ 테스트", len(test.get("replies")))
@@ -264,7 +266,7 @@ def save_epa_reply():
                 if res.get('failedMessageList') != None:
                     logger.error(f'failed to send solapi message: {res.get("failedMessageList")}')
                 else:
-                    test.update({"notified": True})
+                    test.update({"notified": int(n)+1})
                     DB.update_epa_test(tid, test)
         return make_response({"description": "success"}, 201)
     else:
