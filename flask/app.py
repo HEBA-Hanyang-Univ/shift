@@ -170,7 +170,7 @@ def verify_login():
     return make_response(resp_data, 200)
 
 
-@app.route("/logout")
+@app.route("/logout",methods=['POST'])
 def logout():
     if not validate_token():
         return make_response({"description": "already_logged_out"}, 401)
