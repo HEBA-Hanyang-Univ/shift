@@ -258,17 +258,25 @@ def save_epa_reply():
     if DB.save_epa_reply(tid, reply):
         test = DB.get_epa_test(tid)
         n = test.get('notified')
-        if n and (int(n) < 5 or int(n) % 5 == 0):
-            owner_prop = DB.get_user_property(test.get('owner_platform'), test.get('owner_id'))
-            if owner_prop.get("phone_number") != 'unknown':
-                msg = make_result_notify_message(owner_prop.get("phone_number"), owner_prop.get("name"), "MZ 테스트", len(test.get("replies")))
-                res = send_solapi_message(msg)
-                if res.get('failedMessageList') != None:
-                    logger.error(f'failed to send solapi message: {res.get("failedMessageList")}')
-                else:
-                    test.update({"notified": int(n)+1})
-                    DB.update_epa_test(tid, test)
-        return make_response({"description": "success"}, 201)
+        try:
+            n = int(n)
+        except:
+            n = 0
+        if n > 5 and n % 5 != 0:
+            return make_response({"description": "success_without_notification"}, 201)
+
+        owner_prop = DB.get_user_property(test.get('owner_platform'), test.get('owner_id'))
+        if owner_prop.get("phone_number") != 'unknown':
+            msg = make_result_notify_message(owner_prop.get("phone_number"), owner_prop.get("name"), "MZ 테스트", len(test.get("replies")))
+            res = send_solapi_message(msg)
+            if res.get('failedMessageList') != None:
+                logger.error(f'failed to send solapi message: {res.get("failedMessageList")}')
+                description = "success_without_notification"
+            else:
+                test.update({"notified": int(n)+1})
+                DB.update_epa_test(tid, test)
+                description = "success_with_notification"
+        return make_response({"description": description}, 201)
     else:
         return make_response({"description": "failed"}, 400)
 
