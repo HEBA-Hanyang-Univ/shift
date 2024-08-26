@@ -9,8 +9,8 @@ export const ResultDashBoardBox = ({ tid, number, nickname }) => {
   const navigate = useNavigate();
 
   const onClickCheckResult = () => {
-    if (number < 3) {
-      alert("3명 이상의 응답자가 응답을 완료해야 결과를 확인할 수 있습니다.");
+    if (number < 1) {
+      alert("아직 완료된 응답이 없습니다.");
     } else {
       navigate("/result/detail/");
     }

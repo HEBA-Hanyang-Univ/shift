@@ -24,9 +24,10 @@ const OneLineDescription = () => {
 
   useEffect(() => {
     const t = loadDataWithExpiration("epa_received_test");
-    if (t === null || t === undefined || t.tid !== tid) {
+    if (tid === null || tid === undefined || t === null || t === undefined || t.tid !== tid) {
       alert("잘못된 접근입니다. 다시 시도해주세요.");
       navigate("/");
+      return;
     }
     setUsername(t.nickname);
   });
@@ -36,6 +37,7 @@ const OneLineDescription = () => {
     if (rep === null || rep === undefined) {
        alert("잘못된 접근입니다. 다시 시도해주세요.");
        navigate("/");
+       return;
     }
     rep.one_line_intro = inputValue;
     rep.tid = tid;

@@ -27,11 +27,13 @@ const Reasoning = () => {
     const t = loadDataWithExpiration("epa_received_test");
     const keywordData = loadDataWithExpiration("epa_keywords");
     const rep = loadDataWithExpiration("epa_reply");
-    if (t === null || t === undefined || t.tid !== tid ||
+    if (tid === null || tid === undefined ||
+      t === null || t === undefined || t.tid !== tid ||
       keywordData === null || keywordData === undefined ||
       rep === null || rep === undefined) {
       alert("잘못된 접근입니다. 다시 시도해주세요.");
       navigate("/");
+      return;
     }
 
     setKeywords(rep.keyword_selected.map((keyword, idx) => {
