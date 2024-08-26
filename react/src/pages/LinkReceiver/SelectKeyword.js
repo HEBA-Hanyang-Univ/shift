@@ -17,7 +17,7 @@ const SelectKeyword = () => {
 
   useEffect(() => {
     const t = loadDataWithExpiration("epa_received_test");
-    if (t === null || t === undefined || t.tid !== tid) {
+    if (tid === null || tid === undefined || t === null || t === undefined || t.tid !== tid) {
       alert("잘못된 접근입니다.");
       navigate("/");
       return;
