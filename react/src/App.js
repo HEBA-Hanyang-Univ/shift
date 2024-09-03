@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { React, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { React, useEffect, useState } from "react";
 import "./App.scss";
 import Header from "./components/Header/Header";
 import SocialLogin from "./pages/SocialLogin";
@@ -26,8 +26,41 @@ import ResultDashBoard from "./pages/Result/ResultDashBoard";
 import Result from "./pages/Result/Result";
 
 import secureLocalStorage from "react-secure-storage";
+import { LandingGuest } from "./pages/LinkReceiver/LandingGuest";
 
 function App() {
+
+  return (
+    <div className="App">
+      <Router>
+        <AppContent />
+      </Router>
+    </div>
+  );
+}
+
+function AppContent() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [shouldHideHeader, setShouldHideHeader] = useState(false);
+
+  // Check if user has visited landing page
+  useEffect(() => {
+    const hasVisitedLanding = localStorage.getItem("hasVisitedLanding");
+    if (!hasVisitedLanding && location.pathname === "/") {
+      navigate("/landing");
+    }
+  }, []);
+
+  // Hide header on certain paths
+  useEffect(() => {
+    const hideHeaderPaths = ["/guest", "/host"];
+    const shouldHide = hideHeaderPaths.some(path => location.pathname.startsWith(path));
+    const hideHeaderStorage = secureLocalStorage.getItem("hideHeader");
+
+    setShouldHideHeader(shouldHide || hideHeaderStorage === "true");
+  }, [location.pathname]);
+
   const ScrollToTop = () => {
     const { pathname } = useLocation();
     useEffect(() => {
@@ -48,43 +81,42 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Router>
-        <CheckData />
-        <ScrollToTop />
-        <Header/>
-        <Routes>
-          {/* Social Login Callback */}
-          <Route path="/kakao_callback" element={<KakaoCallback/>}></Route>
+    <>
+      <CheckData />
+      <ScrollToTop />
+      {!shouldHideHeader && <Header />}
+      <Routes>
+        {/* Social Login Callback */}
+        <Route path="/kakao_callback" element={<KakaoCallback/>}></Route>
 
-          {/* LinkSender */}
-          <Route path="/" element={<StartHost/>}></Route>
-          <Route path="/login" element={<SocialLogin/>}></Route>
-          <Route path="/host/info" element={<InfoHost/>}></Route>
-          <Route path="/host/identity" element={<MyIdentity/>}></Route>
-          <Route path="/host/aspiration" element={<MyAspiration/>}></Route>
-          <Route path="/host/perception" element={<PerceivedByOthers/>}></Route>
-          <Route path="/host/completion" element={<CompleteHost/>}></Route>
+        {/* LinkSender */}
+        <Route path="/" element={<StartHost/>}></Route>
+        <Route path="/login" element={<SocialLogin/>}></Route>
+        <Route path="/landing"element={<LandingGuest/>}></Route>
+        <Route path="/host/info" element={<InfoHost/>}></Route>
+        <Route path="/host/identity" element={<MyIdentity/>}></Route>
+        <Route path="/host/aspiration" element={<MyAspiration/>}></Route>
+        <Route path="/host/perception" element={<PerceivedByOthers/>}></Route>
+        <Route path="/host/completion" element={<CompleteHost/>}></Route>
 
-          {/* LinkReceiver */}
-          <Route path="/guest/:tid" element={<StartGuest/>}></Route>
-          <Route path="/guest/info/:tid" element={<InfoGuest/>}></Route>
-          <Route path="/guest/keyword/:tid" element={<SelectKeyword/>}></Route>
-          <Route path="/guest/reasoning/:tid" element={<Reasoning/>}></Route>
-          <Route path="/guest/description/:tid" element={<OneLineDescription/>}></Route>
-          <Route path="/guest/completion/" element={<CompleteGuest/>}></Route>
+        {/* LinkReceiver */}
+        <Route path="/guest/:tid" element={<StartGuest/>}></Route>
+        <Route path="/guest/info/:tid" element={<InfoGuest/>}></Route>
+        <Route path="/guest/keyword/:tid" element={<SelectKeyword/>}></Route>
+        <Route path="/guest/reasoning/:tid" element={<Reasoning/>}></Route>
+        <Route path="/guest/description/:tid" element={<OneLineDescription/>}></Route>
+        <Route path="/guest/completion/" element={<CompleteGuest/>}></Route>
 
-          {/* Result */}
-          <Route path="/result/dashboard" element={<ResultDashBoard/>}></Route>
-          <Route path="/result/detail/" element={<Result/>}></Route>
+        {/* Result */}
+        <Route path="/result/dashboard" element={<ResultDashBoard/>}></Route>
+        <Route path="/result/detail/" element={<Result/>}></Route>
 
-          {/* Footer Links */}
-          <Route path="/terms" element={<TOS/>}></Route>
-          <Route path="/privacy" element={<Privacy/>}></Route>
-          <Route path="/*" element={<Error/>}></Route>
-        </Routes>
-      </Router>
-    </div>
+        {/* Footer Links */}
+        <Route path="/terms" element={<TOS/>}></Route>
+        <Route path="/privacy" element={<Privacy/>}></Route>
+        <Route path="/*" element={<Error/>}></Route>
+      </Routes>
+    </>
   )
 };
 
