@@ -1,41 +1,88 @@
 .landingContainer {
-  background: linear-gradient(180deg, #9C76AC -26.65%, #B287C5 127.01%);
+  background-color: #FFF;
   height: 100vh !important;
+  width: 100vw;
+  top: 0;
+  position: absolute;
 
-  .logoContainer {
-    margin-top: 10rem;
+  .landingWrapper {
+    margin-top: 6.44rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    vertical-align: middle;
-    align-self: center;
 
-    .landingLogo {
-      img {
-        width: 8.5rem;
-        height: 8.5rem;
+    .landingTitle {
+      display: flex;
+      justify-content: center;
+
+      span {
+        text-align: center;
+        font-size: 2.25rem;
+        font-weight: 700;
+        color: #1A191B;
+        line-height: 150%;
+      }
+
+      .purpleText {
+        color: #A778C2;
       }
     }
 
-    .landingTitle {
-      margin-top: 1.4rem;
+    .imgBox {
+      margin-top: 4.31rem;
+      width: 50%;
+      height: 16.93rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-      img {
-        width: 11rem;
-        height: 2.2rem;
+      .mySwiper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
       }
     }
   }
+}
 
-  .landingSpan {
-    margin-top: 2rem;
+.swiper {
+  width: 90%;
+  height: 16.94rem;
+
+  .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 0.9rem;
+    background-color: #FFF;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
 
-    span {
-      color: #FFF;
+    img {
+      height: 80%;
+      width: 80%;
+      object-fit: contain;
     }
   }
+}
+
+.startBtn {
+  margin-top: 3.93rem;
+  border-radius: 0.475rem;
+
+  span {
+    color: #FFF;
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: 0.125rem;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .imgBox {
+    width: 14rem !important;
+  }
+
 }
