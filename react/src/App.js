@@ -27,6 +27,7 @@ import Result from "./pages/Result/Result";
 
 import secureLocalStorage from "react-secure-storage";
 import { LandingGuest } from "./pages/LinkReceiver/LandingGuest";
+import { loadDataWithExpiration, saveDataWithExpiration } from "./components/CookieUtils/SecureLocalStorageExtends";
 
 function App() {
 
@@ -46,19 +47,20 @@ function AppContent() {
 
   // Check if user has visited landing page
   useEffect(() => {
-    const hasVisitedLanding = localStorage.getItem("hasVisitedLanding");
+    const hasVisitedLanding = loadDataWithExpiration("hasVisitedLanding");
     if (!hasVisitedLanding && location.pathname === "/") {
       navigate("/landing");
     }
-  }, []);
+  }, [location, navigate]);
 
   // Hide header on certain paths
   useEffect(() => {
     const hideHeaderPaths = ["/guest", "/host"];
     const shouldHide = hideHeaderPaths.some(path => location.pathname.startsWith(path));
-    const hideHeaderStorage = secureLocalStorage.getItem("hideHeader");
-
-    setShouldHideHeader(shouldHide || hideHeaderStorage === "true");
+    const hideHeaderStorage = loadDataWithExpiration("hideHeader");
+    const isHeaderHidden = shouldHide || hideHeaderStorage === "true";
+    setShouldHideHeader(isHeaderHidden);
+    saveDataWithExpiration("hideHeader", isHeaderHidden);
   }, [location.pathname]);
 
   const ScrollToTop = () => {

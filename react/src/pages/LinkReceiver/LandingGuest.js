@@ -15,6 +15,7 @@ import PRO from "../../assets/images/PRO.png";
 import PRS from "../../assets/images/PRS.png";
 import PCO from "../../assets/images/PCO.png";
 import PCS from "../../assets/images/PCS.png";
+import { saveDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
 
 const landingImgs = [
   { src: TRO, alt: "TRO", style: { objectFit: "cover" } },
@@ -31,6 +32,7 @@ export const LandingGuest = () => {
   const navigate = useNavigate();
 
   const setShowLanding = () => {
+    saveDataWithExpiration("hasVisitedLanding", true);
     navigate("/");
   };
   
