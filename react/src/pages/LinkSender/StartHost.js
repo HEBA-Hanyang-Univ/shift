@@ -10,14 +10,14 @@ import shImg4 from "../../assets/images/StartHost/shImg4.png";
 import shareImg from "../../assets/images/StartHost/shareImg.svg";
 import TryFetch from "../../components/FetchComponent/FetchComponent.js";
 import HandleLogin from "../../components/Login/HandleLogin.js";
-import { saveDataWithExpiration, loadDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends.js";
+import { saveDataWithExpiration, loadDataWithExpiration, loadUserData } from "../../components/CookieUtils/SecureLocalStorageExtends.js";
 import { ShareTestUrl, ShareNavigator } from "../../components/Share/ShareComponent.js";
 
 
 const StartHost = () => {
   const [ totalNum, setTotalNum ] = useState(0);
-  const [ test, setTest ] = useState(loadDataWithExpiration("myTests")); // [tid, number]
-  const [ canSeeResult, setCanSeeResult ] = useState(false);
+  const [ test, setTest ] = useState(loadUserData("myTests")); // [tid, number]
+  const [ canSeeResult, setCanSeeResult ] = useState(test ? true : false);
 
   const [gradientValue, setGradientValue] = useState(0);
   const [increase, setIncrease] = useState(true);
@@ -30,9 +30,12 @@ const StartHost = () => {
       navigate: navigate,
       toWhere: "/host/info",
       onLoginSuccess: () => {
-        if (test && test.epa !== null && test.epa !== undefined) {
-          alert("이미 진행중인 테스트가 있습니다. 기존 테스트를 삭제합니다.");
-        }
+        TryFetch("my_tests", "GET", {}, (data) => {
+          setTest(data);
+          if (data.epa) {
+            alert("이미 진행중인 테스트가 있습니다. 진행을 완료하시면 기존 테스트를 삭제합니다.");
+          }
+        });
       }
     });
   };
@@ -49,22 +52,14 @@ const StartHost = () => {
     HandleLogin({
       assertLogin: true,
       onLoginSuccess: () => {
-        if (test === null || test === undefined) {
-          TryFetch("my_tests", "GET", {}, (data) => {
-            setTest(data);
-            if (data.epa === null || data.epa === undefined) {
-              alert("진행중인 테스트가 없습니다.");
-            } else {
-              ShareTestUrl({tid:data.epa[0], nickname: data.epa[2]});
-            }
-          });
-        } else {
-          if (test.epa) {
-            ShareTestUrl({tid: test.epa[0], nickname: test.epa[2]});
-          }
-          else
+        TryFetch("my_tests", "GET", {}, (data) => {
+          setTest(data);
+          if (data.epa === null || data.epa === undefined) {
             alert("진행중인 테스트가 없습니다.");
-        }
+          } else {
+            ShareTestUrl({tid:data.epa[0], nickname: data.epa[2]});
+          }
+        });
       }
     });
   };
@@ -82,14 +77,20 @@ const StartHost = () => {
 
     if (test) {
       setCanSeeResult(true);
-    } else {
-      TryFetch("my_tests", "GET", {}, (data) => {
-        setTest(data);
-        if (data.epa !== null && data.epa !== undefined) {
-          setCanSeeResult(true);
-        }
-      });
+      return;
     }
+
+    let t = loadUserData("myTests");
+    if (t) {
+      setTest(t);
+      return;
+    }
+    TryFetch("my_tests", "GET", {}, (data) => {
+      if (data.epa !== null && data.epa !== undefined) {
+        setTest(data);
+        setCanSeeResult(true);
+      }
+    });
   }, []);
 
   useEffect(() => {

@@ -11,10 +11,10 @@ import cgImg4 from "../../assets/images/StartHost/shImg4.png";
 import shareImg from "../../assets/images/StartHost/shareImg.svg";
 import HandleLogin from '../../components/FetchComponent/FetchComponent';
 import TryFetch from '../../components/FetchComponent/FetchComponent';
-import { loadDataWithExpiration } from '../../components/CookieUtils/SecureLocalStorageExtends';
+import { loadUserData } from '../../components/CookieUtils/SecureLocalStorageExtends';
 
 const CompleteGuest = ()  => {
-  const [ test, setTest ] = useState(loadDataWithExpiration("myTests")); // [tid, number]
+  const [ test, setTest ] = useState(loadUserData("myTests")); // [tid, number]
 
   const handleShareTest = () => {
     HandleLogin({

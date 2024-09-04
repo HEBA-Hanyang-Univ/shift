@@ -73,13 +73,12 @@ function AppContent() {
     return null;
   };
 
+  //TODO : Should change version checking method
   const CheckData = () => {
-    const version = secureLocalStorage.getItem("cookie-v");
-    if (version !== "240430-1") {
+    const version = secureLocalStorage.getItem("storageVersion");
+    if (version !== process.env.REACT_APP_STORAGE_VERSION) {
       secureLocalStorage.clear();
-      setTimeout(() => {
-        secureLocalStorage.setItem("cookie-v", "240430-1");
-      }, 2000)
+      secureLocalStorage.setItem("storageVersion", process.env.REACT_APP_STORAGE_VERSION);
     }
   };
 

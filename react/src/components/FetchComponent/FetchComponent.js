@@ -1,4 +1,4 @@
-import secureLocalStorage from 'react-secure-storage';
+import { clearUserData } from '../CookieUtils/SecureLocalStorageExtends';
 
 const MAX_RETRIES = 3;
 // Timeout, Bad Gateway, Service Unavailable, Gateway Timeout, Connection Timed Out, A Timeout Occurred
@@ -23,8 +23,8 @@ function TryFetch(route, method, body, onSuccess, onFail) {
         onSuccess?.(data);
       } else {
         if (response.status === 401 || response.status === 403) {
-          // when user is not authorized, clear the secured cookie
-          secureLocalStorage.clear();
+          // when user is not authorized, clear the user data
+          clearUserData();
           onFail?.(new Error('Unauthorized'));
         } else if (RETRY_CODES.includes(response.status) && retryCount < MAX_RETRIES) {
           setTimeout(() => fetchData(retryCount + 1), 3000);

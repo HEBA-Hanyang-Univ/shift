@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import Arrow from "../../assets/images/headerArrow.svg";
 import "./Hamburger.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { loadDataWithExpiration } from "../CookieUtils/SecureLocalStorageExtends";
+import { loadUserData } from "../CookieUtils/SecureLocalStorageExtends";
 import HandleLogout from "../Login/HandleLogout";
 
 const HamburgerMenu = ({ toggleMenu }) => {
-
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
-  const [isLogin, setIsLogin] = useState(loadDataWithExpiration("isLogin"));
+  const [isLogin, setIsLogin] = useState(loadUserData("isLogin"));
   const navigate = useNavigate();
 
   const showPreparationAlert = () => {
