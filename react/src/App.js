@@ -27,6 +27,7 @@ import ResultDashBoard from "./pages/Result/ResultDashBoard";
 import Result from "./pages/Result/Result";
 
 import secureLocalStorage from "react-secure-storage";
+import { loadDataWithExpiration, saveDataWithExpiration } from "./components/CookieUtils/SecureLocalStorageExtends";
 
 function App() {
 
@@ -46,19 +47,21 @@ function AppContent() {
 
   // Check if user has visited landing page
   useEffect(() => {
-    const hasVisitedLanding = localStorage.getItem("hasVisitedLanding");
+    const hasVisitedLanding = loadDataWithExpiration("hasVisitedLanding");
     if (!hasVisitedLanding && location.pathname === "/") {
       navigate("/landing");
     }
-  }, []);
+  }, [location, navigate]);
 
   // Hide header on certain paths
   useEffect(() => {
-    const hideHeaderPaths = ["/guest", "/host"];
+    // const hideHeaderPaths = ["/guest", "/host", "/landing"];
+    const hideHeaderPaths = ["/landing"];
     const shouldHide = hideHeaderPaths.some(path => location.pathname.startsWith(path));
-    const hideHeaderStorage = secureLocalStorage.getItem("hideHeader");
-
-    setShouldHideHeader(shouldHide || hideHeaderStorage === "true");
+    const storedHideHeader = loadDataWithExpiration("hideHeader");
+    const isHeaderHidden = shouldHide || storedHideHeader === "true";
+    setShouldHideHeader(isHeaderHidden);
+    saveDataWithExpiration("hideHeader", isHeaderHidden);
   }, [location.pathname]);
 
   const ScrollToTop = () => {
