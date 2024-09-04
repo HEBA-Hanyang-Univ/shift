@@ -4,17 +4,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
 import "swiper/scss/effect-cards";
 import "swiper/scss/autoplay";
+import "../assets/styles/Landing.scss";
 import { EffectCards, Autoplay } from "swiper/modules";
-import "../../assets/styles/LinkReceiver/LandingGuest.scss";
-import { Button } from "../../components/Button/Button";
-import TRO from "../../assets/images/TRO.png";
-import TRS from "../../assets/images/TRS.png";
-import TCO from "../../assets/images/TCO.png";
-import TCS from "../../assets/images/TCS.png";
-import PRO from "../../assets/images/PRO.png";
-import PRS from "../../assets/images/PRS.png";
-import PCO from "../../assets/images/PCO.png";
-import PCS from "../../assets/images/PCS.png";
+import { Button } from "../components/Button/Button";
+import TRO from "../assets/images/TRO.png";
+import TRS from "../assets/images/TRS.png";
+import TCO from "../assets/images/TCO.png";
+import TCS from "../assets/images/TCS.png";
+import PRO from "../assets/images/PRO.png";
+import PRS from "../assets/images/PRS.png";
+import PCO from "../assets/images/PCO.png";
+import PCS from "../assets/images/PCS.png";
+import { saveDataWithExpiration } from "../components/CookieUtils/SecureLocalStorageExtends";
 
 const landingImgs = [
   { src: TRO, alt: "TRO", style: { objectFit: "cover" } },
@@ -27,11 +28,12 @@ const landingImgs = [
   { src: PCS, alt: "PCS", style: { objectFit: "cover" } },
 ];
 
-export const LandingGuest = () => {
+const Landing = () => {
   const navigate = useNavigate();
 
   const setShowLanding = () => {
     navigate("/");
+    saveDataWithExpiration("hasVisitedLanding", true);
   };
   
   return (
@@ -71,3 +73,5 @@ export const LandingGuest = () => {
     </div>
   )
 };
+
+export default Landing;

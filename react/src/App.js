@@ -7,6 +7,7 @@ import KakaoCallback from "./components/Login/SocialLoginCallback"
 import TOS from "./pages/TOS";
 import Privacy from "./pages/Privacy";
 import Error from "./pages/Error";
+import Landing from "./pages/Landing";
 
 import StartHost from "./pages/LinkSender/StartHost";
 import InfoHost from "./pages/LinkSender/InfoHost";
@@ -26,7 +27,6 @@ import ResultDashBoard from "./pages/Result/ResultDashBoard";
 import Result from "./pages/Result/Result";
 
 import secureLocalStorage from "react-secure-storage";
-import { LandingGuest } from "./pages/LinkReceiver/LandingGuest";
 
 function App() {
 
@@ -91,8 +91,8 @@ function AppContent() {
 
         {/* LinkSender */}
         <Route path="/" element={<StartHost/>}></Route>
+        <Route path="/landing" element={<Landing/>}></Route>
         <Route path="/login" element={<SocialLogin/>}></Route>
-        <Route path="/landing"element={<LandingGuest/>}></Route>
         <Route path="/host/info" element={<InfoHost/>}></Route>
         <Route path="/host/identity" element={<MyIdentity/>}></Route>
         <Route path="/host/aspiration" element={<MyAspiration/>}></Route>
