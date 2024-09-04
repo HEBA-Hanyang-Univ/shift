@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "../../assets/styles/LinkReceiver/StartGuest.scss";
 import { Button } from "../../components/Button/Button";
-import { LandingGuest } from "./LandingGuest";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import TryFetch from "../../components/FetchComponent/FetchComponent";
 import { saveDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
@@ -9,9 +8,6 @@ import { saveDataWithExpiration } from "../../components/CookieUtils/SecureLocal
 const StartGuest = () => {
   const { tid } = useParams();
   const navigate = useNavigate();
-
-  // 랜딩페이지
-  const [isLoading, setIsLoading] = useState(true);
   const [username, setUsername] = useState("");
   const [total, setTotal] = useState(0);
 
@@ -55,7 +51,6 @@ const StartGuest = () => {
     const timer = setTimeout(() => {
       setGradientValue(0);
       setIncrease(true);
-      setIsLoading(false);
     }, 2000);   // 2초 후에 로딩 상태 변경
 
     return () => {
@@ -80,9 +75,6 @@ const StartGuest = () => {
     return () => clearInterval(interval);
   }, [increase, gradientValue]);
 
-  if(isLoading) {
-    return <LandingGuest />;
-  }
 
   return (
     <div id="Container" className="sgContainer">
