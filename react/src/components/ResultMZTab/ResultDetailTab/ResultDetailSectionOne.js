@@ -1,6 +1,6 @@
 import React from "react";
 import "../../../assets/data/MZ/stateData";
-import stateData from "../../../assets/data/MZ/stateData";
+import stateData from "../../../assets/data/MZ/stateData"
 
 // content component
 function BottomSection({ content }) {
@@ -84,6 +84,7 @@ const ResultDetailSectionOne = ({ keywordData }) => {
     title,
     subTitle,
     img,
+    imgClass,
     hashTagTop,
     hashTagBottom,
     mzPower,
@@ -104,7 +105,7 @@ const ResultDetailSectionOne = ({ keywordData }) => {
             </div>
           </div>
           <div className="rdImgBox">
-            <img src={img} alt="mz img" />
+              <img src={img} alt="mz img" className={imgClass}></img>
           </div>
           <HashTagComponent hashTagTop={hashTagTop} hashTagBottom={hashTagBottom} />
         </section>

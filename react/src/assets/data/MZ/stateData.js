@@ -12,6 +12,7 @@ const stateData = {
     title: "TRO",
     subTitle: "MZ 바이블형",
     img: TRO_IMG,
+    imgClass: "troImg",
     hashTagTop: ["#솔직함", "#MZ력만렙"],
     hashTagBottom: ["#눈치99단", "#줏대있는", "#소신발언"],
     mzPower: 90,
