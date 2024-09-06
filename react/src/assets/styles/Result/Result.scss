@@ -575,14 +575,15 @@
       }
     }
     .rdImgBox {
-      width: 100%;
-      display: flex;
+      width: auto;
       justify-content: center;
-      margin-top: -2.8rem;
+      align-items: center;
+      margin-bottom: 3.458rem;
+      margin-top: 1.33rem;
 
-      img {  
-        width: 60%;
-        height: auto;
+      img { 
+        width: auto;
+        height: 14.625rem
       }
     }
 
@@ -1536,4 +1537,11 @@
   .swiperBox3 {
     background: linear-gradient(90deg, #9C76AC 5.29%, #9C76AC 5.3%, #B695C5 51.39%, #9C76AC 94.8%);
   }
+}
+
+.troImg { 
+  height: 18rem !important;
+  width: auto !important;
+  margin-top: -2.5rem;
+  margin-bottom: -2.75rem;
 }
