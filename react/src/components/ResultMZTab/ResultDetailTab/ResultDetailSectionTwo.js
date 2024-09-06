@@ -67,8 +67,8 @@ const ResultDetailSectionTwo = forwardRef(({ keywordData, epaKeywords, setLoadSt
     ));
   };
 
-  const closeAllToggles = () => {
-    setKeywords(keywords.map((keyword) => ({ ...keyword, visible: false })));
+  const openAllToggles = () => {
+    setKeywords(keywords.map((keyword) => ({ ...keyword, visible: true })));
   };
 
   useEffect(()=> {
@@ -96,7 +96,7 @@ const ResultDetailSectionTwo = forwardRef(({ keywordData, epaKeywords, setLoadSt
             },
           }}
           modules={[Pagination]}
-          onSlideChange={() => closeAllToggles()}
+          onSlideChange={() => openAllToggles()}
           >
             {slideChunks.map((chunk, index) => (
               <SwiperSlide key={index}>
