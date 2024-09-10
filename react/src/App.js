@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { React, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import "./App.scss";
 import Header from "./components/Header/Header";
 import SocialLogin from "./pages/SocialLogin";
@@ -10,7 +11,9 @@ import Error from "./pages/Error";
 import Landing from "./pages/Landing";
 
 import StartHost from "./pages/LinkSender/StartHost";
-import InfoHost from "./pages/LinkSender/InfoHost";
+import InputName from "./pages/LinkSender/InputName";
+import InputAge from "./pages/LinkSender/InputAge";
+import InputGender from "./pages/LinkSender/InputGender";
 import MyIdentity from "./pages/LinkSender/MyIdentity";
 import MyAspiration from "./pages/LinkSender/MyAspiration";
 import PerceivedByOthers from "./pages/LinkSender/PerceivedByOthers";
@@ -56,7 +59,7 @@ function AppContent() {
   // Hide header on certain paths
   useEffect(() => {
     // const hideHeaderPaths = ["/guest", "/host", "/landing"];
-    const hideHeaderPaths = ["/landing"];
+    const hideHeaderPaths = ["/landing", "/host"];
     const shouldHide = hideHeaderPaths.some(path => location.pathname.startsWith(path));
     const storedHideHeader = loadDataWithExpiration("hideHeader");
     const isHeaderHidden = shouldHide || storedHideHeader === "true";
