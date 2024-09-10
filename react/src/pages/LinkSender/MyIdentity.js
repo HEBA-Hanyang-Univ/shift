@@ -74,13 +74,13 @@ const MyIdentity = () => {
           />}
         </div>
         <div className="nextBtnBox">
-        <KeywordNextBtn
-          className="keywordNextBtn"
-          nextPageUrl="/host/aspiration"
-          isNextEnabled={selectedKeywords.length === 5}
-          doBeforeNext={saveSelectedKeyword}
-        />
-      </div>
+          <KeywordNextBtn
+            className="keywordNextBtn"
+            nextPageUrl="/host/aspiration"
+            isNextEnabled={selectedKeywords.length === 5}
+            doBeforeNext={saveSelectedKeyword}
+          />
+        </div>
       </div>
     </div>
   );

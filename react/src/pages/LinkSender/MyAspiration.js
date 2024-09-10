@@ -43,7 +43,7 @@ const MyAspiration = () => {
     let epa_keywords = loadDataWithExpiration("epa_keywords");
     if (epa_keywords === null) {
       TryFetch("get_epa_keywords", "GET", {}, (data) => {
-        saveDataWithExpiration("epa_keywords", data, 720);
+        saveDataWithExpiration("epa_keywords", data);
         epa_keywords = data;
       }, (error) => {
         alert("키워드를 불러오는데 실패했습니다.");
@@ -78,12 +78,12 @@ const MyAspiration = () => {
           />}
         </div>
         <div className="nextBtnBox">
-        <KeywordNextBtn
-          className="keywordNextBtn"
-          nextPageUrl="/host/perception"
-          isNextEnabled={selectedKeywords.length === 5}
-          doBeforeNext={saveSelectedKeyword}
-        />
+          <KeywordNextBtn
+            className="keywordNextBtn"
+            nextPageUrl="/host/perception"
+            isNextEnabled={selectedKeywords.length === 5}
+            doBeforeNext={saveSelectedKeyword}
+          />
       </div>
       </div>
     </div>

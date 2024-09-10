@@ -88,12 +88,12 @@ const PerceivedByOthers = () => {
           />}
         </div>
         <div className="nextBtnBox">
-        <KeywordNextBtn
-          className="keywordNextBtn"
-          nextPageUrl="/host/completion"
-          isNextEnabled={selectedKeywords.length === 5}
-          doBeforeNext={saveSelectedKeyword}
-        />
+          <KeywordNextBtn
+            className="keywordNextBtn"
+            nextPageUrl="/host/completion"
+            isNextEnabled={selectedKeywords.length === 5}
+            doBeforeNext={saveSelectedKeyword}
+          />
       </div>
       </div>
     </div>
