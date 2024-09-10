@@ -1,85 +1,38 @@
-.ihWrapper {
-  margin-top: 4.5rem;
+.inputInfoWrapper {
+  margin-top: 8.94rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  .ihTitle {
-    margin-bottom: 3.13rem;
+  .inputInfoBox {
+    width: 80%;
 
-    span {
-      color: #9B76AB;
-      text-align: center;
-      font-size: 1.6rem;
-      font-weight: 700;
-      letter-spacing: 0.132rem;
+    .inputInfoTitle {
+      display: flex;
+      justify-content: start;
+    
+      span {
+        color: #191F28;
+        font-size: 1.75rem;
+        font-weight: 700;
+      }
+    }    
+
+    .inputBox {
+      margin-top: 2rem;
+      position: relative;
     }
-  }
+  
+    .genderRadio {
+      margin-top: 2.96rem;
+      width: 19.45rem;
+      height: 4.856rem;
 
-  .ihInputName {
-    display: flex;
-    flex-direction: column;
-
-    input {
-      margin-top: 1.09rem;
-      text-align: center;
-      width: 14.95rem;
-      height: 2.19rem;
-      border-radius: 0.45rem;
-      border: none;
-
-      &::placeholder {
-        font-size: 0.94rem;
-        font-weight: 600;
-        color: #E8E8E8;
-        letter-spacing: 0.19rem;
+      img {
+        width: 3.325rem;
+        height: 3.325rem;
       }
     }
-  }
-
-  .ihInputGender {
-    margin-top: 2.34rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    span {
-      margin-bottom: 1.15rem;
-    }
-  }
-
-  .ihInputAge {
-    margin-top: 2.87rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    span {
-      margin-bottom: 1.2rem;
-    }
-  }
-
-  .ihAgreeNotice {
-    margin-top: 1.91rem;
-    color: #9B76AB;
-    text-align: center;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.07rem;
-  }
-}
-
-@media screen and (max-width: 300px) {
-  .ihInputName {
-    input::placeholder {
-      font-size: 0.8rem !important;
-    }
-  }
-}
-
-@media screen and (min-height: 800px) {
-  .ihWrapper {
-    margin-top: 5rem;
   }
 }
