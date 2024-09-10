@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { saveDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
+import { loadDataWithExpiration, saveDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
 import NextButton from "../../components/Button/NextButton";
 import InputField from "../../components/InputField/InputField";
 import HandleLogin from "../../components/Login/HandleLogin";
 
 const InputName = () => {
-  const [name, setName] = useState('');
-  const [isNextEnabled, setIsNextEnabled] = useState(false);
-  const [isInputFocused, setIsInputFocused] = useState(false);
+  const [ name, setName ] = useState('');
+  const [ isNextEnabled, setIsNextEnabled ] = useState(false);
+  const [ isInputFocused, setIsInputFocused ] = useState(false);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -26,7 +26,9 @@ const InputName = () => {
   };
 
   const saveInfo = () => {
+    const existingData = loadDataWithExpiration("epa_test") || {};
     saveDataWithExpiration("epa_test", {
+      ...existingData,
       nickname: name,
     });
   };

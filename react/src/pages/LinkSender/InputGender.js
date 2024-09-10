@@ -5,7 +5,7 @@ import Female from "../../assets/images/radioFemale.png";
 import NextButton from "../../components/Button/NextButton";
 import HandleLogin from "../../components/Login/HandleLogin";
 import { RadioBtn } from "../../components/Button/RadioBtn";
-import { saveDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
+import { saveDataWithExpiration, loadDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
 
 const InputGender = () => {
   const [gender, setGender] = useState('');
@@ -26,7 +26,9 @@ const InputGender = () => {
   }, [gender]);
 
   const saveInfo = () => {
+    const existingData = loadDataWithExpiration("epa_test") || {};
     saveDataWithExpiration("epa_test", {
+      ...existingData,
       gender: (gender === "option1") ? "male" : "female",
     });
   };

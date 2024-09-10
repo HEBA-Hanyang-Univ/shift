@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { saveDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
+import { saveDataWithExpiration, loadDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
 import NextButton from "../../components/Button/NextButton";
 import InputField from "../../components/InputField/InputField";
 import HandleLogin from "../../components/Login/HandleLogin";
@@ -27,8 +27,10 @@ const InputAge = () => {
   };
 
   const saveInfo = () => {
+    const existingData = loadDataWithExpiration("epa_test") || {};
     saveDataWithExpiration("epa_test", {
-        age: age,
+      ...existingData,
+      age: age,
     });
   };
 
