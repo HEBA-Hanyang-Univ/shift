@@ -3,7 +3,7 @@ import { Button } from "../Button";
 import "../Button.scss";
 
 export const KeywordBtnBox = ({ keywords, width, height, className, onKeywordClick, selectedKeywords }) => {
-  const wordsPerLine = 10;
+  const wordsPerLine = 15;
 
   // activeButtons: 키워드 버튼의 활성화 여부를 관리하는 상태
   const [activeButtons, setActiveButtons] = useState(
@@ -112,7 +112,14 @@ export const KeywordBtnBox = ({ keywords, width, height, className, onKeywordCli
             onClick = {() => handleClick(keyword)}
             key={`${index}-${keyword-wordsPerLine*index}`}
           >
-            {value[0]}
+            <div className="keywordBtnLayout">
+              <div className="keywordBtnIcon">
+                {value[1]}
+              </div>
+              <div className="keywordBtnText">
+                {value[0]}
+              </div>
+            </div>
           </Button>
           ))}
         </div>

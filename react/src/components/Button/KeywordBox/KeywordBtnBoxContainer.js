@@ -10,8 +10,8 @@ export const KeywordBtnBoxContainer = ({keywords, selectedKeywords, onKeywordCli
           keywords={keywords}
           selectedKeywords={selectedKeywords}
           color="#FFF" 
-          width={5.1} 
-          height={3.51}
+          width={6.97} 
+          height={4.8}
           className="keywordBtn"  
           onKeywordClick={onKeywordClick}
         />
