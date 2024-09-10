@@ -1,17 +1,32 @@
 // Radio Button css
 
 .radioBtnWrapper {
+  border-radius: 3.388rem;
+  border: 2px solid #D3D3D3;
   display: flex;
-  justify-content: center;
-  width: 11.6rem;
-  height: 2.8rem;
 
   .optionBtn {
     width: 50%;
-    height: 100%;
-    border-left: 3rem;
-    border-radius: 0.3rem;
-  }  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.selected {
+      background-color: #BC8FD7;
+    }
+  }
+
+  .option1Btn {
+    border-right: 1px solid #D3D3D3;
+    border-top-left-radius: 3.388rem;
+    border-bottom-left-radius: 3.388rem;
+  }
+
+  .option2Btn {
+    border-left: 1px solid #D3D3D3;
+    border-top-right-radius: 3.388rem;
+    border-bottom-right-radius: 3.388rem;
+  }
 }
 
 // KeywordBox css
@@ -231,9 +246,63 @@
   color: #747474 !important;
 }
 
+// Next Button
+.nextButton {
+  position: fixed;
+  bottom: 2.55rem;
+  width: 90%;
+  height: 3.11rem;
+  border-radius: 0.759rem;
+  background-color: #A778C2;
+  transition: bottom 1s ease, width 0.8s ease, border-radius 0.8s ease;
+
+  span {
+    color: #FFF;
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 0.25rem;
+  }
+
+  &.focus, &.active {
+    background-color: #A778C2;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 0;
+    bottom: 0;
+    transition: bottom 0.2s ease, width 0.8s ease, border-radius 0.8s ease;
+  }
+}
+
+.keywordNextBtn {
+  width: 90%;
+  height: 3.11rem;
+  border-radius: 0.759rem;
+  background-color: #A778C2;
+
+  span {
+    color: #FFF;
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 0.25rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .nextButton {
+    width: 40vw;
+
+    &.focus, &.active {
+      width: 40vw;
+    }
+  }
+}
+
 @media screen and (max-width: 319px) {
   .isSelectedKeywordBox {
     width: 100% !important;
     overflow-y: scroll;
   }
 }
+

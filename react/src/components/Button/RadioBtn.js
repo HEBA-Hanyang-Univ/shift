@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Button.scss";
 
-export const RadioBtn = ({ option1Text, option2Text, onChange }) => {
+export const RadioBtn = ({ option1Img, option2Img, onChange, className }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleClick = (optionValue) => {
@@ -10,20 +10,20 @@ export const RadioBtn = ({ option1Text, option2Text, onChange }) => {
   };
 
   return (
-    <div className="radioBtnWrapper">
-      <button className="optionBtn" onClick={() => handleClick('option1')}
-        style={selectedOption === 'option1' ? { backgroundColor: '#FFF', border: '2px solid #A570C4'} : { backgroundColor: '#F1F1F1' }}
+    <div className={`radioBtnWrapper ${className}`}>
+      <button
+        className={`optionBtn option1Btn ${selectedOption === 'option1' ? 'selected' : ''}`}
+        onClick={() => handleClick('option1')}
+        style={{ opacity: selectedOption === 'option1' || selectedOption === null ? 1 : 0.5 }}
       >
-        <span style={{fontSize: '0.84rem', fontWeight: '600', color: '#1A1A1A'}}>
-          {option1Text}
-        </span>
+        <img src={option1Img} alt="option1" />
       </button>
-      <button className="optionBtn" onClick={() => handleClick('option2')}
-        style={selectedOption === 'option2' ? { backgroundColor: '#FFF', border: '2px solid #A570C4' } : { backgroundColor: '#F1F1F1' }}
+      <button
+        className={`optionBtn option2Btn ${selectedOption === 'option2' ? 'selected' : ''}`}
+        onClick={() => handleClick('option2')}
+        style={{ opacity: selectedOption === 'option2' || selectedOption === null ? 1 : 0.5 }}
       >
-        <span style={{fontSize: '0.84rem', fontWeight: '600', color: '#1A1A1A'}}>
-          {option2Text}
-        </span>
+        <img src={option2Img} alt="option2" />
       </button>
     </div>
   );

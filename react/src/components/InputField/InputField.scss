@@ -1,0 +1,87 @@
+.inputField {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #EFEFEF;
+    color: #1A191B;
+    font-weight: 600;
+    font-size: 1.25rem; 
+    padding-bottom: 0.3rem;
+    caret-color: #BC8FD7;        
+    
+    &:focus {
+      outline: none;
+    }
+
+    &:focus ~ label,
+    &:valid ~ label {
+      top: -5.05rem;
+      font-size: 1.75rem;
+      color: #1A191B;
+    }
+
+    &:focus ~ .smallLabel,
+    &:valid ~ .smallLabel {
+      opacity: 1;
+      top: -2rem;
+      transition: opacity 2.6s ease;
+    }
+
+    &:focus ~ .bar:before,
+    &:valid ~ .bar:before {
+      width: 100%;
+    }
+  }
+
+  button {
+    position: absolute;
+    right: 0.26rem;
+    cursor: pointer;
+    padding-bottom: 0.27rem;
+
+    img {
+      width: 1.05rem;
+      height: 1.05rem;
+    }
+  }
+
+  label {
+    color: #EFEFEF;
+    font-size: 1.75rem;
+    font-weight: 700;
+    position: absolute;
+    pointer-events: none;
+    transition: 1s ease all;
+    top: -0.68rem;
+  }
+
+  .bar {
+    position: relative;
+    display: block;
+    width: 100%;
+
+    &:before {
+      content: '';
+      height: 2px;
+      width: 0;
+      bottom: 0;
+      position: absolute;
+      background: #BC8FD7;
+      transition: 1s ease all;
+      left: 0%; 
+    }
+  }
+
+  .smallLabel {
+    opacity: 0;
+    position: absolute;
+    color: #D3D3D3;
+    font-size: 0.75rem;
+    font-weight: 500;
+    top: -2rem;
+    transition: opacity 0.3s ease;
+  }
+}
