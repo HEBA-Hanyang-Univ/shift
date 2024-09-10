@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../assets/styles/LinkSender/MyIdentity.scss";
 import { KeywordBtnBoxContainer } from "../../components/Button/KeywordBox/KeywordBtnBoxContainer";
-import { SelectedKeyword } from "../../components/Button/KeywordBox/SelectedKeyword";
-import { GuestFooter } from "../../components/Footer/GuestFooter";
+import KeywordNextBtn from "../../components/Button/KeywordNextBtn";
 import HandleLogin from "../../components/Login/HandleLogin";
 import secureLocalStorage from "react-secure-storage";
 import TryFetch from "../../components/FetchComponent/FetchComponent";
@@ -68,37 +67,37 @@ const PerceivedByOthers = () => {
   }, []);
 
   return (
-    <div id="Container" className="miContainer">
-      <div className="idTitle">
-        <div className="idTitleTop">
-          <span className="idTitleSpan" style={{paddingRight: '0.2rem'}}>다른 사람들이</span>
-          <span className="idTitleUserName"> {username}</span>
-          <span className="idTitleSpan">님에 대해</span>
+    <div id="Container">
+      <div className="hostKeywordWrapper">
+        <div className="hostKeywordTitle">
+          <span>
+            다른사람들이
+            <br />
+            <span className="purpleText">{username}</span>님에 대해 
+            <br/>
+            고를 것 같은 키워드
+            <br />
+            5개를 선택해주세요. 
+          </span>
         </div>
-        <div className="idTitleBottom">
-          <span>고를 것 같은 키워드 5개를 선택해 주세요.</span>
+        <div className="hostKeyword">
+          {keywords && <KeywordBtnBoxContainer
+            keywords={keywords}
+            selectedKeywords={selectedKeywords}
+            onKeywordClick={handleKeywordClick}
+          />}
         </div>
-      </div>
-      <KeywordBtnBoxContainer
-        keywords={keywords}
-        selectedKeywords={selectedKeywords}
-        onKeywordClick={handleKeywordClick}
-      />
-      <div className="idSelectedKeywordContainer">
-        <SelectedKeyword
-          originalKeyword={keywords}
-          selectedKeywords={selectedKeywords}
-          removeKeyword={removeKeyword} 
+        <div className="nextBtnBox">
+        <KeywordNextBtn
+          className="keywordNextBtn"
+          nextPageUrl="/host/completion"
+          isNextEnabled={selectedKeywords.length === 5}
+          doBeforeNext={saveSelectedKeyword}
         />
       </div>
-      <GuestFooter
-        prevPageUrl={"/host/aspiration"}
-        nextPageUrl={"/host/completion"}
-        isNextEnabled={selectedKeywords.length === 5}
-        doBeforeNext={saveSelectedKeyword}
-      />
+      </div>
     </div>
-  )
+  );
 };
 
 export default PerceivedByOthers;

@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../assets/styles/LinkSender/MyIdentity.scss";
 import { KeywordBtnBoxContainer } from "../../components/Button/KeywordBox/KeywordBtnBoxContainer";
-import { SelectedKeyword } from "../../components/Button/KeywordBox/SelectedKeyword";
-import { GuestFooter } from "../../components/Footer/GuestFooter";
+import KeywordNextBtn from "../../components/Button/KeywordNextBtn";
 import HandleLogin from "../../components/Login/HandleLogin";
 import TryFetch from "../../components/FetchComponent/FetchComponent";
 import { loadDataWithExpiration, saveDataWithExpiration } from "../../components/CookieUtils/SecureLocalStorageExtends";
@@ -21,10 +20,6 @@ const MyAspiration = () => {
     } else {
       setSelectedKeywords([...selectedKeywords, keyword]);
     };
-  };
-  
-  const removeKeyword = (indexToRemove) => {
-    setSelectedKeywords(selectedKeywords.filter((_, index) => index !== indexToRemove));
   };
 
   const saveSelectedKeyword = () => {
@@ -64,36 +59,35 @@ const MyAspiration = () => {
   }, []);
 
   return (
-    <div id="Container" className="miContainer">
-      <div className="idTitle">
-        <div className="idTitleTop">
-          <span className="idTitleUserName">{username}</span>
-          <span className="idTitleSpan">님을 나타내지 않지만</span>
+    <div id="Container">
+      <div className="hostKeywordWrapper">
+        <div className="hostKeywordTitle">
+          <span>
+            <span className="purpleText">{username}</span>님을
+            <br />
+            나타내지 않지만 갖고싶은 키워드
+            <br />
+            5개를 선택해주세요.
+          </span>
         </div>
-        <div className="idTitleBottom">
-          <span>갖고 싶은 키워드 5개를 선택해 주세요.</span>
+        <div className="hostKeyword">
+          {keywords && <KeywordBtnBoxContainer
+            keywords={keywords}
+            selectedKeywords={selectedKeywords}
+            onKeywordClick={handleKeywordClick}
+          />}
         </div>
+        <div className="nextBtnBox">
+        <KeywordNextBtn
+          className="keywordNextBtn"
+          nextPageUrl="/host/perception"
+          isNextEnabled={selectedKeywords.length === 5}
+          doBeforeNext={saveSelectedKeyword}
+        />
       </div>
-      <KeywordBtnBoxContainer
-        keywords={keywords}
-        selectedKeywords={selectedKeywords}
-        onKeywordClick={handleKeywordClick}
-      />
-      <div className="idSelectedKeywordContainer">
-        <SelectedKeyword
-          originalKeyword={keywords}
-          selectedKeywords={selectedKeywords} 
-          removeKeyword={removeKeyword}
-         />
       </div>
-      <GuestFooter 
-        prevPageUrl={"/host/identity"} 
-        nextPageUrl={"/host/perception"}
-        isNextEnabled={selectedKeywords.length === 5}
-        doBeforeNext={saveSelectedKeyword}
-      />
     </div>
-  )
+  );
 };
 
 export default MyAspiration;

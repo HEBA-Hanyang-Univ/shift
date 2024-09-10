@@ -1,62 +1,45 @@
-.miContainer {
-  margin-top: 2.6rem;
-  height: 100%;
-  margin-bottom: 5rem;
-
-  .idTitle {
-    margin: 0 auto;
-
-    .idTitleTop {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      span {
-        font-size: 1.09rem;
-        letter-spacing: 0.03rem;
-      }
-
-      .idTitleUserName {
-        color: #A570C4;
-        text-transform: uppercase;
-        margin-top: -0.03rem;
-        font-weight: 700;
-      }
-
-      .idTitleSpan {
-        color: #000;
-        font-weight: 600;
-      }
-    }
-
-    .idTitleBottom {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-top: 0.7rem;
-
-      span {
-        color: #000;
-        font-size: 1.09rem;
-        font-weight: 600;
-        letter-spacing: 0.03rem;
-      }
-    }
-  }
-}
- 
-.idSelectedKeywordContainer {
-  width: 100%;
-  height: 10rem;
+.hostKeywordWrapper {
+  margin-top: 4.84rem;
   display: flex;
   flex-direction: column;
-  margin-top: 0.3rem;
+  align-items: center;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hostKeywordTitle {
+    width: 100%;
+    padding-left: 2.38rem;
+
+    span {
+      font-size: 1.71rem;
+      font-weight: 700;
+      letter-spacing: -0.017rem;
+      color: #191F28;
+      text-align: left;
+      line-height: 153%;
+    }
+
+    .purpleText {
+      color: #9965B8 !important;
+    }
+  }
+
+  .hostKeyword {
+    margin-top: 4.02rem;
+    margin-bottom: 5.5rem;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
 
-@media screen and (min-width: 1080px) {
-  .idSelectedKeywordContainer {
-    padding-left: 7rem;
-    width: 40%;
-    margin: 0.3rem auto;
-  }
+.nextBtnBox {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2.71rem;
 }
