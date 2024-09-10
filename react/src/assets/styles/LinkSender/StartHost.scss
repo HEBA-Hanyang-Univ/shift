@@ -1,193 +1,112 @@
-.shContainer {
-  background: #FFF;
-  width: 100vw;
+.shWrapper {
   height: 100%;
-  
-  .shWrapper{
+  margin: 2.53rem 3.34rem 0 3.766rem;
+
+  .shTitle {
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: #9C76AC;
+      text-align: center;
+      line-height: 2.5rem;
+      text-wrap: nowrap;
+    }
+  }
+
+  .shContentBox {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    .shTitleWrapper {
+
+    .shContentTitle {
+      width: 12.73rem;
+      height: 1.83rem;
+      background-color: #9C76AC;
+      flex-shrink: 0;
       display: flex;
-      flex-direction: column; 
-      margin: 1.8rem auto 1rem;
-
-      .shTitleS {
-         color: #9C76AC;
-         font-size: 1.04rem;
-         font-weight: 600;
-         text-align: center;
-         letter-spacing: 0.05rem;
-         padding-bottom: 0.5rem;
-        }
-
-      .shTitleM {
-        color: #9C76AC;
-        font-size: 1.7rem;
-        font-weight: 700;
-        text-align: center;
-        letter-spacing: 0.05rem;
-      }
-    }
-
-    .shBoxWrapper {
-      margin: 0.5rem auto 0;
-      display: grid;
-      grid-template: repeat(2, 1fr)/ repeat(2, 1fr);
-      background-color: #D9C5E1;
-      gap: 1px;
-      border: 0.15rem solid #D9C5E1;
-      border-radius: 0.75rem;
-      overflow: hidden;
-
-      .shBox{
-        width: 9.7rem;
-        height: 8rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #FFF;
-
-        .shBoxSubTitle {
-          margin-bottom: 0.4rem;
-          span {
-            color: #9C76AC;
-            font-weight: 700;
-            font-size: 0.64rem;
-            letter-spacing: 0.018rem;
-          }
-        }
-
-        .shBoxImg {
-          margin-bottom: 0.4rem;
-          img {
-            width: 4.5rem;
-            height: 3.5rem;
-            object-fit: contain;
-          }
-        }
-
-        .shBoxMainTitle {
-          span {
-            font-size: 0.84rem;
-            font-weight: 700;
-            letter-spacing: 0.025rem;
-            color: #775F82;
-          }
-        }
-      }
-    }
-
-    .shUserCount {
-      margin-top: 0.8rem;
-    }
-
-    .shButtonContainer {
-      margin-top: 0.8rem;
-      padding: 0 auto 0.6rem;
-      width: 19.7rem;
-      display: flex;
-      flex-direction: column;
       justify-content: center;
-      align-items: center;
+      align-items: center; 
 
-      .shButtonL {
-        border-radius: 7.25rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 0.4rem;
-
-        .shButtonSpanL {
-          color: #FFF;
-          font-weight: 500;
-          font-size: 1.18rem;
-          letter-spacing: 0.1rem;
-        }
-
-        .shButtonSpanS {
-          padding-top: 0.13rem;
-          //color: #FFF;
-          font-weight: 400;
-          font-size: 0.5rem;
-        }
-      }
-
-      .shShareButtonWrapper {
-        margin-top: 0.7rem;
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-
-        .testButton {
-          display: flex;
-          border-radius: 7.25rem;
-          justify-content: center;
-          align-items: center;
-
-          img {
-            width: 0.8rem;
-            height: auto;
-            margin-left: -0.2rem;
-            padding-right: 0.6rem;
-          }
-
-          span {
-            text-align: center;
-            color: #9C76AC;
-            font-weight: 500;
-            font-size: 0.78rem;
-            letter-spacing: 0.05rem;
-          }
-        }
+      span {
+        font-size: 1.37rem;
+        font-weight: 700;
+        line-height: 87%;
+        color: #FFF;
+        text-align: center;
       }
     }
 
-    .shFooter {
-      margin: 1rem auto 0.6rem;
-      
+    .shContent {
+      margin-top: 0.35rem;
+      width: 91%;
+      border: 6px solid #9C76AC;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      aspect-ratio: 47.63 / 63.06;
+
       img {
-        width: 4.2rem;
-        height: auto;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+      }
+    }
+  }
+
+  .shFooter {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2.1rem;
+    margin-bottom: env(safe-area-inset-right);
+
+    .shButton {
+      width: 16rem;
+      border-radius: 2.534rem;
+      aspect-ratio: 45.71713 / 7.23931;
+
+      span {
+        font-size: 1.05rem;
+        color: #FFF;
+        text-align: center;
+        font-weight: 600;
+        letter-spacing: 0.105rem;
+        line-height: 2.05rem;
+      }
+    }
+    
+    .shFooterText {
+      padding-top: 0.6rem;
+      padding-bottom: 1.75rem;
+
+      span {
+        font-size: 0.875rem;
+        font-weight: 700;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
       }
     }
   }
 }
 
-@media screen and (max-width: 300px) {
-  .shBox {
-    width: 8rem !important  ;
-  }
-
-  .shButtonL {
-    width: 15rem !important;
-    
-  }
-
-  .shShareButtonWrapper {
-    width: 14rem !important;
-  }
-
-  .testButton {
-    width: 6.4rem !important;
-    height: 1.7rem !important;
-
-    img {
-      width: 0.5rem !important;
-      padding-right: 0.2rem !important;
-      margin-left: 0 !important;
-    }
-
+@media screen and (min-width: 230px) {
+  .shFooterText {
     span {
-      font-size: 0.6rem !important;
     }
-  }
-
-  .shButtonContainer {
-    width: 100vw !important;
   }
 }
+
+@media screen and (min-width: 768px) {
+  .shContent {
+    width: 15rem !important; 
+  }
+};
