@@ -4,6 +4,12 @@
   position: fixed;
   bottom: 0;
   background: linear-gradient(180deg, #F1F1F1 -19.42%, #F9F9F9 144.63%);
+
+  @media only screen and (min-width: 1024px) {
+    // PC
+    width: 40vw;
+    margin: 0 auto;
+  }
   
   .footerWrapper {
     display: flex;
