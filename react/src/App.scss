@@ -1,3 +1,7 @@
+:root {
+  --vh: 100%;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -18,6 +22,14 @@ a {
 #Container {
   display: flex;
   flex-direction: column;
+  width: 100vw;
+  background-color: #FFF;
+
+  @media only screen and (min-width: 1024px) {
+    // PC
+    width: 40vw;
+    margin: 0 auto;
+  }
 }
 
 #infoTitle {
@@ -31,7 +43,7 @@ a {
 
 // Social Login
 .socialContainer {
-  height: calc(100vh - 2.5rem);
+  height: calc(var(--vh, 1vh) * 100 + 2.5rem);
   background: linear-gradient(180deg, #FFF 3.11%, #d4d4d4 93.37%);
 
   .socialWrapper {

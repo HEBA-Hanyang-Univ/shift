@@ -64,6 +64,19 @@ function AppContent() {
     saveDataWithExpiration("hideHeader", isHeaderHidden);
   }, [location.pathname]);
 
+  // set Screen Size
+  useEffect(() => {
+    function setScreenSize() {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    
+      setScreenSize();
+      window.addEventListener('resize', setScreenSize);
+      
+      return () => window.removeEventListener('resize', setScreenSize);
+    }, []);
+
   const ScrollToTop = () => {
     const { pathname } = useLocation();
     useEffect(() => {
@@ -87,37 +100,49 @@ function AppContent() {
       <CheckData />
       <ScrollToTop />
       {!shouldHideHeader && <Header />}
-      <Routes>
-        {/* Social Login Callback */}
-        <Route path="/kakao_callback" element={<KakaoCallback/>}></Route>
+      <AnimatePresence mode="wait">
+        <motion.div 
+          key={location.pathname}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+        <Routes location={location} key={location.pathname}>
+          {/* Social Login Callback */}
+          <Route path="/kakao_callback" element={<KakaoCallback/>}></Route>
 
-        {/* LinkSender */}
-        <Route path="/" element={<StartHost/>}></Route>
-        <Route path="/landing" element={<Landing/>}></Route>
-        <Route path="/login" element={<SocialLogin/>}></Route>
-        <Route path="/host/info" element={<InfoHost/>}></Route>
-        <Route path="/host/identity" element={<MyIdentity/>}></Route>
-        <Route path="/host/aspiration" element={<MyAspiration/>}></Route>
-        <Route path="/host/perception" element={<PerceivedByOthers/>}></Route>
-        <Route path="/host/completion" element={<CompleteHost/>}></Route>
+          {/* LinkSender */}
+          <Route path="/" element={<StartHost/>}></Route>
+          <Route path="/landing" element={<Landing/>}></Route>
+          <Route path="/login" element={<SocialLogin/>}></Route>
+          <Route path="/host/info" element={<InputName/>}></Route>
+          <Route path="/host/info/age" element={<InputAge/>}></Route>
+          <Route path="/host/info/gender" element={<InputGender/>}></Route>
+          <Route path="/host/identity" element={<MyIdentity/>}></Route>
+          <Route path="/host/aspiration" element={<MyAspiration/>}></Route>
+          <Route path="/host/perception" element={<PerceivedByOthers/>}></Route>
+          <Route path="/host/completion" element={<CompleteHost/>}></Route>
 
-        {/* LinkReceiver */}
-        <Route path="/guest/:tid" element={<StartGuest/>}></Route>
-        <Route path="/guest/info/:tid" element={<InfoGuest/>}></Route>
-        <Route path="/guest/keyword/:tid" element={<SelectKeyword/>}></Route>
-        <Route path="/guest/reasoning/:tid" element={<Reasoning/>}></Route>
-        <Route path="/guest/description/:tid" element={<OneLineDescription/>}></Route>
-        <Route path="/guest/completion/" element={<CompleteGuest/>}></Route>
+          {/* LinkReceiver */}
+          <Route path="/guest/:tid" element={<StartGuest/>}></Route>
+          <Route path="/guest/info/:tid" element={<InfoGuest/>}></Route>
+          <Route path="/guest/keyword/:tid" element={<SelectKeyword/>}></Route>
+          <Route path="/guest/reasoning/:tid" element={<Reasoning/>}></Route>
+          <Route path="/guest/description/:tid" element={<OneLineDescription/>}></Route>
+          <Route path="/guest/completion/" element={<CompleteGuest/>}></Route>
 
-        {/* Result */}
-        <Route path="/result/dashboard" element={<ResultDashBoard/>}></Route>
-        <Route path="/result/detail/" element={<Result/>}></Route>
+          {/* Result */}
+          <Route path="/result/dashboard" element={<ResultDashBoard/>}></Route>
+          <Route path="/result/detail/" element={<Result/>}></Route>
 
-        {/* Footer Links */}
-        <Route path="/terms" element={<TOS/>}></Route>
-        <Route path="/privacy" element={<Privacy/>}></Route>
-        <Route path="/*" element={<Error/>}></Route>
-      </Routes>
+          {/* Footer Links */}
+          <Route path="/terms" element={<TOS/>}></Route>
+          <Route path="/privacy" element={<Privacy/>}></Route>
+          <Route path="/*" element={<Error/>}></Route>
+        </Routes>
+        </motion.div>
+      </AnimatePresence>
     </>
   )
 };
