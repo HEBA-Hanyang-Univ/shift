@@ -2,7 +2,7 @@
 import './Button.scss';
 import { useNavigate } from 'react-router-dom';
 
-const NextButton = ({ isInputFocused, isNextEnabled, nextPageUrl, doBeforeNext }) => {
+const NextButton = ({ isInputFocused, isNextEnabled, nextPageUrl, doBeforeNext, className, text }) => {
   const navigate = useNavigate();
 
   const handleNextPage = (e) => {
@@ -18,10 +18,10 @@ const NextButton = ({ isInputFocused, isNextEnabled, nextPageUrl, doBeforeNext }
 
   return (
     <button 
-      className={`nextButton ${isInputFocused ? 'active' : isNextEnabled ? 'enabled' : ''}`} 
-      onMouseDown={handleNextPage} 
+      className={`nextButton ${className} ${isInputFocused ? 'active' : isNextEnabled ? 'enabled' : ''}`} 
+      onMouseDown={handleNextPage}
     >
-      <span>다음</span>
+      <span>{text}</span>
     </button>
   );
 };
